@@ -1,0 +1,44 @@
+
+  - platform: tplink
+    host: 192.168.2.8
+#  - platform: transmission
+#    host: 192.168.2.15
+#    name: "Tartaruga"
+#    username: "transmission"
+#    password: "transmission"
+  - platform: command_line
+    switches:
+      tasto_netflix:
+        command_on: 'curl --request PUT --data "{\"scene\": \"vQBO-xPQY2uLzzC\"}" http://192.168.2.5/api/LBmNRY-HWbq4u-AQt4EPKO5rgNJj1miy5RQ7wyic/groups/3/action'
+        command_off: 'curl --request PUT --data "{\"scene\": \"j6vfh8VBdNxcKO3\"}" http://192.168.2.5/api/LBmNRY-HWbq4u-AQt4EPKO5rgNJj1miy5RQ7wyic/groups/3/action'
+        friendly_name: Netflix
+  - platform: template
+    switches:
+      automazione_avviso_semola:
+        friendly_name: Avviso Semola
+        value_template: "{{ is_state('automation.avviso_semola_on', 'on') and is_state('automation.avviso_semola_off', 'on') }}"
+        turn_on:
+          service: automation.turn_on
+          data:
+            entity_id: automation.avviso_semola_on, automation.avviso_semola_off
+        turn_off:
+          service: automation.turn_off
+          data:
+            entity_id: automation.avviso_semola_on, automation.avviso_semola_off
+      vacanza:
+        friendly_name: Vacanza!
+        value_template: "{{ is_state('automation.programmazione_nuvola', 'off') and is_state('automation.arrivo_ale', 'off') and is_state('switch.automazione_avviso_semola', 'off') and is_state('switch.semola_schedule', 'off') }}"
+        turn_on:
+          - service: automation.turn_off
+            data:
+              entity_id: automation.programmazione_nuvola, automation.arrivo_ale
+          - service: switch.turn_off
+            data:
+              entity_id: switch.automazione_avviso_semola, switch.semola_schedule
+        turn_off:
+          - service: automation.turn_on
+            data:
+              entity_id: automation.programmazione_nuvola, automation.arrivo_ale
+          - service: switch.turn_on
+            data:
+              entity_id: switch.automazione_avviso_semola, switch.semola_schedule

@@ -1,0 +1,21 @@
+
+  - alias: Allarme
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001bf80f4, binary_sensor.door_window_sensor_158d0001ab6dbe, binary_sensor.door_window_sensor_158d0001e48bd5, binary_sensor.door_window_sensor_158d0001ab2e3e, binary_sensor.door_window_sensor_158d0001b97e2e, binary_sensor.door_window_sensor_158d0001bf80d3, binary_sensor.door_window_sensor_158d0001de8c1e, binary_sensor.door_window_sensor_158d0001de6ed0, binary_sensor.door_window_sensor_158d0001daeef7
+      from: 'off'
+      to: 'on'
+    condition:
+      condition: state
+      entity_id: group.famiglia
+      state: not_home
+      for:
+        minutes: 5
+    action:
+      service: notify.telefoni
+      data_template:
+        title: "ALLARME!"
+        message: >
+          {{ trigger.from_state.attributes.friendly_name }} è appena passata da {{ trigger.from_state.state }} a {{ trigger.to_state.state }}.
+
+###############################################################################

@@ -1,0 +1,190 @@
+###############################################################################
+# Xiaomi Gateway
+###############################################################################
+  binary_sensor.door_window_sensor_158d0001bf80d3:
+    friendly_name: Portafinestra Cucina
+    device_class: opening
+    homebridge_visible: true
+  binary_sensor.door_window_sensor_158d0001bf80f4:
+    friendly_name: Porta Blindata
+    device_class: opening
+    homebridge_visible: true
+  binary_sensor.door_window_sensor_158d0001ab6dbe:
+    friendly_name: Finestra Bagno
+    device_class: opening
+    homebridge_opening_type: window
+    homebridge_visible: true
+  binary_sensor.door_window_sensor_158d0001daeef7:
+    friendly_name: Finestra Camera DX
+    device_class: opening
+    homebridge_opening_type: window
+    homebridge_visible: true
+  binary_sensor.door_window_sensor_158d0001ab2e3e:
+    friendly_name: Portafinestra Salotto DX
+    device_class: opening
+    homebridge_visible: true
+  binary_sensor.door_window_sensor_158d0001de8c1e:
+    friendly_name: Portafinestra Camera
+    device_class: opening
+    homebridge_visible: true
+  binary_sensor.door_window_sensor_158d0001b97e2e:
+    friendly_name: Finestra Cucina
+    homebridge_opening_type: window
+    homebridge_visible: true
+  binary_sensor.door_window_sensor_158d0001de6ed0:
+    friendly_name: Finestra Camera SX
+    homebridge_opening_type: window
+    homebridge_visible: true
+  binary_sensor.door_window_sensor_158d0001e48bd5:
+    friendly_name: Portafinestra Salotto SX
+    homebridge_visible: true
+###############################################################################
+  binary_sensor.motion_sensor_158d0001a8e47c:
+    friendly_name: Cucina
+    homebridge_visible: true
+  binary_sensor.motion_sensor_158d0001a8fb6a:
+    friendly_name: Disimpegno
+    homebridge_visible: true
+  binary_sensor.motion_sensor_158d0001a8fa9d:
+    friendly_name: Camera
+    homebridge_visible: true
+  binary_sensor.motion_sensor_158d0001dc2ed5:
+    friendly_name: Salotto
+    homebridge_visible: true
+###############################################################################
+  binary_sensor.switch_158d000120d46e:
+    friendly_name: Button Salotto
+    hidden: true
+  binary_sensor.switch_158d000120d3ef:
+    friendly_name: Button Cucina
+    hidden: true
+  binary_sensor.switch_158d00016c48b3:
+    friendly_name: Button Alby
+    hidden: true
+  binary_sensor.switch_158d000120ea9c:
+    friendly_name: Button Ale
+    hidden: true
+###############################################################################
+  sensor.humidity_158d0001b92644:
+    friendly_name: Umidità
+    homebridge_visible: true
+  sensor.humidity_158d0001f561b7:
+    friendly_name: Umidità
+    homebridge_visible: true
+  sensor.pressure_158d0001b92644:
+    friendly_name: Pressione
+  sensor.pressure_158d0001f561b7:
+    friendly_name: Pressione
+  sensor.temperature_158d0001b92644:
+    friendly_name: Temperatura
+    homebridge_visible: true
+  sensor.temperature_158d0001f561b7:
+    friendly_name: Temperatura
+    homebridge_visible: true
+###############################################################################
+  light.gateway_light_7811dcb0727e:
+    friendly_name: Gateway
+###############################################################################
+###############################################################################
+  camera.semola_cleaning_map:
+    friendly_name: Mappa Pulizie Semola
+  media_player.yamaha_receiver:
+    friendly_name: Yamaha
+    homebridge_media_player_switch: on_off
+    homebridge_visible: true
+  media_player.amazon_fire_tv:
+    homebridge_media_player_switch: on_off
+    homebridge_visible: true
+  sensor.illumination_7811dcb0727e:
+    friendly_name: Luminosità Salotto
+    homebridge_visible: true
+#  sensor.transmission_active_torrents:
+#    friendly_name: Torrents Attivi
+#  sensor.transmission_down_speed:
+#    friendly_name: Velocità Download
+#  sensor.transmission_up_speed:
+#    friendly_name: Velocità Upload
+  sun.sun:
+    friendly_name: Sole
+    hidden: true
+  switch.semola_schedule:
+    friendly_name: Programmazione Semola
+    icon: mdi:roomba
+    homebridge_visible: true
+    homebridge_name: ProgSemola
+#  group.all_vacuum_cleaners:
+#    friendly_name: Aspirapolveri
+#    hidden: false
+
+  light.camera:
+    hidden: true
+  light.cucina:
+    hidden: true
+  light.disimpegno:
+    hidden: true
+  light.casa:
+    hidden: true
+  light.salotto:
+    hidden: true
+
+  light.camera_2:
+    homebridge_visible: true
+  light.cucina_2:
+    homebridge_visible: true
+  light.disimpegno_2:
+    homebridge_visible: true
+  light.divano:
+    homebridge_visible: true
+  light.tv:
+    homebridge_visible: true
+
+  switch.nuvola:
+    icon: mdi:radiator
+    homebridge_visible: true
+  vacuum.semola:
+    homebridge_visible: true
+  device_tracker.iphone_di_alby:
+    homebridge_visible: true
+  device_tracker.iphone_di_alessandra:
+    homebridge_visible: true
+
+  sensor.disk_use_percent_home:
+    friendly_name: Utilizzo Disco
+  sensor.memory_free:
+    friendly_name: Memoria Libera
+  sensor.pihole_ads_blocked_today:
+    friendly_name: Ads bloccati oggi
+  sensor.pihole_ads_percentage_blocked_today:
+    friendly_name: Percentuale Ads bloccati oggi
+  sensor.pihole_dns_queries_today:
+    friendly_name: DNS queries oggi
+
+  sensor.dark_sky_apparent_temperature:
+    friendly_name: Temperatura Apparente
+  sensor.dark_sky_cloud_coverage:
+    friendly_name: Copertura Nuvolosa
+  sensor.dark_sky_wind_speed:
+    friendly_name: Velocità del Vento
+  sensor.dark_sky_cloud_coverage_1:
+    friendly_name: Copertura Nuvolosa (Domani)
+  sensor.dark_sky_wind_speed_1:
+    friendly_name: Velocità del Vento (Domani)
+  sensor.dark_sky_summary:
+    friendly_name: Meteo
+  sensor.tap_button:
+    hidden: true
+  sensor.tap_update:
+    hidden: true
+
+  sensor.alecasa:
+    friendly_name: Tempo Alessandra a Casa
+    icon: mdi:heart
+  sensor.albycasa:
+    friendly_name: Tempo Alberto a Casa
+    icon: mdi:heart
+  sensor.lavorocasa_ale:
+    friendly_name: Tempo da Brandizzo a Casa
+    icon: mdi:home
+  sensor.lavorocasa_alby:
+    friendly_name: Tempo da Mirafiori a Casa
+    icon: mdi:home

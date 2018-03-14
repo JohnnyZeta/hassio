@@ -1,0 +1,69 @@
+
+
+  - alias: Arrivo a Casa
+    trigger:
+      platform: zone
+      entity_id: group.famiglia
+      zone: zone.home
+      event: enter
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Casa"
+          scene_name: "Arrivo"
+
+###############################################################################
+
+  - alias: Luce Serale
+    trigger:
+      platform: sun
+      # Possible values: sunset, sunrise
+      event: sunset
+      # Optional time offset. This example is 45 minutes.
+      offset: '-00:30:00'
+    condition:
+      condition: state
+      entity_id: group.famiglia
+      state: home
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Cucina"
+          scene_name: "Arrivo"
+
+###############################################################################
+#  - alias: Luce Serale
+#    trigger:
+#      - platform: zone
+#        entity_id: group.famiglia
+#        zone: zone.home
+#        event: enter
+#      - platform: sun
+#        # Possible values: sunset, sunrise
+#        event: sunset
+#        # Optional time offset. This example is 45 minutes.
+#        offset: '-00:30:00'
+#    condition:
+#      condition: state
+#      entity_id: group.famiglia
+#      state: home
+#    action:
+#      - service: hue.hue_activate_scene
+#        data:
+#          group_name: "Casa"
+#          scene_name: "Arrivo"
+###############################################################################
+
+  - alias: Netflix
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120d46e
+        click_type: single
+    action:
+      service: switch.toggle
+      data:
+        entity_id: switch.tasto_netflix
+
+###############################################################################

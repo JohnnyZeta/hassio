@@ -1,0 +1,272 @@
+
+  default_view:
+    name: Home
+    view: yes
+    icon: mdi:map-marker
+    entities:
+      - device_tracker.iphone_di_alby
+      - device_tracker.iphone_di_alessandra
+      - group.famiglia
+      - sensor.saldo_eth
+      - sun.sun
+      - sensor.dark_sky_summary
+      - group.porte
+      - group.movimenti
+      - group.stanze
+      - group.altro
+      - group.automazioni
+
+  stanze:
+    name: Stanze
+    view: yes
+    icon: mdi:home-account
+    entities:
+      - group.salotto
+      - group.disimpegno
+      - group.camera
+      - group.cucina
+      - group.balcone
+      - media_player.yamaha_receiver
+      - media_player.amazon_fire_tv
+      - media_player.cucina
+      - camera.semola_cleaning_map
+
+  automazioni:
+    name: Automazioni
+    view: yes
+    icon: mdi:home-assistant
+    control: hidden
+    entities:
+      - group.automazioni_posizioni
+      - group.automazioni_sistema
+      - group.automazioni_casa
+
+  altro:
+    name: Altro
+    view: yes
+    icon: mdi:raspberrypi
+    entities:
+      - group.apple
+      - group.sistema
+      - group.pihole
+      - group.speedtest
+      - group.smartplug
+      - group.meteo
+
+###################################################
+
+  salotto:
+    name: Salotto
+    view: no
+    icon: mdi:sofa
+    control: hidden
+    entities:
+      - light.divano
+      - light.tv
+      - light.gateway_light_7811dcb0727e
+      - sensor.illumination_7811dcb0727e
+      - switch.tasto_netflix
+
+  disimpegno:
+    name: Disimpegno
+    view: no
+    icon: mdi:lamp
+    entities:
+      - light.disimpegno_2
+      - sensor.tap_remote
+
+  camera:
+    name: Camera da Letto
+    view: no
+    icon: mdi:hotel
+    control: hidden
+    entities:
+      - light.camera_2
+      - switch.nuvola
+      - vacuum.semola
+      - switch.semola_schedule
+
+  cucina:
+    name: Cucina
+    view: no
+    icon: mdi:fridge
+    entities:
+      - light.cucina_2
+      - sensor.temperature_158d0001f561b7
+      - sensor.humidity_158d0001f561b7
+      - sensor.pressure_158d0001f561b7
+
+  balcone:
+    name: Balcone
+    view: no
+    icon: mdi:nature
+    entities:
+      - sensor.temperature_158d0001b92644
+      - sensor.humidity_158d0001b92644
+      - sensor.pressure_158d0001b92644
+
+
+##############################################
+
+  apple:
+    name: Apple
+    view: no
+    control: hidden
+    entities:
+      - group.iphone
+      - group.ipad
+
+  porte:
+    name: Porte e Finestre
+    view: no
+    entities:
+     - binary_sensor.door_window_sensor_158d0001bf80f4
+     - binary_sensor.door_window_sensor_158d0001ab6dbe
+     - binary_sensor.door_window_sensor_158d0001e48bd5
+     - binary_sensor.door_window_sensor_158d0001ab2e3e
+     - binary_sensor.door_window_sensor_158d0001b97e2e
+     - binary_sensor.door_window_sensor_158d0001bf80d3
+     - binary_sensor.door_window_sensor_158d0001de8c1e
+     - binary_sensor.door_window_sensor_158d0001de6ed0
+     - binary_sensor.door_window_sensor_158d0001daeef7
+
+  movimenti:
+    name: Movimenti
+    view: no
+    entities:
+      - binary_sensor.motion_sensor_158d0001a8e47c
+      - binary_sensor.motion_sensor_158d0001a8fb6a
+      - binary_sensor.motion_sensor_158d0001a8fa9d
+      - binary_sensor.motion_sensor_158d0001dc2ed5
+
+  smartplug:
+    name: Smart Plug
+    view: no
+    icon: mdi:power-socket-eu
+    entities:
+      - sensor.tp_link_amps
+      - sensor.tp_link_watts
+      - sensor.tp_link_kw
+      - sensor.tp_link_kw_today
+      - sensor.tp_link_volts
+
+  iphone:
+    name: iPhone
+    view: no
+    icon: mdi:cellphone-iphone
+    entities:
+      - sensor.iphone_di_alby_battery_level
+      - sensor.iphone_di_alby_battery_state
+      - sensor.iphone_di_alessandra_battery_level
+      - sensor.iphone_di_alessandra_battery_state
+
+  ipad:
+    name: iPad
+    view: no
+    icon: mdi:tablet-ipad
+    entities:
+      - sensor.ipad_di_alberto_battery_level
+      - sensor.ipad_di_alberto_battery_state
+
+  sistema:
+    name: RaspberryPi
+    view: no
+    control: hidden
+    entities:
+      - sensor.tempo_online
+      - sensor.disk_use_percent_home
+      - sensor.memory_free
+      - sensor.packets_in_eth0
+      - sensor.packets_out_eth0
+      - sensor.ip_esterno
+
+  pihole:
+    name: Pi-Hole
+    view: no
+    control: hidden
+    entities:
+      - sensor.pihole_ads_blocked_today
+      - sensor.pihole_ads_percentage_blocked_today
+#      - sensor.pihole_dns_queries_cached
+#      - sensor.pihole_dns_queries_forwarded
+      - sensor.pihole_dns_queries_today
+#      - sensor.pihole_dns_unique_clients
+#      - sensor.pihole_dns_unique_domains
+#      - sensor.pihole_domains_blocked
+
+  speedtest:
+    name: Speedtest
+    view: no
+    control: hidden
+    entities:
+      - sensor.speedtest_download
+      - sensor.speedtest_ping
+      - sensor.speedtest_upload
+
+  meteo:
+    name: Meteo
+    view: no
+    control: hidden
+    entities:
+      - sensor.dark_sky_apparent_temperature
+      - sensor.dark_sky_cloud_coverage
+      - sensor.dark_sky_wind_speed
+      - sensor.dark_sky_cloud_coverage_1
+      - sensor.dark_sky_wind_speed_1
+
+  automazioni_sistema:
+    name: Sistema
+    view: no
+    control: hidden
+    icon: mdi:raspberrypi
+    entities:
+      - automation.backup_automatico
+      - automation.notifica_aggiornamento
+      - automation.promemoria_ipad
+      - automation.spazio_libero
+#      - automation.netflix
+
+  automazioni_posizioni:
+    name: Localizzazione
+    view: no
+    control: hidden
+    icon: mdi:map-marker
+    entities:
+      - automation.allarme
+      - automation.partenza_ale
+      - automation.richiesta_location_ale
+      - automation.arrivo_a_casa
+      - automation.arrivo_ale
+      - automation.luce_serale
+
+  automazioni_casa:
+    name: Generiche
+    view: no
+    control: hidden
+    icon: mdi:home-assistant
+    entities:
+      - switch.vacanza
+      - automation.programmazione_nuvola
+      - automation.vento_forte
+      - switch.automazione_avviso_semola
+
+################################################################################
+
+  famiglia:
+    name: Famiglia
+    view: no
+    entities:
+      - sensor.alecasa
+      - sensor.albycasa
+      - sensor.lavorocasa_ale
+      - sensor.lavorocasa_alby
+
+#  torrents:
+#    name: Torrents
+#    view: no
+#    control: hidden
+#    entities:
+#      - sensor.transmission_active_torrents
+#      - sensor.transmission_down_speed
+#      - sensor.transmission_status
+#      - sensor.transmission_up_speed

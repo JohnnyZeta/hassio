@@ -1,0 +1,72 @@
+
+  - alias: Partenza Ale
+    trigger:
+      platform: zone
+      entity_id: device_tracker.iphone_di_alessandra
+      zone: zone.lavoro_2
+      event: leave
+    condition:
+      condition: time
+      after: '17:00:00'
+      before: '00:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    action:
+      service: notify.ios_iphone_di_alby
+      data:
+        message: "Alessandra è partita!"
+
+###############################################################################
+
+  - alias: Arrivo Ale
+    trigger:
+      platform: zone
+      entity_id: device_tracker.iphone_di_alessandra
+      zone: zone.home
+      event: enter
+    condition:
+      condition: time
+      after: '17:00:00'
+      before: '00:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    action:
+      service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: 78:11:DC:B0:72:7E
+        ringtone_id: 12
+        ringtone_vol: 30
+
+###############################################################################
+
+  - alias: Richiesta Location Ale
+    trigger:
+      platform: zone
+      entity_id: device_tracker.iphone_di_alessandra
+      zone: zone.home
+      event: leave
+    condition:
+      condition: time
+      after: '07:00:00'
+      before: '12:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    action:
+      - delay: 00:35:00
+      - service: notify.ios_iphone_di_alessandra
+        data:
+          message: "request_location_update"
+
+###############################################################################

@@ -1,0 +1,200 @@
+
+  - alias: Notifica aggiornamento
+    trigger:
+    - platform: state
+      entity_id: updater.updater
+    action:
+      service: notify.telegram
+      data_template:
+        message: "È disponibile Home Assistant {{ states.updater.updater.state }}."
+
+###############################################################################
+
+  - alias: Backup Automatico
+    trigger:
+      platform: time
+      at: '3:00:00'
+    condition:
+      - condition: time
+        weekday:
+          - mon
+          - thu
+    action:
+      - service: hassio.snapshot_full
+        data_template:
+          name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
+      - service: shell_command.backup_script
+      - delay: 00:00:30
+      - service: shell_command.backup_reload
+
+###############################################################################
+
+  - alias: Avviso Semola ON
+    trigger:
+      platform: state
+      entity_id: vacuum.semola
+      from: 'off'
+      to: 'on'
+    condition:
+#      - condition: template
+#        value_template: '{{ not is_state("switch.semola_schedule", "off") }}'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+    action:
+      service: notify.telefoni
+      data:
+        title: "Semola è partito!"
+
+
+  - alias: Avviso Semola OFF
+    trigger:
+      platform: state
+      entity_id: vacuum.semola
+      from: 'on'
+      to: 'off'
+    condition:
+#      - condition: template
+#        value_template: '{{ not is_state("switch.semola_schedule", "off") }}'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+    action:
+      service: notify.telefoni
+      data_template:
+        title: "Semola ha finito"
+        message: >
+          Ha appena pulito {{ states.vacuum.semola.attributes.clean_area }} mq e adesso ha il {{ states.vacuum.semola.attributes.battery_level }}% di batteria.
+
+###############################################################################
+
+  - alias: Vento Forte
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.dark_sky_wind_speed_1
+      above: 3
+      for:
+        hours: 2
+    condition:
+      condition: time
+      after: '09:00:00'
+      before: '18:00:00'
+    action:
+      service: notify.telefoni
+      data:
+        message: "Vento forte previsto domani!"
+
+###############################################################################
+
+  - alias: Programmazione Nuvola
+    trigger:
+      platform: time
+      at: '22:45:00'
+    condition:
+      condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - sun
+    action:
+      - service: switch.turn_on
+        entity_id: switch.nuvola
+      - delay: 01:00:00
+      - service: switch.turn_off
+        entity_id: switch.nuvola
+
+###############################################################################
+
+  - alias: Promemoria iPad
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.ipad_di_alberto_battery_level
+      below: 25
+      above: 23
+    action:
+      service: notify.ios_iphone_di_alby
+      data:
+        message: "Livello batteria iPad basso!"
+
+###############################################################################
+
+  - alias: Spazio Libero
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.disk_use_percent_home
+      above: 90
+      below: 95
+    action:
+      - service: notify.ios_iphone_di_alby
+        data:
+          message: "Spazio libero sulla SD in esaurimento!"
+      - service: automation.turn_off
+        data:
+          entity_id: automation.backup_automatico
+      - service: notify.ios_iphone_di_alby
+        data:
+          message: "Backup Automatico disattivato"
+
+##############################################################################
+
+  - alias: Prova
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120d46e
+        click_type: double
+    action:
+      service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: 78:11:DC:B0:72:7E
+        ringtone_id: 12
+        ringtone_vol: 30
+
+###############################################################################
+
+  - alias: Nanna
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00016c48b3
+        click_type: double
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Casa"
+          scene_name: "Nanna"
+      - service: shell_command.spegni_nanna
+      - delay: 00:03:00
+      - service: switch.turn_off
+        entity_id: switch.nuvola
+
+###############################################################################
+#  - alias: Buongiorno
+#    trigger:
+#      platform: time
+#      at: '06:45:00'
+#    condition:
+#      condition: time
+#      weekday:
+#        - mon
+#        - tue
+#        - wed
+#        - thu
+#        - fri
+#    action:
+#      - service: hue.hue_activate_scene
+#        data:
+#          group_name: "Camera"
+#          scene_name: "Tenue"

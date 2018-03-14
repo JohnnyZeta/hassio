@@ -1,0 +1,155 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Via Rossetti
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 350
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Rome
+  # Customization file
+  customize: !include customize.yaml
+
+
+zone: !include zones.yaml
+group: !include groups.yaml
+automation: !include_dir_merge_list automations/
+script: !include scripts.yaml
+scene: !include scenes.yaml
+shell_command:
+  spegni_nanna: curl --request PUT --data "{\"on\":false, \"transitiontime\":1800}" http://192.168.2.5/api/LBmNRY-HWbq4u-AQt4EPKO5rgNJj1miy5RQ7wyic/lights/6/state > /dev/null &
+  backup_script: find /backup/*.tar -mtime +15 -exec rm {} \;
+  backup_reload: hassio snapshots reload
+
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: !secret base_url
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# Tracked history is kept for 10 days
+recorder:
+  purge_keep_days: 10
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor: !include sensors.yaml
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+#iPhones
+ios:
+
+#Shopping List
+#shopping_list:
+
+switch: !include switches.yaml
+
+
+light:
+  - platform: hue
+    host: 192.168.2.5
+
+panel_iframe:
+  configurator:
+    title: Configuratore
+    icon: mdi:wrench
+    url: !secret configurator_url
+  nodered:
+    title: Node-RED
+    url: !secret nodered_url
+    icon: mdi:nodejs
+
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_key
+
+
+media_player:
+  - platform: yamaha
+    source_names:
+      HDMI1: "Blu-Ray"
+      HDMI2: "MacBook"
+      HDMI3: "Xbox360"
+      HDMI4: "Fire TV"
+      AV5: "Cassette"
+      AV6: "TV"
+  - platform: firetv
+
+neato:
+  username: !secret neato_username
+  password: !secret neato_password
+
+device_tracker:
+  - platform: nmap_tracker
+    hosts: 192.168.2.9-10
+
+#weather:
+#  - platform: darksky
+#    api_key: !secret darksky_key
+
+telegram_bot:
+  - platform: broadcast
+    api_key: !secret telegram_api_key
+    allowed_chat_ids:
+      - !secret telegram_chat_id
+
+ifttt:
+  key: !secret ifttt_key
+
+notify:
+  - name: telefoni
+    platform: group
+    services:
+      - service: ios_iphone_di_alby
+      - service: ios_iphone_di_alessandra
+  - name: telegram
+    platform: telegram
+    chat_id: !secret telegram_chat_id

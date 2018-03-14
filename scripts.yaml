@@ -1,0 +1,24 @@
+
+#netflix:
+#  sequence:
+#    - service: hue.hue_activate_scene
+#      data_template:
+#        group_name: "Casa"
+#        scene_name: >
+#          {% if is_state_attr('light.tv', 'brightness', 51) %}TVOff
+#          {% else %}Netflixo
+#          {% endif %}
+
+nanna:
+  alias: Buona Notte!
+  sequence:
+    - service: hue.hue_activate_scene
+      data:
+        group_name: "Casa"
+        scene_name: "Nanna"
+    - service: shell_command.spegni_nanna
+    - delay: 00:03:00
+    - service: switch.turn_off
+      entity_id: switch.nuvola
+
+##############################################################################
