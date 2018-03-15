@@ -29,26 +29,26 @@
 
 ###############################################################################
 
-  - alias: Avviso Semola ON
-    trigger:
-      platform: state
-      entity_id: vacuum.semola
-      from: 'off'
-      to: 'on'
-    condition:
-#      - condition: template
-#        value_template: '{{ not is_state("switch.semola_schedule", "off") }}'
-      - condition: time
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
-    action:
-      service: notify.telefoni
-      data:
-        title: "Semola è partito!"
+#   - alias: Avviso Semola ON
+#     trigger:
+#       platform: state
+#       entity_id: vacuum.semola
+#       from: 'off'
+#       to: 'on'
+#     condition:
+# #      - condition: template
+# #        value_template: '{{ not is_state("switch.semola_schedule", "off") }}'
+#       - condition: time
+#         weekday:
+#           - mon
+#           - tue
+#           - wed
+#           - thu
+#           - fri
+#     action:
+#       service: notify.telefoni
+#       data:
+#         title: "Semola è partito!"
 
 
   - alias: Avviso Semola OFF
