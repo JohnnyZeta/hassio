@@ -176,15 +176,21 @@
   sensor.tap_update:
     hidden: true
 
-  sensor.alecasa:
-    friendly_name: Tempo Alessandra a Casa
-    icon: mdi:heart
-  sensor.albycasa:
-    friendly_name: Tempo Alberto a Casa
-    icon: mdi:heart
+  # sensor.alecasa:
+  #   friendly_name: Tempo Alessandra a Casa
+  #   icon: mdi:heart
+  # sensor.albycasa:
+  #   friendly_name: Tempo Alberto a Casa
+  #   icon: mdi:heart
   sensor.lavorocasa_ale:
     friendly_name: Tempo da Brandizzo a Casa
     icon: mdi:home
   sensor.lavorocasa_alby:
     friendly_name: Tempo da Mirafiori a Casa
     icon: mdi:home
+  sensor.ale_casalavoro:
+    friendly_name: Tempo da Casa a Brandizzo
+    icon: mdi:briefcase
+  sensor.alby_casalavoro:
+    friendly_name: Tempo da Casa a Mirafiori
+    icon: mdi:briefcase

@@ -235,6 +235,7 @@
       - automation.allarme
       - automation.partenza_ale
       - automation.richiesta_location_ale
+      - automation.richiesta_location_alby
       - automation.arrivo_a_casa
       - automation.arrivo_ale
       - automation.luce_serale
@@ -257,8 +258,10 @@
     name: Famiglia
     view: no
     entities:
-      - sensor.alecasa
-      - sensor.albycasa
+#      - sensor.alecasa
+#      - sensor.albycasa
+      - sensor.ale_casalavoro
+      - sensor.alby_casalavoro
       - sensor.lavorocasa_ale
       - sensor.lavorocasa_alby
 

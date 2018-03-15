@@ -102,15 +102,25 @@
     origin: zone.lavoro
     destination: zone.home
   - platform: google_travel_time
-    name: Ale-Casa
+    name: Ale Casa-Lavoro
     api_key: !secret google_key
-    origin: device_tracker.iphone_di_alessandra
-    destination: zone.home
+    origin: zone.home
+    destination: zone.lavoro_2
   - platform: google_travel_time
-    name: Alby-Casa
+    name: Alby Casa-Lavoro
     api_key: !secret google_key
-    origin: device_tracker.iphone_di_alby
-    destination: zone.home
+    origin: zone.home
+    destination: zone.lavoro
+  # - platform: google_travel_time
+  #   name: Ale-Casa
+  #   api_key: !secret google_key
+  #   origin: device_tracker.iphone_di_alessandra
+  #   destination: zone.home
+  # - platform: google_travel_time
+  #   name: Alby-Casa
+  #   api_key: !secret google_key
+  #   origin: device_tracker.iphone_di_alby
+  #   destination: zone.home
 ###############################################################################
   - platform: rest
     resource: http://ip.jsontest.com
