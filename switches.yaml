@@ -14,17 +14,17 @@
         friendly_name: Netflix
   - platform: template
     switches:
-      automazione_avviso_semola:
-        friendly_name: Avviso Semola
-        value_template: "{{ is_state('automation.avviso_semola_on', 'on') and is_state('automation.avviso_semola_off', 'on') }}"
-        turn_on:
-          service: automation.turn_on
-          data:
-            entity_id: automation.avviso_semola_on, automation.avviso_semola_off
-        turn_off:
-          service: automation.turn_off
-          data:
-            entity_id: automation.avviso_semola_on, automation.avviso_semola_off
+      # automazione_avviso_semola:
+      #   friendly_name: Avviso Semola
+      #   value_template: "{{ is_state('automation.avviso_semola_on', 'on') and is_state('automation.avviso_semola_off', 'on') }}"
+      #   turn_on:
+      #     service: automation.turn_on
+      #     data:
+      #       entity_id: automation.avviso_semola_on, automation.avviso_semola_off
+      #   turn_off:
+      #     service: automation.turn_off
+      #     data:
+      #       entity_id: automation.avviso_semola_on, automation.avviso_semola_off
       vacanza:
         friendly_name: Vacanza!
         value_template: "{{ is_state('automation.programmazione_nuvola', 'off') and is_state('automation.arrivo_ale', 'off') and is_state('switch.automazione_avviso_semola', 'off') and is_state('switch.semola_schedule', 'off') }}"

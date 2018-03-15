@@ -248,7 +248,8 @@
       - switch.vacanza
       - automation.programmazione_nuvola
       - automation.vento_forte
-      - switch.automazione_avviso_semola
+#      - switch.automazione_avviso_semola
+      - automation.avviso_semola_off
 
 ################################################################################
 
