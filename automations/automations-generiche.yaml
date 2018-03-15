@@ -68,11 +68,19 @@
           - thu
           - fri
     action:
-      service: notify.telefoni
-      data_template:
-        title: "Semola ha finito"
-        message: >
-          Ha appena pulito {{ states.vacuum.semola.attributes.clean_area }} mq e adesso ha il {{ states.vacuum.semola.attributes.battery_level }}% di batteria.
+      - delay: 00:00:30
+      # il delay serve per finire il caricamento della mappa pulizia dal server
+      - service: notify.telefoni
+        data_template:
+          title: "Semola ha finito"
+          message: >
+            Ha appena pulito {{ states.vacuum.semola.attributes.clean_area }} mq e adesso ha il {{ states.vacuum.semola.attributes.battery_level }}% di batteria. In allegato la mappa della pulizia.
+          data:
+            attachment:
+              content-type: jpeg
+            push:
+              category: camera
+            entity_id: camera.semola_cleaning_map
 
 ###############################################################################
 
