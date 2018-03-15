@@ -53,17 +53,3 @@
 #          group_name: "Casa"
 #          scene_name: "Arrivo"
 ###############################################################################
-
-  - alias: Netflix
-    trigger:
-      platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d000120d46e
-        click_type: single
-    action:
-      service: switch.toggle
-      data:
-        entity_id: switch.tasto_netflix
-
-###############################################################################
