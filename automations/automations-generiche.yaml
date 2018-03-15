@@ -153,41 +153,6 @@
         data:
           message: "Backup Automatico disattivato"
 
-##############################################################################
-
-  - alias: Prova
-    trigger:
-      platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d000120d46e
-        click_type: double
-    action:
-      service: xiaomi_aqara.play_ringtone
-      data:
-        gw_mac: 78:11:DC:B0:72:7E
-        ringtone_id: 12
-        ringtone_vol: 30
-
-###############################################################################
-
-  - alias: Nanna
-    trigger:
-      platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d00016c48b3
-        click_type: double
-    action:
-      - service: hue.hue_activate_scene
-        data:
-          group_name: "Casa"
-          scene_name: "Nanna"
-      - service: shell_command.spegni_nanna
-      - delay: 00:03:00
-      - service: switch.turn_off
-        entity_id: switch.nuvola
-
 ###############################################################################
 #  - alias: Buongiorno
 #    trigger:
