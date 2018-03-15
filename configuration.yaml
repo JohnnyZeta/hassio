@@ -5,7 +5,7 @@ homeassistant:
   latitude: !secret latitude
   longitude: !secret longitude
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 350
+  elevation: !secret elevation
   # metric for Metric, imperial for Imperial
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -13,17 +13,12 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
-
 zone: !include zones.yaml
 group: !include groups.yaml
 automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
 scene: !include scenes.yaml
-shell_command:
-  spegni_nanna: curl --request PUT --data "{\"on\":false, \"transitiontime\":1800}" http://192.168.2.5/api/LBmNRY-HWbq4u-AQt4EPKO5rgNJj1miy5RQ7wyic/lights/6/state > /dev/null &
-  backup_script: find /backup/*.tar -mtime +15 -exec rm {} \;
-  backup_reload: hassio snapshots reload
-
+shell_command: !include shell_commands.yaml
 
 # Show links to resources in log and frontend
 #introduction:
@@ -103,14 +98,13 @@ panel_iframe:
     url: !secret configurator_url
   nodered:
     title: Node-RED
-    url: !secret nodered_url
     icon: mdi:nodejs
+    url: !secret nodered_url
 
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
     - key: !secret xiaomi_key
-
 
 media_player:
   - platform: yamaha
