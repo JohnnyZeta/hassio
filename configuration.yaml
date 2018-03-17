@@ -86,7 +86,6 @@ ios:
 
 switch: !include switches.yaml
 
-
 light:
   - platform: hue
     host: 192.168.2.5
@@ -147,3 +146,10 @@ notify:
   - name: telegram
     platform: telegram
     chat_id: !secret telegram_chat_id
+
+camera:
+  - platform: foscam
+    ip: 192.168.2.24
+    username: !secret foscam_username
+    password: !secret foscam_password
+    name: C2

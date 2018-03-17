@@ -15,6 +15,7 @@
       - group.stanze
       - group.altro
       - group.automazioni
+      - camera.foscam_camera
 
   stanze:
     name: Stanze
