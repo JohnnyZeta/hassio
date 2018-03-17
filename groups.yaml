@@ -1,4 +1,6 @@
 
+############ SCHEDE ###########################################################
+
   default_view:
     name: Home
     view: yes
@@ -54,7 +56,18 @@
       - group.smartplug
       - group.meteo
 
-###################################################
+############ CARD #############################################################
+
+  famiglia:
+    name: Famiglia
+    view: no
+    entities:
+#      - sensor.alecasa
+#      - sensor.albycasa
+      - sensor.ale_casalavoro
+      - sensor.alby_casalavoro
+      - sensor.lavorocasa_ale
+      - sensor.lavorocasa_alby
 
   salotto:
     name: Salotto
@@ -106,9 +119,6 @@
       - sensor.humidity_158d0001b92644
       - sensor.pressure_158d0001b92644
 
-
-##############################################
-
   apple:
     name: Apple
     view: no
@@ -151,24 +161,6 @@
       - sensor.tp_link_kw_today
       - sensor.tp_link_volts
 
-  iphone:
-    name: iPhone
-    view: no
-    icon: mdi:cellphone-iphone
-    entities:
-      - sensor.iphone_di_alby_battery_level
-      - sensor.iphone_di_alby_battery_state
-      - sensor.iphone_di_alessandra_battery_level
-      - sensor.iphone_di_alessandra_battery_state
-
-  ipad:
-    name: iPad
-    view: no
-    icon: mdi:tablet-ipad
-    entities:
-      - sensor.ipad_di_alberto_battery_level
-      - sensor.ipad_di_alberto_battery_state
-
   sistema:
     name: RaspberryPi
     view: no
@@ -180,20 +172,6 @@
       - sensor.packets_in_eth0
       - sensor.packets_out_eth0
       - sensor.ip_esterno
-
-  pihole:
-    name: Pi-Hole
-    view: no
-    control: hidden
-    entities:
-      - sensor.pihole_ads_blocked_today
-      - sensor.pihole_ads_percentage_blocked_today
-#      - sensor.pihole_dns_queries_cached
-#      - sensor.pihole_dns_queries_forwarded
-      - sensor.pihole_dns_queries_today
-#      - sensor.pihole_dns_unique_clients
-#      - sensor.pihole_dns_unique_domains
-#      - sensor.pihole_domains_blocked
 
   speedtest:
     name: Speedtest
@@ -253,25 +231,22 @@
 #      - switch.automazione_avviso_semola
       - automation.avviso_semola_off
 
-################################################################################
+############ SOTTO-CARD #######################################################
 
-  famiglia:
-    name: Famiglia
+  iphone:
+    name: iPhone
     view: no
+    icon: mdi:cellphone-iphone
     entities:
-#      - sensor.alecasa
-#      - sensor.albycasa
-      - sensor.ale_casalavoro
-      - sensor.alby_casalavoro
-      - sensor.lavorocasa_ale
-      - sensor.lavorocasa_alby
+      - sensor.iphone_di_alby_battery_level
+      - sensor.iphone_di_alby_battery_state
+      - sensor.iphone_di_alessandra_battery_level
+      - sensor.iphone_di_alessandra_battery_state
 
-#  torrents:
-#    name: Torrents
-#    view: no
-#    control: hidden
-#    entities:
-#      - sensor.transmission_active_torrents
-#      - sensor.transmission_down_speed
-#      - sensor.transmission_status
-#      - sensor.transmission_up_speed
+  ipad:
+    name: iPad
+    view: no
+    icon: mdi:tablet-ipad
+    entities:
+      - sensor.ipad_di_alberto_battery_level
+      - sensor.ipad_di_alberto_battery_state

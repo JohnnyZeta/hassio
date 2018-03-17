@@ -1,0 +1,20 @@
+
+iphone_di_alby:
+  hide_if_away: false
+  icon:
+  mac: !secret iphone_di_alby_MAC
+  name: Alby
+  gravatar: !secret alberto_email
+  picture:
+  track: true
+  vendor: Apple, Inc.
+
+iphone_di_alessandra:
+  hide_if_away: false
+  icon:
+  mac: !secret iphone_di_alessandra_MAC
+  name: Ale
+  gravatar: !secret ale_email
+  picture:
+  track: true
+  vendor: Apple, Inc.

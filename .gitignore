@@ -3,5 +3,5 @@
 !.gitignore
 !automations
 secrets.yaml
-known_devices.yaml
 zones.yaml
+entity_registry.yaml

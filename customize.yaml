@@ -1,6 +1,7 @@
-###############################################################################
-# Xiaomi Gateway
-###############################################################################
+
+############ SENSORI ##########################################################
+
+# PORTE E FINESTRE
   binary_sensor.door_window_sensor_158d0001bf80d3:
     friendly_name: Portafinestra Cucina
     device_class: opening
@@ -38,7 +39,8 @@
   binary_sensor.door_window_sensor_158d0001e48bd5:
     friendly_name: Portafinestra Salotto SX
     homebridge_visible: true
-###############################################################################
+
+# MOVIMENTO
   binary_sensor.motion_sensor_158d0001a8e47c:
     friendly_name: Cucina
     homebridge_visible: true
@@ -51,20 +53,13 @@
   binary_sensor.motion_sensor_158d0001dc2ed5:
     friendly_name: Salotto
     homebridge_visible: true
-###############################################################################
-  binary_sensor.switch_158d000120d46e:
-    friendly_name: Button Salotto
-    hidden: true
-  binary_sensor.switch_158d000120d3ef:
-    friendly_name: Button Cucina
-    hidden: true
-  binary_sensor.switch_158d00016c48b3:
-    friendly_name: Button Alby
-    hidden: true
-  binary_sensor.switch_158d000120ea9c:
-    friendly_name: Button Ale
-    hidden: true
-###############################################################################
+
+# ILLUMINAZIONE
+  sensor.illumination_7811dcb0727e:
+    friendly_name: Luminosità Salotto
+    homebridge_visible: true
+
+# TEMPERATURA E UMIDITA'
   sensor.humidity_158d0001b92644:
     friendly_name: Umidità
     homebridge_visible: true
@@ -81,40 +76,80 @@
   sensor.temperature_158d0001f561b7:
     friendly_name: Temperatura
     homebridge_visible: true
-###############################################################################
-  light.gateway_light_7811dcb0727e:
-    friendly_name: Gateway
-###############################################################################
-###############################################################################
-  camera.semola_cleaning_map:
-    friendly_name: Mappa Pulizie Semola
-  media_player.yamaha_receiver:
-    friendly_name: Yamaha
-    homebridge_media_player_switch: on_off
-    homebridge_visible: true
-  media_player.amazon_fire_tv:
-    homebridge_media_player_switch: on_off
-    homebridge_visible: true
-  sensor.illumination_7811dcb0727e:
-    friendly_name: Luminosità Salotto
-    homebridge_visible: true
+
+# PULSANTE HUE
+  sensor.tap_button:
+    hidden: true
+  sensor.tap_update:
+    hidden: true
+
+# PULSANTI
+  binary_sensor.switch_158d000120d46e:
+    friendly_name: Button Salotto
+    hidden: true
+  binary_sensor.switch_158d000120d3ef:
+    friendly_name: Button Cucina
+    hidden: true
+  binary_sensor.switch_158d00016c48b3:
+    friendly_name: Button Alby
+    hidden: true
+  binary_sensor.switch_158d000120ea9c:
+    friendly_name: Button Ale
+    hidden: true
+
+# SISTEMA
+  sensor.disk_use_percent_home:
+    friendly_name: Utilizzo Disco
+  sensor.memory_free:
+    friendly_name: Memoria Libera
+  sensor.pihole_ads_blocked_today:
+    friendly_name: Ads bloccati oggi
+  sensor.pihole_ads_percentage_blocked_today:
+    friendly_name: Percentuale Ads bloccati oggi
+  sensor.pihole_dns_queries_today:
+    friendly_name: DNS queries oggi
 #  sensor.transmission_active_torrents:
 #    friendly_name: Torrents Attivi
 #  sensor.transmission_down_speed:
 #    friendly_name: Velocità Download
 #  sensor.transmission_up_speed:
 #    friendly_name: Velocità Upload
-  sun.sun:
-    friendly_name: Sole
-    hidden: true
-  switch.semola_schedule:
-    friendly_name: Programmazione Semola
-    icon: mdi:roomba
-    homebridge_visible: true
-    homebridge_name: ProgSemola
-#  group.all_vacuum_cleaners:
-#    friendly_name: Aspirapolveri
-#    hidden: false
+
+# METEO
+  sensor.dark_sky_apparent_temperature:
+    friendly_name: Temperatura Apparente
+  sensor.dark_sky_cloud_coverage:
+    friendly_name: Copertura Nuvolosa
+  sensor.dark_sky_wind_speed:
+    friendly_name: Velocità del Vento
+  sensor.dark_sky_cloud_coverage_1:
+    friendly_name: Copertura Nuvolosa (Domani)
+  sensor.dark_sky_wind_speed_1:
+    friendly_name: Velocità del Vento (Domani)
+  sensor.dark_sky_summary:
+    friendly_name: Meteo
+
+# TEMPO
+  sensor.lavorocasa_ale:
+    friendly_name: Tempo Lavoro-Casa Ale
+    icon: mdi:home
+  sensor.lavorocasa_alby:
+    friendly_name: Tempo Lavoro-Casa Alby
+    icon: mdi:home
+  sensor.ale_casalavoro:
+    friendly_name: Tempo Casa-Lavoro Ale
+    icon: mdi:briefcase
+  sensor.alby_casalavoro:
+    friendly_name: Tempo Casa-Lavoro Alby
+    icon: mdi:briefcase
+# sensor.alecasa:
+#   friendly_name: Tempo Alessandra a Casa
+#   icon: mdi:heart
+# sensor.albycasa:
+#   friendly_name: Tempo Alberto a Casa
+#   icon: mdi:heart
+
+############ LUCI #############################################################
 
   light.camera:
     hidden: true
@@ -138,59 +173,43 @@
   light.tv:
     homebridge_visible: true
 
+  light.gateway_light_7811dcb0727e:
+    friendly_name: Gateway
+
+############ SWITCHES #########################################################
+
+  switch.semola_schedule:
+    friendly_name: Programmazione Semola
+    icon: mdi:roomba
+    homebridge_visible: true
+    homebridge_name: ProgSemola
   switch.nuvola:
     icon: mdi:radiator
     homebridge_visible: true
-  vacuum.semola:
-    homebridge_visible: true
+
+############ DEVICES ##########################################################
+
   device_tracker.iphone_di_alby:
     homebridge_visible: true
   device_tracker.iphone_di_alessandra:
     homebridge_visible: true
 
-  sensor.disk_use_percent_home:
-    friendly_name: Utilizzo Disco
-  sensor.memory_free:
-    friendly_name: Memoria Libera
-  sensor.pihole_ads_blocked_today:
-    friendly_name: Ads bloccati oggi
-  sensor.pihole_ads_percentage_blocked_today:
-    friendly_name: Percentuale Ads bloccati oggi
-  sensor.pihole_dns_queries_today:
-    friendly_name: DNS queries oggi
+############ ALTRO ############################################################
 
-  sensor.dark_sky_apparent_temperature:
-    friendly_name: Temperatura Apparente
-  sensor.dark_sky_cloud_coverage:
-    friendly_name: Copertura Nuvolosa
-  sensor.dark_sky_wind_speed:
-    friendly_name: Velocità del Vento
-  sensor.dark_sky_cloud_coverage_1:
-    friendly_name: Copertura Nuvolosa (Domani)
-  sensor.dark_sky_wind_speed_1:
-    friendly_name: Velocità del Vento (Domani)
-  sensor.dark_sky_summary:
-    friendly_name: Meteo
-  sensor.tap_button:
-    hidden: true
-  sensor.tap_update:
+  sun.sun:
+    friendly_name: Sole
     hidden: true
 
-  # sensor.alecasa:
-  #   friendly_name: Tempo Alessandra a Casa
-  #   icon: mdi:heart
-  # sensor.albycasa:
-  #   friendly_name: Tempo Alberto a Casa
-  #   icon: mdi:heart
-  sensor.lavorocasa_ale:
-    friendly_name: Tempo da Brandizzo a Casa
-    icon: mdi:home
-  sensor.lavorocasa_alby:
-    friendly_name: Tempo da Mirafiori a Casa
-    icon: mdi:home
-  sensor.ale_casalavoro:
-    friendly_name: Tempo da Casa a Brandizzo
-    icon: mdi:briefcase
-  sensor.alby_casalavoro:
-    friendly_name: Tempo da Casa a Mirafiori
-    icon: mdi:briefcase
+  vacuum.semola:
+    homebridge_visible: true
+
+  camera.semola_cleaning_map:
+    friendly_name: Mappa Pulizie Semola
+
+  media_player.yamaha_receiver:
+    friendly_name: Yamaha
+    homebridge_media_player_switch: on_off
+    homebridge_visible: true
+  media_player.amazon_fire_tv:
+    homebridge_media_player_switch: on_off
+    homebridge_visible: true
