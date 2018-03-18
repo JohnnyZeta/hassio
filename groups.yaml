@@ -217,6 +217,8 @@
       - automation.richiesta_location_alby
       - automation.arrivo_a_casa
       - automation.arrivo_ale
+      - automation.avviso_tempo_ritorno_ale
+      - automation.avviso_tempo_ritorno_alby
       - automation.luce_serale
 
   automazioni_casa:
