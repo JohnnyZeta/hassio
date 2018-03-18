@@ -31,19 +31,44 @@
 
 ########## PULSANTE ALBY ######################################################
 
-
-########## PULSANTE ALE #######################################################
-
-
-########## PULSANTI ALE+ALBY ##################################################
-
-# 2 CLICK
+# 1 CLICK
   - alias: Pulsante_Nanna
     trigger:
       platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.switch_158d00016c48b3, binary_sensor.switch_158d000120ea9c
+        entity_id: binary_sensor.switch_158d00016c48b3
+        click_type: single
+    action:
+      service: hue.hue_activate_scene
+      data:
+        group_name: "Casa"
+        scene_name: "Nanna"
+
+  - alias: Annulla_Pulsante_Nanna
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00016c48b3
+        click_type: single
+    condition:
+      condition: state
+      entity_id: light.disimpegno_2
+      state: 'off'
+    action:
+      service: hue.hue_activate_scene
+      data:
+        group_name: "Casa"
+        scene_name: "TVOff"
+
+# 2 CLICK
+  - alias: Pulsante_Scena_Nanna
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00016c48b3
         click_type: double
     action:
       - service: hue.hue_activate_scene
@@ -55,14 +80,13 @@
       - service: switch.turn_off
         entity_id: switch.nuvola
 
-
 # HOLD CLICK
   - alias: Pulsante_SOS
     trigger:
       platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.switch_158d00016c48b3, binary_sensor.switch_158d000120ea9c
+        entity_id: binary_sensor.switch_158d00016c48b3
         click_type: hold
     action:
       - service: hue.hue_activate_scene
@@ -72,9 +96,81 @@
       - service: notify.telefoni
         data_template:
           title: "SOS!"
-          message: "SOS dal comodino!"
+          message: "SOS dal comodino di Alberto!"
       - service: notify.telegram
         data_template:
-          message: "SOS dal comodino!"
+          message: "SOS dal comodino di Alberto!"
+
+########## PULSANTE ALE #######################################################
+
+# 1 CLICK
+  - alias: Pulsante_Nanna
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120ea9c
+        click_type: single
+    action:
+      service: hue.hue_activate_scene
+      data:
+        group_name: "Casa"
+        scene_name: "Nanna"
+
+  - alias: Annulla_Pulsante_Nanna
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120ea9c
+        click_type: single
+    condition:
+      condition: state
+      entity_id: light.disimpegno_2
+      state: 'off'
+    action:
+      service: hue.hue_activate_scene
+      data:
+        group_name: "Casa"
+        scene_name: "TVOff"
+
+# 2 CLICK
+  - alias: Pulsante_Scena_Nanna
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120ea9c
+        click_type: double
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Casa"
+          scene_name: "Nanna"
+      - service: shell_command.spegni_nanna
+      - delay: 00:03:00
+      - service: switch.turn_off
+        entity_id: switch.nuvola
+
+# HOLD CLICK
+  - alias: Pulsante_SOS
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120ea9c
+        click_type: hold
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Casa"
+          scene_name: "SOS"
+      - service: notify.telefoni
+        data_template:
+          title: "SOS!"
+          message: "SOS dal comodino di Alessandra!"
+      - service: notify.telegram
+        data_template:
+          message: "SOS dal comodino di Alessandra!"
 
 ##############################################################################
