@@ -154,6 +154,26 @@
           message: "Backup Automatico disattivato"
 
 ###############################################################################
+
+  - alias: "Aggiorna Ultimo Movimento"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001a8e47c, binary_sensor.motion_sensor_158d0001a8fb6a, binary_sensor.motion_sensor_158d0001a8fa9d, binary_sensor.motion_sensor_158d0001dc2ed5
+        to: 'on'
+    action:
+      - service: variable.set_variable
+        data:
+          variable: ultimo_movimento
+          attributes_template: >
+             {
+                "history_1": "{{ variable.state }}",
+                "history_2": "{{ variable.attributes.history_1 }}",
+                "history_3": "{{ variable.attributes.history_2 }}"
+              }
+        data_template:
+          value: "{{ trigger.to_state.attributes.friendly_name }}"
+
+###############################################################################
 #  - alias: Buongiorno
 #    trigger:
 #      platform: time

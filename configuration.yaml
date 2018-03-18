@@ -71,6 +71,14 @@ sun:
 # Weather prediction
 sensor: !include sensors.yaml
 
+variable:
+  ultimo_movimento:
+    value: 'Unknown'
+    restore: true
+    attributes:
+      icon: mdi:map-marker
+      name: "Ultimo Movimento"
+
 # Text to speech
 tts:
   - platform: google

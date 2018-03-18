@@ -213,3 +213,6 @@
   media_player.amazon_fire_tv:
     homebridge_media_player_switch: on_off
     homebridge_visible: true
+
+  variable.ultimo_movimento:
+    friendly_name: Ultimo Movimento
