@@ -105,7 +105,7 @@
     condition:
       - condition: time
         after: '16:00:00'
-        before: '21:00:00'
+        before: '23:00:00'
         weekday:
           - mon
           - tue
@@ -134,7 +134,7 @@
     condition:
       - condition: time
         after: '16:00:00'
-        before: '21:00:00'
+        before: '20:00:00'
         weekday:
           - mon
           - tue
@@ -152,4 +152,3 @@
           Tempo di ritorno previsto in {{ states.sensor.lavorocasa_alby.state }} minuti.
 
 ###############################################################################
-

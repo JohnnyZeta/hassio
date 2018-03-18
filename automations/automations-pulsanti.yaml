@@ -1,7 +1,8 @@
 
 ########## PULSANTE SALONE #####################################################
 
-  - alias: Netflix
+# 1 CLICK
+  - alias: Pulsante_Netflix
     trigger:
       platform: event
       event_type: click
@@ -13,9 +14,8 @@
       data:
         entity_id: switch.tasto_netflix
 
-###############################################################################
-
-  - alias: Prova
+# 2 CLICK
+  - alias: Pulsante_Prova
     trigger:
       platform: event
       event_type: click
@@ -31,12 +31,19 @@
 
 ########## PULSANTE ALBY ######################################################
 
-  - alias: Nanna
+
+########## PULSANTE ALE #######################################################
+
+
+########## PULSANTI ALE+ALBY ##################################################
+
+# 2 CLICK
+  - alias: Pulsante_Nanna
     trigger:
       platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.switch_158d00016c48b3
+        entity_id: binary_sensor.switch_158d00016c48b3, binary_sensor.switch_158d000120ea9c
         click_type: double
     action:
       - service: hue.hue_activate_scene
@@ -47,5 +54,27 @@
       - delay: 00:03:00
       - service: switch.turn_off
         entity_id: switch.nuvola
+
+
+# HOLD CLICK
+  - alias: Pulsante_SOS
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00016c48b3, binary_sensor.switch_158d000120ea9c
+        click_type: hold
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Casa"
+          scene_name: "SOS"
+      - service: notify.telefoni
+        data_template:
+          title: "SOS!"
+          message: "SOS dal comodino!"
+      - service: notify.telegram
+        data_template:
+          message: "SOS dal comodino!"
 
 ##############################################################################
