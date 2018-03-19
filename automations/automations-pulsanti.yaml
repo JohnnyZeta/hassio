@@ -2,7 +2,7 @@
 ########## PULSANTE SALONE #####################################################
 
 # 1 CLICK
-  - alias: Pulsante_Netflix
+  - alias: Pulsante_Netflix_ON
     trigger:
       platform: event
       event_type: click
@@ -10,9 +10,27 @@
         entity_id: binary_sensor.switch_158d000120d46e
         click_type: single
     action:
-      service: switch.toggle
-      data:
-        entity_id: switch.tasto_netflix
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Casa"
+          scene_name: "Netflixo"
+
+  - alias: Pulsante_Netflix_OFF
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120d46e
+        click_type: single
+    condition:
+      condition: state
+      entity_id: light.disimpegno_2
+      state: 'off'
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Casa"
+          scene_name: "TVOff"
 
 # 2 CLICK
   - alias: Pulsante_Prova
@@ -32,7 +50,7 @@
 ########## PULSANTE ALBY ######################################################
 
 # 1 CLICK
-  - alias: Pulsante_Nanna
+  - alias: Pulsante_Nanna_Alby
     trigger:
       platform: event
       event_type: click
@@ -45,7 +63,7 @@
         group_name: "Casa"
         scene_name: "Nanna"
 
-  - alias: Annulla_Pulsante_Nanna
+  - alias: Annulla_Pulsante_Nanna_Alby
     trigger:
       platform: event
       event_type: click
@@ -63,7 +81,7 @@
         scene_name: "TVOff"
 
 # 2 CLICK
-  - alias: Pulsante_Scena_Nanna
+  - alias: Pulsante_Scena_Nanna_Alby
     trigger:
       platform: event
       event_type: click
@@ -81,7 +99,7 @@
         entity_id: switch.nuvola
 
 # HOLD CLICK
-  - alias: Pulsante_SOS
+  - alias: Pulsante_SOS_Alby
     trigger:
       platform: event
       event_type: click
@@ -104,7 +122,7 @@
 ########## PULSANTE ALE #######################################################
 
 # 1 CLICK
-  - alias: Pulsante_Nanna
+  - alias: Pulsante_Nanna_Ale
     trigger:
       platform: event
       event_type: click
@@ -117,7 +135,7 @@
         group_name: "Casa"
         scene_name: "Nanna"
 
-  - alias: Annulla_Pulsante_Nanna
+  - alias: Annulla_Pulsante_Nanna_Ale
     trigger:
       platform: event
       event_type: click
@@ -135,7 +153,7 @@
         scene_name: "TVOff"
 
 # 2 CLICK
-  - alias: Pulsante_Scena_Nanna
+  - alias: Pulsante_Scena_Nanna_Ale
     trigger:
       platform: event
       event_type: click
@@ -153,7 +171,7 @@
         entity_id: switch.nuvola
 
 # HOLD CLICK
-  - alias: Pulsante_SOS
+  - alias: Pulsante_SOS_Ale
     trigger:
       platform: event
       event_type: click

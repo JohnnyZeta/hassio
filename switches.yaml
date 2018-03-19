@@ -7,12 +7,12 @@
 #    username: "transmission"
 #    password: "transmission"
 ###############################################################################
-  - platform: command_line
-    switches:
-      tasto_netflix:
-        command_on: 'curl --request PUT --data "{\"scene\": \"vQBO-xPQY2uLzzC\"}" http://192.168.2.5/api/LBmNRY-HWbq4u-AQt4EPKO5rgNJj1miy5RQ7wyic/groups/3/action'
-        command_off: 'curl --request PUT --data "{\"scene\": \"j6vfh8VBdNxcKO3\"}" http://192.168.2.5/api/LBmNRY-HWbq4u-AQt4EPKO5rgNJj1miy5RQ7wyic/groups/3/action'
-        friendly_name: Netflix
+#  - platform: command_line
+#    switches:
+#      tasto_netflix:
+#        command_on: 'curl --request PUT --data "{\"scene\": \"vQBO-xPQY2uLzzC\"}" http://192.168.2.5/api/LBmNRY-HWbq4u-AQt4EPKO5rgNJj1miy5RQ7wyic/groups/3/action'
+#        command_off: 'curl --request PUT --data "{\"scene\": \"j6vfh8VBdNxcKO3\"}" http://192.168.2.5/api/LBmNRY-HWbq4u-AQt4EPKO5rgNJj1miy5RQ7wyic/groups/3/action'
+#        friendly_name: Netflix
 ###############################################################################
   - platform: template
     switches:

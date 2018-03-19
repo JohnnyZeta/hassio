@@ -17,7 +17,7 @@
       - group.stanze
       - group.altro
       - group.automazioni
-      - camera.foscam_camera
+      - camera.occhio
 
   stanze:
     name: Stanze
@@ -197,7 +197,6 @@
   automazioni_sistema:
     name: Sistema
     view: no
-    control: hidden
     icon: mdi:raspberrypi
     entities:
       - automation.backup_automatico
@@ -209,7 +208,6 @@
   automazioni_posizioni:
     name: Localizzazione
     view: no
-    control: hidden
     icon: mdi:map-marker
     entities:
       - automation.allarme

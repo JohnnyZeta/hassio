@@ -146,3 +146,7 @@ binary_sensor.motion_sensor_158d0001a8e47c:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001a8e47c
+light.hue_white_light_1:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:02:48:d8:41-0b

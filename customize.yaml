@@ -216,3 +216,5 @@
 
   variable.ultimo_movimento:
     friendly_name: Ultimo Movimento
+  camera.occhio:
+    homebridge_visible: true

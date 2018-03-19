@@ -160,4 +160,4 @@ camera:
     ip: 192.168.2.24
     username: !secret foscam_username
     password: !secret foscam_password
-    name: C2
+    name: Occhio

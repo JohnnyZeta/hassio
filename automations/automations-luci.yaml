@@ -32,15 +32,6 @@
           scene_name: "Arrivo"
 
 ###############################################################################
-
-#  - alias: Luci Movimento
-#    trigger:
-#      platform: state
-#      entity_id: binary_sensor.motion_sensor_158d0001a8e47c, binary_sensor.motion_sensor_158d0001a8fa9d, binary_sensor.motion_sensor_158d0001a8fb6a, binary_sensor.motion_sensor_158d0001dc2ed5
-#    action:
-    
-
-
 #  - alias: Luce Serale
 #    trigger:
 #      - platform: zone
