@@ -9,6 +9,9 @@
       event_data:
         entity_id: binary_sensor.switch_158d000120d46e
         click_type: single
+    condition:
+      condition: template
+      value_template: '{{ states.light.tv.attributes.brightness > 250 }}'
     action:
       - service: hue.hue_activate_scene
         data:
@@ -23,9 +26,8 @@
         entity_id: binary_sensor.switch_158d000120d46e
         click_type: single
     condition:
-      condition: state
-      entity_id: light.disimpegno_2
-      state: 'off'
+      condition: template
+      value_template: '{{ states.light.tv.attributes.brightness < 100 }}'
     action:
       - service: hue.hue_activate_scene
         data:
