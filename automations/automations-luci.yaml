@@ -1,5 +1,4 @@
 
-
   - alias: Arrivo a Casa
     trigger:
       platform: zone

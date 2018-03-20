@@ -8,7 +8,7 @@
     entities:
       - device_tracker.iphone_di_alby
       - device_tracker.iphone_di_alessandra
-      - group.famiglia
+      - group.tempi
       - sensor.saldo_eth
       - sun.sun
       - sensor.dark_sky_summary
@@ -58,8 +58,8 @@
 
 ############ CARD #############################################################
 
-  famiglia:
-    name: Famiglia
+  tempi:
+    name: Tempi
     view: no
     entities:
 #      - sensor.alecasa
@@ -251,3 +251,12 @@
     entities:
       - sensor.ipad_di_alberto_battery_level
       - sensor.ipad_di_alberto_battery_state
+
+############ ALTRO ############################################################
+
+  famiglia:
+    name: Famiglia
+    view: no
+    entities:
+        - device_tracker.iphone_di_alby
+        - device_tracker.iphone_di_alessandra

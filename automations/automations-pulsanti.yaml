@@ -59,6 +59,10 @@
       event_data:
         entity_id: binary_sensor.switch_158d00016c48b3
         click_type: single
+    condition:
+      condition: state
+      entity_id: light.tv
+      state: 'on'
     action:
       service: hue.hue_activate_scene
       data:
