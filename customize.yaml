@@ -38,6 +38,7 @@
     homebridge_visible: true
   binary_sensor.door_window_sensor_158d0001e48bd5:
     friendly_name: Portafinestra Salotto SX
+    device_class: opening
     homebridge_visible: true
 
 # MOVIMENTO

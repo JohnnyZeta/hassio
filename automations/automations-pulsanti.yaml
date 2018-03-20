@@ -60,9 +60,13 @@
         entity_id: binary_sensor.switch_158d00016c48b3
         click_type: single
     condition:
-      condition: state
-      entity_id: light.tv
-      state: 'on'
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: light.tv
+          state: 'on'
+        - condition: template
+          value_template: '{{ states.light.camera_2.attributes.color_temp > 200 }}'
     action:
       service: hue.hue_activate_scene
       data:
@@ -77,14 +81,13 @@
         entity_id: binary_sensor.switch_158d00016c48b3
         click_type: single
     condition:
-      condition: state
-      entity_id: light.disimpegno_2
-      state: 'off'
+      condition: template
+      value_template: '{{ states.light.camera_2.attributes.color_temp < 200 }}'
     action:
       service: hue.hue_activate_scene
       data:
-        group_name: "Casa"
-        scene_name: "TVOff"
+        group_name: "Camera"
+        scene_name: "Tenue"
 
 # 2 CLICK
   - alias: Pulsante_Scena_Nanna_Alby
@@ -121,9 +124,6 @@
         data_template:
           title: "SOS!"
           message: "SOS dal comodino di Alberto!"
-      - service: notify.telegram
-        data_template:
-          message: "SOS dal comodino di Alberto!"
 
 ########## PULSANTE ALE #######################################################
 
@@ -135,6 +135,14 @@
       event_data:
         entity_id: binary_sensor.switch_158d000120ea9c
         click_type: single
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: light.tv
+          state: 'on'
+        - condition: template
+          value_template: '{{ states.light.camera_2.attributes.color_temp > 200 }}'
     action:
       service: hue.hue_activate_scene
       data:
@@ -149,14 +157,13 @@
         entity_id: binary_sensor.switch_158d000120ea9c
         click_type: single
     condition:
-      condition: state
-      entity_id: light.disimpegno_2
-      state: 'off'
+      condition: template
+      value_template: '{{ states.light.camera_2.attributes.color_temp < 200 }}'
     action:
       service: hue.hue_activate_scene
       data:
-        group_name: "Casa"
-        scene_name: "TVOff"
+        group_name: "Camera"
+        scene_name: "Tenue"
 
 # 2 CLICK
   - alias: Pulsante_Scena_Nanna_Ale
