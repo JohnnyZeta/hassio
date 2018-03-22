@@ -13,12 +13,19 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+  customize_glob:
+    "*.*":
+      custom_ui_state_card: state-card-custom-ui
+
 zone: !include zones.yaml
 group: !include groups.yaml
 automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
 scene: !include scenes.yaml
 shell_command: !include shell_commands.yaml
+
+customizer:
+  custom_ui: hosted
 
 # Show links to resources in log and frontend
 #introduction:
