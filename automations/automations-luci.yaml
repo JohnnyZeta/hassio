@@ -1,10 +1,9 @@
 
   - alias: Arrivo a Casa
     trigger:
-      platform: zone
+      platform: state
       entity_id: group.famiglia
-      zone: zone.home
-      event: enter
+      to: 'home'
     action:
       - service: hue.hue_activate_scene
         data:
