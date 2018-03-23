@@ -103,12 +103,12 @@
     friendly_name: Utilizzo Disco
   sensor.memory_free:
     friendly_name: Memoria Libera
-  sensor.pihole_ads_blocked_today:
-    friendly_name: Ads bloccati oggi
-  sensor.pihole_ads_percentage_blocked_today:
-    friendly_name: Percentuale Ads bloccati oggi
-  sensor.pihole_dns_queries_today:
-    friendly_name: DNS queries oggi
+#  sensor.pihole_ads_blocked_today:
+#    friendly_name: Ads bloccati oggi
+#  sensor.pihole_ads_percentage_blocked_today:
+#    friendly_name: Percentuale Ads bloccati oggi
+#  sensor.pihole_dns_queries_today:
+#   friendly_name: DNS queries oggi
 #  sensor.transmission_active_torrents:
 #    friendly_name: Torrents Attivi
 #  sensor.transmission_down_speed:
@@ -217,5 +217,3 @@
 
   variable.ultimo_movimento:
     friendly_name: Ultimo Movimento
-  camera.occhio:
-    homebridge_visible: true
