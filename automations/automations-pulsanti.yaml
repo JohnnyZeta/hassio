@@ -65,6 +65,9 @@
         - condition: state
           entity_id: light.tv
           state: 'on'
+        - condition: state
+          entity_id: light.camera
+          state: 'off'
         - condition: template
           value_template: '{{ states.light.camera_2.attributes.color_temp > 200 }}'
     action:
@@ -141,6 +144,9 @@
         - condition: state
           entity_id: light.tv
           state: 'on'
+        - condition: state
+          entity_id: light.camera
+          state: 'off'
         - condition: template
           value_template: '{{ states.light.camera_2.attributes.color_temp > 200 }}'
     action:
