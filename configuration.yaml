@@ -13,9 +13,8 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
-  customize_glob:
-    "*.*":
-      custom_ui_state_card: state-card-custom-ui
+  customize_glob: !include customize_glob.yaml
+
 
 zone: !include zones.yaml
 group: !include groups.yaml
@@ -32,6 +31,8 @@ customizer:
 
 # Enables the frontend
 frontend:
+  extra_html_url:
+    - /local/custom_ui/state-card-custom-ui.html
 
 # Enables configuration UI
 config:
@@ -89,6 +90,7 @@ variable:
 # Text to speech
 tts:
   - platform: google
+    language: 'it'
 
 # Cloud
 cloud:

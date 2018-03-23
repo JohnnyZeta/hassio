@@ -49,9 +49,9 @@
     view: yes
     icon: mdi:raspberrypi
     entities:
-      - group.apple
+      - group.iphone
+      - group.ipad
       - group.sistema
-      - group.pihole
       - group.speedtest
       - group.smartplug
       - group.meteo
@@ -119,13 +119,13 @@
       - sensor.humidity_158d0001b92644
       - sensor.pressure_158d0001b92644
 
-  apple:
-    name: Apple
-    view: no
-    control: hidden
-    entities:
-      - group.iphone
-      - group.ipad
+  # apple:
+  #   name: Apple
+  #   view: no
+  #   control: hidden
+  #   entities:
+  #     - group.iphone
+  #     - group.ipad
 
   porte:
     name: Porte e Finestre
@@ -198,6 +198,7 @@
     name: Sistema
     view: no
     icon: mdi:raspberrypi
+    control: hidden
     entities:
       - automation.backup_automatico
       - automation.notifica_aggiornamento
@@ -209,6 +210,7 @@
     name: Localizzazione
     view: no
     icon: mdi:map-marker
+    control: hidden
     entities:
       - automation.allarme
       - automation.partenza_ale

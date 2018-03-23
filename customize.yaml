@@ -187,6 +187,10 @@
   switch.nuvola:
     icon: mdi:radiator
     homebridge_visible: true
+    extra_badge:
+      attribute: current_power_w
+      unit: W
+      blacklist_states: 0
 
 ############ DEVICES ##########################################################
 

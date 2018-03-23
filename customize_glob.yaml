@@ -1,0 +1,19 @@
+
+  "*.*":
+    custom_ui_state_card: state-card-custom-ui
+
+  "light.*":
+    show_last_changed: true
+    state_card_mode: hide-slider
+
+  "switch.*":
+    show_last_changed: true
+
+  "binary_sensor.*":
+    show_last_changed: true
+
+  "sensor.*":
+    show_last_changed: true
+
+  "automation.*":
+    confirm_controls_show_lock: true
