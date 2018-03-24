@@ -51,9 +51,6 @@
            mdi:message-alert
          {% endif %}
        friendly_name: "Telecomando Hue Tap"
-     alarm_time:
-       friendly_name: 'Tempo'
-       value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.alarmhour") | int, states("input_number.alarmminutes") | int) }}'
 
 #  - platform: transmission
 #    host: 192.168.2.15

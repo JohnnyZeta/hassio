@@ -223,3 +223,5 @@
     friendly_name: Ultimo Movimento
   input_boolean.alarmweekon:
     confirm_controls_show_lock: true
+  input_boolean.alarmweekday:
+    confirm_controls_show_lock: true

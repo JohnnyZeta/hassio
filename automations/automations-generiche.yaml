@@ -216,7 +216,7 @@
           - thu
           - fri
       - condition: template
-        value_template: '{{ now().strftime("%H:%M") == states.sensor.alarm_time.state }}'
+        value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
     action:
       - service: hue.hue_activate_scene
         data:
@@ -241,7 +241,7 @@
           - sat
           - sun
       - condition: template
-        value_template: '{{ now().strftime("%H:%M") == states.sensor.alarm_time.state }}'
+        value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
     action:
       - service: hue.hue_activate_scene
         data:

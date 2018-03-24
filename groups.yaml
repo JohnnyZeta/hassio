@@ -240,11 +240,8 @@
     control: hidden
     icon: mdi:weather-sunset
     entities:
-      - input_boolean.freebox
       - input_boolean.alarmweekon
-      - sensor.alarm_time
-      - input_number.alarmhour
-      - input_number.alarmminutes
+      - input_datetime.alba
       - input_boolean.alarmweekday
 
 ############ SOTTO-CARD #######################################################
