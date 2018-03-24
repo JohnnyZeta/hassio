@@ -1,1 +1,33 @@
-##############################################################################
+
+  spotify_music:
+    #alias: Play selected spotify playlist
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.spotify
+          volume_level: '0.45'
+      - service: media_player.select_source
+        data_template:
+          entity_id: media_player.spotify
+          source: >
+            {% if is_state("input_select.spotify_source", "Yamaha Salotto") %} RX-V475 A484BB
+            {% elif is_state("input_select.spotify_source", "Amazon FireTV") %} Amazon FireTV Stick Gen 2 ♔
+            {% endif %}
+      - delay: '00:00:05'
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.yamaha_receiver
+          volume_level: '0.50'
+      - service: media_player.play_media
+        data_template:
+          entity_id: media_player.spotify
+          media_content_type: playlist
+          media_content_id: >
+            {% if is_state("input_select.spotify_playlist", "Rossetti") %} spotify:user:johnnyzeta:playlist:08eWa1ifDYLZ0ACoOh0C1W
+            {% elif is_state("input_select.spotify_playlist", "Balbertandra") %} spotify:user:johnnyzeta:playlist:4nP3qwV8iB9nuEt0YTGk4R
+            {% elif is_state("input_select.spotify_playlist", "Infinite Indie Folk") %} spotify:user:spotify:playlist:37i9dQZF1DX2taNm7KfjOX
+            {% elif is_state("input_select.spotify_playlist", "Gemme Sparse") %} spotify:user:spotify:playlist:37i9dQZF1DWSICYLihnumc
+            {% elif is_state("input_select.spotify_playlist", "Massima Concentrazione") %} spotify:user:spotify:playlist:37i9dQZF1DXbA4Uw2yEsP9
+            {% elif is_state("input_select.spotify_playlist", "Le Hit del Natale") %} spotify:user:spotify:playlist:37i9dQZF1DWSWLO5zZahGQ
+            {% elif is_state("input_select.spotify_playlist", "Discover Weekly Alby") %} spotify:user:spotify:playlist:37i9dQZEVXcIydqNXlKJSZ
+            {% endif %}

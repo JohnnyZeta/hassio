@@ -225,3 +225,8 @@
     confirm_controls_show_lock: true
   input_boolean.alarmweekday:
     confirm_controls_show_lock: true
+
+  script.spotify_music:
+    friendly_name: 'Play'
+    icon: mdi:play
+    confirm_controls_show_lock: true

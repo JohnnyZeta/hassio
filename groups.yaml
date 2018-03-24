@@ -20,6 +20,7 @@
       - group.automazioni
       - camera.occhio
       - group.alarmclock
+      - group.music_spotify
 
   media:
     name: Media Players
@@ -251,6 +252,14 @@
       - input_boolean.alarmweekon
       - input_datetime.alba
       - input_boolean.alarmweekday
+
+  music_spotify:
+      name: Musica
+      entities:
+      - input_select.spotify_playlist
+      - input_select.spotify_source
+      - script.spotify_music
+      - input_number.spotify_volume
 
 ############ SOTTO-CARD #######################################################
 

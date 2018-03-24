@@ -248,3 +248,15 @@
           group_name: "Camera"
           scene_name: "Buongiorno"
           # la transizione-on è già nella scena (5 min)
+
+###############################################################################
+
+  - alias: Set Spotify Volume
+    trigger:
+      platform: state
+      entity_id: input_number.spotify_volume
+    action:
+      service: media_player.volume_set
+      data_template:
+        entity_id: media_player.spotify
+        volume_level: '{{  states.input_number.spotify_volume.state  }}'
