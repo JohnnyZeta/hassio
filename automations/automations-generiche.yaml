@@ -174,20 +174,22 @@
           value: "{{ trigger.to_state.attributes.friendly_name }}"
 
 ###############################################################################
-#  - alias: Buongiorno
-#    trigger:
-#      platform: time
-#      at: '06:45:00'
-#    condition:
-#      condition: time
-#      weekday:
-#        - mon
-#        - tue
-#        - wed
-#        - thu
-#        - fri
-#    action:
-#      - service: hue.hue_activate_scene
-#        data:
-#          group_name: "Camera"
-#          scene_name: "Tenue"
+
+  - alias: Buongiorno
+    trigger:
+      platform: time
+      at: '06:45:00'
+    condition:
+      condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Camera"
+          scene_name: "Buongiorno"
+          # la transizione-on è già nella scena (5 min)

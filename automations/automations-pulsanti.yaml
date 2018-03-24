@@ -43,11 +43,11 @@
         entity_id: binary_sensor.switch_158d000120d46e
         click_type: double
     action:
-      service: xiaomi_aqara.play_ringtone
-      data:
-        gw_mac: 78:11:DC:B0:72:7E
-        ringtone_id: 12
-        ringtone_vol: 30
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: 78:11:DC:B0:72:7E
+          ringtone_id: 12
+          ringtone_vol: 30
 
 ########## PULSANTE ALBY ######################################################
 
