@@ -221,3 +221,5 @@
 
   variable.ultimo_movimento:
     friendly_name: Ultimo Movimento
+  input_boolean.alarmweekon:
+    confirm_controls_show_lock: true

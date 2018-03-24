@@ -170,3 +170,30 @@ camera:
     username: !secret foscam_username
     password: !secret foscam_password
     name: Occhio
+
+input_number:
+  alarmhour:
+    name: Ore
+    icon: mdi:timer
+    initial: 6
+    min: 0
+    max: 23
+    step: 1
+    mode: slider
+  alarmminutes:
+    name: Minuti
+    icon: mdi:timer
+    initial: 45
+    min: 0
+    max: 59
+    step: 5
+    mode: slider
+input_boolean:
+  alarmweekday:
+    name: Giorni Lavorativi
+    initial: on
+    icon: mdi:calendar
+  alarmweekon:
+    name: Attivato
+    initial: on
+    icon: mdi:power
