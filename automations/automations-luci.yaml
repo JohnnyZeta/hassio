@@ -5,8 +5,11 @@
       entity_id: group.famiglia
       to: 'home'
     condition:
-      condition: time
-      after: '13:00:00'
+      - condition: time
+        after: '13:00:00'
+      - condition: state
+        entity_id: light.tv
+        state: 'off'
     action:
       - service: hue.hue_activate_scene
         data:
