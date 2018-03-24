@@ -132,6 +132,12 @@ media_player:
       AV5: "Cassette"
       AV6: "TV"
   - platform: firetv
+  - platform: spotify
+    client_id: !secret spotify_client_id
+    client_secret: !secret spotify_client_secret
+    #aliases:
+    #    abc123def456: 'Living Room'
+    #    9183abas000: 'Bed Room'
 
 neato:
   username: !secret neato_username

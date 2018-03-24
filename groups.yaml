@@ -15,10 +15,21 @@
       - group.porte
       - group.movimenti
       - group.stanze
+      - group.media
       - group.altro
       - group.automazioni
       - camera.occhio
       - group.alarmclock
+
+  media:
+    name: Media Players
+    view: yes
+    icon: mdi:spotify
+    entities:
+      - media_player.spotify
+      - media_player.yamaha_receiver
+      - media_player.amazon_fire_tv
+      - media_player.cucina
 
   stanze:
     name: Stanze
@@ -30,9 +41,6 @@
       - group.camera
       - group.cucina
       - group.balcone
-      - media_player.yamaha_receiver
-      - media_player.amazon_fire_tv
-      - media_player.cucina
       - camera.semola_cleaning_map
 
   automazioni:
