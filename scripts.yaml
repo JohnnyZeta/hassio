@@ -1,11 +1,23 @@
 
   spotify_music:
-    #alias: Play selected spotify playlist
     sequence:
+      # Accendi lo Yamaha
+      - service: media_player.turn_on
+        data:
+          entity_id: media_player.yamaha_receiver
+      # Aspetta che sia disponibile
+      #- delay: '00:00:05'
+      # Setta il volume di Spotify
       - service: media_player.volume_set
         data:
           entity_id: media_player.spotify
           volume_level: '0.4'
+      # Setta il volume di Yamaha
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.yamaha_receiver
+          volume_level: '0.50'
+      # Selezione il Source di Spotify
       - service: media_player.select_source
         data_template:
           entity_id: media_player.spotify
@@ -13,11 +25,7 @@
             {% if is_state("input_select.spotify_source", "Yamaha Salotto") %} RX-V475 A484BB
             {% elif is_state("input_select.spotify_source", "Amazon FireTV") %} Amazon FireTV Stick Gen 2 ♔
             {% endif %}
-      - delay: '00:00:08'
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.yamaha_receiver
-          volume_level: '0.50'
+      # Fa partire Spotify
       - service: media_player.play_media
         data_template:
           entity_id: media_player.spotify

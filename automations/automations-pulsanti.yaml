@@ -237,28 +237,37 @@
         entity_id: binary_sensor.switch_158d000120d3ef
         click_type: double
     action:
+      # Accendi lo Yamaha
+      - service: media_player.turn_on
+        data:
+          entity_id: media_player.yamaha_receiver
+      # Aspetta che sia disponibile
+      - delay: '00:00:05'
+      # Setta il volume di Spotify
       - service: media_player.volume_set
         data:
           entity_id: media_player.spotify
-          volume_level: '0.45'
-      - service: media_player.select_source
+          volume_level: '0.4'
+      # Attiva lo Shuffle
+      - service: switch.turn_on
         data:
-          entity_id: media_player.spotify
-          source: RX-V475 A484BB
-      - delay: '00:00:05'
+          entity_id: switch.shuffle_spotify
+      # Setta il volume di Yamaha
       - service: media_player.volume_set
         data:
           entity_id: media_player.yamaha_receiver
           volume_level: '0.50'
-      - service: switch.turn_on
+      # Seleziona la sorgente
+      - service: media_player.select_source
         data:
-          entity_id: switch.shuffle_spotify
+          entity_id: media_player.spotify
+          source: RX-V475 A484BB
+      # Riproduce la playlist Balbertandra
       - service: media_player.play_media
         data:
           entity_id: media_player.spotify
           media_content_type: playlist
           media_content_id: spotify:user:johnnyzeta:playlist:4nP3qwV8iB9nuEt0YTGk4R
-          #Balbertandra
 
   - alias: Pulsante_Spotify_OFF
     trigger:
@@ -279,5 +288,19 @@
           entity_id: media_player.yamaha_receiver
 
 # HOLD CLICK
+  - alias: Pulsante_Spotify_Skippa
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120d3ef
+        click_type: hold
+    condition:
+      - condition: template
+        value_template: '{{ not is_state("media_player.yamaha_receiver", "off") }}'
+    action:
+      - service: media_player.media_next_track
+        data:
+          entity_id: media_player.spotify
 
 ###############################################################################
