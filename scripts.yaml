@@ -5,7 +5,7 @@
       - service: media_player.volume_set
         data:
           entity_id: media_player.spotify
-          volume_level: '0.45'
+          volume_level: '0.4'
       - service: media_player.select_source
         data_template:
           entity_id: media_player.spotify
@@ -13,7 +13,7 @@
             {% if is_state("input_select.spotify_source", "Yamaha Salotto") %} RX-V475 A484BB
             {% elif is_state("input_select.spotify_source", "Amazon FireTV") %} Amazon FireTV Stick Gen 2 ♔
             {% endif %}
-      - delay: '00:00:05'
+      - delay: '00:00:08'
       - service: media_player.volume_set
         data:
           entity_id: media_player.yamaha_receiver
@@ -30,4 +30,6 @@
             {% elif is_state("input_select.spotify_playlist", "Massima Concentrazione") %} spotify:user:spotify:playlist:37i9dQZF1DXbA4Uw2yEsP9
             {% elif is_state("input_select.spotify_playlist", "Le Hit del Natale") %} spotify:user:spotify:playlist:37i9dQZF1DWSWLO5zZahGQ
             {% elif is_state("input_select.spotify_playlist", "Discover Weekly Alby") %} spotify:user:spotify:playlist:37i9dQZEVXcIydqNXlKJSZ
+            {% elif is_state("input_select.spotify_playlist", "Ciccia") %} spotify:user:iaia4design:playlist:2iTpRMUF4wjYsNDWdb3JcR
+            {% elif is_state("input_select.spotify_playlist", "Discover Weekly Ale") %} spotify:user:spotify:playlist:37i9dQZEVXcHX6lVAGIRSd
             {% endif %}

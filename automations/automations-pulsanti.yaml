@@ -210,4 +210,74 @@
         data_template:
           message: "SOS dal comodino di Alessandra!"
 
-##############################################################################
+########## PULSANTE CUCINA #####################################################
+
+# 1 CLICK
+  - alias: Pulsante_Play_Pausa
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120d3ef
+        click_type: single
+    condition:
+      - condition: template
+        value_template: '{{ not is_state("media_player.yamaha_receiver", "off") }}'
+    action:
+      service: media_player.media_play_pause
+      data:
+        entity_id: media_player.spotify
+
+# 2 CLICK
+  - alias: Pulsante_Spotify_ON
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120d3ef
+        click_type: double
+    action:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.spotify
+          volume_level: '0.45'
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.spotify
+          source: RX-V475 A484BB
+      - delay: '00:00:05'
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.yamaha_receiver
+          volume_level: '0.50'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.shuffle_spotify
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.spotify
+          media_content_type: playlist
+          media_content_id: spotify:user:johnnyzeta:playlist:4nP3qwV8iB9nuEt0YTGk4R
+          #Balbertandra
+
+  - alias: Pulsante_Spotify_OFF
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120d3ef
+        click_type: double
+    condition:
+      - condition: template
+        value_template: '{{ not is_state("media_player.yamaha_receiver", "off") }}'
+    action:
+      - service: media_player.media_stop
+        data:
+          entity_id: media_player.spotify
+      - service: media_player.turn_off
+        data:
+          entity_id: media_player.yamaha_receiver
+
+# HOLD CLICK
+
+###############################################################################

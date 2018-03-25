@@ -44,3 +44,16 @@
           - service: switch.turn_on
             data:
               entity_id: switch.semola_schedule
+      shuffle_spotify:
+        friendly_name: Shuffle
+        value_template: "{{ is_state_attr('media_player.spotify', 'shuffle', true) }}"
+        turn_on:
+          - service: media_player.shuffle_set
+            data:
+              entity_id: media_player.spotify
+              shuffle: true
+        turn_off:
+          - service: media_player.shuffle_set
+            data:
+              entity_id: media_player.spotify
+              shuffle: false

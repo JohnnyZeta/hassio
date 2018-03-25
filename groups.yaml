@@ -20,13 +20,13 @@
       - group.automazioni
       - camera.occhio
       - group.alarmclock
-      - group.music_spotify
 
   media:
     name: Media Players
     view: yes
     icon: mdi:spotify
     entities:
+      - group.music_spotify
       - media_player.spotify
       - media_player.yamaha_receiver
       - media_player.amazon_fire_tv
@@ -254,11 +254,13 @@
       - input_boolean.alarmweekday
 
   music_spotify:
-      name: Musica
-      entities:
+    name: Musica
+    control: hidden
+    entities:
       - input_select.spotify_playlist
       - input_select.spotify_source
       - script.spotify_music
+      - switch.shuffle_spotify
       - input_number.spotify_volume
 
 ############ SOTTO-CARD #######################################################
