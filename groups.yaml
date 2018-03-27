@@ -20,6 +20,7 @@
       - group.automazioni
       - camera.occhio
       - group.alarmclock
+      - group.scene_hue
 
   media:
     name: Media Players
@@ -89,7 +90,7 @@
       - light.tv
       - light.gateway_light_7811dcb0727e
       - sensor.illumination_7811dcb0727e
-      - switch.tasto_netflix
+#      - switch.tasto_netflix
 
   disimpegno:
     name: Disimpegno
@@ -205,6 +206,7 @@
       - sensor.dark_sky_apparent_temperature
       - sensor.dark_sky_cloud_coverage
       - sensor.dark_sky_wind_speed
+      - sensor.hline_5
       - sensor.dark_sky_cloud_coverage_1
       - sensor.dark_sky_wind_speed_1
 
@@ -265,6 +267,16 @@
       - script.spotify_music
       - switch.shuffle_spotify
       - input_number.spotify_volume
+      - input_number.yamaha_volume
+
+  scene_hue:
+    name: Scene Philips Hue
+    control: hidden
+    entities:
+      - input_select.scena_hue_casa
+      - input_select.scena_hue_salotto
+      - input_select.scena_hue_camera
+
 
 ############ SOTTO-CARD #######################################################
 

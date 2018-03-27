@@ -192,12 +192,19 @@ input_boolean:
     icon: mdi:power
 input_number:
   spotify_volume:
-    name: Volume
+    name: Volume Spotify
     icon: mdi:volume-high
     min: 0.3
-    max: 0.6
+    max: 0.65
     step: 0.01
     initial: 0.4
+  yamaha_volume:
+    name: Volume Yamaha
+    icon: mdi:volume-high
+    min: 0.3
+    max: 0.65
+    step: 0.01
+    initial: 0.5
 input_select:
   spotify_playlist:
     name: 'Playlist:'
@@ -220,3 +227,27 @@ input_select:
       - Amazon FireTV
     initial: Yamaha Salotto
     icon: mdi:speaker-wireless
+  scena_hue_casa:
+    name: 'Scena Casa:'
+    options:
+      - Arrivo
+      - Nanna
+      - Neflixo
+      - TVOff
+    initial: Arrivo
+    icon: mdi:lamp
+  scena_hue_salotto:
+    name: 'Scena Salotto:'
+    options:
+      - Normale
+      - Serata
+    initial: Serata
+    icon: mdi:lamp
+  scena_hue_camera:
+    name: 'Scena Camera:'
+    options:
+      - Accesa
+      - Tenue
+      - Rosso
+    initial: Tenue
+    icon: mdi:lamp
