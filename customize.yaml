@@ -59,30 +59,39 @@
   sensor.illumination_7811dcb0727e:
     friendly_name: Luminosità Salotto
     homebridge_visible: true
+    show_last_changed: false
 
 # TEMPERATURA E UMIDITA'
   sensor.humidity_158d0001b92644:
     friendly_name: Umidità
     homebridge_visible: true
+    show_last_changed: false
   sensor.humidity_158d0001f561b7:
     friendly_name: Umidità
     homebridge_visible: true
+    show_last_changed: false
   sensor.pressure_158d0001b92644:
     friendly_name: Pressione
+    show_last_changed: false
   sensor.pressure_158d0001f561b7:
     friendly_name: Pressione
+    show_last_changed: false
   sensor.temperature_158d0001b92644:
     friendly_name: Temperatura
     homebridge_visible: true
+    show_last_changed: false
   sensor.temperature_158d0001f561b7:
     friendly_name: Temperatura
     homebridge_visible: true
+    show_last_changed: false
 
 # PULSANTE HUE
   sensor.tap_button:
     hidden: true
   sensor.tap_update:
     hidden: true
+  sensor.tap_remote:
+    show_last_changed: false
 
 # PULSANTI
   binary_sensor.switch_158d000120d46e:
@@ -134,15 +143,19 @@
   sensor.lavorocasa_ale:
     friendly_name: Tempo Lavoro-Casa Ale
     icon: mdi:home
+    show_last_changed: false
   sensor.lavorocasa_alby:
     friendly_name: Tempo Lavoro-Casa Alby
     icon: mdi:home
+    show_last_changed: false
   sensor.ale_casalavoro:
     friendly_name: Tempo Casa-Lavoro Ale
     icon: mdi:briefcase
+    show_last_changed: false
   sensor.alby_casalavoro:
     friendly_name: Tempo Casa-Lavoro Alby
     icon: mdi:briefcase
+    show_last_changed: false
 # sensor.alecasa:
 #   friendly_name: Tempo Alessandra a Casa
 #   icon: mdi:heart
@@ -184,9 +197,11 @@
     icon: mdi:roomba
     homebridge_visible: true
     homebridge_name: ProgSemola
+    show_last_changed: false
   switch.nuvola:
     icon: mdi:radiator
     homebridge_visible: true
+    show_last_changed: false
     extra_badge:
       attribute: current_power_w
       unit: W
