@@ -59,8 +59,8 @@
     view: yes
     icon: mdi:raspberrypi
     entities:
-      - group.iphone
-      - group.ipad
+#      - group.iphone
+#      - group.ipad
       - group.sistema
       - group.speedtest
       - group.smartplug
@@ -242,7 +242,6 @@
     control: hidden
     icon: mdi:home-assistant
     entities:
-      - switch.vacanza
 #      - automation.programmazione_nuvola
       - automation.vento_forte
 #      - switch.automazione_avviso_semola
@@ -269,23 +268,23 @@
 
 ############ SOTTO-CARD #######################################################
 
-  iphone:
-    name: iPhone
-    view: no
-    icon: mdi:cellphone-iphone
-    entities:
-      - sensor.iphone_di_alby_battery_level
-      - sensor.iphone_di_alby_battery_state
-      - sensor.iphone_di_alessandra_battery_level
-      - sensor.iphone_di_alessandra_battery_state
-
-  ipad:
-    name: iPad
-    view: no
-    icon: mdi:tablet-ipad
-    entities:
-      - sensor.ipad_di_alberto_battery_level
-      - sensor.ipad_di_alberto_battery_state
+  # iphone:
+  #   name: iPhone
+  #   view: no
+  #   icon: mdi:cellphone-iphone
+  #   entities:
+  #     - sensor.iphone_di_alby_battery_level
+  #     - sensor.iphone_di_alby_battery_state
+  #     - sensor.iphone_di_alessandra_battery_level
+  #     - sensor.iphone_di_alessandra_battery_state
+  #
+  # ipad:
+  #   name: iPad
+  #   view: no
+  #   icon: mdi:tablet-ipad
+  #   entities:
+  #     - sensor.ipad_di_alberto_battery_level
+  #     - sensor.ipad_di_alberto_battery_state
 
 ############ ALTRO ############################################################
 
