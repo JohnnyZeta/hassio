@@ -259,4 +259,14 @@
       service: media_player.volume_set
       data_template:
         entity_id: media_player.spotify
-        volume_level: '{{  states.input_number.spotify_volume.state  }}'
+        volume_level: '{{ states.input_number.spotify_volume.state }}'
+
+  - alias: Set Yamaha Volume
+    trigger:
+      platform: state
+      entity_id: input_number.yamaha_volume
+    action:
+      service: media_player.volume_set
+      data_template:
+        entity_id: media_player.yamaha_receiver
+        volume_level: '{{ states.input_number.yamaha_volume.state }}'
