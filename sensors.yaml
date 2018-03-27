@@ -33,6 +33,8 @@
         value_template: hline
      hline_4:
         value_template: hline
+     hline_5:
+        value_template: hline
      tap_remote:
        value_template: >
          {% if is_state('sensor.tap_button', '34') %}
