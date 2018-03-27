@@ -17,3 +17,12 @@
 
   "automation.*":
     confirm_controls_show_lock: true
+
+  "sensor.hline_*":
+    custom_ui_state_card: state-card-hline
+    config:
+       width: 85
+       height: 1
+       backgroundcolor: white
+       bordertop: none
+       backgroundimage: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))

@@ -25,6 +25,14 @@
        value_template: "{{ states.switch.nuvola.attributes.voltage }}"
        unit_of_measurement: 'V'
        friendly_name: "Voltaggio"
+     hline_1:
+        value_template: hline
+     hline_2:
+        value_template: hline
+     hline_3:
+        value_template: hline
+     hline_4:
+        value_template: hline
      tap_remote:
        value_template: >
          {% if is_state('sensor.tap_button', '34') %}
