@@ -236,6 +236,8 @@
 
   variable.ultimo_movimento:
     friendly_name: Ultimo Movimento
+  variable.meteo:
+    friendly_name: Meteo
   input_boolean.alarmweekon:
     confirm_controls_show_lock: true
   input_boolean.alarmweekday:

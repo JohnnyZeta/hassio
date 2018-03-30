@@ -26,15 +26,15 @@
        unit_of_measurement: 'V'
        friendly_name: "Voltaggio"
      hline_1:
-        value_template: hline
+      value_template: hline
      hline_2:
-        value_template: hline
+       value_template: hline
      hline_3:
-        value_template: hline
+       value_template: hline
      hline_4:
-        value_template: hline
+       value_template: hline
      hline_5:
-        value_template: hline
+       value_template: hline
      tap_remote:
        value_template: >
          {% if is_state('sensor.tap_button', '34') %}
@@ -132,6 +132,19 @@
   #   api_key: !secret google_key
   #   origin: device_tracker.iphone_di_alby
   #   destination: zone.home
+###############################################################################
+  - platform: google_geocode
+    origin: device_tracker.iphone_di_alby
+    name: Alberto
+    display_zone: hide
+    api_key: !secret google_key
+    gravatar: !secret alberto_email
+  - platform: google_geocode
+    origin: device_tracker.iphone_di_alessandra
+    name: Alessandra
+    display_zone: hide
+    api_key: !secret google_key
+    gravatar: !secret ale_email
 ###############################################################################
   - platform: rest
     resource: http://ip.jsontest.com

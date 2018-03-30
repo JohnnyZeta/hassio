@@ -26,14 +26,16 @@ shell_command: !include shell_commands.yaml
 customizer:
   custom_ui: hosted
 
+
 # Show links to resources in log and frontend
 #introduction:
 
 # Enables the frontend
 frontend:
   extra_html_url:
-    - /local/custom_ui/state-card-custom-ui.html
     - /local/custom_ui/state-card-hline.html
+  extra_html_url_es5:
+    - /local/custom_ui/state-card-hline_es5.html
 
 # Enables configuration UI
 config:
@@ -80,6 +82,7 @@ sun:
 # Weather prediction
 sensor: !include sensors.yaml
 
+# Custom Component https://github.com/rogro82/hass-variables
 variable:
   ultimo_movimento:
     value: 'Unknown'
@@ -87,6 +90,12 @@ variable:
     attributes:
       icon: mdi:map-marker
       name: "Ultimo Movimento"
+  meteo:
+    value: 'Unknown'
+    restore: true
+    attributes:
+      icon: mdi:information-outline
+      name: "Meteo"
 
 # Text to speech
 tts:
@@ -99,8 +108,93 @@ cloud:
 #iPhones
 ios:
 
-#Shopping List
-#shopping_list:
+#Inputs
+input_datetime:
+  alba:
+    name: Orario
+    has_date: false
+    has_time: true
+    initial: 06:45
+###############################################################################
+input_boolean:
+  alarmweekday:
+    name: Giorni Lavorativi
+    initial: on
+    icon: mdi:calendar
+#
+  alarmweekon:
+    name: Attivato
+    initial: on
+    icon: mdi:power
+###############################################################################
+input_number:
+  spotify_volume:
+    name: Volume Spotify
+    icon: mdi:volume-high
+    min: 0.3
+    max: 0.65
+    step: 0.01
+    initial: 0.4
+#
+  yamaha_volume:
+    name: Volume Yamaha
+    icon: mdi:volume-high
+    min: 0.3
+    max: 0.65
+    step: 0.01
+    initial: 0.5
+###############################################################################
+input_select:
+  spotify_playlist:
+    name: 'Playlist:'
+    options:
+      - Rossetti
+      - Balbertandra
+      - Discover Weekly Alby
+      - Discover Weekly Ale
+      - Ciccia
+      - Infinite Indie Folk
+      - Gemme Sparse
+      - Massima Concentrazione
+      - Le Hit del Natale
+    initial: Rossetti
+    icon: mdi:spotify
+#
+  spotify_source:
+    name: 'Sorgente:'
+    options:
+      - Yamaha Salotto
+      - Amazon FireTV
+    initial: Yamaha Salotto
+    icon: mdi:speaker-wireless
+#
+  scena_hue_casa:
+    name: 'Scena Casa:'
+    options:
+      - Arrivo
+      - Nanna
+      - Neflixo
+      - TVOff
+    initial: Arrivo
+    icon: mdi:lamp
+#
+  scena_hue_salotto:
+    name: 'Scena Salotto:'
+    options:
+      - Normale
+      - Serata
+    initial: Serata
+    icon: mdi:lamp
+#
+  scena_hue_camera:
+    name: 'Scena Camera:'
+    options:
+      - Accesa
+      - Tenue
+      - Rosso
+    initial: Tenue
+    icon: mdi:lamp
+###############################################################################
 
 switch: !include switches.yaml
 
@@ -173,81 +267,4 @@ camera:
     ip: 192.168.2.24
     username: !secret foscam_username
     password: !secret foscam_password
-    name: Occhio
-
-input_datetime:
-  alba:
-    name: Orario
-    has_date: false
-    has_time: true
-    initial: 06:45
-input_boolean:
-  alarmweekday:
-    name: Giorni Lavorativi
-    initial: on
-    icon: mdi:calendar
-  alarmweekon:
-    name: Attivato
-    initial: on
-    icon: mdi:power
-input_number:
-  spotify_volume:
-    name: Volume Spotify
-    icon: mdi:volume-high
-    min: 0.3
-    max: 0.65
-    step: 0.01
-    initial: 0.4
-  yamaha_volume:
-    name: Volume Yamaha
-    icon: mdi:volume-high
-    min: 0.3
-    max: 0.65
-    step: 0.01
-    initial: 0.5
-input_select:
-  spotify_playlist:
-    name: 'Playlist:'
-    options:
-      - Rossetti
-      - Balbertandra
-      - Discover Weekly Alby
-      - Discover Weekly Ale
-      - Ciccia
-      - Infinite Indie Folk
-      - Gemme Sparse
-      - Massima Concentrazione
-      - Le Hit del Natale
-    initial: Rossetti
-    icon: mdi:spotify
-  spotify_source:
-    name: 'Sorgente:'
-    options:
-      - Yamaha Salotto
-      - Amazon FireTV
-    initial: Yamaha Salotto
-    icon: mdi:speaker-wireless
-  scena_hue_casa:
-    name: 'Scena Casa:'
-    options:
-      - Arrivo
-      - Nanna
-      - Neflixo
-      - TVOff
-    initial: Arrivo
-    icon: mdi:lamp
-  scena_hue_salotto:
-    name: 'Scena Salotto:'
-    options:
-      - Normale
-      - Serata
-    initial: Serata
-    icon: mdi:lamp
-  scena_hue_camera:
-    name: 'Scena Camera:'
-    options:
-      - Accesa
-      - Tenue
-      - Rosso
-    initial: Tenue
-    icon: mdi:lamp
+    name: Cucina

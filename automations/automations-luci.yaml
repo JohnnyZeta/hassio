@@ -58,6 +58,61 @@
 #          scene_name: "Arrivo"
 ###############################################################################
 
+  - alias: Buongiorno Lavorativo
+    trigger:
+      platform: time
+      minutes: '/1'
+      seconds: 0
+    condition:
+      - condition: state
+        entity_id: input_boolean.alarmweekon
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.alarmweekday
+        state: 'on'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: template
+        value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Camera"
+          scene_name: "Buongiorno"
+          # la transizione-on è già nella scena (5 min)
+
+  - alias: Buongiorno Weekends
+    trigger:
+      platform: time
+      minutes: '/1'
+      seconds: 0
+    condition:
+      - condition: state
+        entity_id: input_boolean.alarmweekon
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.alarmweekday
+        state: 'off'
+      - condition: time
+        weekday:
+          - sat
+          - sun
+      - condition: template
+        value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Camera"
+          scene_name: "Buongiorno"
+          # la transizione-on è già nella scena (5 min)
+
+###############################################################################
+
   - alias: Selezione Scene Casa
     trigger:
       platform: state

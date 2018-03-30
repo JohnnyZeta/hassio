@@ -17,6 +17,15 @@
 
   "automation.*":
     confirm_controls_show_lock: true
+    extra_data_template: >-
+      if(!attributes.last_triggered)return null;
+      var t,s=(new Date()-new Date(attributes.last_triggered))/1e3;
+      return(
+      (t=Math.floor(s/86400))?t+(t>1?" giorni":" giorno"):
+      (t=Math.floor(s/3600))?t+(t>1?" ore":" ora"):
+      (t=Math.floor(s/60))?t+(t>1?" minuti":" minuto"):
+      (t=Math.floor(s))!==1?t+" secondi":" secondo"
+      )+" fa";
 
   "sensor.hline_*":
     custom_ui_state_card: state-card-hline

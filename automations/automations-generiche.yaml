@@ -123,16 +123,17 @@
 
 ###############################################################################
 
-  - alias: Promemoria iPad
+  - alias: Timer Spegnimento Nuvola
     trigger:
-      platform: numeric_state
-      entity_id: sensor.ipad_di_alberto_battery_level
-      below: 25
-      above: 23
+      platform: state
+      entity_id: switch.nuvola
+      from: 'off'
+      to: 'on'
     action:
-      service: notify.ios_iphone_di_alby
-      data:
-        message: "Livello batteria iPad basso!"
+      - delay: '00:15:00'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.nuvola
 
 ###############################################################################
 
@@ -175,82 +176,6 @@
 
 ###############################################################################
 
-  # - alias: Buongiorno
-  #   trigger:
-  #     platform: time
-  #     at: '06:45:00'
-  #   condition:
-  #     condition: time
-  #     weekday:
-  #       - mon
-  #       - tue
-  #       - wed
-  #       - thu
-  #       - fri
-  #   action:
-  #     - service: hue.hue_activate_scene
-  #       data:
-  #         group_name: "Camera"
-  #         scene_name: "Buongiorno"
-  #         # la transizione-on è già nella scena (5 min)
-
-###############################################################################
-
-  - alias: Buongiorno Lavorativo
-    trigger:
-      platform: time
-      minutes: '/1'
-      seconds: 0
-    condition:
-      - condition: state
-        entity_id: input_boolean.alarmweekon
-        state: 'on'
-      - condition: state
-        entity_id: input_boolean.alarmweekday
-        state: 'on'
-      - condition: time
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
-      - condition: template
-        value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
-    action:
-      - service: hue.hue_activate_scene
-        data:
-          group_name: "Camera"
-          scene_name: "Buongiorno"
-          # la transizione-on è già nella scena (5 min)
-
-  - alias: Buongiorno Weekends
-    trigger:
-      platform: time
-      minutes: '/1'
-      seconds: 0
-    condition:
-      - condition: state
-        entity_id: input_boolean.alarmweekon
-        state: 'on'
-      - condition: state
-        entity_id: input_boolean.alarmweekday
-        state: 'off'
-      - condition: time
-        weekday:
-          - sat
-          - sun
-      - condition: template
-        value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
-    action:
-      - service: hue.hue_activate_scene
-        data:
-          group_name: "Camera"
-          scene_name: "Buongiorno"
-          # la transizione-on è già nella scena (5 min)
-
-###############################################################################
-
   - alias: Set Spotify Volume
     trigger:
       platform: state
@@ -270,3 +195,5 @@
       data_template:
         entity_id: media_player.yamaha_receiver
         volume_level: '{{ states.input_number.yamaha_volume.state }}'
+
+###############################################################################

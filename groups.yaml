@@ -14,11 +14,12 @@
       - sensor.dark_sky_summary
       - group.porte
       - group.movimenti
+      - group.posizioni
       - group.stanze
       - group.media
       - group.altro
       - group.automazioni
-      - camera.occhio
+      - camera.cucina
       - group.alarmclock
       - group.scene_hue
 
@@ -79,6 +80,13 @@
       - sensor.alby_casalavoro
       - sensor.lavorocasa_ale
       - sensor.lavorocasa_alby
+
+  posizioni:
+    name: Posizioni
+    entities:
+      - sensor.alberto
+      - sensor.alessandra
+      - variable.meteo
 
   salotto:
     name: Salotto
@@ -218,7 +226,6 @@
     entities:
       - automation.backup_automatico
       - automation.notifica_aggiornamento
-      - automation.promemoria_ipad
       - automation.spazio_libero
 #      - automation.netflix
 
@@ -248,6 +255,7 @@
       - automation.vento_forte
 #      - switch.automazione_avviso_semola
       - automation.avviso_semola_off
+      - automation.timer_spegnimento_nuvola
 
   alarmclock:
     name: Alba in 5 minuti
