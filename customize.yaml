@@ -198,14 +198,14 @@
     homebridge_visible: true
     homebridge_name: ProgSemola
     show_last_changed: false
-  switch.nuvola:
-    icon: mdi:radiator
-    homebridge_visible: true
-    show_last_changed: false
-    extra_badge:
-      attribute: current_power_w
-      unit: W
-      blacklist_states: 0
+  # switch.nuvola:
+  #   icon: mdi:radiator
+  #   homebridge_visible: true
+  #   show_last_changed: false
+  #   extra_badge:
+  #     attribute: current_power_w
+  #     unit: W
+  #     blacklist_states: 0
 
 ############ DEVICES ##########################################################
 
@@ -237,7 +237,7 @@
   variable.ultimo_movimento:
     friendly_name: Ultimo Movimento
   variable.meteo:
-    friendly_name: Meteo
+    friendly_name: Meteo domani
   input_boolean.alarmweekon:
     confirm_controls_show_lock: true
   input_boolean.alarmweekday:

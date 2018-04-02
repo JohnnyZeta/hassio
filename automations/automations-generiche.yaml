@@ -1,12 +1,12 @@
 
-  - alias: Notifica aggiornamento
-    trigger:
-    - platform: state
-      entity_id: updater.updater
-    action:
-      service: notify.telegram
-      data_template:
-        message: "È disponibile Home Assistant {{ states.updater.updater.state }}."
+  # - alias: Notifica aggiornamento
+  #   trigger:
+  #   - platform: state
+  #     entity_id: updater.updater
+  #   action:
+  #     service: notify.telegram
+  #     data_template:
+  #       message: "È disponibile Home Assistant {{ states.updater.updater.state }}."
 
 ###############################################################################
 
@@ -123,17 +123,17 @@
 
 ###############################################################################
 
-  - alias: Timer Spegnimento Nuvola
-    trigger:
-      platform: state
-      entity_id: switch.nuvola
-      from: 'off'
-      to: 'on'
-    action:
-      - delay: '00:15:00'
-      - service: switch.turn_off
-        data:
-          entity_id: switch.nuvola
+  # - alias: Timer Spegnimento Nuvola
+  #   trigger:
+  #     platform: state
+  #     entity_id: switch.nuvola
+  #     from: 'off'
+  #     to: 'on'
+  #   action:
+  #     - delay: '00:15:00'
+  #     - service: switch.turn_off
+  #       data:
+  #         entity_id: switch.nuvola
 
 ###############################################################################
 

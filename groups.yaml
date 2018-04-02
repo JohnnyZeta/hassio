@@ -86,7 +86,6 @@
     entities:
       - sensor.alberto
       - sensor.alessandra
-      - variable.meteo
 
   salotto:
     name: Salotto
@@ -115,7 +114,7 @@
     control: hidden
     entities:
       - light.camera_2
-      - switch.nuvola
+  #    - switch.nuvola
       - vacuum.semola
       - switch.semola_schedule
 
@@ -211,6 +210,7 @@
     view: no
     control: hidden
     entities:
+      - variable.meteo
       - sensor.dark_sky_apparent_temperature
       - sensor.dark_sky_cloud_coverage
       - sensor.dark_sky_wind_speed
@@ -255,7 +255,7 @@
       - automation.vento_forte
 #      - switch.automazione_avviso_semola
       - automation.avviso_semola_off
-      - automation.timer_spegnimento_nuvola
+#      - automation.timer_spegnimento_nuvola
 
   alarmclock:
     name: Alba in 5 minuti
