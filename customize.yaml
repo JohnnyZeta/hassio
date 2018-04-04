@@ -141,19 +141,19 @@
 
 # TEMPO
   sensor.lavorocasa_ale:
-    friendly_name: Tempo Lavoro-Casa Ale
+    friendly_name: Tempo Ritorno
     icon: mdi:home
     show_last_changed: false
   sensor.lavorocasa_alby:
-    friendly_name: Tempo Lavoro-Casa Alby
+    friendly_name: Tempo Ritorno
     icon: mdi:home
     show_last_changed: false
   sensor.ale_casalavoro:
-    friendly_name: Tempo Casa-Lavoro Ale
+    friendly_name: Tempo Andata
     icon: mdi:briefcase
     show_last_changed: false
   sensor.alby_casalavoro:
-    friendly_name: Tempo Casa-Lavoro Alby
+    friendly_name: Tempo Andata
     icon: mdi:briefcase
     show_last_changed: false
 # sensor.alecasa:
@@ -247,3 +247,6 @@
     friendly_name: 'Play'
     icon: mdi:play
     confirm_controls_show_lock: true
+
+  input_boolean.siamoacasa:
+    homebridge_visible: true

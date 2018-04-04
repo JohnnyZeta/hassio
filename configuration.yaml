@@ -74,7 +74,7 @@ recorder:
 logbook:
 
 # Enables a map showing the location of tracked devices
-map:
+#map:
 
 # Track the sun
 sun:
@@ -126,6 +126,11 @@ input_boolean:
     name: Attivato
     initial: on
     icon: mdi:power
+#
+  siamoacasa:
+    icon: mdi:home
+    name: Hass.io Homebridge Trigger
+    initial: on
 ###############################################################################
 input_number:
   spotify_volume:

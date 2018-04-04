@@ -18,3 +18,12 @@ iphone_di_alessandra:
   picture:
   track: true
   vendor: Apple, Inc.
+
+homebridge:
+  hide_if_away: false
+  icon:
+  mac:
+  name: homebridge
+  picture:
+  track: true
+  vendor:

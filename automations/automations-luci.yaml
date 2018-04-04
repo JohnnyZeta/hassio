@@ -18,22 +18,22 @@
 
 ###############################################################################
 
-  - alias: Luce Serale
-    trigger:
-      platform: sun
-      # Possible values: sunset, sunrise
-      event: sunset
-      # Optional time offset. This example is 45 minutes.
-      offset: '-00:30:00'
-    condition:
-      condition: state
-      entity_id: group.famiglia
-      state: home
-    action:
-      - service: hue.hue_activate_scene
-        data:
-          group_name: "Cucina"
-          scene_name: "Arrivo"
+  # - alias: Luce Serale
+  #   trigger:
+  #     platform: sun
+  #     # Possible values: sunset, sunrise
+  #     event: sunset
+  #     # Optional time offset. This example is 45 minutes.
+  #     offset: '-00:30:00'
+  #   condition:
+  #     condition: state
+  #     entity_id: group.famiglia
+  #     state: home
+  #   action:
+  #     - service: hue.hue_activate_scene
+  #       data:
+  #         group_name: "Casa"
+  #         scene_name: "Arrivo"
 
 ###############################################################################
 #  - alias: Luce Serale

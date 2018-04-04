@@ -8,7 +8,8 @@
     entities:
       - device_tracker.iphone_di_alby
       - device_tracker.iphone_di_alessandra
-      - group.tempi
+      - group.scheda_alby
+      - group.scheda_ale
       - sensor.saldo_eth
       - sun.sun
       - sensor.dark_sky_summary
@@ -22,6 +23,7 @@
       - camera.cucina
       - group.alarmclock
       - group.scene_hue
+      - group.meteo
 
   media:
     name: Media Players
@@ -65,27 +67,33 @@
 #      - group.ipad
       - group.sistema
       - group.speedtest
-      - group.smartplug
-      - group.meteo
+#      - group.smartplug
 
 ############ CARD #############################################################
 
-  tempi:
-    name: Tempi
+  scheda_alby:
+    name: Alberto
+    view: no
+    entities:
+#      - sensor.albycasa
+      - sensor.alberto
+      - sensor.alby_casalavoro
+      - sensor.lavorocasa_alby
+
+  scheda_ale:
+    name: Alessandra
     view: no
     entities:
 #      - sensor.alecasa
-#      - sensor.albycasa
-      - sensor.ale_casalavoro
-      - sensor.alby_casalavoro
-      - sensor.lavorocasa_ale
-      - sensor.lavorocasa_alby
-
-  posizioni:
-    name: Posizioni
-    entities:
-      - sensor.alberto
       - sensor.alessandra
+      - sensor.ale_casalavoro
+      - sensor.lavorocasa_ale
+
+  # posizioni:
+  #   name: Posizioni
+  #   entities:
+  #     - sensor.alberto
+  #     - sensor.alessandra
 
   salotto:
     name: Salotto
@@ -173,16 +181,16 @@
       - binary_sensor.motion_sensor_158d0001dc2ed5
       - variable.ultimo_movimento
 
-  smartplug:
-    name: Smart Plug
-    view: no
-    icon: mdi:power-socket-eu
-    entities:
-      - sensor.tp_link_amps
-      - sensor.tp_link_watts
-      - sensor.tp_link_kw
-      - sensor.tp_link_kw_today
-      - sensor.tp_link_volts
+  # smartplug:
+  #   name: Smart Plug
+  #   view: no
+  #   icon: mdi:power-socket-eu
+  #   entities:
+  #     - sensor.tp_link_amps
+  #     - sensor.tp_link_watts
+  #     - sensor.tp_link_kw
+  #     - sensor.tp_link_kw_today
+  #     - sensor.tp_link_volts
 
   sistema:
     name: RaspberryPi
@@ -210,11 +218,11 @@
     view: no
     control: hidden
     entities:
-      - variable.meteo
       - sensor.dark_sky_apparent_temperature
       - sensor.dark_sky_cloud_coverage
       - sensor.dark_sky_wind_speed
       - sensor.hline_5
+      - variable.meteo
       - sensor.dark_sky_cloud_coverage_1
       - sensor.dark_sky_wind_speed_1
 
@@ -243,7 +251,7 @@
       - automation.arrivo_ale
       - automation.avviso_tempo_ritorno_ale
       - automation.avviso_tempo_ritorno_alby
-      - automation.luce_serale
+#      - automation.luce_serale
 
   automazioni_casa:
     name: Generiche
