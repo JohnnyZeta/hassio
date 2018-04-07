@@ -208,6 +208,10 @@ light:
     host: 192.168.2.5
 
 panel_iframe:
+  dashboard:
+    title: Dashboard
+    icon: mdi:view-dashboard
+    url: !secret dashboard_url
   configurator:
     title: Configuratore
     icon: mdi:wrench
@@ -231,7 +235,7 @@ media_player:
       HDMI4: "Fire TV"
       AV5: "Cassette"
       AV6: "TV"
-  - platform: firetv
+  #- platform: firetv
   - platform: spotify
     client_id: !secret spotify_client_id
     client_secret: !secret spotify_client_secret
