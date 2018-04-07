@@ -23,9 +23,9 @@
       - service: hassio.snapshot_full
         data_template:
           name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
-      - service: shell_command.backup_script
-      - delay: 00:00:30
-      - service: shell_command.backup_reload
+      # - service: shell_command.backup_script
+      # - delay: 00:00:30
+      # - service: shell_command.backup_reload
 
 ###############################################################################
 
