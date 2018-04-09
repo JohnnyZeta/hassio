@@ -16,10 +16,41 @@
       for:
         minutes: 5
     action:
-      service: notify.telefoni
-      data_template:
-        title: "ALLARME!"
-        message: >
-          {{ trigger.from_state.attributes.friendly_name }} è appena passata da {{ trigger.from_state.state }} a {{ trigger.to_state.state }}.
+      - service: notify.telefoni
+        data_template:
+          title: "ALLARME!"
+          message: >
+            {{ trigger.from_state.attributes.friendly_name }} è appena passata da {{ trigger.from_state.state }} a {{ trigger.to_state.state }}. In allegato lo stream della camera:
+          data:
+            attachment:
+              content-type: jpeg
+            push:
+              category: camera
+            entity_id: camera.cucina
+      - service: camera.snapshot
+        data:
+          entity_id: camera.cucina
+          filename: '/config/www/cucina_istant_{{ now().strftime("%Y_%m_%d-%H%M") }}.jpg'
+      - delay: "00:00:01"
+      - service: camera.snapshot
+        data:
+          entity_id: camera.cucina
+          filename: '/config/www/cucina_1s_{{ now().strftime("%Y_%m_%d-%H%M") }}.jpg'
+      - delay: "00:00:04"
+      - service: camera.snapshot
+        data:
+          entity_id: camera.cucina
+          filename: '/config/www/cucina_5s_{{ now().strftime("%Y_%m_%d-%H%M") }}.jpg'
+      - service: notify.telegram
+        data_template:
+          message: "Ecco gli screenshot fatti subito, a 1s e a 5s:"
+          data:
+            photo:
+              - file: /config/www/cucina_istant_{{ now().strftime("%Y_%m_%d-%H%M") }}.jpg
+                caption: Istantaneo
+              - file: /config/www/cucina_1s_{{ now().strftime("%Y_%m_%d-%H%M") }}.jpg
+                caption: Dopo 1 secondo
+              - file: /config/www/cucina_5s_{{ now().strftime("%Y_%m_%d-%H%M") }}.jpg
+                caption: Dopo 5 secondi
 
 ###############################################################################
