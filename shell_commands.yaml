@@ -1,5 +1,5 @@
 
-  spegni_nanna: curl --request PUT --data "{\"on\":false, \"transitiontime\":1800}" http://192.168.2.5/api/LBmNRY-HWbq4u-AQt4EPKO5rgNJj1miy5RQ7wyic/lights/6/state > /dev/null &
+  spegni_nanna: curl --request PUT --data "{\"on\":false, \"transitiontime\":1800}" http://192.168.2.5/api/UQ7QJsuqUN4VXEOvVOUHzKuuxfGJPJYWEQAW1VxE/lights/6/state > /dev/null &
   # backup_script: 'find /backup/*.tar -mtime +15 -exec rm {} \;'
   # backup_reload: 'hassio snapshots reload'
   # backup_script_file: './backup/backup_script.sh'

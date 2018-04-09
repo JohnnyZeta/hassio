@@ -8,13 +8,13 @@
       - condition: time
         after: '13:00:00'
       - condition: state
-        entity_id: light.tv
+        entity_id: light.cucina_2
         state: 'off'
     action:
       - service: hue.hue_activate_scene
         data:
           group_name: "Casa"
-          scene_name: "Arrivo"
+          scene_name: "Entrata"
 
 ###############################################################################
 

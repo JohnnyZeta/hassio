@@ -208,18 +208,18 @@ light:
     host: 192.168.2.5
 
 panel_iframe:
-  dashboard:
-    title: Dashboard
-    icon: mdi:view-dashboard
-    url: !secret dashboard_url
+  # dashboard:
+  #   title: Dashboard
+  #   icon: mdi:view-dashboard
+  #   url: !secret dashboard_url
   configurator:
     title: Configuratore
     icon: mdi:wrench
     url: !secret configurator_url
-  nodered:
-    title: Node-RED
-    icon: mdi:nodejs
-    url: !secret nodered_url
+  # nodered:
+  #   title: Node-RED
+  #   icon: mdi:nodejs
+  #   url: !secret nodered_url
 
 xiaomi_aqara:
   discovery_retry: 5
