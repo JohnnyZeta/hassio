@@ -122,7 +122,7 @@
       data_template:
         group_name: "Casa"
         scene_name: >
-          {% if is_state("input_select.scena_hue_casa", "Arrivo") %} Arrivo
+          {% if is_state("input_select.scena_hue_casa", "Entrata") %} Entrata
           {% elif is_state("input_select.scena_hue_casa", "Nanna") %} Nanna
           {% elif is_state("input_select.scena_hue_casa", "Netflixo") %} Netflixo
           {% elif is_state("input_select.scena_hue_casa", "TVOff") %} TVOff
@@ -136,10 +136,7 @@
       service: hue.hue_activate_scene
       data_template:
         group_name: "Salotto"
-        scene_name: >
-          {% if is_state("input_select.scena_hue_salotto", "Normale") %} Normale
-          {% elif is_state("input_select.scena_hue_salotto", "Serata") %} Serata
-          {% endif %}
+        scene_name: "Serata"
 
   - alias: Selezione Scene Camera
     trigger:

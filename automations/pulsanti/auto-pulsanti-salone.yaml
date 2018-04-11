@@ -1,0 +1,50 @@
+
+########## PULSANTE SALONE #####################################################
+
+# 1 CLICK
+  - alias: Pulsante_Netflix_ON
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120d46e
+        click_type: single
+    condition:
+      condition: template
+      value_template: '{{ states.light.tv.attributes.brightness > 250 }}'
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Casa"
+          scene_name: "Netflixo"
+
+  - alias: Pulsante_Netflix_OFF
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120d46e
+        click_type: single
+    condition:
+      condition: template
+      value_template: '{{ states.light.tv.attributes.brightness < 100 }}'
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Casa"
+          scene_name: "TVOff"
+
+# 2 CLICK
+  - alias: Pulsante_Prova
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120d46e
+        click_type: double
+    action:
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: 78:11:DC:B0:72:7E
+          ringtone_id: 12
+          ringtone_vol: 30

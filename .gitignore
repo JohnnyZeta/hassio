@@ -3,6 +3,7 @@
 !*.md
 !.gitignore
 !automations
+!automations/pulsanti
 secrets.yaml
 zones.yaml
 entity_registry.yaml
