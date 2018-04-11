@@ -176,17 +176,16 @@ input_select:
   scena_hue_casa:
     name: 'Scena Casa:'
     options:
-      - Arrivo
+      - Entrata
       - Nanna
       - Neflixo
       - TVOff
-    initial: Arrivo
+    initial: Entrata
     icon: mdi:lamp
 #
   scena_hue_salotto:
     name: 'Scena Salotto:'
     options:
-      - Normale
       - Serata
     initial: Serata
     icon: mdi:lamp
