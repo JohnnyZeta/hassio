@@ -2,7 +2,36 @@
 ########## PULSANTE ALBY ######################################################
 
 # 1 CLICK
-  - alias: Pulsante_Nanna_Alby
+  - alias: Pulsante_Nanna_Alby_Buio
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00016c48b3
+        click_type: single
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: sun.sun
+          state: 'below_horizon'
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: light.tv
+              state: 'on'
+            - condition: state
+              entity_id: light.camera
+              state: 'off'
+            - condition: template
+              value_template: '{{ states.light.camera_2.attributes.brightness == 103 }}'
+    action:
+      service: hue.hue_activate_scene
+      data:
+        group_name: "Casa"
+        scene_name: "Nanna"
+
+  - alias: Annulla_Pulsante_Nanna_Alby_Buio
     trigger:
       platform: event
       event_type: click
@@ -13,29 +42,10 @@
       condition: or
       conditions:
         - condition: state
-          entity_id: light.tv
-          state: 'on'
-        - condition: state
-          entity_id: light.camera
-          state: 'off'
+          entity_id: sun.sun
+          state: 'above_horizon'
         - condition: template
-          value_template: '{{ states.light.camera_2.attributes.color_temp > 200 }}'
-    action:
-      service: hue.hue_activate_scene
-      data:
-        group_name: "Casa"
-        scene_name: "Nanna"
-
-  - alias: Annulla_Pulsante_Nanna_Alby
-    trigger:
-      platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d00016c48b3
-        click_type: single
-    condition:
-      condition: template
-      value_template: '{{ states.light.camera_2.attributes.color_temp < 200 }}'
+          value_template: '{{ states.light.camera_2.attributes.brightness == 179 }}'
     action:
       service: hue.hue_activate_scene
       data:
@@ -50,6 +60,10 @@
       event_data:
         entity_id: binary_sensor.switch_158d00016c48b3
         click_type: double
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
     action:
       - service: hue.hue_activate_scene
         data:
@@ -81,7 +95,36 @@
 ########## PULSANTE ALE #######################################################
 
 # 1 CLICK
-  - alias: Pulsante_Nanna_Ale
+  - alias: Pulsante_Nanna_Ale_Buio
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120ea9c
+        click_type: single
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: sun.sun
+          state: 'below_horizon'
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: light.tv
+              state: 'on'
+            - condition: state
+              entity_id: light.camera
+              state: 'off'
+            - condition: template
+              value_template: '{{ states.light.camera_2.attributes.brightness == 103 }}'
+    action:
+      service: hue.hue_activate_scene
+      data:
+        group_name: "Casa"
+        scene_name: "Nanna"
+
+  - alias: Annulla_Pulsante_Nanna_Ale_Buio
     trigger:
       platform: event
       event_type: click
@@ -92,29 +135,10 @@
       condition: or
       conditions:
         - condition: state
-          entity_id: light.tv
-          state: 'on'
-        - condition: state
-          entity_id: light.camera
-          state: 'off'
+          entity_id: sun.sun
+          state: 'above_horizon'
         - condition: template
-          value_template: '{{ states.light.camera_2.attributes.color_temp > 200 }}'
-    action:
-      service: hue.hue_activate_scene
-      data:
-        group_name: "Casa"
-        scene_name: "Nanna"
-
-  - alias: Annulla_Pulsante_Nanna_Ale
-    trigger:
-      platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d000120ea9c
-        click_type: single
-    condition:
-      condition: template
-      value_template: '{{ states.light.camera_2.attributes.color_temp < 200 }}'
+          value_template: '{{ states.light.camera_2.attributes.brightness == 179 }}'
     action:
       service: hue.hue_activate_scene
       data:
@@ -129,6 +153,10 @@
       event_data:
         entity_id: binary_sensor.switch_158d000120ea9c
         click_type: double
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
     action:
       - service: hue.hue_activate_scene
         data:
