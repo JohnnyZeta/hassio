@@ -136,7 +136,10 @@
       service: hue.hue_activate_scene
       data_template:
         group_name: "Salotto"
-        scene_name: "Serata"
+        scene_name: >
+          {% if is_state("input_select.scena_hue_camera", "Serata") %} Serata
+          {% elif is_state("input_select.scena_hue_camera", "Caldo") %} Caldo
+          {% endif %}
 
   - alias: Selezione Scene Camera
     trigger:

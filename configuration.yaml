@@ -187,6 +187,7 @@ input_select:
     name: 'Scena Salotto:'
     options:
       - Serata
+      - Caldo
     initial: Serata
     icon: mdi:lamp
 #
@@ -202,23 +203,23 @@ input_select:
 
 switch: !include switches.yaml
 
-light:
-  - platform: hue
-    host: 192.168.2.5
+hue:
+  bridges:
+    - host: 192.168.2.5
 
 panel_iframe:
-  # dashboard:
-  #   title: Dashboard
-  #   icon: mdi:view-dashboard
-  #   url: !secret dashboard_url
+  dashboard:
+    title: Dashboard
+    icon: mdi:view-dashboard
+    url: !secret dashboard_url
   configurator:
     title: Configuratore
     icon: mdi:wrench
     url: !secret configurator_url
-  # nodered:
-  #   title: Node-RED
-  #   icon: mdi:nodejs
-  #   url: !secret nodered_url
+  nodered:
+    title: Node-RED
+    icon: mdi:nodejs
+    url: !secret nodered_url
 
 xiaomi_aqara:
   discovery_retry: 5
@@ -255,7 +256,8 @@ telegram_bot:
   - platform: broadcast
     api_key: !secret telegram_api_key
     allowed_chat_ids:
-      - !secret telegram_chat_id
+      - !secret telegram_alby_chat_id
+      - !secret telegram_ale_chat_id
 
 ifttt:
   key: !secret ifttt_key
@@ -267,8 +269,16 @@ notify:
       - service: ios_iphone_di_alby
       - service: ios_iphone_di_alessandra
   - name: telegram
+    platform: group
+    services:
+      - service: telegram_alby
+      - service: telegram_ale
+  - name: telegram_alby
     platform: telegram
-    chat_id: !secret telegram_chat_id
+    chat_id: !secret telegram_alby_chat_id
+  - name: telegram_ale
+    platform: telegram
+    chat_id: !secret telegram_ale_chat_id
 
 camera:
   - platform: foscam
