@@ -209,10 +209,15 @@
 
 ############ DEVICES ##########################################################
 
-  device_tracker.iphone_di_alby:
+  device_tracker.alby_iphone:
     homebridge_visible: true
-  device_tracker.iphone_di_alessandra:
+  device_tracker.alessandra_iphone:
     homebridge_visible: true
+
+  device_tracker.beacon_clio:
+    friendly_name: Renault Clio
+  device_tracker.beacon_swift:
+    friendly_name: Suzuki Swift
 
 ############ ALTRO ############################################################
 

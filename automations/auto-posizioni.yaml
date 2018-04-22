@@ -2,8 +2,8 @@
   - alias: Partenza Ale
     trigger:
       platform: zone
-      entity_id: device_tracker.iphone_di_alessandra
-      zone: zone.lavoro_2
+      entity_id: device_tracker.alessandra_iphone
+      zone: zone.lavoro_ale
       event: leave
     condition:
       condition: time
@@ -16,16 +16,17 @@
         - thu
         - fri
     action:
-      service: notify.ios_iphone_di_alby
-      data:
-        message: "Alessandra è partita!"
+      - service: shell_command.riga_ritorno
+      - service: notify.ios_iphone_di_alby
+        data:
+          message: "Alessandra è partita!"
 
 ###############################################################################
 
   - alias: Arrivo Ale
     trigger:
       platform: zone
-      entity_id: device_tracker.iphone_di_alessandra
+      entity_id: device_tracker.alessandra_iphone
       zone: zone.home
       event: enter
     condition:
@@ -47,51 +48,51 @@
 
 ###############################################################################
 
-  - alias: Richiesta Location Ale
-    trigger:
-      platform: zone
-      entity_id: device_tracker.iphone_di_alessandra
-      zone: zone.home
-      event: leave
-    condition:
-      condition: time
-      after: '07:00:00'
-      before: '12:00:00'
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    action:
-      - delay: '00:{{ states.sensor.ale_casalavoro.state | int + 5 }}:00'
-      - service: notify.ios_iphone_di_alessandra
-        data:
-          message: "request_location_update"
+  # - alias: Richiesta Location Ale
+  #   trigger:
+  #     platform: zone
+  #     entity_id: device_tracker.alessandra_iphone
+  #     zone: zone.home
+  #     event: leave
+  #   condition:
+  #     condition: time
+  #     after: '07:00:00'
+  #     before: '12:00:00'
+  #     weekday:
+  #       - mon
+  #       - tue
+  #       - wed
+  #       - thu
+  #       - fri
+  #   action:
+  #     - delay: '00:{{ states.sensor.ale_casalavoro.state | int + 5 }}:00'
+  #     - service: notify.ios_iphone_di_alessandra
+  #       data:
+  #         message: "request_location_update"
 
 ###############################################################################
 
-  - alias: Richiesta Location Alby
-    trigger:
-      platform: zone
-      entity_id: device_tracker.iphone_di_alby
-      zone: zone.home
-      event: leave
-    condition:
-      condition: time
-      after: '07:00:00'
-      before: '12:00:00'
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    action:
-      - delay: '00:{{ states.sensor.alby_casalavoro.state | int + 5 }}:00'
-      - service: notify.ios_iphone_di_alby
-        data:
-          message: "request_location_update"
+  # - alias: Richiesta Location Alby
+  #   trigger:
+  #     platform: zone
+  #     entity_id: device_tracker.alby_iphone
+  #     zone: zone.home
+  #     event: leave
+  #   condition:
+  #     condition: time
+  #     after: '07:00:00'
+  #     before: '12:00:00'
+  #     weekday:
+  #       - mon
+  #       - tue
+  #       - wed
+  #       - thu
+  #       - fri
+  #   action:
+  #     - delay: '00:{{ states.sensor.alby_casalavoro.state | int + 5 }}:00'
+  #     - service: notify.ios_iphone_di_alby
+  #       data:
+  #         message: "request_location_update"
 
 ###############################################################################
 
@@ -113,8 +114,8 @@
           - thu
           - fri
       - condition: zone
-        entity_id: device_tracker.iphone_di_alessandra
-        zone: zone.lavoro_2
+        entity_id: device_tracker.alessandra_iphone
+        zone: zone.lavoro_ale
     action:
       service: notify.ios_iphone_di_alessandra
       data_template:
@@ -142,7 +143,7 @@
           - thu
           - fri
       - condition: zone
-        entity_id: device_tracker.iphone_di_alby
+        entity_id: device_tracker.alby_iphone
         zone: zone.lavoro
     action:
       service: notify.ios_iphone_di_alby

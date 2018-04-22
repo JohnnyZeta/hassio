@@ -6,10 +6,11 @@
     view: yes
     icon: mdi:map-marker
     entities:
-      - device_tracker.iphone_di_alby
-      - device_tracker.iphone_di_alessandra
+      - device_tracker.alby_iphone
+      - device_tracker.alessandra_iphone
       - group.scheda_alby
       - group.scheda_ale
+      - group.scheda_auto
       - sensor.saldo_eth
       - sun.sun
       - sensor.dark_sky_summary
@@ -88,6 +89,13 @@
       - sensor.alessandra
       - sensor.ale_casalavoro
       - sensor.lavorocasa_ale
+
+  scheda_auto:
+    name: Automobili
+    view: no
+    entities:
+      - device_tracker.beacon_clio
+      - device_tracker.beacon_swift
 
   # posizioni:
   #   name: Posizioni
@@ -245,8 +253,8 @@
     entities:
       - automation.allarme
       - automation.partenza_ale
-      - automation.richiesta_location_ale
-      - automation.richiesta_location_alby
+#      - automation.richiesta_location_ale
+#      - automation.richiesta_location_alby
       - automation.arrivo_a_casa
       - automation.arrivo_ale
       - automation.avviso_tempo_ritorno_ale
@@ -320,5 +328,5 @@
     name: Famiglia
     view: no
     entities:
-        - device_tracker.iphone_di_alby
-        - device_tracker.iphone_di_alessandra
+        - device_tracker.alby_iphone
+        - device_tracker.alessandra_iphone

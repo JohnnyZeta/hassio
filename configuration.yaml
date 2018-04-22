@@ -74,7 +74,7 @@ recorder:
 logbook:
 
 # Enables a map showing the location of tracked devices
-#map:
+map:
 
 # Track the sun
 sun:
@@ -245,8 +245,10 @@ neato:
   password: !secret neato_password
 
 device_tracker:
-  - platform: nmap_tracker
-    hosts: 192.168.2.9-10
+  # - platform: nmap_tracker
+  #   hosts: 192.168.2.9-10
+  - platform: owntracks
+    max_gps_accuracy: 100
 
 #weather:
 #  - platform: darksky
@@ -286,3 +288,9 @@ camera:
     username: !secret foscam_username
     password: !secret foscam_password
     name: Cucina
+
+mqtt:
+  broker: m23.cloudmqtt.com
+  port: 22279
+  username: !secret mqtt_username
+  password: !secret mqtt_password

@@ -1,4 +1,6 @@
 
+############# iOS App ##########################################################
+
 iphone_di_alby:
   hide_if_away: false
   icon:
@@ -6,7 +8,7 @@ iphone_di_alby:
   name: Alby
   gravatar: !secret alberto_email
   picture:
-  track: true
+  track: false
   vendor: Apple, Inc.
 
 iphone_di_alessandra:
@@ -16,8 +18,10 @@ iphone_di_alessandra:
   name: Ale
   gravatar: !secret ale_email
   picture:
-  track: true
+  track: false
   vendor: Apple, Inc.
+
+############# HomeBridge #######################################################
 
 homebridge:
   hide_if_away: false
@@ -27,3 +31,41 @@ homebridge:
   picture:
   track: true
   vendor:
+
+############ Owntracks #########################################################
+
+alby_iphone:
+  hide_if_away: false
+  icon:
+  mac: !secret iphone_di_alby_MAC
+  name: Alby
+  gravatar: !secret alberto_email
+  picture:
+  track: true
+
+alessandra_iphone:
+  hide_if_away: false
+  icon:
+  mac: !secret iphone_di_alessandra_MAC
+  name: Ale
+  gravatar: !secret ale_email
+  picture:
+  track: true
+
+############ Beacons ###########################################################
+
+beacon_swift:
+  hide_if_away: false
+  icon: mdi:car-sports
+  mac:
+  name: swift
+  picture:
+  track: true
+
+beacon_clio:
+  hide_if_away: false
+  icon: mdi:car-convertible
+  mac:
+  name: clio
+  picture:
+  track: true
