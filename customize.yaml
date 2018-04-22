@@ -243,6 +243,10 @@
     friendly_name: Ultimo Movimento
   variable.meteo:
     friendly_name: Meteo domani
+  variable.clio:
+    friendly_name: Renault Clio
+  variable.swift:
+    friendly_name: Suzuki Swift
   input_boolean.alarmweekon:
     confirm_controls_show_lock: true
   input_boolean.alarmweekday:

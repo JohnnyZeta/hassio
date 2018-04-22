@@ -74,13 +74,13 @@ recorder:
 logbook:
 
 # Enables a map showing the location of tracked devices
-map:
+#map:
 
 # Track the sun
 sun:
 
-# Weather prediction
 sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
 
 # Custom Component https://github.com/rogro82/hass-variables
 variable:
@@ -96,6 +96,18 @@ variable:
     attributes:
       icon: mdi:information-outline
       name: "Meteo"
+  clio:
+    value: 'Spenta'
+    restore: true
+    attributes:
+      icon: mdi:car-convertible
+      name: "Renault Clio"
+  swift:
+    value: 'Spenta'
+    restore: true
+    attributes:
+      icon: mdi:car-sports
+      name: "Suzuki Swift"
 
 # Text to speech
 tts:

@@ -4,7 +4,7 @@
 iphone_di_alby:
   hide_if_away: false
   icon:
-  mac: !secret iphone_di_alby_MAC
+  mac:
   name: Alby
   gravatar: !secret alberto_email
   picture:
@@ -14,7 +14,7 @@ iphone_di_alby:
 iphone_di_alessandra:
   hide_if_away: false
   icon:
-  mac: !secret iphone_di_alessandra_MAC
+  mac:
   name: Ale
   gravatar: !secret ale_email
   picture:

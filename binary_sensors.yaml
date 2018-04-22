@@ -1,0 +1,25 @@
+
+  - platform: template
+    sensors:
+      clio:
+        value_template: "{{ is_state('variable.clio', 'Accesa') }}"
+        icon_template: >
+          {% if is_state('variable.clio', 'Spenta') %}
+            mdi:power-plug-off
+          {% elif is_state('variable.clio', 'Accesa') %}
+            mdi:power-plug
+          {% else %}
+            mdi:message-alert
+          {% endif %}
+        friendly_name: "Renault Clio"
+      swift:
+        value_template: "{{ is_state('variable.swift', 'Accesa') }}"
+        icon_template: >
+          {% if is_state('variable.swift', 'Spenta') %}
+            mdi:power-plug-off
+          {% elif is_state('variable.swift', 'Accesa') %}
+            mdi:power-plug
+          {% else %}
+            mdi:message-alert
+          {% endif %}
+        friendly_name: "Suzuki Swift"

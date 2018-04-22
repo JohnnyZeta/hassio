@@ -10,7 +10,8 @@
       - device_tracker.alessandra_iphone
       - group.scheda_alby
       - group.scheda_ale
-      - group.scheda_auto
+      - binary_sensor.clio
+      - binary_sensor.swift
       - sensor.saldo_eth
       - sun.sun
       - sensor.dark_sky_summary
@@ -89,19 +90,6 @@
       - sensor.alessandra
       - sensor.ale_casalavoro
       - sensor.lavorocasa_ale
-
-  scheda_auto:
-    name: Automobili
-    view: no
-    entities:
-      - device_tracker.beacon_clio
-      - device_tracker.beacon_swift
-
-  # posizioni:
-  #   name: Posizioni
-  #   entities:
-  #     - sensor.alberto
-  #     - sensor.alessandra
 
   salotto:
     name: Salotto
