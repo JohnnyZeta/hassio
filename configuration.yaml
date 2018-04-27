@@ -247,10 +247,11 @@ media_player:
       HDMI4: "Fire TV"
       AV5: "Cassette"
       AV6: "TV"
-  #- platform: firetv
   - platform: spotify
     client_id: !secret spotify_client_id
     client_secret: !secret spotify_client_secret
+  - platform: mpd
+    host: 192.168.2.30
 
 neato:
   username: !secret neato_username

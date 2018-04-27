@@ -1,20 +1,25 @@
 
   - alias: Partenza Ale
     trigger:
-      platform: zone
-      entity_id: device_tracker.alessandra_iphone
-      zone: zone.lavoro_ale
-      event: leave
+      platform: state
+      entity_id: binary_sensor.clio
+      from: 'off'
+      to: 'on'
     condition:
-      condition: time
-      after: '17:00:00'
-      before: '00:00:00'
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
+      condition: and
+      conditions:
+        - condition: time
+          after: '18:00:00'
+          before: '00:00:00'
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+        - condition: zone
+          entity_id: device_tracker.alessandra_iphone
+          zone: zone.lavoro_2
     action:
       - service: shell_command.riga_ritorno
       - service: notify.ios_iphone_di_alby
@@ -48,51 +53,51 @@
 
 ###############################################################################
 
-  # - alias: Richiesta Location Ale
-  #   trigger:
-  #     platform: zone
-  #     entity_id: device_tracker.alessandra_iphone
-  #     zone: zone.home
-  #     event: leave
-  #   condition:
-  #     condition: time
-  #     after: '07:00:00'
-  #     before: '12:00:00'
-  #     weekday:
-  #       - mon
-  #       - tue
-  #       - wed
-  #       - thu
-  #       - fri
-  #   action:
-  #     - delay: '00:{{ states.sensor.ale_casalavoro.state | int + 5 }}:00'
-  #     - service: notify.ios_iphone_di_alessandra
-  #       data:
-  #         message: "request_location_update"
+#  - alias: Richiesta Location Ale
+#    trigger:
+#      platform: zone
+#      entity_id: device_tracker.alessandra_iphone
+#      zone: zone.home
+#      event: leave
+#    condition:
+#      condition: time
+#      after: '07:00:00'
+#      before: '12:00:00'
+#      weekday:
+#        - mon
+#        - tue
+#        - wed
+#        - thu
+#        - fri
+#    action:
+#      - delay: '00:{{ states.sensor.ale_casalavoro.state | int + 5 }}:00'
+#      - service: notify.ios_iphone_di_alessandra
+#        data:
+#          message: "request_location_update"
 
 ###############################################################################
 
-  # - alias: Richiesta Location Alby
-  #   trigger:
-  #     platform: zone
-  #     entity_id: device_tracker.alby_iphone
-  #     zone: zone.home
-  #     event: leave
-  #   condition:
-  #     condition: time
-  #     after: '07:00:00'
-  #     before: '12:00:00'
-  #     weekday:
-  #       - mon
-  #       - tue
-  #       - wed
-  #       - thu
-  #       - fri
-  #   action:
-  #     - delay: '00:{{ states.sensor.alby_casalavoro.state | int + 5 }}:00'
-  #     - service: notify.ios_iphone_di_alby
-  #       data:
-  #         message: "request_location_update"
+#  - alias: Richiesta Location Alby
+#    trigger:
+#      platform: zone
+#      entity_id: device_tracker.alby_iphone
+#      zone: zone.home
+#      event: leave
+#    condition:
+#      condition: time
+#      after: '07:00:00'
+#      before: '12:00:00'
+#      weekday:
+#        - mon
+#        - tue
+#        - wed
+#        - thu
+#        - fri
+#    action:
+#      - delay: '00:{{ states.sensor.alby_casalavoro.state | int + 5 }}:00'
+#      - service: notify.ios_iphone_di_alby
+#        data:
+#          message: "request_location_update"
 
 ###############################################################################
 
@@ -115,7 +120,7 @@
           - fri
       - condition: zone
         entity_id: device_tracker.alessandra_iphone
-        zone: zone.lavoro_ale
+        zone: zone.lavoro_2
     action:
       service: notify.ios_iphone_di_alessandra
       data_template:
@@ -151,5 +156,34 @@
         title: "Probabile Coda!"
         message: >
           Tempo di ritorno previsto in {{ states.sensor.lavorocasa_alby.state }} minuti.
+
+###############################################################################
+
+  - alias: Avviso Coop
+    trigger:
+      platform: state
+      entity_id: binary_sensor.swift
+      from: 'on'
+      to: 'off'
+    condition:
+      - condition: time
+        after: '17:00:00'
+        before: '00:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: zone
+        entity_id: device_tracker.alby_iphone
+        zone: zone.coop
+    action:
+      - service: notify.telefoni
+        data:
+          title: "COOP"
+          message: "Se ci serve qualcosa di specifico scrivigli."
+          data:
+            subtitle: "Alby è appena arrivato alla COOP"
 
 ###############################################################################

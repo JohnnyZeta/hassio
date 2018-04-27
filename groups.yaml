@@ -37,6 +37,7 @@
       - media_player.yamaha_receiver
       - media_player.amazon_fire_tv
       - media_player.cucina
+      - media_player.mpd
 
   stanze:
     name: Stanze
@@ -240,6 +241,7 @@
     control: hidden
     entities:
       - automation.allarme
+      - automation.avviso_coop
       - automation.partenza_ale
 #      - automation.richiesta_location_ale
 #      - automation.richiesta_location_alby
@@ -256,6 +258,7 @@
     icon: mdi:home-assistant
     entities:
 #      - automation.programmazione_nuvola
+      - automation.programmazione_semola
       - automation.vento_forte
 #      - switch.automazione_avviso_semola
       - automation.avviso_semola_off

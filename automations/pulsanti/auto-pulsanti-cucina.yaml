@@ -54,9 +54,13 @@
           entity_id: media_player.spotify
           source: RX-V475 A484BB
       # Attiva lo Shuffle
-      - service: switch.turn_on
+      # - service: switch.turn_on
+      #   data:
+      #     entity_id: switch.shuffle_spotify
+      - service: media_player.shuffle_set
         data:
-          entity_id: switch.shuffle_spotify
+          entity_id: media_player.spotify
+          shuffle: true
       # Riproduce la playlist Balbertandra
       - service: media_player.play_media
         data:
@@ -101,11 +105,15 @@
       # Continua la riproduzione da dove interrotta
       - service: media_player.media_play_pause
         data:
-          entity_id: media_player.spotify
+          entity_id: media_player.yamaha_receiver
       # Attiva lo Shuffle
-      - service: switch.turn_on
+      # - service: switch.turn_on
+      #   data:
+      #     entity_id: switch.shuffle_spotify
+      - service: media_player.shuffle_set
         data:
-          entity_id: switch.shuffle_spotify
+          entity_id: media_player.spotify
+          shuffle: true
 
   - alias: Pulsante_Spotify_OFF
     trigger:

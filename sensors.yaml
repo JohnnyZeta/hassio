@@ -105,23 +105,23 @@
   - platform: google_travel_time
     name: Lavoro-Casa Ale
     api_key: !secret google_key
-    origin: zone.lavoro_ale
+    origin: zone.lavoro_2
     destination: zone.home
   - platform: google_travel_time
     name: Lavoro-Casa Alby
     api_key: !secret google_key
-    origin: zone.lavoro_alby
+    origin: zone.lavoro
     destination: zone.home
   - platform: google_travel_time
     name: Ale Casa-Lavoro
     api_key: !secret google_key
     origin: zone.home
-    destination: zone.lavoro_ale
+    destination: zone.lavoro_2
   - platform: google_travel_time
     name: Alby Casa-Lavoro
     api_key: !secret google_key
     origin: zone.home
-    destination: zone.lavoro_alby
+    destination: zone.lavoro
   # - platform: google_travel_time
   #   name: Ale-Casa
   #   api_key: !secret google_key

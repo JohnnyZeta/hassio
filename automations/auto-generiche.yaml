@@ -197,3 +197,17 @@
         volume_level: '{{ states.input_number.yamaha_volume.state }}'
 
 ###############################################################################
+
+  - alias: Programmazione Semola
+    trigger:
+      platform: time
+      at: '11:00:00'
+    condition:
+      condition: time
+      weekday:
+        - mon
+        - thu
+    action:
+      - service: vacuum.turn_on
+
+###############################################################################
