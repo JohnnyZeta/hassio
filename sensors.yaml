@@ -1,7 +1,7 @@
 
   - platform: etherscan
     address: !secret eth_address
-    name: "Saldo ETH"
+    name: "Saldo Mining"
 ###############################################################################
   - platform: template
     sensors:
@@ -25,6 +25,11 @@
      #   value_template: "{{ states.switch.nuvola.attributes.voltage }}"
      #   unit_of_measurement: 'V'
      #   friendly_name: "Voltaggio"
+     saldo_eth:
+       friendly_name: "Valore ETH"
+       icon_template: mdi:coin
+       value_template: '{{ states.sensor.coinbase_eth_wallet.attributes["Balance in native currency"] | replace(" EUR", "") }}'
+       unit_of_measurement: 'EUR'
      hline_1:
       value_template: hline
      hline_2:

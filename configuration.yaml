@@ -120,6 +120,16 @@ cloud:
 #iPhones
 ios:
 
+#Coinbase
+coinbase:
+  api_key: !secret coinbase_key
+  api_secret: !secret coinbase_key_secret
+  exchange_rate_currencies:
+    - BTC
+    - BCH
+    - ETH
+    - LTC
+
 #Inputs
 input_datetime:
   alba:

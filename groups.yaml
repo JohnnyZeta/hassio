@@ -12,7 +12,6 @@
       - group.scheda_ale
       - binary_sensor.clio
       - binary_sensor.swift
-      - sensor.saldo_eth
       - sun.sun
       - sensor.dark_sky_summary
       - group.porte
@@ -26,6 +25,7 @@
       - group.alarmclock
       - group.scene_hue
       - group.meteo
+      - group.valute
 
   media:
     name: Media Players
@@ -292,6 +292,14 @@
       - input_select.scena_hue_salotto
       - input_select.scena_hue_camera
 
+  valute:
+    name: Criptovalute
+    control: hidden
+    entities:
+      - sensor.saldo_eth
+      - sensor.coinbase_eth_wallet
+      - sensor.coinbase_eur_wallet
+      - sensor.saldo_mining
 
 ############ SOTTO-CARD #######################################################
 
