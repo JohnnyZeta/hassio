@@ -1,5 +1,6 @@
 *
 !*.yaml
+!.travis.yml
 !*.md
 !image*.jpeg
 !.gitignore
