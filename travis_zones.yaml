@@ -1,0 +1,17 @@
+  - name: Lavoro
+    latitude: 0.000
+    longitude: 0.000
+    radius: 100
+    icon: mdi:briefcase
+
+  - name: Lavoro
+    latitude: 0.000
+    longitude: 0.000
+    radius: 100
+    icon: mdi:briefcase
+
+  - name: Coop
+    latitude: 0.000
+    longitude: 0.000
+    radius: 100
+    icon: mdi:cart

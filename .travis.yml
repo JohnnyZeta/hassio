@@ -5,6 +5,7 @@ python:
 
 before_install:
   - mv travis_secrets.yaml secrets.yaml
+  - mv travis_zones.yaml zones.yaml
 
 install:
   - pip3 install homeassistant
