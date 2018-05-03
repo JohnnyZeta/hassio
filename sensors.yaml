@@ -117,16 +117,16 @@
     api_key: !secret google_key
     origin: zone.lavoro
     destination: zone.home
-  - platform: google_travel_time
-    name: Ale Casa-Lavoro
-    api_key: !secret google_key
-    origin: zone.home
-    destination: zone.lavoro_2
-  - platform: google_travel_time
-    name: Alby Casa-Lavoro
-    api_key: !secret google_key
-    origin: zone.home
-    destination: zone.lavoro
+  # - platform: google_travel_time
+  #   name: Ale Casa-Lavoro
+  #   api_key: !secret google_key
+  #   origin: zone.home
+  #   destination: zone.lavoro_2
+  # - platform: google_travel_time
+  #   name: Alby Casa-Lavoro
+  #   api_key: !secret google_key
+  #   origin: zone.home
+  #   destination: zone.lavoro
   # - platform: google_travel_time
   #   name: Ale-Casa
   #   api_key: !secret google_key

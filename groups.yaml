@@ -8,24 +8,26 @@
     entities:
       - device_tracker.alby_iphone
       - device_tracker.alessandra_iphone
-      - group.scheda_alby
-      - group.scheda_ale
       - binary_sensor.clio
       - binary_sensor.swift
       - sun.sun
       - sensor.dark_sky_summary
       - group.porte
       - group.movimenti
-      - group.posizioni
+      - group.persone
       - group.stanze
       - group.media
       - group.altro
       - group.automazioni
       - camera.cucina
-      - group.alarmclock
-      - group.scene_hue
-      - group.meteo
-      - group.valute
+
+  persone:
+    name: Persone
+    view: yes
+    icon: mdi:account-heart
+    entities:
+      - group.scheda_alby
+      - group.scheda_ale
 
   media:
     name: Media Players
@@ -37,7 +39,6 @@
       - media_player.yamaha_receiver
       - media_player.amazon_fire_tv
       - media_player.cucina
-      - media_player.mpd
 
   stanze:
     name: Stanze
@@ -50,6 +51,8 @@
       - group.cucina
       - group.balcone
       - camera.semola_cleaning_map
+      - group.scene_hue
+      - group.alarmclock
 
   automazioni:
     name: Automazioni
@@ -70,6 +73,8 @@
 #      - group.ipad
       - group.sistema
       - group.speedtest
+      - group.valute
+      - group.meteo
 #      - group.smartplug
 
 ############ CARD #############################################################
@@ -80,7 +85,7 @@
     entities:
 #      - sensor.albycasa
       - sensor.alberto
-      - sensor.alby_casalavoro
+      # - sensor.alby_casalavoro
       - sensor.lavorocasa_alby
 
   scheda_ale:
@@ -89,7 +94,7 @@
     entities:
 #      - sensor.alecasa
       - sensor.alessandra
-      - sensor.ale_casalavoro
+      # - sensor.ale_casalavoro
       - sensor.lavorocasa_ale
 
   salotto:

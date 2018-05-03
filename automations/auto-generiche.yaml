@@ -211,24 +211,3 @@
       - service: vacuum.turn_on
 
 ###############################################################################
-
-  - alias: Avvio Node-RED
-    trigger:
-      platform: homeassistant
-      # Event can also be 'shutdown'
-      event: start
-    action:
-      - delay: "00:00:30"
-      - service: hassio.addon_start
-        data:
-          addon: f16403dc_node-red
-
-  - alias: Spegnimento Node-RED
-    trigger:
-      platform: homeassistant
-      # Event can also be 'shutdown'
-      event: shutdown
-    action:
-      service: hassio.addon_stop
-      data:
-        addon: f16403dc_node-red

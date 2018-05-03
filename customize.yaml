@@ -141,21 +141,21 @@
 
 # TEMPO
   sensor.lavorocasa_ale:
-    friendly_name: Tempo Ritorno
+    friendly_name: Tempo Ritorno dal Lavoro
     icon: mdi:home
     show_last_changed: false
   sensor.lavorocasa_alby:
-    friendly_name: Tempo Ritorno
+    friendly_name: Tempo Ritorno dal Lavoro
     icon: mdi:home
     show_last_changed: false
-  sensor.ale_casalavoro:
-    friendly_name: Tempo Andata
-    icon: mdi:briefcase
-    show_last_changed: false
-  sensor.alby_casalavoro:
-    friendly_name: Tempo Andata
-    icon: mdi:briefcase
-    show_last_changed: false
+  # sensor.ale_casalavoro:
+  #   friendly_name: Tempo Andata
+  #   icon: mdi:briefcase
+  #   show_last_changed: false
+  # sensor.alby_casalavoro:
+  #   friendly_name: Tempo Andata
+  #   icon: mdi:briefcase
+  #   show_last_changed: false
 # sensor.alecasa:
 #   friendly_name: Tempo Alessandra a Casa
 #   icon: mdi:heart
