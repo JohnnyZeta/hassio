@@ -1,9 +1,11 @@
 *
 !*.yaml
 !*.md
+!image*.jpeg
 !.gitignore
 !automations
 !automations/pulsanti
+!images
 secrets.yaml
 zones.yaml
 entity_registry.yaml
