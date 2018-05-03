@@ -1,4 +1,4 @@
-# Home Assistant Repository Backup
+# Home Assistant Repository Backup ![build](https://travis-ci.org/JohnnyZeta/hassio.svg?branch=master)
 
 Questo è semplicemente il backup della mia cartella config di [hass.io](https://www.home-assistant.io).
 
