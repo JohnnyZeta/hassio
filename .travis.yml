@@ -4,8 +4,8 @@ python:
   - "3.6.4"
 
 before_install:
-  - touch /ssl/fullchain.pem
-  - touch /ssl/privkey.pem
+  - touch fullchain.pem
+  - touch privkey.pem
   - mv travis_secrets.yaml secrets.yaml
   - mv travis_zones.yaml zones.yaml
 
