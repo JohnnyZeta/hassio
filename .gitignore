@@ -2,11 +2,15 @@
 !*.yaml
 !.travis.yml
 !*.md
+!*.py
 !image*.jpeg
 !.gitignore
 !automations
 !automations/pulsanti
 !images
+!custom_components
+!custom_components/customizer
+!custom_components/sensor
 secrets.yaml
 zones.yaml
 entity_registry.yaml
