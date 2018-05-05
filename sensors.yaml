@@ -167,6 +167,9 @@
     value_template: '{{ value_json.state.lastupdated }}'
     scan_interval: 1
 ###############################################################################
+  - platform: travisci
+    api_key: !secret github_api_key
+###############################################################################
   # - platform: bayesian
   #   prior: 0.5
   #   name: 'Presenza Alberto'
