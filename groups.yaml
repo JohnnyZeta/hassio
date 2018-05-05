@@ -4,30 +4,23 @@
   default_view:
     name: Home
     view: yes
-    icon: mdi:map-marker
+    icon: mdi:account-heart
     entities:
       - device_tracker.alby_iphone
       - device_tracker.alessandra_iphone
+      - group.scheda_alby
+      - group.scheda_ale
       - binary_sensor.clio
       - binary_sensor.swift
       - sun.sun
       - sensor.dark_sky_summary
       - group.porte
       - group.movimenti
-      - group.persone
       - group.stanze
       - group.media
       - group.altro
       - group.automazioni
       - camera.cucina
-
-  persone:
-    name: Persone
-    view: yes
-    icon: mdi:account-heart
-    entities:
-      - group.scheda_alby
-      - group.scheda_ale
 
   media:
     name: Media Players
@@ -75,6 +68,7 @@
       - group.speedtest
       - group.valute
       - group.meteo
+      - group.travis
 #      - group.smartplug
 
 ############ CARD #############################################################
@@ -305,6 +299,14 @@
       - sensor.coinbase_eth_wallet
       - sensor.coinbase_eur_wallet
       - sensor.saldo_mining
+
+  travis:
+    name: Travis-CI Builds
+    control: hidden
+    entities:
+      - sensor.johnnyzetahassio_last_build_state
+      - sensor.johnnyzetahassio_last_build_started_at
+      - sensor.johnnyzetahassio_last_build_duration
 
 ############ SOTTO-CARD #######################################################
 
