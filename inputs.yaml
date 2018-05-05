@@ -1,0 +1,92 @@
+############ DATA E ORA #######################################################
+input_datetime:
+  alba:
+    name: Orario
+    has_date: false
+    has_time: true
+    initial: 06:45
+############ BOOLEANI ##########################################################
+input_boolean:
+  alarmweekday:
+    name: Giorni Lavorativi
+    initial: on
+    icon: mdi:calendar
+#
+  alarmweekon:
+    name: Attivato
+    initial: on
+    icon: mdi:power
+#
+  siamoacasa:
+    icon: mdi:home
+    name: Hass.io Homebridge Trigger
+    initial: on
+############ NUMERI ############################################################
+input_number:
+  spotify_volume:
+    name: Volume Spotify
+    icon: mdi:volume-high
+    min: 0.3
+    max: 0.65
+    step: 0.01
+    initial: 0.4
+#
+  yamaha_volume:
+    name: Volume Yamaha
+    icon: mdi:volume-high
+    min: 0.3
+    max: 0.65
+    step: 0.01
+    initial: 0.5
+############ SELEZIONI #########################################################
+input_select:
+  spotify_playlist:
+    name: 'Playlist:'
+    options:
+      - Rossetti
+      - Balbertandra
+      - Discover Weekly Alby
+      - Discover Weekly Ale
+      - Ciccia
+      - Infinite Indie Folk
+      - Gemme Sparse
+      - Massima Concentrazione
+      - Le Hit del Natale
+    initial: Rossetti
+    icon: mdi:spotify
+#
+  spotify_source:
+    name: 'Sorgente:'
+    options:
+      - Yamaha Salotto
+      - Amazon FireTV
+    initial: Yamaha Salotto
+    icon: mdi:speaker-wireless
+#
+  scena_hue_casa:
+    name: 'Scena Casa:'
+    options:
+      - Entrata
+      - Nanna
+      - Neflixo
+      - TVOff
+    initial: Entrata
+    icon: mdi:lamp
+#
+  scena_hue_salotto:
+    name: 'Scena Salotto:'
+    options:
+      - Serata
+      - Caldo
+    initial: Serata
+    icon: mdi:lamp
+#
+  scena_hue_camera:
+    name: 'Scena Camera:'
+    options:
+      - Accesa
+      - Tenue
+      - Rosso
+    initial: Tenue
+    icon: mdi:lamp
+###############################################################################
