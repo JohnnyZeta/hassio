@@ -6,7 +6,6 @@
 !image*.jpeg
 !.gitignore
 !automations
-!automations/pulsanti
 !images
 !custom_components
 !custom_components/customizer

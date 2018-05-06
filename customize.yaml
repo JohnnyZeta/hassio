@@ -106,6 +106,12 @@
   binary_sensor.switch_158d000120ea9c:
     friendly_name: Button Ale
     hidden: true
+  binary_sensor.switch_158d00021016af:
+    friendly_name: Button Camera
+    hidden: true
+  binary_sensor.switch_158d0001f3ad33:
+    friendly_name: Button Garage
+    hidden: true
 
 # SISTEMA
   sensor.disk_use_percent_home:
@@ -189,6 +195,9 @@
 
   light.gateway_light_7811dcb0727e:
     friendly_name: Gateway
+  light.yeelight_ceiling_7811dcda769e:
+    friendly_name: Plafoniera
+    homebridge_visible: true
 
 ############ SWITCHES #########################################################
 

@@ -87,6 +87,9 @@
         data:
           group_name: "Casa"
           scene_name: "SOS"
+      - service: automation.trigger
+        data:
+          entity_id: automation.pulsante_plafoniera_camera_max
       - service: notify.telefoni
         data_template:
           title: "SOS!"
@@ -180,6 +183,9 @@
         data:
           group_name: "Casa"
           scene_name: "SOS"
+      - service: automation.trigger
+        data:
+          entity_id: automation.pulsante_plafoniera_camera_max
       - service: notify.telefoni
         data_template:
           title: "SOS!"

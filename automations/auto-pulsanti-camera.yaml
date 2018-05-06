@@ -1,0 +1,80 @@
+
+########## PULSANTE CAMERA #####################################################
+
+# 1 CLICK
+  - alias: Pulsante_Plafoniera_Camera_ON
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00021016af
+        click_type: single
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: light.yeelight_ceiling_7811dcda769e
+          state: 'off'
+        # - condition: template
+        #   value_template: '{{ states.light.yeelight_ceiling_7811dcda769e.attributes.brightness < 3 }}'
+    action:
+      service: light.turn_on
+      data_template:
+        entity_id: light.yeelight_ceiling_7811dcda769e
+        brightness_pct: 50
+        kelvin: >
+          {% if ( ( now().strftime("%H") | int ) >= 6 ) and ( ( now().strftime("%H") | int ) <= 12 ) %} 4000
+          {% elif ( ( now().strftime("%H") | int ) < 6 ) or ( ( now().strftime("%H") | int ) > 12 ) %} 2700
+          {% endif %}
+
+  - alias: Pulsante_Plafoniera_Camera_OFF
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00021016af
+        click_type: single
+    condition:
+        - condition: state
+          entity_id: light.yeelight_ceiling_7811dcda769e
+          state: 'on'
+    action:
+      service: light.turn_off
+      data:
+        entity_id: light.yeelight_ceiling_7811dcda769e
+
+# 2 CLICK
+  - alias: Pulsante_Plafoniera_Camera_Soft
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00021016af
+        click_type: double
+    action:
+      service: light.turn_on
+      data_template:
+        entity_id: light.yeelight_ceiling_7811dcda769e
+        brightness_pct: 1
+        kelvin: >
+          {% if ( ( now().strftime("%H") | int ) >= 6 ) and ( ( now().strftime("%H") | int ) <= 12 ) %} 4000
+          {% elif ( ( now().strftime("%H") | int ) < 6 ) or ( ( now().strftime("%H") | int ) > 12 ) %} 2700
+          {% endif %}
+
+# HOLD CLICK
+  - alias: Pulsante_Plafoniera_Camera_max
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00021016af
+        click_type: hold
+    action:
+      service: light.turn_on
+      data_template:
+        entity_id: light.yeelight_ceiling_7811dcda769e
+        brightness_pct: 100
+        kelvin: >
+          {% if ( ( now().strftime("%H") | int ) >= 6 ) and ( ( now().strftime("%H") | int ) <= 12 ) %} 4000
+          {% elif ( ( now().strftime("%H") | int ) < 6 ) or ( ( now().strftime("%H") | int ) > 12 ) %} 2700
+          {% endif %}

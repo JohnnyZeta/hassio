@@ -118,6 +118,7 @@
     control: hidden
     entities:
       - light.camera_2
+      - light.yeelight_ceiling_7811dcda769e
   #    - switch.nuvola
       - vacuum.semola
       - switch.semola_schedule

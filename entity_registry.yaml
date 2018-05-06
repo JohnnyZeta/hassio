@@ -150,3 +150,11 @@ light.hue_white_light_1:
   name:
   platform: hue
   unique_id: 00:17:88:01:02:48:d8:41-0b
+binary_sensor.switch_158d00021016af:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d00021016af
+binary_sensor.switch_158d0001f3ad33:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001f3ad33
