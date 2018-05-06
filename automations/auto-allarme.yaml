@@ -10,11 +10,21 @@
         from: 'off'
         to: 'on'
     condition:
-      condition: state
-      entity_id: group.famiglia
-      state: not_home
-      for:
-        minutes: 5
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: group.famiglia
+          state: not_home
+          for:
+            minutes: 5
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: device_tracker.alessandra_iphone
+              state: not_home
+            - condition: state
+              entity_id: input_boolean.corsa
+              state: "on"
     action:
       - service: shell_command.riga_allarme
       - service: notify.telefoni

@@ -226,6 +226,11 @@ input_boolean:
     icon: mdi:home
     name: Hass.io Homebridge Trigger
     initial: on
+#
+  corsa:
+    name: Corsa
+    icon: mdi:run
+    initial: off
 ############ NUMERI ###########################################################
 input_number:
   spotify_volume:

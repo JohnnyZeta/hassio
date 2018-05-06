@@ -81,6 +81,7 @@
       - sensor.alberto
       # - sensor.alby_casalavoro
       - sensor.lavorocasa_alby
+      - input_boolean.corsa
 
   scheda_ale:
     name: Alessandra
@@ -263,6 +264,8 @@
 #      - switch.automazione_avviso_semola
       - automation.avviso_semola_off
 #      - automation.timer_spegnimento_nuvola
+      - automation.corsa_on
+      - automation.corsa_off
 
   alarmclock:
     name: Alba in 5 minuti

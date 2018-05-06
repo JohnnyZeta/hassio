@@ -155,26 +155,16 @@
           {% elif is_state("input_select.scena_hue_camera", "Rosso") %} Rosso
           {% endif %}
 
-  # - alias: Selezione Scene
-  #   trigger:
-  #     platform: state
-  #     entity_id: input_select.scena_hue_casa, input_select.scena_hue_salotto, input_select.scena_hue_camera
-  #   action:
-  #     service: hue.hue_activate_scene
-  #     data_template:
-  #       group_name: >
-  #         {% if is_state_attr("trigger.to_state", "friendly_name", "Scena Casa:") %} "Casa"
-  #         {% elif is_state_attr("trigger.to_state", "friendly_name", "Scena Salotto:") %} "Salotto"
-  #         {% elif is_state_attr("trigger.to_state", "friendly_name", "Scena Camera:") %} "Camera"
-  #         {% endif %}
-  #       scene_name: >
-  #         {% if is_state("trigger.to_state", "Arrivo") %} "Arrivo"
-  #         {% elif is_state("trigger.to_state", "Nanna") %} "Nanna"
-  #         {% elif is_state("trigger.to_state", "Netflixo") %} "Netflixo"
-  #         {% elif is_state("trigger.to_state", "TVOff") %} "TVOff"
-  #         {% elif is_state("trigger.to_state", "Normale") %} "Normale"
-  #         {% elif is_state("trigger.to_state", "Serata") %} "Serata"
-  #         {% elif is_state("trigger.to_state", "Accesa") %} "Accesa"
-  #         {% elif is_state("trigger.to_state", "Tenue") %} "Tenue"
-  #         {% elif is_state("trigger.to_state", "Rosso") %} "Rosso"
-  #         {% endif %}
+##############################################################################
+
+  - alias: Tap Button Camera
+    trigger:
+      platform: state
+      entity_id: sensor.tap_remote
+      to: '1'
+    action:
+      service: light.turn_off
+      data:
+        entity_id: light.yeelight_ceiling_7811dcda769e
+
+###############################################################################

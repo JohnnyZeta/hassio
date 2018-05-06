@@ -268,6 +268,8 @@
 
   input_boolean.siamoacasa:
     homebridge_visible: true
+  input_boolean.corsa:
+    confirm_controls_show_lock: true
 
   sensor.saldo_mining:
     icon: mdi:image-filter-hdr

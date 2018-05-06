@@ -1,0 +1,42 @@
+
+  - alias: Corsa_ON
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001f3ad33
+        click_type: double
+    condition:
+      condition: state
+      entity_id: input_boolean.corsa
+      state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.corsa
+      - service: notify.telefoni
+        data:
+          title: "Corsa"
+          message: "Alby è uscito a correre."
+
+  - alias: Corsa_OFF
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001f3ad33
+        click_type: double
+    condition:
+      condition: state
+      entity_id: input_boolean.corsa
+      state: 'on'
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.corsa
+      - service: notify.telefoni
+        data:
+          title: "Corsa"
+          message: "Alby è rientrato dalla corsa."
+
+################################################################################

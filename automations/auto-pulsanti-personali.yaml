@@ -26,10 +26,13 @@
             - condition: template
               value_template: '{{ states.light.camera_2.attributes.brightness == 103 }}'
     action:
-      service: hue.hue_activate_scene
-      data:
-        group_name: "Casa"
-        scene_name: "Nanna"
+      - service: light.turn_off
+        data:
+          entity_id: light.yeelight_ceiling_7811dcda769e
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Casa"
+          scene_name: "Nanna"
 
   - alias: Annulla_Pulsante_Nanna_Alby_Buio
     trigger:
@@ -122,10 +125,13 @@
             - condition: template
               value_template: '{{ states.light.camera_2.attributes.brightness == 103 }}'
     action:
-      service: hue.hue_activate_scene
-      data:
-        group_name: "Casa"
-        scene_name: "Nanna"
+      - service: light.turn_off
+        data:
+          entity_id: light.yeelight_ceiling_7811dcda769e
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Casa"
+          scene_name: "Nanna"
 
   - alias: Annulla_Pulsante_Nanna_Ale_Buio
     trigger:
