@@ -26,13 +26,13 @@
             - condition: template
               value_template: '{{ states.light.camera_2.attributes.brightness == 103 }}'
     action:
-      - service: light.turn_off
-        data:
-          entity_id: light.yeelight_ceiling_7811dcda769e
       - service: hue.hue_activate_scene
         data:
           group_name: "Casa"
           scene_name: "Nanna"
+      - service: light.turn_off
+        data:
+          entity_id: light.yeelight_ceiling_7811dcda769e
 
   - alias: Annulla_Pulsante_Nanna_Alby_Buio
     trigger:
@@ -50,10 +50,13 @@
         - condition: template
           value_template: '{{ states.light.camera_2.attributes.brightness == 179 }}'
     action:
-      service: hue.hue_activate_scene
-      data:
-        group_name: "Camera"
-        scene_name: "Tenue"
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Camera"
+          scene_name: "Tenue"
+      - service: light.turn_off
+        data:
+          entity_id: light.yeelight_ceiling_7811dcda769e
 
 # 2 CLICK
   - alias: Pulsante_Scena_Nanna_Alby
@@ -72,6 +75,9 @@
         data:
           group_name: "Casa"
           scene_name: "Nanna"
+      - service: light.turn_off
+        data:
+          entity_id: light.yeelight_ceiling_7811dcda769e
       - service: shell_command.spegni_nanna
       # - delay: 00:03:00
       # - service: switch.turn_off
@@ -125,13 +131,13 @@
             - condition: template
               value_template: '{{ states.light.camera_2.attributes.brightness == 103 }}'
     action:
-      - service: light.turn_off
-        data:
-          entity_id: light.yeelight_ceiling_7811dcda769e
       - service: hue.hue_activate_scene
         data:
           group_name: "Casa"
           scene_name: "Nanna"
+      - service: light.turn_off
+        data:
+          entity_id: light.yeelight_ceiling_7811dcda769e
 
   - alias: Annulla_Pulsante_Nanna_Ale_Buio
     trigger:
@@ -149,10 +155,13 @@
         - condition: template
           value_template: '{{ states.light.camera_2.attributes.brightness == 179 }}'
     action:
-      service: hue.hue_activate_scene
-      data:
-        group_name: "Camera"
-        scene_name: "Tenue"
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Camera"
+          scene_name: "Tenue"
+      - service: light.turn_off
+        data:
+          entity_id: light.yeelight_ceiling_7811dcda769e
 
 # 2 CLICK
   - alias: Pulsante_Scena_Nanna_Ale
@@ -171,6 +180,9 @@
         data:
           group_name: "Casa"
           scene_name: "Nanna"
+      - service: light.turn_off
+        data:
+          entity_id: light.yeelight_ceiling_7811dcda769e
       - service: shell_command.spegni_nanna
       # - delay: 00:03:00
       # - service: switch.turn_off

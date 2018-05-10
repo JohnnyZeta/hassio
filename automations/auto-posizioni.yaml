@@ -17,6 +17,7 @@
             - wed
             - thu
             - fri
+            - sat
         - condition: zone
           entity_id: device_tracker.alessandra_iphone
           zone: zone.lavoro_2
@@ -105,7 +106,7 @@
     trigger:
       platform: numeric_state
       entity_id: sensor.lavorocasa_ale
-      above: 40
+      above: 50
       for:
         hours: 1
     condition:

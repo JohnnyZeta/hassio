@@ -19,9 +19,8 @@
             minutes: 5
         - condition: and
           conditions:
-            - condition: state
-              entity_id: device_tracker.alessandra_iphone
-              state: not_home
+            - condition: template
+              value_template: '{{ not is_state("device_tracker.alessandra_iphone", "home") }}'
             - condition: state
               entity_id: input_boolean.corsa
               state: "on"
@@ -54,7 +53,7 @@
           filename: '/config/www/cucina_5s_{{ now().strftime("%Y_%m_%d-%H%M") }}.jpg'
       - service: notify.telegram
         data_template:
-          message: "Ecco gli screenshot fatti subito, a 1s e a 5s:"
+          message: "Allarme!! Ecco gli screenshot fatti subito, a 1s e a 5s:"
           data:
             photo:
               - file: /config/www/cucina_istant_{{ now().strftime("%Y_%m_%d-%H%M") }}.jpg

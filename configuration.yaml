@@ -1,6 +1,6 @@
 homeassistant:
   # Name of the location where Home Assistant is running
-  name: Via Rossetti
+  name: Casa
   # Location required to calculate the time the sun rises and sets
   latitude: !secret latitude
   longitude: !secret longitude
@@ -12,8 +12,10 @@ homeassistant:
   time_zone: Europe/Rome
   # Customization file
   customize: !include customize.yaml
-
+  # Customize Glob
   customize_glob: !include customize_glob.yaml
+  # Packages!
+  packages: !include_dir_named packages
 
 
 zone: !include zones.yaml
@@ -162,6 +164,8 @@ telegram_bot:
     allowed_chat_ids:
       - !secret telegram_alby_chat_id
       - !secret telegram_ale_chat_id
+      - !secret telegram_ma_chat_id
+      - !secret telegram_pa_chat_id
 
 ifttt:
   key: !secret ifttt_key
@@ -177,12 +181,20 @@ notify:
     services:
       - service: telegram_alby
       - service: telegram_ale
+      - service: telegram_ma
+      - service: telegram_pa
   - name: telegram_alby
     platform: telegram
     chat_id: !secret telegram_alby_chat_id
   - name: telegram_ale
     platform: telegram
     chat_id: !secret telegram_ale_chat_id
+  - name: telegram_ma
+    platform: telegram
+    chat_id: !secret telegram_ma_chat_id
+  - name: telegram_pa
+    platform: telegram
+    chat_id: !secret telegram_pa_chat_id
 
 camera:
   - platform: foscam
@@ -190,6 +202,9 @@ camera:
     username: !secret foscam_username
     password: !secret foscam_password
     name: Cucina
+  # - platform: local_file
+  #   name: temperature
+  #   file_path: /config/www/temperature.png
 
 mqtt:
   broker: m23.cloudmqtt.com

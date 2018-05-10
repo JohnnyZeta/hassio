@@ -151,10 +151,10 @@
     api_key: !secret google_key
     gravatar: !secret ale_email
 ###############################################################################
-  - platform: rest
-    resource: http://ip.jsontest.com
-    name: IP Esterno
-    value_template: '{{ value_json.ip }}'
+#  - platform: rest
+#    resource: http://ip.jsontest.com
+#    name: IP Esterno
+#    value_template: '{{ value_json.ip }}'
 #  TAP_BUTTONS = {34: '1_click', 16: '2_click', 17: '3_click', 18: '4_click'}
   - platform: rest
     resource: http://192.168.2.5/api/UQ7QJsuqUN4VXEOvVOUHzKuuxfGJPJYWEQAW1VxE/sensors/2
@@ -169,6 +169,11 @@
 ###############################################################################
   - platform: travisci
     api_key: !secret github_api_key
+###############################################################################
+  # - platform: command_line
+  #   name: "DownloadTemperatureGrafana"
+  #   command: "curl -s -H 'Authorization: Bearer eyJrIjoiUHJjTkNNeFE3djJOVDFycE82TjU3TXVueDJTckUwTEgiLCJuIjoiSEEiLCJpZCI6MX0=' 'http://192.168.2.30:3000/render/dashboard-solo/db/home-assistant?orgId=1&panelId=1&theme=light&width=1500&height=500&tz=UTC%2B02%3A00' > /config/www/temperature.png"
+  #   scan_interval: 300
 ###############################################################################
   # - platform: bayesian
   #   prior: 0.5

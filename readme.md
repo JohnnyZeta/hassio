@@ -5,17 +5,14 @@ Questo è semplicemente il backup della mia cartella config di [hass.io](https:/
 ## Home
 ![SchedaHome](images/image1.jpeg)
 
-## Persone
-![SchedaPersone](images/image2.jpeg)
-
 ## Media
-![SchedaMedia](images/image3.jpeg)
+![SchedaMedia](images/image2.jpeg)
 
 ## Stanze
-![SchedaStanze](images/image4.jpeg)
+![SchedaStanze](images/image3.jpeg)
 
 ## Automazioni
-![SchedaAutomazioni](images/image5.jpeg)
+![SchedaAutomazioni](images/image4.jpeg)
 
 ## Altro
-![SchedaAltro](images/image6.jpeg)
+![SchedaAltro](images/image5.jpeg)

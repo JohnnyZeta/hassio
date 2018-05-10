@@ -155,7 +155,7 @@
           {% elif is_state("input_select.scena_hue_camera", "Rosso") %} Rosso
           {% endif %}
 
-##############################################################################
+###############################################################################
 
   - alias: Tap Button Camera
     trigger:
@@ -166,5 +166,21 @@
       service: light.turn_off
       data:
         entity_id: light.yeelight_ceiling_7811dcda769e
+
+###############################################################################
+
+  - alias: Luce Corsa
+    trigger:
+      platform: state
+      entity_id: input_boolean.corsa
+      from: 'on'
+      to: 'off'
+    condition:
+      - condition: template
+        value_template: '{{ not is_state("device_tracker.alessandra_iphone", "home") }}'
+    action:
+      service: automation.trigger
+      data:
+        entity_id: automation.arrivo_a_casa
 
 ###############################################################################

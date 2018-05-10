@@ -275,3 +275,8 @@
     icon: mdi:image-filter-hdr
   sensor.saldo_eth:
     homebridge_visible: true
+
+  sensor.johnnyzetahassio_last_build_duration:
+    friendly_name: hassio Last Build Duration
+  sensor.johnnyzetahassio_last_build_state:
+    friendly_name: hassio State

@@ -69,6 +69,7 @@
       - group.valute
       - group.meteo
       - group.travis
+      - camera.temperature
 #      - group.smartplug
 
 ############ CARD #############################################################
@@ -309,7 +310,7 @@
     control: hidden
     entities:
       - sensor.johnnyzetahassio_last_build_state
-      - sensor.johnnyzetahassio_last_build_started_at
+      # - sensor.johnnyzetahassio_last_build_started_at
       - sensor.johnnyzetahassio_last_build_duration
 
 ############ SOTTO-CARD #######################################################

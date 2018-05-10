@@ -4,7 +4,7 @@
     - platform: state
       entity_id: updater.updater
     action:
-      service: notify.telegram
+      service: notify.ios_iphone_di_alby
       data_template:
         message: "È disponibile Home Assistant {{ states.updater.updater.state }}."
 
