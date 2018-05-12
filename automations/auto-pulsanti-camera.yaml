@@ -13,15 +13,15 @@
       condition: or
       conditions:
         - condition: state
-          entity_id: light.yeelight_ceiling_7811dcda769e
+          entity_id: light.plafoniera
           state: 'off'
         # - condition: template
-        #   value_template: '{{ states.light.yeelight_ceiling_7811dcda769e.attributes.brightness < 3 }}'
+        #   value_template: '{{ states.light.plafoniera.attributes.brightness < 3 }}'
     action:
       service: light.turn_on
       data_template:
-        entity_id: light.yeelight_ceiling_7811dcda769e
-        brightness_pct: 50
+        entity_id: light.plafoniera
+        brightness_pct: 30
         kelvin: >
           {% if ( ( now().strftime("%H") | int ) >= 6 ) and ( ( now().strftime("%H") | int ) <= 12 ) %} 4000
           {% elif ( ( now().strftime("%H") | int ) < 6 ) or ( ( now().strftime("%H") | int ) > 12 ) %} 2700
@@ -36,15 +36,15 @@
         click_type: single
     condition:
         - condition: state
-          entity_id: light.yeelight_ceiling_7811dcda769e
+          entity_id: light.plafoniera
           state: 'on'
     action:
       service: light.turn_off
       data:
-        entity_id: light.yeelight_ceiling_7811dcda769e
+        entity_id: light.plafoniera
 
 # 2 CLICK
-  - alias: Pulsante_Plafoniera_Camera_Soft
+  - alias: Pulsante_Plafoniera_Camera_max
     trigger:
       platform: event
       event_type: click
@@ -54,15 +54,15 @@
     action:
       service: light.turn_on
       data_template:
-        entity_id: light.yeelight_ceiling_7811dcda769e
-        brightness_pct: 1
+        entity_id: light.plafoniera
+        brightness_pct: 100
         kelvin: >
           {% if ( ( now().strftime("%H") | int ) >= 6 ) and ( ( now().strftime("%H") | int ) <= 12 ) %} 4000
           {% elif ( ( now().strftime("%H") | int ) < 6 ) or ( ( now().strftime("%H") | int ) > 12 ) %} 2700
           {% endif %}
 
 # HOLD CLICK
-  - alias: Pulsante_Plafoniera_Camera_max
+  - alias: Pulsante_Plafoniera_Camera_Soft
     trigger:
       platform: event
       event_type: click
@@ -70,11 +70,15 @@
         entity_id: binary_sensor.switch_158d00021016af
         click_type: hold
     action:
-      service: light.turn_on
-      data_template:
-        entity_id: light.yeelight_ceiling_7811dcda769e
-        brightness_pct: 100
-        kelvin: >
-          {% if ( ( now().strftime("%H") | int ) >= 6 ) and ( ( now().strftime("%H") | int ) <= 12 ) %} 4000
-          {% elif ( ( now().strftime("%H") | int ) < 6 ) or ( ( now().strftime("%H") | int ) > 12 ) %} 2700
-          {% endif %}
+      service: light.yeelight_set_mode
+      data:
+        entity_id: light.plafoniera
+        mode: moonlight
+      # service: light.turn_on
+      # data_template:
+      #   entity_id: light.plafoniera
+      #   brightness_pct: 1
+      #   kelvin: >
+      #     {% if ( ( now().strftime("%H") | int ) >= 6 ) and ( ( now().strftime("%H") | int ) <= 12 ) %} 4000
+      #     {% elif ( ( now().strftime("%H") | int ) < 6 ) or ( ( now().strftime("%H") | int ) > 12 ) %} 2700
+      #     {% endif %}

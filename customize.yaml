@@ -55,7 +55,7 @@
     friendly_name: Salotto
     homebridge_visible: true
 
-# ILLUMINAZIONE
+# LUMINOSITA'
   sensor.illumination_7811dcb0727e:
     friendly_name: Luminosità Salotto
     homebridge_visible: true
@@ -169,6 +169,16 @@
 #   friendly_name: Tempo Alberto a Casa
 #   icon: mdi:heart
 
+  sensor.saldo_mining:
+    icon: mdi:image-filter-hdr
+  sensor.saldo_eth:
+    homebridge_visible: true
+
+  sensor.johnnyzetahassio_last_build_duration:
+    friendly_name: hassio Last Build Duration
+  sensor.johnnyzetahassio_last_build_state:
+    friendly_name: hassio State
+
 ############ LUCI #############################################################
 
   light.camera:
@@ -195,8 +205,7 @@
 
   light.gateway_light_7811dcb0727e:
     friendly_name: Gateway
-  light.yeelight_ceiling_7811dcda769e:
-    friendly_name: Plafoniera
+  light.plafoniera:
     homebridge_visible: true
 
 ############ SWITCHES #########################################################
@@ -244,9 +253,6 @@
     friendly_name: Yamaha
     homebridge_media_player_switch: on_off
     homebridge_visible: true
-  media_player.amazon_fire_tv:
-    homebridge_media_player_switch: on_off
-    homebridge_visible: true
 
   variable.ultimo_movimento:
     friendly_name: Ultimo Movimento
@@ -270,13 +276,3 @@
     homebridge_visible: true
   input_boolean.corsa:
     confirm_controls_show_lock: true
-
-  sensor.saldo_mining:
-    icon: mdi:image-filter-hdr
-  sensor.saldo_eth:
-    homebridge_visible: true
-
-  sensor.johnnyzetahassio_last_build_duration:
-    friendly_name: hassio Last Build Duration
-  sensor.johnnyzetahassio_last_build_state:
-    friendly_name: hassio State

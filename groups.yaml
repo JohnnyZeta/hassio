@@ -69,6 +69,7 @@
       - group.valute
       - group.meteo
       - group.travis
+      - group.ups
       - camera.temperature
 #      - group.smartplug
 
@@ -120,7 +121,7 @@
     control: hidden
     entities:
       - light.camera_2
-      - light.yeelight_ceiling_7811dcda769e
+      - light.plafoniera
   #    - switch.nuvola
       - vacuum.semola
       - switch.semola_schedule
@@ -234,6 +235,7 @@
       - automation.backup_automatico
       - automation.notifica_aggiornamento
       - automation.spazio_libero
+      - automation.blackout
 #      - automation.netflix
 
   automazioni_posizioni:
@@ -265,8 +267,6 @@
 #      - switch.automazione_avviso_semola
       - automation.avviso_semola_off
 #      - automation.timer_spegnimento_nuvola
-      - automation.corsa_on
-      - automation.corsa_off
 
   alarmclock:
     name: Alba in 5 minuti
@@ -312,6 +312,17 @@
       - sensor.johnnyzetahassio_last_build_state
       # - sensor.johnnyzetahassio_last_build_started_at
       - sensor.johnnyzetahassio_last_build_duration
+
+  ups:
+    name: UPS
+    control: hidden
+    entities:
+      - sensor.nut_ups_status_data
+      - sensor.nut_ups_input_voltage
+      - sensor.nut_ups_load
+      - sensor.nut_ups_battery_runtime
+      - sensor.nut_ups_battery_charge
+      - sensor.nut_ups_nominal_real_power
 
 ############ SOTTO-CARD #######################################################
 
