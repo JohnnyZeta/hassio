@@ -211,3 +211,19 @@
       - service: vacuum.turn_on
 
 ###############################################################################
+
+  - alias: Blackout
+    trigger:
+      platform: template
+      value_template: "{{ (states.sensor.nut_ups_status_data.state | truncate(2,false,'')) == 'OB' }}"
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.gateway_light_7811dcb0727e
+          color_name: red
+          brightness_pct: 100
+      - wait_template: "{{ (states.sensor.nut_ups_status_data.state | truncate(2,false,'')) == 'OL' }}"
+      - delay: "00:00:10"
+      - service: light.turn_off
+
+###############################################################################

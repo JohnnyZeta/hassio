@@ -112,6 +112,12 @@ hue:
   bridges:
     - host: 192.168.2.5
 
+light:
+  - platform: yeelight
+    devices:
+      192.168.2.11:
+        name: Plafoniera
+
 panel_iframe:
   dashboard:
     title: Dashboard
