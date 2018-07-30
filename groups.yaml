@@ -1,0 +1,8 @@
+
+  famiglia:
+    name: Famiglia
+    view: no
+    control: hidden
+    entities:
+        - device_tracker.alby_iphone
+        - device_tracker.alessandra_iphone

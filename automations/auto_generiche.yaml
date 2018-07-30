@@ -1,0 +1,225 @@
+
+  - alias: Notifica aggiornamento
+    trigger:
+    - platform: state
+      entity_id: updater.updater
+    action:
+      - service: notify.ios_iphone_di_alby
+        data_template:
+          message: 'È disponibile Home Assistant {{ states.updater.updater.state }}.'
+      - service: persistent_notification.create
+        data_template:
+          notification_id: update_ha
+          title: Aggiornamento
+          message: >
+            È disponibile Home Assistant {{ states.updater.updater.state }}.
+
+###############################################################################
+
+  - alias: Backup Automatico
+    trigger:
+      platform: time
+      at: '3:00:00'
+    condition:
+      - condition: time
+        weekday:
+          - mon
+          - thu
+    action:
+      - service: hassio.snapshot_full
+        data_template:
+          name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
+
+###############################################################################
+
+  - alias: Avviso Semola
+    trigger:
+      platform: state
+      entity_id: vacuum.semola
+      from: 'on'
+      to: 'off'
+    condition:
+#      - condition: template
+#        value_template: '{{ not is_state("switch.semola_schedule", "off") }}'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+    action:
+      - delay: 00:00:30
+      # il delay serve per finire il caricamento della mappa pulizia dal server
+      - service: notify.telefoni
+        data_template:
+          title: "Semola ha finito"
+          message: >
+            Ha appena pulito {{ states.vacuum.semola.attributes.clean_area }} mq e adesso ha il {{ states.vacuum.semola.attributes.battery_level }}% di batteria. In allegato la mappa della pulizia.
+          data:
+            attachment:
+              content-type: jpeg
+            push:
+              category: camera
+            entity_id: camera.semola_cleaning_map
+
+###############################################################################
+
+  - alias: Programmazione Semola
+    trigger:
+      platform: time
+      at: '11:00:00'
+    condition:
+      condition: time
+      weekday:
+        - mon
+        - thu
+    action:
+      - service: vacuum.turn_on
+
+###############################################################################
+
+  # - alias: Vento Forte
+  #   trigger:
+  #     platform: numeric_state
+  #     entity_id: sensor.dark_sky_wind_speed_1
+  #     above: 3
+  #     for:
+  #       hours: 2
+  #   condition:
+  #     condition: time
+  #     after: '09:00:00'
+  #     before: '18:00:00'
+  #   action:
+  #     service: notify.telefoni
+  #     data:
+  #       message: "Vento forte previsto domani!"
+
+###############################################################################
+
+  # - alias: Programmazione Nuvola
+  #   trigger:
+  #     platform: time
+  #     at: '22:45:00'
+  #   condition:
+  #     condition: time
+  #     weekday:
+  #       - mon
+  #       - tue
+  #       - wed
+  #       - thu
+  #       - sun
+  #   action:
+  #     - service: switch.turn_on
+  #       entity_id: switch.nuvola
+  #     - delay: 01:00:00
+  #     - service: switch.turn_off
+  #       entity_id: switch.nuvola
+
+###############################################################################
+
+  # - alias: Timer Spegnimento Nuvola
+  #   trigger:
+  #     platform: state
+  #     entity_id: switch.nuvola
+  #     from: 'off'
+  #     to: 'on'
+  #   action:
+  #     - delay: '00:15:00'
+  #     - service: switch.turn_off
+  #       data:
+  #         entity_id: switch.nuvola
+
+###############################################################################
+
+  - alias: "Aggiorna Ultimo Movimento"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001a8e47c, binary_sensor.motion_sensor_158d0001a8fb6a, binary_sensor.motion_sensor_158d0001a8fa9d, binary_sensor.motion_sensor_158d0001dc2ed5
+        to: 'on'
+    action:
+      - service: variable.set_variable
+        data:
+          variable: ultimo_movimento
+          attributes_template: >
+             {
+                "history_1": "{{ variable.state }}",
+                "history_2": "{{ variable.attributes.history_1 }}",
+                "history_3": "{{ variable.attributes.history_2 }}"
+              }
+        data_template:
+          value: "{{ trigger.to_state.attributes.friendly_name }}"
+
+###############################################################################
+
+  - alias: Blackout
+    trigger:
+      - platform: template
+        value_template: '{{ (states.sensor.nut_ups_status_data.state | truncate(2,false,"",0)) == "OB" }}'
+      - platform: template
+        value_template: "{{ is_state('sensor.nut_ups_status_data', 'OL DISCHRG') }}"
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.gateway_light_7811dcb0727e
+          color_name: red
+          brightness_pct: 100
+      #- wait_template: '{{ (states.sensor.nut_ups_status_data.state | truncate(2,false,'',0)) == 'OL' }}'
+      - wait_template: "{{ is_state('sensor.nut_ups_status_data', 'OL CHRG') }}"
+      - service: persistent_notification.create
+        data_template:
+          notification_id: blackout{{ now().strftime('D%dH%H%S') }}
+          title: Blackout
+          message: >
+            Registrato Blackout dalle ore {{ as_timestamp(states.automation.blackout.attributes.last_triggered) | timestamp_custom('%H:%M', false ) }} alle ore {{ now().strftime('%H:%M') }} di {{ now().strftime('%A %d %B %Y') }}. Il Blackout è durato {{ (as_timestamp(now()) | int - as_timestamp(states.automation.blackout.attributes.last_triggered))/60 | round(0) }} minuti.
+      - delay: "00:01:00"
+      - service: light.turn_off
+      - service: notify.ios_iphone_di_alby
+        data:
+          message: 'Luci spente dopo il blackout!'
+
+###############################################################################
+
+  - alias: Vacanza
+    trigger:
+      platform: state
+      entity_id: input_boolean.vacanza
+    action:
+      - service_template: >
+          {% if is_state("input_boolean.vacanza", "on") %}
+            automation.turn_off
+          {% else %}
+            automation.turn_on
+          {% endif %}
+        data:
+          entity_id: automation.arrivo_a_casa, automation.avviso_tempo_ritorno_alby, automation.avviso_tempo_ritorno_ale, automation.buongiorno_lavorativo, automation.buongiorno_weekends, automation.programmazione_semola
+      - service_template: >
+          {% if is_state("input_boolean.vacanza", "on") %}
+            input_boolean.turn_off
+          {% else %}
+            input_boolean.turn_on
+          {% endif %}
+        data:
+          entity_id: input_boolean.alarmweekon
+      - service: notify.ios_iphone_di_alby
+        data_template:
+          title: "Vacanza"
+          message: >
+            {% if is_state("input_boolean.vacanza", "on") %} Buon inizio Vacanza!
+            {% else %} Buon ritorno al Lavoro!
+            {% endif %}
+
+###############################################################################
+
+  - alias: Perdita Acqua
+    trigger:
+      platform: state
+      entity_id: binary_sensor.water_leak_sensor_158d000211a487
+      to: 'on'
+    action:
+      - service: notify.telefoni
+        data:
+          title: "Allarma Perdita"
+          message: "Rilevata una perdita di acqua in bagno!!!"
+
+###############################################################################

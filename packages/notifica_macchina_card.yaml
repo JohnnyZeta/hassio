@@ -1,0 +1,63 @@
+homeassistant:
+############ SELEZIONI #########################################################
+input_select:
+  scelta_vettura:
+    name: 'Vettura:'
+    options:
+      - Renault Clio
+      - Suzuki Swift
+      - Papera
+    initial: Renault Clio
+    icon: mdi:car
+  scelta_persona:
+    name: 'Notifica:'
+    options:
+      - Alberto
+      - Alessandra
+    initial: Alberto
+    icon: mdi:account-multiple
+############ BOOLEANI ##########################################################
+input_boolean:
+  controllo:
+    name: Controllo
+    initial: off
+    icon: mdi:check-circle
+############ AUTOMAZIONE #######################################################
+automation:
+  - alias: Notifica_car
+    trigger:
+      platform: state
+      entity_id: binary_sensor.clio, binary_sensor.swift, binary_sensor.papera
+    condition:
+      condition: state
+      entity_id: input_boolean.controllo
+      state: 'on'
+      # - condition: state
+      #   entity_id: input_select.scelta_persona
+      #   state: 'Alberto'
+    action:
+      - service_template: >
+          {% if is_state("input_select.scelta_persona", "Alessandra") %} notify.ios_iphone_di_alessandra
+          {% else %} notify.ios_iphone_di_alby
+          {% endif %}
+        data_template:
+          title: "Macchina"
+          message: >
+            {% if trigger.to_state.state == 'on' and (trigger.from_state.attributes.friendly_name == states.input_select.scelta_vettura.state) %} La {{ trigger.from_state.attributes.friendly_name }} è stata appena accesa.
+            {% elif trigger.to_state.state == 'off' and (trigger.from_state.attributes.friendly_name == states.input_select.scelta_vettura.state) %} La {{ trigger.from_state.attributes.friendly_name }} è stata appena spenta.
+            {% else %}
+            {% endif %}
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.controllo
+############ GRUPPO ############################################################
+# group:
+#   scheda_notifica_macchina:
+#     name: 'Notifica Macchina'
+#     view: no
+#     control: hidden
+#     entities:
+      # - input_select.scelta_vettura
+      # - input_select.scelta_persona
+      # - input_boolean.controllo
+################################################################################

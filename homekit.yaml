@@ -1,0 +1,51 @@
+
+  ip_address: !secret hassio_interno_ip
+  filter:
+    include_entities:
+      # PORTE E FINESTRE
+      - binary_sensor.door_window_sensor_158d0001bf80d3
+      - binary_sensor.door_window_sensor_158d0001bf80f4
+      - binary_sensor.door_window_sensor_158d0001ab6dbe
+      - binary_sensor.door_window_sensor_158d0001daeef7
+      - binary_sensor.door_window_sensor_158d0001ab2e3e
+      - binary_sensor.door_window_sensor_158d0001de8c1e
+      - binary_sensor.door_window_sensor_158d0001b97e2e
+      - binary_sensor.door_window_sensor_158d0001de6ed0
+      - binary_sensor.door_window_sensor_158d0001e48bd5
+      # MOVIMENTO
+      - binary_sensor.motion_sensor_158d0001a8e47c
+      - binary_sensor.motion_sensor_158d0001a8fb6a
+      - binary_sensor.motion_sensor_158d0001a8fa9d
+      - binary_sensor.motion_sensor_158d0001dc2ed5
+      # LUMINOSITA'
+      - sensor.illumination_7811dcb0727e
+      # TEMPERATURA E UMIDITA'
+      - sensor.humidity_158d0001b92644
+      - sensor.humidity_158d0001f561b7
+      #- sensor.pressure_158d0001b92644
+      #- sensor.pressure_158d0001f561b7
+      - sensor.temperature_158d0001b92644
+      - sensor.temperature_158d0001f561b7
+      # LUCI
+      - light.camera_2
+      - light.cucina_2
+      - light.disimpegno
+      - light.divano
+      - light.tv
+      - light.gateway_light_7811dcb0727e
+      - light.plafoniera
+      #- light.hue_white_light_1
+      # SWITCHES
+      #- switch.semola_schedule
+      - switch.nuvola
+      # DEVICES
+      - device_tracker.alby_iphone
+      - device_tracker.alessandra_iphone
+      # ALTRO
+      #- vacuum.semola
+      # MEDIA PLAYERS
+      - media_player.yamaha_receiver
+      #- media_player.spotify
+      # BOOLEANI
+      - input_boolean.corsa
+      - input_boolean.vacanza

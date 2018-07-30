@@ -1,0 +1,31 @@
+
+  ultimo_movimento:
+    value: 'Unknown'
+    restore: true
+    attributes:
+      icon: mdi:map-marker
+      name: "Ultimo Movimento"
+  meteo:
+    value: 'Unknown'
+    restore: true
+    attributes:
+      icon: mdi:information-outline
+      name: "Meteo"
+  clio:
+    value: 'Spenta'
+    restore: true
+    attributes:
+      icon: mdi:car-convertible
+      name: "Renault Clio"
+  swift:
+    value: 'Spenta'
+    restore: true
+    attributes:
+      icon: mdi:car-sports
+      name: "Suzuki Swift"
+  papera:
+    value: 'Spenta'
+    restore: true
+    attributes:
+      icon: mdi:motorbike
+      name: "Papera"

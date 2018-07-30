@@ -1,0 +1,185 @@
+
+  - platform: etherscan
+    address: !secret eth_address
+    name: "Saldo Mining"
+###############################################################################
+  - platform: moon
+###############################################################################
+  - platform: template
+    sensors:
+      tp_link_amps:
+        value_template: "{{ states.switch.nuvola.attributes.current_a }}"
+        friendly_name: "Consumo attuale"
+        unit_of_measurement: 'A'
+      tp_link_watts:
+        value_template: "{{ states.switch.nuvola.attributes.current_power_w }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Potenza attuale"
+      tp_link_kw:
+        value_template: "{{ states.switch.nuvola.attributes.total_energy_kwh }}"
+        unit_of_measurement: 'kW'
+        friendly_name: "Consumo totale"
+      tp_link_kw_today:
+        value_template: "{{ states.switch.nuvola.attributes.today_energy_kwh }}"
+        unit_of_measurement: 'kW'
+        friendly_name: "Consumo giornaliero"
+      tp_link_volts:
+        value_template: "{{ states.switch.nuvola.attributes.voltage }}"
+        unit_of_measurement: 'V'
+        friendly_name: "Voltaggio"
+      saldo_eth:
+        friendly_name: "Valore ETH"
+        icon_template: mdi:coin
+        value_template: '{{ states.sensor.coinbase_eth_wallet.attributes["Balance in native currency"] | replace(" EUR", "") }}'
+        unit_of_measurement: 'EUR'
+      tap_remote:
+        value_template: >
+          {% if is_state('sensor.tap_button', '34') %}
+            1
+          {% elif is_state('sensor.tap_button', '16') %}
+            2
+          {% elif is_state('sensor.tap_button', '17') %}
+            3
+          {% elif is_state('sensor.tap_button', '18') %}
+            4
+          {% else %}
+            failed
+          {% endif %}
+        icon_template: >
+          {% if is_state('sensor.tap_button', '34') %}
+            mdi:numeric-1-box
+          {% elif is_state('sensor.tap_button', '16') %}
+            mdi:numeric-2-box
+          {% elif is_state('sensor.tap_button', '17') %}
+            mdi:numeric-3-box
+          {% elif is_state('sensor.tap_button', '18') %}
+            mdi:numeric-4-box
+          {% else %}
+            mdi:message-alert
+          {% endif %}
+        friendly_name: "Telecomando Hue Tap"
+      fasilunari:
+        entity_id: sensor.moon
+        friendly_name: "Luna"
+        icon_template: >
+          {% if is_state('sensor.moon', 'New moon') %}
+            mdi:circle-outline
+          {% elif is_state('sensor.moon', 'Waxing crescent') %}
+            mdi:arrow-up-bold
+          {% elif is_state('sensor.moon', 'First quarter') %}
+            mdi:arrow-up-bold
+          {% elif is_state('sensor.moon', 'Waxing gibbous') %}
+            mdi:arrow-up-bold
+          {% elif is_state('sensor.moon', 'Full moon') %}
+            mdi:brightness-1
+          {% elif is_state('sensor.moon', 'Waning gibbous') %}
+            mdi:arrow-down-bold
+          {% elif is_state('sensor.moon', 'Last quarter') %}
+            mdi:arrow-down-bold
+          {% elif is_state('sensor.moon', 'Waning crescent') %}
+            mdi:arrow-down-bold
+          {% endif %}
+        value_template: >
+          {% if is_state('sensor.moon', 'New moon') %}
+            Luna Nuova
+          {% elif is_state('sensor.moon', 'Waxing crescent') %}
+            Luna Crescente
+          {% elif is_state('sensor.moon', 'First quarter') %}
+            Primo Quarto
+          {% elif is_state('sensor.moon', 'Waxing gibbous') %}
+            Gibbosa Crescente
+          {% elif is_state('sensor.moon', 'Full moon') %}
+            Luna Piena
+          {% elif is_state('sensor.moon', 'Waning gibbous') %}
+            Gibbosa Calante
+          {% elif is_state('sensor.moon', 'Last quarter') %}
+            Ultimo Quarto
+          {% elif is_state('sensor.moon', 'Waning crescent') %}
+            Luna Calante
+          {% endif %}
+###############################################################################
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+###############################################################################
+  - platform: uptime
+    name: Tempo Online
+###############################################################################
+  - platform: speedtest
+    server_id: !secret speedtest_server_id
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+###############################################################################
+  - platform: darksky
+    api_key: !secret darksky_key
+    forecast: 1
+    monitored_conditions:
+      - summary
+      - apparent_temperature
+      - wind_speed
+      - cloud_cover
+###############################################################################
+  - platform: google_travel_time
+    name: Lavoro-Casa Ale
+    api_key: !secret google_key
+    origin: zone.lavoro
+    destination: zone.home
+  - platform: google_travel_time
+    name: Lavoro-Casa Alby
+    api_key: !secret google_key
+    origin: zone.ufficio
+    destination: zone.home
+###############################################################################
+  # - platform: google_geocode
+  #   origin: device_tracker.alby_iphone
+  #   name: Alberto
+  #   display_zone: hide
+  #   api_key: !secret google_key
+  #   gravatar: !secret alberto_email
+  # - platform: google_geocode
+  #   origin: device_tracker.alessandra_iphone
+  #   name: Alessandra
+  #   display_zone: hide
+  #   api_key: !secret google_key
+  #   gravatar: !secret ale_email
+#  TAP_BUTTONS = {34: '1_click', 16: '2_click', 17: '3_click', 18: '4_click'}
+  # - platform: rest
+  #   resource: http://192.168.2.5/api/UQ7QJsuqUN4VXEOvVOUHzKuuxfGJPJYWEQAW1VxE/sensors/2
+  #   name: Tap Button
+  #   value_template: '{{ value_json.state.buttonevent }}'
+  #   scan_interval: 1
+  # - platform: rest
+  #   resource: http://192.168.2.5/api/UQ7QJsuqUN4VXEOvVOUHzKuuxfGJPJYWEQAW1VxE/sensors/2
+  #   name: Tap Update
+  #   value_template: '{{ value_json.state.lastupdated }}'
+  #   scan_interval: 1
+###############################################################################
+  - platform: travisci
+    api_key: !secret github_api_key
+###############################################################################
+  - platform: nut
+    host: !secret synology_ip
+    resources:
+      - ups.status
+      - ups.status.display
+      - ups.load
+      - input.voltage
+      - battery.runtime
+      - battery.charge
+###############################################################################
+ # - platform: cert_expiry
+ #   host: !secret certificate_url
+###############################################################################
+  # - platform: command_line
+  #   name: "DownloadTemperatureGrafana"
+  #   command: "curl -s -H 'Authorization: Bearer eyJrIjoiUHJjTkNNeFE3djJOVDFycE82TjU3TXVueDJTckUwTEgiLCJuIjoiSEEiLCJpZCI6MX0=' 'http://192.168.2.30:3000/render/dashboard-solo/db/home-assistant?orgId=1&panelId=1&theme=light&width=1500&height=500&tz=UTC%2B02%3A00' > /config/www/temperature.png"
+  #   scan_interval: 300
+###############################################################################

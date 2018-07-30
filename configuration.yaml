@@ -1,0 +1,242 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Casa
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Rome
+  # Customization file
+  customize: !include customize.yaml
+  # Packages!
+  packages: !include_dir_named packages
+
+zone: !include zones.yaml
+group: !include groups.yaml
+automation: !include_dir_merge_list automations/
+script: !include scripts.yaml
+scene: !include scenes.yaml
+shell_command: !include shell_commands.yaml
+switch: !include switches.yaml
+sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
+input_boolean: !include input_booleans.yaml
+homekit: !include homekit.yaml
+
+# Custom Component https://github.com/rogro82/hass-variables
+variable: !include variables.yaml
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+# Aggiungi i Temi
+  themes: !include_dir_merge_named themes
+# Enable ES6 features
+  javascript_version: latest
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: !secret base_url
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+  ignore:
+    - google_cast
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+  exclude:
+    domains:
+      - camera
+      - automation
+    entities:
+      - input_boolean.alarmweekday
+      - input_boolean.timer
+      - device_tracker.beacon_clio
+      - device_tracker.beacon_papera
+      - device_tracker.beacon_swift
+      - variable.papera
+      - variable.swift
+      - variable.clio
+      - input_boolean.alarmweekday
+      - input_boolean.controllo
+      - input_boolean.timer
+      - input_datetime.alba
+      - input_datetime.durata_timer
+      - input_select.scelta_persona
+      - input_select.scelta_vettura
+
+# Tracked history is kept for 2 days
+recorder:
+  purge_keep_days: 2
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+#map:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  - platform: google
+    language: 'it'
+
+# Cloud
+cloud:
+
+#iPhones
+ios:
+
+###############################################################################
+
+coinbase:
+  api_key: !secret coinbase_key
+  api_secret: !secret coinbase_key_secret
+  exchange_rate_currencies:
+    - BTC
+    - BCH
+    - ETH
+    - LTC
+
+hue:
+  bridges:
+    - host: !secret hue_bridge_ip
+
+light:
+  - platform: yeelight
+    devices:
+      192.168.2.11:
+        name: Plafoniera
+
+panel_iframe:
+  dashboard:
+    title: Dashboard
+    icon: mdi:view-dashboard
+    url: !secret dashboard_url
+  configurator:
+    title: Configuratore
+    icon: mdi:wrench
+    url: !secret configurator_url
+  nodered:
+    title: Node-RED
+    icon: mdi:nodejs
+    url: !secret nodered_url
+  grafana:
+    title: Grafana
+    icon: mdi:chart-line
+    url: !secret grafana_url
+
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_key
+
+media_player:
+  - platform: yamaha
+    source_names:
+      HDMI1: "Blu-Ray"
+      HDMI2: "MacBook"
+      HDMI3: "Xbox360"
+      HDMI4: "Fire TV"
+      AV5: "Cassette"
+      AV6: "TV"
+
+neato:
+  username: !secret neato_username
+  password: !secret neato_password
+
+ifttt:
+  key: !secret ifttt_key
+
+device_tracker:
+  - platform: owntracks
+    max_gps_accuracy: 100
+
+mqtt:
+  broker: m23.cloudmqtt.com
+  port: 22279
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: homeassistant
+  max_retries: 3
+  default_measurement: state
+
+# weather:
+#  - platform: darksky
+#    api_key: !secret darksky_key
+
+telegram_bot:
+  - platform: broadcast
+    api_key: !secret telegram_api_key
+    allowed_chat_ids:
+      - !secret telegram_alby_chat_id
+      - !secret telegram_ale_chat_id
+      - !secret telegram_ma_chat_id
+      - !secret telegram_pa_chat_id
+
+notify:
+  - name: telefoni
+    platform: group
+    services:
+      - service: ios_iphone_di_alby
+      - service: ios_iphone_di_alessandra
+  - name: telegram
+    platform: group
+    services:
+      - service: telegram_alby
+      - service: telegram_ale
+      - service: telegram_ma
+      - service: telegram_pa
+  - name: telegram_alby
+    platform: telegram
+    chat_id: !secret telegram_alby_chat_id
+  - name: telegram_ale
+    platform: telegram
+    chat_id: !secret telegram_ale_chat_id
+  - name: telegram_ma
+    platform: telegram
+    chat_id: !secret telegram_ma_chat_id
+  - name: telegram_pa
+    platform: telegram
+    chat_id: !secret telegram_pa_chat_id
+
+camera:
+  - platform: foscam
+    ip: !secret foscam_cucina_ip
+    username: !secret foscam_username
+    password: !secret foscam_password
+    name: Cucina

@@ -1,0 +1,68 @@
+
+############# iOS App ##########################################################
+
+iphone_di_alby:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Alby
+  gravatar: !secret alberto_email
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+iphone_di_alessandra:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Ale
+  gravatar: !secret ale_email
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+############ Owntracks #########################################################
+
+alby_iphone:
+  hide_if_away: false
+  icon:
+  mac: !secret iphone_di_alby_MAC
+  name: Alby
+  gravatar: !secret alberto_email
+  picture:
+  track: true
+
+alessandra_iphone:
+  hide_if_away: false
+  icon:
+  mac: !secret iphone_di_alessandra_MAC
+  name: Ale
+  gravatar: !secret ale_email
+  picture:
+  track: true
+
+############ Beacons ###########################################################
+
+beacon_swift:
+  hide_if_away: false
+  icon: mdi:car-sports
+  mac:
+  name: swift
+  picture:
+  track: true
+
+beacon_clio:
+  hide_if_away: false
+  icon: mdi:car-convertible
+  mac:
+  name: clio
+  picture:
+  track: true
+
+beacon_papera:
+  hide_if_away: false
+  icon: mdi:motorbike
+  mac:
+  name: papera
+  picture:
+  track: true

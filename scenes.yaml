@@ -1,0 +1,109 @@
+  - name: Entrata
+    entities:
+      light.cucina_2:
+        state: on
+        brightness: 178
+        xy_color: [0.553, 0.423]
+      light.disimpegno:
+        state: on
+        brightness: 253
+      light.tv:
+        state: off
+      light.divano:
+        state: off
+      light.gateway_light_7811dcb0727e:
+        state: off
+      light.camera:
+        state: off
+      light.plafoniera:
+        state: off
+###############################################################################
+  - name: Nanna
+    entities:
+      light.cucina_2:
+        state: off
+      light.disimpegno:
+        state: off
+      light.tv:
+        state: off
+      light.divano:
+        state: off
+      light.gateway_light_7811dcb0727e:
+        state: off
+      light.camera:
+        state: on
+        brightness: 179
+        xy_color: [0.628, 0.313]
+      light.plafoniera:
+        state: off
+###############################################################################
+  - name: Netflix
+    entities:
+      light.cucina_2:
+        state: on
+        brightness: 178
+        xy_color: [0.553, 0.423]
+      light.disimpegno:
+        state: off
+      light.tv:
+        state: on
+        brightness: 51
+        xy_color: [0.432, 0.402]
+      light.divano:
+        state: on
+        brightness: 51
+        xy_color: [0.432, 0.402]
+      light.gateway_light_7811dcb0727e:
+        state: off
+      light.camera_2:
+        state: off
+      light.plafoniera:
+        state: off
+###############################################################################
+  - name: TVOff
+    entities:
+      light.cucina_2:
+        state: on
+        brightness: 178
+        xy_color: [0.553, 0.423]
+      light.disimpegno:
+        state: on
+        brightness: 253
+      light.tv:
+        state: on
+        brightness: 254
+        xy_color: [0.432, 0.402]
+      light.divano:
+        state: on
+        brightness: 254
+        xy_color: [0.432, 0.402]
+      light.gateway_light_7811dcb0727e:
+        state: off
+      light.camera:
+        state: off
+      light.plafoniera:
+        state: off
+###############################################################################
+  - name: Caldo
+    entities:
+      light.cucina_2:
+        state: on
+        brightness: 178
+        xy_color: [0.553, 0.423]
+      light.disimpegno:
+        state: off
+      light.tv:
+        state: on
+        brightness: 205
+        xy_color: [0.534, 0.425]
+      light.divano:
+        state: on
+        brightness: 205
+        xy_color: [0.574, 0.362]
+      light.gateway_light_7811dcb0727e:
+        state: off
+      light.camera:
+        state: off
+      light.plafoniera:
+        state: off
+###############################################################################

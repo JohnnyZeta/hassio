@@ -1,0 +1,85 @@
+homeassistant:
+############ DATA E ORA ########################################################
+input_datetime:
+  alba:
+    name: Orario
+    has_date: false
+    has_time: true
+    initial: 06:45
+############ BOOLEANI ##########################################################
+input_boolean:
+  alarmweekday:
+    name: Giorni Lavorativi
+    initial: on
+    icon: mdi:calendar
+  alarmweekon:
+    name: Attivato
+    #initial: on
+    icon: mdi:power
+############ AUTOMAZIONI #######################################################
+automation:
+  - alias: Buongiorno Lavorativo
+    initial_state: True
+    trigger:
+      platform: time
+      minutes: '/1'
+      seconds: 0
+    condition:
+      - condition: state
+        entity_id: input_boolean.alarmweekon
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.alarmweekday
+        state: 'on'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: template
+        value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Camera"
+          scene_name: "Buongiorno"
+          # la transizione-on è già nella scena (5 min)
+
+  - alias: Buongiorno Weekends
+    initial_state: True
+    trigger:
+      platform: time
+      minutes: '/1'
+      seconds: 0
+    condition:
+      - condition: state
+        entity_id: input_boolean.alarmweekon
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.alarmweekday
+        state: 'off'
+      - condition: time
+        weekday:
+          - sat
+          - sun
+      - condition: template
+        value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: "Camera"
+          scene_name: "Buongiorno"
+          # la transizione-on è già nella scena (5 min)
+############ GRUPPO ############################################################
+# group:
+#   alarmclock:
+#     name: Alba in 5 minuti
+#     control: hidden
+#     icon: mdi:weather-sunset
+#     entities:
+#       - input_boolean.alarmweekon
+#       - input_datetime.alba
+#       - input_boolean.alarmweekday
+################################################################################

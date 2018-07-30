@@ -1,0 +1,127 @@
+
+########## PULSANTI ALBY & ALE #################################################
+
+# 1 CLICK
+  - alias: Pulsante Nanna
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d00016c48b3
+          click_type: single
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d000120ea9c
+          click_type: single
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: sun.sun
+          state: 'below_horizon'
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: light.tv
+              state: 'on'
+            - condition: state
+              entity_id: light.camera
+              state: 'off'
+            - condition: template
+              value_template: '{{ states.light.camera.attributes.brightness == 103 }}'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.nanna
+      - service: light.turn_off
+        data:
+          entity_id: light.plafoniera
+
+  - alias: Annulla Pulsante Nanna
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d00016c48b3
+          click_type: single
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d000120ea9c
+          click_type: single
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: sun.sun
+          state: 'above_horizon'
+        - condition: template
+          value_template: '{{ states.light.camera.attributes.brightness == 179 }}'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.camera
+          brightness: 103
+          rgb_color: [255, 240, 197]
+      - service: light.turn_off
+        data:
+          entity_id: light.plafoniera
+
+# 2 CLICK
+  - alias: Pulsante FadeOut
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d00016c48b3
+          click_type: double
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d000120ea9c
+          click_type: double
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.plafoniera
+      - service: shell_command.spegni_nanna
+      # - delay: 00:03:00
+      # - service: switch.turn_off
+      #   entity_id: switch.nuvola
+
+# HOLD CLICK
+  - alias: Pulsante Hold
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d00016c48b3
+          click_type: hold
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d000120ea9c
+          click_type: hold
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.camera_2
+          brightness: 254
+          xy_color: [0.438, 0.404]
+      # - service: hue.hue_activate_scene
+      #   data:
+      #     group_name: "Casa"
+      #     scene_name: "SOS"
+      # - service: automation.trigger
+      #   data:
+      #     entity_id: automation.pulsante_plafoniera_camera_max
+      # - service: notify.telefoni
+      #   data_template:
+      #     title: "SOS!"
+      #     message: "SOS dal comodino di Alberto!"
+
+################################################################################

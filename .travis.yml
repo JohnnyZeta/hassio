@@ -1,0 +1,18 @@
+language: python
+
+cache: pip
+
+python:
+  - "3.6.4"
+
+before_install:
+  - touch fullchain.pem
+  - touch privkey.pem
+  - mv travis_secrets.yaml secrets.yaml
+  - mv travis_zones.yaml zones.yaml
+
+install:
+  - pip3 install homeassistant
+
+script:
+  - hass -c . --script check_config

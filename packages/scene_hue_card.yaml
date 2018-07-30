@@ -1,0 +1,80 @@
+# homeassistant:
+# ############ SELEZIONI #########################################################
+# input_select:
+#   scena_hue_casa:
+#     name: 'Scena Casa:'
+#     options:
+#       - Entrata
+#       - Nanna
+#       - Neflixo
+#       - TVOff
+#     initial: Entrata
+#     icon: mdi:lamp
+#   scena_hue_salotto:
+#     name: 'Scena Salotto:'
+#     options:
+#       - Serata
+#       - Caldo
+#     initial: Serata
+#     icon: mdi:lamp
+#   scena_hue_camera:
+#     name: 'Scena Camera:'
+#     options:
+#       - Accesa
+#       - Tenue
+#       - Rosso
+#     initial: Tenue
+#     icon: mdi:lamp
+# ############ AUTOMAZIONI #######################################################
+# automation:
+#   - alias: Selezione Scene Casa
+#     trigger:
+#       platform: state
+#       entity_id: input_select.scena_hue_casa
+#     action:
+#       service: hue.hue_activate_scene
+#       data_template:
+#         group_name: "Casa"
+#         scene_name: >
+#           {% if is_state("input_select.scena_hue_casa", "Entrata") %} Entrata
+#           {% elif is_state("input_select.scena_hue_casa", "Nanna") %} Nanna
+#           {% elif is_state("input_select.scena_hue_casa", "Netflixo") %} Netflixo
+#           {% elif is_state("input_select.scena_hue_casa", "TVOff") %} TVOff
+#           {% endif %}
+#
+#   - alias: Selezione Scene Salotto
+#     trigger:
+#       platform: state
+#       entity_id: input_select.scena_hue_salotto
+#     action:
+#       service: hue.hue_activate_scene
+#       data_template:
+#         group_name: "Salotto"
+#         scene_name: >
+#           {% if is_state("input_select.scena_hue_camera", "Serata") %} Serata
+#           {% elif is_state("input_select.scena_hue_camera", "Caldo") %} Caldo
+#           {% endif %}
+#
+#   - alias: Selezione Scene Camera
+#     trigger:
+#       platform: state
+#       entity_id: input_select.scena_hue_camera
+#     action:
+#       service: hue.hue_activate_scene
+#       data_template:
+#         group_name: "Camera"
+#         scene_name: >
+#           {% if is_state("input_select.scena_hue_camera", "Accesa") %} Accesa
+#           {% elif is_state("input_select.scena_hue_camera", "Tenue") %} Tenue
+#           {% elif is_state("input_select.scena_hue_camera", "Rosso") %} Rosso
+#           {% endif %}
+# ############ GRUPPO ############################################################
+# group:
+#   scene_hue:
+#     name: Scene Philips Hue
+#     control: hidden
+#     entities:
+#       - input_select.scena_hue_casa
+#       - input_select.scena_hue_salotto
+#       - input_select.scena_hue_camera
+# ################################################################################

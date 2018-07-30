@@ -1,0 +1,51 @@
+
+  - alias: Arrivo a Casa
+    trigger:
+      platform: state
+      entity_id: group.famiglia
+      from: 'not_home'
+      to: 'home'
+    # condition:
+    #   - condition: time
+    #     after: '13:00:00'
+    #   - condition: state
+    #     entity_id: light.cucina_2
+    #     state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.entrata
+
+###############################################################################
+
+  - alias: Tap Button Camera
+    trigger:
+      platform: state
+      entity_id: sensor.tap_remote
+      to: '1'
+    action:
+      service: light.turn_off
+      data:
+        entity_id: light.yeelight_ceiling_7811dcda769e
+
+###############################################################################
+
+  # - alias: Flash Corsa
+  #   trigger:
+  #     platform: state
+  #     entity_id: input_boolean.corsa
+  #   action:
+  #     - service: light.turn_on
+  #       data:
+  #         entity_id: light.hue_white_light_1
+  #         flash: short
+  #     - delay: 00:00:01
+  #     - service: light.turn_on
+  #       data:
+  #         entity_id: light.hue_white_light_1
+  #         flash: short
+  #     - delay: 00:00:03
+  #     - service: light.turn_off
+  #       data:
+  #         entity_id: light.hue_white_light_1
+
+###############################################################################

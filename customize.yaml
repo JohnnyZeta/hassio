@@ -1,0 +1,210 @@
+
+############ SENSORI ##########################################################
+
+# PORTE E FINESTRE
+  binary_sensor.door_window_sensor_158d0001bf80d3:
+    friendly_name: Portafinestra Cucina
+    device_class: opening
+  binary_sensor.door_window_sensor_158d0001bf80f4:
+    friendly_name: Porta Blindata
+    device_class: opening
+  binary_sensor.door_window_sensor_158d0001ab6dbe:
+    friendly_name: Finestra Bagno
+    device_class: opening
+  binary_sensor.door_window_sensor_158d0001daeef7:
+    friendly_name: Finestra Camera DX
+    device_class: opening
+  binary_sensor.door_window_sensor_158d0001ab2e3e:
+    friendly_name: Portafinestra Salotto DX
+    device_class: opening
+  binary_sensor.door_window_sensor_158d0001de8c1e:
+    friendly_name: Portafinestra Camera
+    device_class: opening
+  binary_sensor.door_window_sensor_158d0001b97e2e:
+    friendly_name: Finestra Cucina
+  binary_sensor.door_window_sensor_158d0001de6ed0:
+    friendly_name: Finestra Camera SX
+  binary_sensor.door_window_sensor_158d0001e48bd5:
+    friendly_name: Portafinestra Salotto SX
+    device_class: opening
+
+# MOVIMENTO
+  binary_sensor.motion_sensor_158d0001a8e47c:
+    friendly_name: Cucina
+  binary_sensor.motion_sensor_158d0001a8fb6a:
+    friendly_name: Disimpegno
+  binary_sensor.motion_sensor_158d0001a8fa9d:
+    friendly_name: Camera
+  binary_sensor.motion_sensor_158d0001dc2ed5:
+    friendly_name: Salotto
+
+# PERDITE ACQUA
+  binary_sensor.water_leak_sensor_158d000211a487:
+    friendly_name: Presenza Acqua
+
+# LUMINOSITA'
+  sensor.illumination_7811dcb0727e:
+    friendly_name: Luminosità Salotto
+
+# TEMPERATURA E UMIDITA'
+  sensor.humidity_158d0001b92644:
+    friendly_name: Umidità
+  sensor.humidity_158d0001f561b7:
+    friendly_name: Umidità
+  sensor.pressure_158d0001b92644:
+    friendly_name: Pressione
+  sensor.pressure_158d0001f561b7:
+    friendly_name: Pressione
+  sensor.temperature_158d0001b92644:
+    friendly_name: Temperatura
+  sensor.temperature_158d0001f561b7:
+    friendly_name: Temperatura
+
+# PULSANTE HUE
+  # sensor.tap_button:
+  #   hidden: true
+  # sensor.tap_update:
+  #   hidden: true
+
+# PULSANTI
+  binary_sensor.switch_158d000120d46e:
+    friendly_name: Button Salotto
+    hidden: true
+  binary_sensor.switch_158d000120d3ef:
+    friendly_name: Button Cucina
+    hidden: true
+  binary_sensor.switch_158d00016c48b3:
+    friendly_name: Button Alby
+    hidden: true
+  binary_sensor.switch_158d000120ea9c:
+    friendly_name: Button Ale
+    hidden: true
+  binary_sensor.switch_158d00021016af:
+    friendly_name: Button Camera
+    hidden: true
+  binary_sensor.switch_158d0001f3ad33:
+    friendly_name: Button Garage
+    hidden: true
+
+# SISTEMA
+  sensor.disk_use_percent_home:
+    friendly_name: Utilizzo Disco
+  sensor.memory_free:
+    friendly_name: Memoria Libera
+
+# METEO
+  sensor.dark_sky_apparent_temperature:
+    friendly_name: Temperatura Apparente
+  sensor.dark_sky_cloud_coverage:
+    friendly_name: Copertura Nuvolosa
+  sensor.dark_sky_wind_speed:
+    friendly_name: Velocità del Vento
+  sensor.dark_sky_cloud_coverage_1:
+    friendly_name: Copertura Nuvolosa (Domani)
+  sensor.dark_sky_wind_speed_1:
+    friendly_name: Velocità del Vento (Domani)
+  sensor.dark_sky_summary:
+    friendly_name: Meteo
+
+# TEMPO
+  # sensor.lavorocasa_ale:
+  #   friendly_name: Tempo Ritorno dal Lavoro
+  #   icon: mdi:home
+  #   show_last_changed: false
+  # sensor.lavorocasa_alby:
+  #   friendly_name: Tempo Ritorno dal Lavoro
+  #   icon: mdi:home
+  #   show_last_changed: false
+
+  sensor.saldo_mining:
+    icon: mdi:image-filter-hdr
+
+  sensor.johnnyzetahassio_last_build_duration:
+    friendly_name: hassio Last Build Duration
+  sensor.johnnyzetahassio_last_build_state:
+    friendly_name: hassio State
+
+############ LUCI #############################################################
+
+  light.camera:
+    hidden: true
+  light.cucina:
+    hidden: true
+  light.disimpegno_2:
+    hidden: true
+  light.casa:
+    hidden: true
+  light.salotto:
+    hidden: true
+
+  light.gateway_light_7811dcb0727e:
+    friendly_name: Gateway
+
+############ SWITCHES #########################################################
+
+  switch.semola_schedule:
+    friendly_name: Programmazione Semola
+    icon: mdi:roomba
+  switch.nuvola:
+    # icon: mdi:radiator
+    icon: mdi:fan
+  switch.plug_158d000216919d:
+    friendly_name: Smart Plug Xiaomi
+  # switch.syncthing:
+  #   icon: mdi:sync
+  switch.hadockermon_addon_a0d7b954_grafana:
+    friendly_name: Grafana
+  switch.hadockermon_addon_a0d7b954_influxdb:
+    friendly_name: InfluxDB
+  switch.hadockermon_addon_a0d7b954_ssh:
+    friendly_name: SSH Addon
+  switch.hadockermon_addon_bb1b9f5e_dasshio:
+    friendly_name: Dasshio
+  switch.hadockermon_addon_core_configurator:
+    friendly_name: Configurator
+  switch.hadockermon_addon_core_letsencrypt:
+    friendly_name: Lets Encrypt
+  switch.hadockermon_addon_core_samba:
+    friendly_name: Samba
+  switch.hadockermon_addon_f16403dc_nodered:
+    friendly_name: Node-RED
+  switch.hadockermon_syncthing:
+    friendly_name: Syncthing
+  switch.hadockermon_watchtower:
+    friendly_name: Watchtower
+
+############ DEVICES ##########################################################
+
+  device_tracker.beacon_clio:
+    friendly_name: Renault Clio
+  device_tracker.beacon_swift:
+    friendly_name: Suzuki Swift
+  device_tracker.beacon_papera:
+    friendly_name: Papera
+
+############ ALTRO ############################################################
+
+  sun.sun:
+    friendly_name: Sole
+    hidden: true
+
+  camera.semola_cleaning_map:
+    friendly_name: Mappa Pulizie Semola
+
+  media_player.yamaha_receiver:
+    friendly_name: Yamaha
+
+  variable.ultimo_movimento:
+    friendly_name: Ultimo Movimento
+  variable.meteo:
+    friendly_name: Domani
+  variable.clio:
+    friendly_name: Renault Clio
+  variable.swift:
+    friendly_name: Suzuki Swift
+
+  switch.camera_recording:
+    icon: mdi:record-rec
+
+  group.all_automations:
+    friendly_name: Automazioni

@@ -1,0 +1,10 @@
+  corsa:
+    name: Corsa
+    icon: mdi:run
+    initial: off
+#
+  vacanza:
+    name: Vacanza
+    icon: mdi:beach
+    initial: off
+#

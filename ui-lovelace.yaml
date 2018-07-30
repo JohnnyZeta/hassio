@@ -1,0 +1,231 @@
+title: Casa
+# resources:
+#   - url: /local/custom-lovelace/tracker-card/tracker-card.js
+#     type: js
+views:
+###############################################################################
+  - title: Principale
+    id: principale
+    #theme: dark-mode
+    #icon: mdi:account-heart
+    badges:
+      - device_tracker.alby_iphone
+      - device_tracker.alessandra_iphone
+      - binary_sensor.clio
+      - binary_sensor.swift
+      - binary_sensor.papera
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Sensori
+            entities:
+              - sensor.fasilunari
+              - sensor.lavorocasa_ale
+              - sensor.lavorocasa_alby
+          - type: entities
+            entities:
+              - binary_sensor.motion_sensor_158d0001a8e47c
+              - binary_sensor.motion_sensor_158d0001a8fb6a
+              - binary_sensor.motion_sensor_158d0001a8fa9d
+              - binary_sensor.motion_sensor_158d0001dc2ed5
+              #- variable.ultimo_movimento
+          - type: entities
+            entities:
+              - binary_sensor.door_window_sensor_158d0001bf80f4
+              - binary_sensor.door_window_sensor_158d0001ab6dbe
+              - binary_sensor.door_window_sensor_158d0001e48bd5
+              - binary_sensor.door_window_sensor_158d0001ab2e3e
+              - binary_sensor.door_window_sensor_158d0001b97e2e
+              - binary_sensor.door_window_sensor_158d0001bf80d3
+              - binary_sensor.door_window_sensor_158d0001de8c1e
+              - binary_sensor.door_window_sensor_158d0001de6ed0
+              - binary_sensor.door_window_sensor_158d0001daeef7
+      - type: map
+        title: Famiglia
+        aspect_ratio: 100%
+        entities:
+          - entity: device_tracker.alby_iphone
+          - entity: device_tracker.alessandra_iphone
+          - zone.home
+      - type: entities
+        title: Alba in 5 minuti
+        show_header_toggle: false
+        entities:
+          - input_boolean.alarmweekon
+          - input_datetime.alba
+          - input_boolean.alarmweekday
+      - type: picture-glance
+        title: Semola
+        entities:
+          - vacuum.semola
+        camera_image: camera.semola_cleaning_map
+      - type: entities
+        title: Notifica Macchina
+        show_header_toggle: false
+        entities:
+          - input_select.scelta_vettura
+          - input_select.scelta_persona
+          - input_boolean.controllo
+      - type: entities
+        title: Ventilatore
+        show_header_toggle: false
+        entities:
+          - switch.nuvola
+          - input_datetime.durata_timer
+          - input_boolean.timer
+      - type: entities
+        title: Utilità
+        show_header_toggle: false
+        entities:
+          - input_boolean.corsa
+          - input_boolean.vacanza
+      - type: media-control
+        entity: media_player.yamaha_receiver
+###############################################################################
+  - title: Stanze
+    id: stanze
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: picture-glance
+            title: Cucina
+            entities:
+              - sensor.temperature_158d0001f561b7
+              - sensor.humidity_158d0001f561b7
+              - sensor.pressure_158d0001f561b7
+            camera_image: camera.cucina
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - switch.camera_recording
+              - light.cucina
+      - type: entities
+        title: Salotto
+        show_header_toggle: false
+        entities:
+          - scene.caldo
+          - scene.netflix
+          - entity: light.divano
+            secondary_info: last-changed
+          - entity: light.tv
+            secondary_info: last-changed
+          - entity: light.gateway_light_7811dcb0727e
+            secondary_info: last-changed
+          - sensor.illumination_7811dcb0727e
+      - type: entities
+        title: Disimpegno
+        show_header_toggle: false
+        entities:
+          - scene.entrata
+          - entity: light.disimpegno
+            secondary_info: last-changed
+      - type: picture-glance
+        title: Balcone
+        entities:
+          - sensor.temperature_158d0001b92644
+          - sensor.humidity_158d0001b92644
+          - sensor.pressure_158d0001b92644
+        state_image:
+          "on": /local/balcone.jpg
+          "off": /local/balcone.jpg
+        entity: light.cucina
+      - type: entities
+        title: Bagno
+        entities:
+          - binary_sensor.water_leak_sensor_158d000211a487
+      - type: entities
+        title: Camera
+        show_header_toggle: false
+        entities:
+          - scene.nanna
+          - entity: light.camera
+            secondary_info: last-changed
+          - entity: light.plafoniera
+            secondary_info: last-changed
+###############################################################################
+  - title: Meteo
+    id: meteo
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: iframe
+            url: https://embed.windy.com/embed2.html?lat=44.606&lon=7.383&zoom=6&level=surface&overlay=rain&menu=&message=true&marker=&calendar=true&type=map&location=coordinates&detail=&detailLat=45.050&detailLon=7.667&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1
+            aspect_ratio: 100%
+          - type: entities
+            entities:
+              - variable.meteo
+              - sensor.dark_sky_apparent_temperature
+              - sensor.dark_sky_cloud_coverage
+              - sensor.dark_sky_wind_speed
+              - sensor.dark_sky_cloud_coverage_1
+              - sensor.dark_sky_wind_speed_1
+###############################################################################
+  - title: Cofano
+    id: cofano
+    cards:
+      - type: entities
+        title: Automazioni
+        show_header_toggle: false
+        entities:
+          - group.all_automations
+      - type: entities
+        title: Speedtest
+        entities:
+          - sensor.speedtest_download
+          - sensor.speedtest_ping
+          - sensor.speedtest_upload
+      - type: entities
+        title: Criptovalute
+        entities:
+          - sensor.saldo_eth
+          - sensor.coinbase_eth_wallet
+          - sensor.coinbase_eur_wallet
+          - sensor.saldo_mining
+      - type: entities
+        title: Smart Plug
+        entities:
+          - sensor.tp_link_amps
+          - sensor.tp_link_watts
+          - sensor.tp_link_kw
+          - sensor.tp_link_kw_today
+          - sensor.tp_link_volts
+      - type: entities
+        title: Travis-CI
+        entities:
+          - sensor.johnnyzetahassio_last_build_state
+          - sensor.johnnyzetahassio_last_build_duration
+      # - type: entities
+      #   title: UPS
+      #   entities:
+      #     - sensor.nut_ups_status_data
+      #     - sensor.nut_ups_input_voltage
+      #     - sensor.nut_ups_load
+      #     - sensor.nut_ups_battery_runtime
+      #     - sensor.nut_ups_battery_charge
+      #     - sensor.nut_ups_nominal_real_power
+###############################################################################
+  - title: NUC
+    id: nuc
+    cards:
+      - type: entities
+        title: Sistema
+        entities:
+          - sensor.tempo_online
+          - sensor.disk_use_percent_home
+          - sensor.memory_free
+      - type: entities
+        title: Containers
+        show_header_toggle: false
+        entities:
+          - switch.hadockermon_addon_core_letsencrypt
+          - switch.hadockermon_addon_a0d7b954_ssh
+          - switch.hadockermon_addon_a0d7b954_grafana
+          - switch.hadockermon_addon_a0d7b954_influxdb
+          - switch.hadockermon_addon_bb1b9f5e_dasshio
+          - switch.hadockermon_addon_core_configurator
+          - switch.hadockermon_addon_core_samba
+          - switch.hadockermon_addon_f16403dc_nodered
+          - switch.hadockermon_syncthing
+          - switch.hadockermon_watchtower
+###############################################################################
