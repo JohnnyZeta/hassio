@@ -59,42 +59,42 @@
           {% endif %}
         friendly_name: "Telecomando Hue Tap"
       fasilunari:
-        entity_id: sensor.moon
+        #entity_id: sensor.moon
         friendly_name: "Luna"
         icon_template: >
-          {% if is_state('sensor.moon', 'New moon') %}
+          {% if is_state('sensor.moon', 'new_moon') %}
             mdi:circle-outline
-          {% elif is_state('sensor.moon', 'Waxing crescent') %}
+          {% elif is_state('sensor.moon', 'waxing_crescent') %}
             mdi:arrow-up-bold
-          {% elif is_state('sensor.moon', 'First quarter') %}
+          {% elif is_state('sensor.moon', 'first_quarter') %}
             mdi:arrow-up-bold
-          {% elif is_state('sensor.moon', 'Waxing gibbous') %}
+          {% elif is_state('sensor.moon', 'waxing_gibbous') %}
             mdi:arrow-up-bold
-          {% elif is_state('sensor.moon', 'Full moon') %}
+          {% elif is_state('sensor.moon', 'full_moon') %}
             mdi:brightness-1
-          {% elif is_state('sensor.moon', 'Waning gibbous') %}
+          {% elif is_state('sensor.moon', 'waning_gibbous') %}
             mdi:arrow-down-bold
-          {% elif is_state('sensor.moon', 'Last quarter') %}
+          {% elif is_state('sensor.moon', 'last_quarter') %}
             mdi:arrow-down-bold
-          {% elif is_state('sensor.moon', 'Waning crescent') %}
+          {% elif is_state('sensor.moon', 'waning_crescent') %}
             mdi:arrow-down-bold
           {% endif %}
         value_template: >
-          {% if is_state('sensor.moon', 'New moon') %}
+          {% if is_state('sensor.moon', 'new_moon') %}
             Luna Nuova
-          {% elif is_state('sensor.moon', 'Waxing crescent') %}
+          {% elif is_state('sensor.moon', 'waxing_crescent') %}
             Luna Crescente
-          {% elif is_state('sensor.moon', 'First quarter') %}
+          {% elif is_state('sensor.moon', 'first_quarter') %}
             Primo Quarto
-          {% elif is_state('sensor.moon', 'Waxing gibbous') %}
+          {% elif is_state('sensor.moon', 'waxing_gibbous') %}
             Gibbosa Crescente
-          {% elif is_state('sensor.moon', 'Full moon') %}
+          {% elif is_state('sensor.moon', 'full_moon') %}
             Luna Piena
-          {% elif is_state('sensor.moon', 'Waning gibbous') %}
+          {% elif is_state('sensor.moon', 'waning_gibbous') %}
             Gibbosa Calante
-          {% elif is_state('sensor.moon', 'Last quarter') %}
+          {% elif is_state('sensor.moon', 'last_quarter') %}
             Ultimo Quarto
-          {% elif is_state('sensor.moon', 'Waning crescent') %}
+          {% elif is_state('sensor.moon', 'waning_crescent') %}
             Luna Calante
           {% endif %}
 ###############################################################################

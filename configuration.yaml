@@ -133,7 +133,7 @@ hue:
 light:
   - platform: yeelight
     devices:
-      192.168.2.11:
+      192.168.2.14:
         name: Plafoniera
 
 panel_iframe:

@@ -24,7 +24,7 @@
   #   is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
 ###############################################################################
   - platform: hadockermon
-    host: 192.168.2.51
+    host: 192.168.2.4
     port: 8126
     stats: true
     prefix: hadockermon

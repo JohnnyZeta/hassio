@@ -1,5 +1,5 @@
 
-  spegni_nanna: curl --request PUT --data "{\"on\":false, \"transitiontime\":1800}" http://192.168.2.5/api/Qj7BbZ1NCDya9KjT601jFRFODH-9G1CGaMWbo5Lj/lights/6/state > /dev/null &
+  spegni_nanna: curl --request PUT --data "{\"on\":false, \"transitiontime\":1800}" http://192.168.2.11/api/Qj7BbZ1NCDya9KjT601jFRFODH-9G1CGaMWbo5Lj/lights/6/state > /dev/null &
   riga_ritorno: /bin/bash -c "echo '{{ now().strftime("%A %d-%m-%Y %H:%M") }}' >> /config/www/ritorno.txt"
   riga_allarme: /bin/bash -c "echo '{{ now().strftime("%A %d-%m-%Y %H:%M:%S") }}' >> /config/www/allarme.txt"
   # backup_script: /bin/bash -c "find /backup/*.tar -mtime +15 -exec rm {} \;"

@@ -172,6 +172,10 @@
     friendly_name: Syncthing
   switch.hadockermon_watchtower:
     friendly_name: Watchtower
+  switch.hadockermon_transmissionopenvpnproxy:
+    friendly_name: Transmission-OpenVPN
+  switch.hadockermon_cadvisor:
+    friendly_name: cAdvisor
 
 ############ DEVICES ##########################################################
 

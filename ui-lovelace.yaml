@@ -21,6 +21,7 @@ views:
             title: Sensori
             entities:
               - sensor.fasilunari
+              - sensor.moon
               - sensor.lavorocasa_ale
               - sensor.lavorocasa_alby
           - type: entities
@@ -220,6 +221,8 @@ views:
         entities:
           - switch.hadockermon_addon_core_letsencrypt
           - switch.hadockermon_addon_a0d7b954_ssh
+          - switch.hadockermon_transmissionopenvpnproxy
+          - switch.hadockermon_cadvisor
           - switch.hadockermon_addon_a0d7b954_grafana
           - switch.hadockermon_addon_a0d7b954_influxdb
           - switch.hadockermon_addon_bb1b9f5e_dasshio
