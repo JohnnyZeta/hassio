@@ -21,7 +21,6 @@ views:
             title: Sensori
             entities:
               - sensor.fasilunari
-              - sensor.moon
               - sensor.lavorocasa_ale
               - sensor.lavorocasa_alby
           - type: entities
