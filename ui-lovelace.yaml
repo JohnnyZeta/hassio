@@ -219,7 +219,6 @@ views:
         show_header_toggle: false
         entities:
           - switch.hadockermon_addon_core_letsencrypt
-          - switch.hadockermon_addon_a0d7b954_ssh
           - switch.hadockermon_transmissionopenvpnproxy
           - switch.hadockermon_cadvisor
           - switch.hadockermon_addon_a0d7b954_grafana
