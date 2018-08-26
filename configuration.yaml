@@ -133,7 +133,7 @@ hue:
 light:
   - platform: yeelight
     devices:
-      192.168.3.14:
+      192.168.2.14:
         name: Plafoniera
 
 panel_iframe:
@@ -157,9 +157,9 @@ panel_iframe:
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
-    - mac: !secret aqara_hub_mac
-      key: !secret xiaomi_key
+    - key: !secret xiaomi_key
       host: !secret aqara_hub_ip
+      mac: !secret aqara_hub_mac
 
 media_player:
   - platform: yamaha

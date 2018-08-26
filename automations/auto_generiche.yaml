@@ -235,6 +235,15 @@
       - condition: time
         after: '08:30:00'
         before: '23:30:00'
+      # Solo una volta ogni 3 ore
+      - condition: template
+        value_template: >
+          {% if states.automation.cambio_aria.last_triggered is not none %}
+            {% if as_timestamp(now()) | int - as_timestamp(states.automation.cambio_aria.attributes.last_triggered) | int > 10800 %} true {% else %} false
+            {% endif %}
+          {% else %}
+          false
+          {% endif %}
     action:
       - service: notify.ios_iphone_di_alby
         data_template:
