@@ -98,7 +98,7 @@ views:
           - type: entities
             show_header_toggle: false
             entities:
-              - switch.camera_recording
+              # - switch.camera_recording
               - light.cucina
       - type: entities
         title: Salotto
@@ -190,11 +190,11 @@ views:
           - sensor.tp_link_kw
           - sensor.tp_link_kw_today
           - sensor.tp_link_volts
-      - type: entities
-        title: Travis-CI
-        entities:
-          - sensor.johnnyzetahassio_last_build_state
-          - sensor.johnnyzetahassio_last_build_duration
+      # - type: entities
+      #   title: Travis-CI
+      #   entities:
+      #     - sensor.johnnyzetahassio_last_build_state
+      #     - sensor.johnnyzetahassio_last_build_duration
       # - type: entities
       #   title: UPS
       #   entities:
@@ -215,6 +215,12 @@ views:
           - sensor.disk_use_percent_home
           - sensor.memory_free
       - type: entities
+        title: Elementi Critici
+        entities:
+          - sensor.hue_online
+          - sensor.synology_online
+          - sensor.ap_online
+      - type: entities
         title: Containers
         show_header_toggle: false
         entities:
@@ -223,7 +229,7 @@ views:
           - switch.hadockermon_cadvisor
           - switch.hadockermon_addon_a0d7b954_grafana
           - switch.hadockermon_addon_a0d7b954_influxdb
-          - switch.hadockermon_addon_bb1b9f5e_dasshio
+          - switch.hadockermon_addon_03d23610_dasshio
           - switch.hadockermon_addon_core_configurator
           - switch.hadockermon_addon_core_samba
           - switch.hadockermon_addon_f16403dc_nodered

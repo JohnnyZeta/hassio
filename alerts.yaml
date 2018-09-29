@@ -1,0 +1,37 @@
+
+  synology_offline:
+    name: 'Il NAS Synology non è raggiungibile!'
+    entity_id: sensor.synology_online
+    state: Offline
+    repeat: 15
+    can_acknowledge: True
+    skip_first: True
+    notifiers:
+      - ios_iphone_di_alby
+  hue_offline:
+    name: 'Il Bridge Philips Hue non è raggiungibile!'
+    entity_id: sensor.hue_online
+    state: Offline
+    repeat: 15
+    can_acknowledge: True
+    skip_first: True
+    notifiers:
+      - ios_iphone_di_alby
+  ap_offline:
+    name: 'AP Unifi non raggiungibile!'
+    entity_id: sensor.ap_online
+    state: Offline
+    repeat: 15
+    can_acknowledge: True
+    skip_first: True
+    notifiers:
+      - ios_iphone_di_alby
+  acqua_lavatrice:
+    name: 'Rilevata acqua sotto la lavatrice!!!'
+    entity_id: binary_sensor.water_leak_sensor_158d000211a487
+    state: on
+    repeat: 10
+    can_acknowledge: True
+    skip_first: false
+    notifiers:
+      - telefoni

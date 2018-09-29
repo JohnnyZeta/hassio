@@ -26,6 +26,7 @@ sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
 input_boolean: !include input_booleans.yaml
 homekit: !include homekit.yaml
+alert: !include alerts.yaml
 
 # Custom Component https://github.com/rogro82/hass-variables
 variable: !include variables.yaml
@@ -50,6 +51,12 @@ http:
   ssl_key: !secret ssl_key
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: !secret base_url
+  trusted_networks:
+    - 127.0.0.1
+    - 192.168.2.0/24
+    - 192.168.3.0/24
+    - 172.17.0.0/16 # Example Docker bridge
+    - 172.30.32.0/23 # Example Docker hassio
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -181,6 +188,15 @@ ifttt:
 device_tracker:
   - platform: owntracks
     max_gps_accuracy: 100
+  - platform: unifi_direct
+    host: !secret unifi_ap_ip
+    username: !secret unifi_ap_username
+    password: !secret unifi_ap_password
+  - platform: ping
+    hosts:
+      hue: !secret hue_bridge_ip
+      ap: !secret unifi_ap_ip
+      synology: !secret synology_ip
 
 mqtt:
   broker: m23.cloudmqtt.com

@@ -1,18 +1,18 @@
 
-  - alias: Notifica aggiornamento
-    trigger:
-    - platform: state
-      entity_id: updater.updater
-    action:
-      - service: notify.ios_iphone_di_alby
-        data_template:
-          message: 'È disponibile Home Assistant {{ states.updater.updater.state }}.'
-      - service: persistent_notification.create
-        data_template:
-          notification_id: update_ha
-          title: Aggiornamento
-          message: >
-            È disponibile Home Assistant {{ states.updater.updater.state }}.
+  # - alias: Notifica aggiornamento
+  #   trigger:
+  #   - platform: state
+  #     entity_id: updater.updater
+  #   action:
+  #     - service: notify.ios_iphone_di_alby
+  #       data_template:
+  #         message: 'È disponibile Home Assistant {{ states.updater.updater.state }}.'
+  #     - service: persistent_notification.create
+  #       data_template:
+  #         notification_id: update_ha
+  #         title: Aggiornamento
+  #         message: >
+  #           È disponibile Home Assistant {{ states.updater.updater.state }}.
 
 ###############################################################################
 
@@ -24,7 +24,7 @@
       - condition: time
         weekday:
           - mon
-          - thu
+          #- thu
     action:
       - service: hassio.snapshot_full
         data_template:
@@ -165,7 +165,7 @@
           color_name: red
           brightness_pct: 100
       #- wait_template: '{{ (states.sensor.nut_ups_status_data.state | truncate(2,false,'',0)) == 'OL' }}'
-      - wait_template: "{{ is_state('sensor.nut_ups_status_data', 'OL CHRG') }}"
+      - wait_template: "{{ is_state('sensor.nut_ups_status_data', 'OL CHRG') or ((states.sensor.nut_ups_status_data.state | truncate(3,false,'',0)) == 'FSD' ) }}"
       - service: persistent_notification.create
         data_template:
           notification_id: blackout{{ now().strftime('D%dH%H%S') }}
@@ -211,43 +211,46 @@
 
 ###############################################################################
 
-  - alias: Perdita Acqua
+  - alias: Gestisci Automazioni Hue
     trigger:
-      platform: state
-      entity_id: binary_sensor.water_leak_sensor_158d000211a487
-      to: 'on'
+      - platform: state
+        entity_id: sensor.hue_online
     action:
-      - service: notify.telefoni
+      - service_template: >
+          {% if is_state("sensor.hue_online", "Online") %}
+            automation.turn_on
+          {% else %}
+            automation.turn_off
+          {% endif %}
         data:
-          title: "Allarma Perdita"
-          message: "Rilevata una perdita di acqua in bagno!!!"
+          entity_id: group.automazioni_hue
 
 ###############################################################################
 
-  - alias: Cambio Aria
-    trigger:
-      platform: template
-      value_template: "{{ (states.sensor.temperature_158d0001f561b7.state | round(0)) == (states.sensor.temperature_158d0001b92644.state | round(0)) }}"
-    condition:
-      - condition: state
-        entity_id: group.famiglia
-        state: home
-      - condition: time
-        after: '08:30:00'
-        before: '23:30:00'
-      # Solo una volta ogni 3 ore
-      - condition: template
-        value_template: >
-          {% if states.automation.cambio_aria.last_triggered is not none %}
-            {% if as_timestamp(now()) | int - as_timestamp(states.automation.cambio_aria.attributes.last_triggered) | int > 10800 %} true {% else %} false
-            {% endif %}
-          {% else %}
-          false
-          {% endif %}
-    action:
-      - service: notify.ios_iphone_di_alby
-        data_template:
-          title: "Finestre"
-          message: "Temperatura interna uguale a quella esterna"
+  # - alias: Cambio Aria
+  #   trigger:
+  #     platform: template
+  #     value_template: "{{ (states.sensor.temperature_158d0001f561b7.state | round(0)) == (states.sensor.temperature_158d0001b92644.state | round(0)) }}"
+  #   condition:
+  #     - condition: state
+  #       entity_id: group.famiglia
+  #       state: home
+  #     - condition: time
+  #       after: '08:30:00'
+  #       before: '23:30:00'
+  #     # Solo una volta ogni 3 ore
+  #     - condition: template
+  #       value_template: >
+  #         {% if states.automation.cambio_aria.last_triggered is not none %}
+  #           {% if as_timestamp(now()) | int - as_timestamp(states.automation.cambio_aria.attributes.last_triggered) | int > 10800 %} true {% else %} false
+  #           {% endif %}
+  #         {% else %}
+  #         false
+  #         {% endif %}
+  #   action:
+  #     - service: notify.ios_iphone_di_alby
+  #       data_template:
+  #         title: "Finestre"
+  #         message: "Temperatura interna uguale a quella esterna"
 
 ###############################################################################

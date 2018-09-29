@@ -97,6 +97,40 @@
           {% elif is_state('sensor.moon', 'waning_crescent') %}
             Luna Calante
           {% endif %}
+      # Basato su https://philhawthorne.com/using-home-assistant-device-trackers-to-watch-the-critical-components-of-your-smart-home/
+      hue_online:
+        value_template: "{% if states.device_tracker.hue %}
+          {% if is_state('device_tracker.hue', 'home') %}
+            Online
+          {% else %}
+            Offline
+          {% endif %}
+          {% else %}
+            Sconosciuto
+          {% endif %}"
+        friendly_name: 'Hue Bridge'
+      synology_online:
+        value_template: "{% if states.device_tracker.synology %}
+          {% if is_state('device_tracker.synology', 'home') %}
+            Online
+          {% else %}
+            Offline
+          {% endif %}
+          {% else %}
+            Sconosciuto
+          {% endif %}"
+        friendly_name: 'Synology NAS'
+      ap_online:
+        value_template: "{% if states.device_tracker.ap %}
+          {% if is_state('device_tracker.ap', 'home') %}
+            Online
+          {% else %}
+            Offline
+          {% endif %}
+          {% else %}
+            Sconosciuto
+          {% endif %}"
+        friendly_name: 'Unifi AP'
 ###############################################################################
   - platform: systemmonitor
     resources:
@@ -158,8 +192,8 @@
   #   value_template: '{{ value_json.state.lastupdated }}'
   #   scan_interval: 1
 ###############################################################################
-  - platform: travisci
-    api_key: !secret github_api_key
+  # - platform: travisci
+  #   api_key: !secret github_api_key
 ###############################################################################
   - platform: nut
     host: !secret synology_ip

@@ -1,20 +1,20 @@
   - platform: tplink
     host: !secret tplink_switch_ip
 ###############################################################################
-  - platform: command_line
-    switches:
-      camera_recording:
-        # Basato sul lavoro di fanaticDavid https://community.home-assistant.io/t/synology-surveillance-station-ip-camera/3552/62
-        command_on: 'python3 /config/www/synologycamera.py 1 start'
-        command_off: 'python3 /config/www/synologycamera.py 1 stop'
-        command_state: 'python3 /config/www/synologycamera.py 1 status'
-        value_template: >
-          {% if value_json is defined %}
-            {{ value_json.data.cameras[0].recStatus == 6 }}
-          {% else %}
-            {{ states.switch.camera_recording.state == 'on' }}
-          {% endif %}
-        friendly_name: Camera Cucina
+  # - platform: command_line
+  #   switches:
+  #     camera_recording:
+  #       # Basato sul lavoro di fanaticDavid https://community.home-assistant.io/t/synology-surveillance-station-ip-camera/3552/62
+  #       command_on: 'python3 /config/www/synologycamera.py 1 start'
+  #       command_off: 'python3 /config/www/synologycamera.py 1 stop'
+  #       command_state: 'python3 /config/www/synologycamera.py 1 status'
+  #       value_template: >
+  #         {% if value_json is defined %}
+  #           {{ value_json.data.cameras[0].recStatus == 6 }}
+  #         {% else %}
+  #           {{ states.switch.camera_recording.state == 'on' }}
+  #         {% endif %}
+  #       friendly_name: Camera Cucina
 ###############################################################################
   # - platform: rest
   #   resource: http://192.168.2.51:8126/container/syncthing

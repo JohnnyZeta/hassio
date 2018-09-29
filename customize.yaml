@@ -124,6 +124,14 @@
   sensor.johnnyzetahassio_last_build_state:
     friendly_name: hassio State
 
+# COMPONENTI CRITICI
+  sensor.hue_online:
+    icon: mdi:remote
+  sensor.synology_online:
+    icon: mdi:nas
+  sensor.ap_online:
+    icon: mdi:access-point
+
 ############ LUCI #############################################################
 
   light.camera:
@@ -158,7 +166,7 @@
     friendly_name: InfluxDB
   switch.hadockermon_addon_a0d7b954_ssh:
     friendly_name: SSH Addon
-  switch.hadockermon_addon_bb1b9f5e_dasshio:
+  switch.hadockermon_addon_03d23610_dasshio:
     friendly_name: Dasshio
   switch.hadockermon_addon_core_configurator:
     friendly_name: Configurator
