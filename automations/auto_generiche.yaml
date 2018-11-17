@@ -29,6 +29,14 @@
       - service: hassio.snapshot_full
         data_template:
           name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
+      - service: hassio.addon_stdin
+        data:
+          addon: 7be23ff5_dropbox_sync
+          input:
+            command: upload
+      - service: shell_command.log
+        data:
+          text: 'Eseguito backup programmato'
 
 ###############################################################################
 
@@ -36,8 +44,8 @@
     trigger:
       platform: state
       entity_id: vacuum.semola
-      from: 'on'
-      to: 'off'
+      from: 'cleaning'
+      to: 'docked'
     condition:
 #      - condition: template
 #        value_template: '{{ not is_state("switch.semola_schedule", "off") }}'
@@ -62,6 +70,10 @@
             push:
               category: camera
             entity_id: camera.semola_cleaning_map
+      - service: shell_command.log
+        data_template:
+          text: >
+            Semola ha finito, ha appena pulito {{ states.vacuum.semola.attributes.clean_area }} mq e adesso ha il {{ states.vacuum.semola.attributes.battery_level }}% di batteria.
 
 ###############################################################################
 
@@ -75,7 +87,10 @@
         - mon
         - thu
     action:
-      - service: vacuum.turn_on
+      - service: vacuum.start
+      - service: shell_command.log
+        data:
+          text: 'Semola è partito!'
 
 ###############################################################################
 
@@ -172,6 +187,10 @@
           title: Blackout
           message: >
             Registrato Blackout dalle ore {{ as_timestamp(states.automation.blackout.attributes.last_triggered) | timestamp_custom('%H:%M', false ) }} alle ore {{ now().strftime('%H:%M') }} di {{ now().strftime('%A %d %B %Y') }}. Il Blackout è durato {{ (as_timestamp(now()) | int - as_timestamp(states.automation.blackout.attributes.last_triggered))/60 | round(0) }} minuti.
+      - service: shell_command.log
+        data_template:
+          text: >
+            Blackout dalle ore {{ as_timestamp(states.automation.blackout.attributes.last_triggered) | timestamp_custom('%H:%M', false ) }} alle ore {{ now().strftime('%H:%M') }} di {{ now().strftime('%A %d %B %Y') }}. Il Blackout è durato {{ (as_timestamp(now()) | int - as_timestamp(states.automation.blackout.attributes.last_triggered))/60 | round(0) }} minuti.
       - delay: "00:01:00"
       - service: light.turn_off
       - service: notify.ios_iphone_di_alby

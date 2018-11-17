@@ -17,13 +17,19 @@
             {% if is_state("input_boolean.corsa", "on") %} Alby è uscito a correre.
             {% else %} Alby è rientrato dalla corsa.
             {% endif %}
-      - service: device_tracker.see
+      - service: shell_command.log
         data_template:
-          dev_id: alby_iphone
-          location_name: >
-            {% if is_state("input_boolean.corsa", "on") %} not_home
-            {% else %} home
+          text: >
+            {% if is_state("input_boolean.corsa", "on") %} Alby è uscito a correre.
+            {% else %} Alby è rientrato dalla corsa.
             {% endif %}
+      # - service: device_tracker.see
+      #   data_template:
+      #     dev_id: alby_iphone
+      #     location_name: >
+      #       {% if is_state("input_boolean.corsa", "on") %} not_home
+      #       {% else %} home
+      #       {% endif %}
 
 # # 1 CLICK
 #   - alias: Luce_Garage

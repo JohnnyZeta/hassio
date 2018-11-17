@@ -32,5 +32,9 @@
           title: Avviso Container
           message: >
             Il container Docker {{ trigger.to_state.name }} non è in esecuzione.
+      - service: shell_command.log
+        data_template:
+          text: >
+            Il container Docker {{ trigger.to_state.name }} non è in esecuzione.
 
 ###############################################################################

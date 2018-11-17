@@ -1,10 +1,14 @@
 
   - alias: Arrivo a Casa
     trigger:
-      platform: state
-      entity_id: group.famiglia
-      from: 'not_home'
-      to: 'home'
+      - platform: state
+        entity_id: group.famiglia
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: input_boolean.corsa
+        from: 'on'
+        to: 'off'
     # condition:
     #   - condition: time
     #     after: '13:00:00'
@@ -12,8 +16,12 @@
     #     entity_id: light.cucina_2
     #     state: 'off'
     action:
-      service: scene.turn_on
-      entity_id: scene.entrata
+      - service: scene.turn_on
+        data:
+          entity_id: scene.entrata
+      - service: shell_command.log
+        data:
+          text: 'Arrivo a Casa'
 
 ###############################################################################
 

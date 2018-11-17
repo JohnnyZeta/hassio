@@ -33,6 +33,9 @@
     action:
       - service: scene.turn_on
         entity_id: scene.nanna
+      - service: shell_command.log
+        data:
+          text: 'Attivata scena Nanna'
       - service: light.turn_off
         data:
           entity_id: light.plafoniera
@@ -63,6 +66,9 @@
           entity_id: light.camera
           brightness: 103
           rgb_color: [255, 240, 197]
+      - service: shell_command.log
+        data:
+          text: 'Attivata luce tenue in camera'
       - service: light.turn_off
         data:
           entity_id: light.plafoniera
@@ -89,6 +95,9 @@
         data:
           entity_id: light.plafoniera
       - service: shell_command.spegni_nanna
+      - service: shell_command.log
+        data:
+          text: 'Fade-out scena Nanna'
       # - delay: 00:03:00
       # - service: switch.turn_off
       #   entity_id: switch.nuvola

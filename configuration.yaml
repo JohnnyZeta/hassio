@@ -47,16 +47,18 @@ config:
 http:
   # Secrets are defined in the file secrets.yaml
   api_password: !secret http_password
-  ssl_certificate: !secret ssl_certificate
-  ssl_key: !secret ssl_key
+  #ssl_certificate: !secret ssl_certificate
+  #ssl_key: !secret ssl_key
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  base_url: !secret base_url
+  #base_url: !secret base_url
   trusted_networks:
     - 127.0.0.1
     - 192.168.2.0/24
     - 192.168.3.0/24
     - 172.17.0.0/16 # Example Docker bridge
     - 172.30.32.0/23 # Example Docker hassio
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -117,7 +119,7 @@ tts:
     language: 'it'
 
 # Cloud
-cloud:
+#cloud:
 
 #iPhones
 ios:
@@ -192,15 +194,22 @@ device_tracker:
     host: !secret unifi_ap_ip
     username: !secret unifi_ap_username
     password: !secret unifi_ap_password
-  - platform: ping
-    hosts:
-      hue: !secret hue_bridge_ip
-      ap: !secret unifi_ap_ip
-      synology: !secret synology_ip
+  # - platform: ping
+  #   hosts:
+  #     hue: !secret hue_bridge_ip
+  #     ap: !secret unifi_ap_ip
+  #     synology: !secret synology_ip
+  # - platform: nmap_tracker
+  #   home_interval: 10
+  #   hosts:
+  #     - !secret hue_bridge_ip
+  #     - !secret unifi_ap_ip
+  #     - !secret synology_ip
 
 mqtt:
-  broker: m23.cloudmqtt.com
-  port: 22279
+  broker: !secret hassio_interno_ip
+  # broker: m23.cloudmqtt.com
+  # port: 12279 #22279
   username: !secret mqtt_username
   password: !secret mqtt_password
 

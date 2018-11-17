@@ -83,11 +83,15 @@
         entity_id: device_tracker.alessandra_iphone
         zone: zone.lavoro
     action:
-      service: notify.ios_iphone_di_alessandra
-      data_template:
-        title: "Probabile Coda!"
-        message: >
-          Tempo di ritorno previsto in {{ states.sensor.lavorocasa_ale.state }} minuti.
+      - service: notify.ios_iphone_di_alessandra
+        data_template:
+          title: "Probabile Coda!"
+          message: >
+            Tempo di ritorno previsto in {{ states.sensor.lavorocasa_ale.state }} minuti.
+      - service: shell_command.log
+        data_template:
+          text: >
+            Tempo di ritorno dal lavoro di Ale previsto in {{ states.sensor.lavorocasa_ale.state }} minuti.
 
 ###############################################################################
 
@@ -112,11 +116,15 @@
         entity_id: device_tracker.alby_iphone
         zone: zone.ufficio
     action:
-      service: notify.ios_iphone_di_alby
-      data_template:
-        title: "Probabile Coda!"
-        message: >
-          Tempo di ritorno previsto in {{ states.sensor.lavorocasa_alby.state }} minuti.
+      - service: notify.ios_iphone_di_alby
+        data_template:
+          title: "Probabile Coda!"
+          message: >
+            Tempo di ritorno previsto in {{ states.sensor.lavorocasa_alby.state }} minuti.
+      - service: shell_command.log
+        data_template:
+          text: >
+            Tempo di ritorno dal lavoro di Alby previsto in {{ states.sensor.lavorocasa_ale.state }} minuti.
 
 ############ SWIFT ############################################################
 

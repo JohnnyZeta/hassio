@@ -8,31 +8,38 @@
   - platform: template
     sensors:
       tp_link_amps:
+        entity_id: switch.nuvola
         value_template: "{{ states.switch.nuvola.attributes.current_a }}"
         friendly_name: "Consumo attuale"
         unit_of_measurement: 'A'
       tp_link_watts:
+        entity_id: switch.nuvola
         value_template: "{{ states.switch.nuvola.attributes.current_power_w }}"
         unit_of_measurement: 'W'
         friendly_name: "Potenza attuale"
       tp_link_kw:
+        entity_id: switch.nuvola
         value_template: "{{ states.switch.nuvola.attributes.total_energy_kwh }}"
         unit_of_measurement: 'kW'
         friendly_name: "Consumo totale"
       tp_link_kw_today:
+        entity_id: switch.nuvola
         value_template: "{{ states.switch.nuvola.attributes.today_energy_kwh }}"
         unit_of_measurement: 'kW'
         friendly_name: "Consumo giornaliero"
       tp_link_volts:
+        entity_id: switch.nuvola
         value_template: "{{ states.switch.nuvola.attributes.voltage }}"
         unit_of_measurement: 'V'
         friendly_name: "Voltaggio"
       saldo_eth:
+        entity_id: switch.nuvola
         friendly_name: "Valore ETH"
         icon_template: mdi:coin
         value_template: '{{ states.sensor.coinbase_eth_wallet.attributes["Balance in native currency"] | replace(" EUR", "") }}'
         unit_of_measurement: 'EUR'
       tap_remote:
+        entity_id: sensor.tap_button
         value_template: >
           {% if is_state('sensor.tap_button', '34') %}
             1
@@ -59,7 +66,7 @@
           {% endif %}
         friendly_name: "Telecomando Hue Tap"
       fasilunari:
-        #entity_id: sensor.moon
+        entity_id: sensor.moon
         friendly_name: "Luna"
         icon_template: >
           {% if is_state('sensor.moon', 'new_moon') %}
@@ -97,40 +104,28 @@
           {% elif is_state('sensor.moon', 'waning_crescent') %}
             Luna Calante
           {% endif %}
-      # Basato su https://philhawthorne.com/using-home-assistant-device-trackers-to-watch-the-critical-components-of-your-smart-home/
-      hue_online:
-        value_template: "{% if states.device_tracker.hue %}
-          {% if is_state('device_tracker.hue', 'home') %}
-            Online
-          {% else %}
-            Offline
-          {% endif %}
-          {% else %}
-            Sconosciuto
-          {% endif %}"
-        friendly_name: 'Hue Bridge'
-      synology_online:
-        value_template: "{% if states.device_tracker.synology %}
-          {% if is_state('device_tracker.synology', 'home') %}
-            Online
-          {% else %}
-            Offline
-          {% endif %}
-          {% else %}
-            Sconosciuto
-          {% endif %}"
-        friendly_name: 'Synology NAS'
-      ap_online:
-        value_template: "{% if states.device_tracker.ap %}
-          {% if is_state('device_tracker.ap', 'home') %}
-            Online
-          {% else %}
-            Offline
-          {% endif %}
-          {% else %}
-            Sconosciuto
-          {% endif %}"
-        friendly_name: 'Unifi AP'
+# #      Basato su https://philhawthorne.com/using-home-assistant-device-trackers-to-watch-the-critical-components-of-your-smart-home/
+#       hue_online:
+#         value_template: "{% if is_state('device_tracker.001788106774', 'home') %}
+#             Online
+#           {% else %}
+#             Offline
+#           {% endif %}"
+#         friendly_name: 'Hue Bridge'
+#       synology_online:
+#         value_template: "{% if is_state('device_tracker.001132428224', 'home') %}
+#             Online
+#           {% else %}
+#             Offline
+#           {% endif %}"
+#         friendly_name: 'Synology NAS'
+#       ap_online:
+#         value_template: "{% if is_state('device_tracker.fcecda1c6ac7', 'home') %}
+#             Online
+#           {% else %}
+#             Offline
+#           {% endif %}"
+#         friendly_name: 'Unifi AP'
 ###############################################################################
   - platform: systemmonitor
     resources:
@@ -212,4 +207,7 @@
   #   name: "DownloadTemperatureGrafana"
   #   command: "curl -s -H 'Authorization: Bearer eyJrIjoiUHJjTkNNeFE3djJOVDFycE82TjU3TXVueDJTckUwTEgiLCJuIjoiSEEiLCJpZCI6MX0=' 'http://192.168.2.30:3000/render/dashboard-solo/db/home-assistant?orgId=1&panelId=1&theme=light&width=1500&height=500&tz=UTC%2B02%3A00' > /config/www/temperature.png"
   #   scan_interval: 300
+###############################################################################
+  - platform: pi_hole
+    host: !secret pi_hole_host
 ###############################################################################
