@@ -55,7 +55,7 @@
         xy_color: [0.432, 0.402]
       light.gateway_light_7811dcb0727e:
         state: off
-      light.camera_2:
+      light.camera:
         state: off
       light.plafoniera:
         state: off

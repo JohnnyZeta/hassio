@@ -16,6 +16,14 @@
             {% if (states.light.tv.state == "off") or (state_attr("light.tv", "brightness") > 250) or (states.light.tv.state == "unavailable") %} scene.netflix
             {% else %} scene.tvoff
             {% endif %}
+      - service_template: >
+          {% if (states.light.tv.state == "off") or (state_attr("light.tv", "brightness") > 250) or (states.light.tv.state == "unavailable") %}
+            switch.turn_on
+          {% else %}
+            switch.turn_off
+          {% endif %}
+        data:
+          entity_id: switch.natalino
 
 # 2 CLICK
   - alias: Pulsante_Prova

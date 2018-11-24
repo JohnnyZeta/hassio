@@ -15,10 +15,13 @@
           entity_id: binary_sensor.switch_158d00021016af
           click_type: hold
     condition:
-      condition: or
+      condition: and
       conditions:
         - condition: state
           entity_id: light.plafoniera
+          state: 'off'
+        - condition: state
+          entity_id: light.camera
           state: 'off'
         # - condition: template
         #   value_template: '{{ states.light.plafoniera.attributes.brightness < 3 }}'
@@ -55,6 +58,32 @@
       data:
         entity_id: light.plafoniera
 
+  - alias: Pulsante_Strip_Camera_OFF
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d00021016af
+          click_type: single
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d00021016af
+          click_type: hold
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: light.plafoniera
+          state: 'off'
+        - condition: state
+          entity_id: light.camera
+          state: 'on'
+    action:
+      service: light.turn_off
+      data:
+        entity_id: light.camera
+
 # 2 CLICK
   - alias: Pulsante_Plafoniera_Camera_max
     trigger:
@@ -76,7 +105,7 @@
           #   {% endif %}
       - service: light.turn_on
         data:
-          entity_id: light.camera_2
+          entity_id: light.camera
           brightness: 254
           xy_color: [0.438, 0.404]
 

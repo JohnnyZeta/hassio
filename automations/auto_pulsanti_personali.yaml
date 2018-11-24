@@ -39,6 +39,9 @@
       - service: light.turn_off
         data:
           entity_id: light.plafoniera
+      - service: switch.turn_off
+        data:
+          entity_id: switch.natalino
 
   - alias: Annulla Pulsante Nanna
     trigger:
@@ -98,6 +101,9 @@
       - service: shell_command.log
         data:
           text: 'Fade-out scena Nanna'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.natalino
       # - delay: 00:03:00
       # - service: switch.turn_off
       #   entity_id: switch.nuvola
@@ -118,7 +124,7 @@
     action:
       - service: light.turn_on
         data:
-          entity_id: light.camera_2
+          entity_id: light.camera
           brightness: 254
           xy_color: [0.438, 0.404]
       # - service: hue.hue_activate_scene

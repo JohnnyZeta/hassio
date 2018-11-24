@@ -22,6 +22,9 @@
       - service: shell_command.log
         data:
           text: 'Arrivo a Casa'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.natalino
 
 ###############################################################################
 
@@ -31,9 +34,12 @@
       entity_id: sensor.tap_remote
       to: '1'
     action:
-      service: light.turn_off
-      data:
-        entity_id: light.yeelight_ceiling_7811dcda769e
+      - service: light.turn_off
+        data:
+          entity_id: light.yeelight_ceiling_7811dcda769e
+      - service: switch.turn_off
+        data:
+          entity_id: switch.natalino
 
 ###############################################################################
 
@@ -57,3 +63,56 @@
   #         entity_id: light.hue_white_light_1
 
 ###############################################################################
+
+  - alias: Luci Movimento Salotto
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001dc2ed5
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: group.famiglia
+        state: home
+      - condition: state
+        entity_id: light.disimpegno
+        state: 'on'
+      - condition: state
+        entity_id: light.tv
+        state: 'off'
+    action:
+      - service: scene.turn_on
+        data:
+          entity_id: scene.tvoff
+
+  - alias: Luci Movimento Camera
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001a8fa9d
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: group.famiglia
+        state: home
+      - condition: state
+        entity_id: light.disimpegno
+        state: 'on'
+      - condition: state
+        entity_id: light.plafoniera
+        state: 'off'
+      - condition: state
+        entity_id: light.camera
+        state: 'off'
+      - condition: template
+        value_template: '{{ states.light.disimpegno.attributes.brightness > 250 }}'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.camera
+          brightness: 254
+          xy_color: [0.385, 0.384]
+
+###############################################################################
+
+        
+
+

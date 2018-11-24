@@ -1,5 +1,5 @@
 homeassistant:
-############ ORARI #########################################################
+############ ORARI ############################################################
 input_datetime:
   durata_timer:
     name: 'Timer Spegnimento (minuti)'

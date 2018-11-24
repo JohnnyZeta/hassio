@@ -27,7 +27,7 @@
       - sensor.temperature_158d0001b92644
       - sensor.temperature_158d0001f561b7
       # LUCI
-      - light.camera_2
+      - light.camera
       - light.cucina_2
       - light.disimpegno
       - light.divano
@@ -38,6 +38,7 @@
       # SWITCHES
       #- switch.semola_schedule
       - switch.nuvola
+      - switch.natalino
       # DEVICES
       - device_tracker.alby_iphone
       - device_tracker.alessandra_iphone

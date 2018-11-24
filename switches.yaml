@@ -33,3 +33,12 @@
       - 'homeassistant'
       - 'hassio_supervisor'
       - 'portainer'
+  - platform: mqtt
+    name: Natalino
+    state_topic: ESPURNA-6717C3/relay/0
+    command_topic: ESPURNA-6717C3/relay/0/set
+    payload_on: 1
+    payload_off: 0
+    availability_topic: ESPURNA-6717C3/status
+    payload_available: 1
+    payload_not_available: 0
