@@ -1,0 +1,57 @@
+homeassistant:
+############ SENSORE ##########################################################
+sensor:
+  - platform: template
+    sensors:
+      mese:
+        friendly_name: Mese corrente
+        value_template: '{{ now().strftime("%B") }}'
+      turno:
+        friendly_name: Questo mese tocca a
+        icon_template: mdi:food
+        value_template: >
+          {% if now().strftime('%m') == '01' %}
+            Enrica
+          {% elif now().strftime('%m') == '02' %}
+            Rosex
+          {% elif now().strftime('%m') == '03' %}
+            Zambo
+          {% elif now().strftime('%m') == '04' %}
+            Virginia
+          {% elif now().strftime('%m') == '05' %}
+            Moro
+          {% elif now().strftime('%m') == '06' %}
+            Enrica
+          {% elif now().strftime('%m') == '07' %}
+            Rosex
+          {% elif now().strftime('%m') == '08' %}
+            Zambo
+          {% elif now().strftime('%m') == '09' %}
+            Virginia
+          {% elif now().strftime('%m') == '10' %}
+            Zambo
+          {% elif now().strftime('%m') == '11' %}
+            Virginia
+          {% elif now().strftime('%m') == '12' %}
+            Moro
+          {% endif %}
+############## AUTOMAZIONE ######################################################
+automation:
+  - alias: Aggiorna Turno
+    initial_state: True
+    trigger:
+      platform: time
+      at: '07:00:00'
+    action:
+      - service: homeassistant.update_entity
+        entity_id: sensor.mese
+      - service: homeassistant.update_entity
+        entity_id: sensor.turno
+# ############ GRUPPO ###########################################################
+# group:
+#   quindici:
+#     name: Cena del Quindici
+#     control: hidden
+#     entities:
+#       - sensor.mese
+#       - sensor.turno

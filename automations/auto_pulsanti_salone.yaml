@@ -5,7 +5,7 @@
   - alias: Pulsante_Netflix
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.switch_158d000120d46e
         click_type: single
@@ -29,7 +29,7 @@
   - alias: Pulsante_Prova
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.switch_158d000120d46e
         click_type: double
@@ -43,7 +43,7 @@
   # - alias: Pulsante_Netflix_ON
   #   trigger:
   #     platform: event
-  #     event_type: click
+  #     event_type: xiaomi_aqara.click
   #     event_data:
   #       entity_id: binary_sensor.switch_158d000120d46e
   #       click_type: single
@@ -59,7 +59,7 @@
   # - alias: Pulsante_Netflix_OFF
   #   trigger:
   #     platform: event
-  #     event_type: click
+  #     event_type: xiaomi_aqara.click
   #     event_data:
   #       entity_id: binary_sensor.switch_158d000120d46e
   #       click_type: single

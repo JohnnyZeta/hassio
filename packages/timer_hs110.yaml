@@ -14,7 +14,7 @@ input_boolean:
     icon: mdi:check-circle
 ############ AUTOMAZIONI #######################################################
 automation:
-  - alias: Ventilatore
+  - alias: Timer Nuvola # Ventilatore
     trigger:
       platform: state
       entity_id: input_boolean.timer

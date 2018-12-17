@@ -35,6 +35,7 @@
       - 'portainer'
   - platform: mqtt
     name: Natalino
+    icon: mdi:candycane
     state_topic: ESPURNA-6717C3/relay/0
     command_topic: ESPURNA-6717C3/relay/0/set
     payload_on: 1

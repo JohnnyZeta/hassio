@@ -9,12 +9,15 @@
         entity_id: input_boolean.corsa
         from: 'on'
         to: 'off'
-    # condition:
-    #   - condition: time
-    #     after: '13:00:00'
-    #   - condition: state
-    #     entity_id: light.cucina_2
-    #     state: 'off'
+    condition:
+      - condition: time
+        after: '13:00:00'
+      - condition: state
+        entity_id: light.camera
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.corsa
+        state: 'off'
     action:
       - service: scene.turn_on
         data:
@@ -82,7 +85,7 @@
     action:
       - service: scene.turn_on
         data:
-          entity_id: scene.tvoff
+          entity_id: scene.accendisalotto
 
   - alias: Luci Movimento Camera
     trigger:

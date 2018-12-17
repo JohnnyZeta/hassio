@@ -5,12 +5,12 @@
   - alias: Pulsante_Plafoniera_Camera_ON
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d00021016af
           click_type: single
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d00021016af
           click_type: hold
@@ -40,12 +40,12 @@
   - alias: Pulsante_Plafoniera_Camera_OFF
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d00021016af
           click_type: single
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d00021016af
           click_type: hold
@@ -61,12 +61,12 @@
   - alias: Pulsante_Strip_Camera_OFF
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d00021016af
           click_type: single
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d00021016af
           click_type: hold
@@ -88,7 +88,7 @@
   - alias: Pulsante_Plafoniera_Camera_max
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.switch_158d00021016af
         click_type: double
@@ -112,7 +112,7 @@
   # - alias: Pulsante_Plafoniera_Camera_Soft
   #   trigger:
   #     platform: event
-  #     event_type: click
+  #     event_type: xiaomi_aqara.click
   #     event_data:
   #       entity_id: binary_sensor.switch_158d00021016af
   #       click_type: hold

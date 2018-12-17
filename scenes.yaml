@@ -107,3 +107,16 @@
       light.plafoniera:
         state: off
 ###############################################################################
+  - name: AccendiSalotto
+    entities:
+      light.tv:
+        state: on
+        brightness: 254
+        xy_color: [0.432, 0.402]
+      light.divano:
+        state: on
+        brightness: 254
+        xy_color: [0.432, 0.402]
+      light.gateway_light_7811dcb0727e:
+        state: off
+###############################################################################

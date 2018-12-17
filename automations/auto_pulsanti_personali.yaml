@@ -5,12 +5,12 @@
   - alias: Pulsante Nanna
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d00016c48b3
           click_type: single
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d000120ea9c
           click_type: single
@@ -29,7 +29,7 @@
               entity_id: light.camera
               state: 'off'
             - condition: template
-              value_template: '{{ states.light.camera.attributes.brightness == 103 }}'
+              value_template: '{{ (states.light.camera.attributes.brightness == 103) or (states.light.camera.attributes.brightness == 254) }}'
     action:
       - service: scene.turn_on
         entity_id: scene.nanna
@@ -46,12 +46,12 @@
   - alias: Annulla Pulsante Nanna
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d00016c48b3
           click_type: single
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d000120ea9c
           click_type: single
@@ -80,12 +80,12 @@
   - alias: Pulsante FadeOut
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d00016c48b3
           click_type: double
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d000120ea9c
           click_type: double
@@ -104,20 +104,20 @@
       - service: switch.turn_off
         data:
           entity_id: switch.natalino
-      # - delay: 00:03:00
-      # - service: switch.turn_off
-      #   entity_id: switch.nuvola
+      - delay: 00:03:00
+      - service: switch.turn_off
+        entity_id: switch.nuvola
 
 # HOLD CLICK
   - alias: Pulsante Hold
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d00016c48b3
           click_type: hold
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d000120ea9c
           click_type: hold

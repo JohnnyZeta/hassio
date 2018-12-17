@@ -4,12 +4,12 @@
   - alias: Pulsante Natalino
     trigger:
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d000120d3ef
           click_type: single
       - platform: event
-        event_type: click
+        event_type: xiaomi_aqara.click
         event_data:
           entity_id: binary_sensor.switch_158d000120d3ef
           click_type: hold
@@ -23,10 +23,22 @@
         data:
           entity_id: switch.natalino
 
+  - alias: Pulsante Luci Salotto OFF
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.switch_158d000120d3ef
+          click_type: double
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.divano, light.tv, light.gateway_light_7811dcb0727e
+
   # - alias: Pulsante Timer Nuvola
   #   trigger:
   #     - platform: event
-  #       event_type: click
+  #       event_type: xiaomi_aqara.click
   #       event_data:
   #         entity_id: binary_sensor.switch_158d000120d3ef
   #         click_type: double
@@ -44,12 +56,12 @@
   # - alias: Pulsante Nuvola
   #   trigger:
   #     - platform: event
-  #       event_type: click
+  #       event_type: xiaomi_aqara.click
   #       event_data:
   #         entity_id: binary_sensor.switch_158d000120d3ef
   #         click_type: single
   #     - platform: event
-  #       event_type: click
+  #       event_type: xiaomi_aqara.click
   #       event_data:
   #         entity_id: binary_sensor.switch_158d000120d3ef
   #         click_type: hold
@@ -66,7 +78,7 @@
   # - alias: Pulsante Timer Nuvola
   #   trigger:
   #     - platform: event
-  #       event_type: click
+  #       event_type: xiaomi_aqara.click
   #       event_data:
   #         entity_id: binary_sensor.switch_158d000120d3ef
   #         click_type: double
@@ -85,7 +97,7 @@
 #   - alias: Pulsante_Play_Pausa
 #     trigger:
 #       platform: event
-#       event_type: click
+#       event_type: xiaomi_aqara.click
 #       event_data:
 #         entity_id: binary_sensor.switch_158d000120d3ef
 #         click_type: single
@@ -101,7 +113,7 @@
 #   - alias: Pulsante_Spotify_ON_Ale
 #     trigger:
 #       platform: event
-#       event_type: click
+#       event_type: xiaomi_aqara.click
 #       event_data:
 #         entity_id: binary_sensor.switch_158d000120d3ef
 #         click_type: double
@@ -151,7 +163,7 @@
 #   - alias: Pulsante_Spotify_ON_Alby
 #     trigger:
 #       platform: event
-#       event_type: click
+#       event_type: xiaomi_aqara.click
 #       event_data:
 #         entity_id: binary_sensor.switch_158d000120d3ef
 #         click_type: double
@@ -198,7 +210,7 @@
 #   - alias: Pulsante_Spotify_OFF
 #     trigger:
 #       platform: event
-#       event_type: click
+#       event_type: xiaomi_aqara.click
 #       event_data:
 #         entity_id: binary_sensor.switch_158d000120d3ef
 #         click_type: double
@@ -217,7 +229,7 @@
 #   - alias: Pulsante_Spotify_Skippa
 #     trigger:
 #       platform: event
-#       event_type: click
+#       event_type: xiaomi_aqara.click
 #       event_data:
 #         entity_id: binary_sensor.switch_158d000120d3ef
 #         click_type: hold

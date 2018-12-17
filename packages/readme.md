@@ -32,11 +32,11 @@ L'automazione sfrutta l'utilizzo di template *contemporaneamente* sia nella scel
 
 Viene sfruttato anche il concetto di [Automation Templating](https://www.home-assistant.io/docs/automation/templating/).
 
-## scene_hue_card.yaml
+<!-- ## scene_hue_card.yaml
 
 <img src="https://github.com/JohnnyZeta/hassio/blob/master/packages/images/image_scene_card.png" alt="" width="400" height="" />
 
-Semplice Card per la selezione di Scene Hue grazie ad un `input_select` opportuno.
+Semplice Card per la selezione di Scene Hue grazie ad un `input_select` opportuno. -->
 
 
 ## spotify_card.yaml

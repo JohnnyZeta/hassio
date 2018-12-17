@@ -162,8 +162,8 @@
     friendly_name: Programmazione Semola
     icon: mdi:roomba
   switch.nuvola:
-    # icon: mdi:radiator
-    icon: mdi:fan
+    icon: mdi:radiator
+    # icon: mdi:fan
   switch.plug_158d000216919d:
     friendly_name: Smart Plug Xiaomi
   # switch.syncthing:
@@ -184,6 +184,12 @@
     friendly_name: Samba
   switch.hadockermon_addon_f16403dc_nodered:
     friendly_name: Node-RED
+  switch.hadockermon_addon_7be23ff5_dropbox_sync:
+    friendly_name: Dropbox Sync
+  switch.hadockermon_addon_core_mosquitto:
+    friendly_name: Mosquitto
+  switch.hadockermon_calibreweb:
+    friendly_name: Calibre-Web
   switch.hadockermon_syncthing:
     friendly_name: Syncthing
   switch.hadockermon_watchtower:

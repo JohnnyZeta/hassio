@@ -39,6 +39,10 @@
       #- switch.semola_schedule
       - switch.nuvola
       - switch.natalino
+      - scene.entrata
+      - scene.nanna
+      - scene.netflix
+      - scene.tvoff
       # DEVICES
       - device_tracker.alby_iphone
       - device_tracker.alessandra_iphone
