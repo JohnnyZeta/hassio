@@ -13,13 +13,13 @@ Questa è una lista non esaustiva dei dispositivi smart che utilizzo quotidianam
 
 ## Gateways
 
-* [**Gateway**](https://saggiolink.it/2RdWBAk)
+* [**Gateway Xiaomi**](https://saggiolink.it/2RdWBAk)
 * [**ConBee di Dresden Elektronik**](https://saggiolink.it/2RjrOC4)
 
 ### _Ecosistema_ Xiaomi
 
 * [**Sensori temperatura e umidità**](https://saggiolink.it/2RiIOs4)
-* [**Sensori movimento e vibrazione**](https://saggiolink.it/2RanRzN)
+* [**Sensori vibrazione**](https://saggiolink.it/2RanRzN)
 * [**Sensori porta-finestra Aqara**](https://saggiolink.it/2GEsHBb)
 * [**Sensori di movimento**](https://saggiolink.it/2Re2hKz)
 * [**Sensore di presenza acqua Aqara**](https://saggiolink.it/2GzztIf)
