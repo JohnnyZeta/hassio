@@ -38,7 +38,6 @@ Viene sfruttato anche il concetto di [Automation Templating](https://www.home-as
 
 Semplice Card per la selezione di Scene Hue grazie ad un `input_select` opportuno. -->
 
-
 ## spotify_card.yaml
 
 <img src="https://github.com/JohnnyZeta/hassio/blob/master/packages/images/image_musica_card.png" alt="" width="400" height="" />
@@ -46,6 +45,7 @@ Semplice Card per la selezione di Scene Hue grazie ad un `input_select` opportun
 Card di gestione del `media_player.spotify`.
 
 Permette di:
+
 * selezionare la **playlist** e il **dispositivo di riproduzione**;
 * impostare o meno lo shuffle di Spotify;
 * regolare il volume del `media_player.spotify` e del dispositivo di riproduzione separatamente;
