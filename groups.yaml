@@ -6,17 +6,3 @@
     entities:
         - device_tracker.alby_iphone
         - device_tracker.alessandra_iphone
-  automazioni_hue:
-    name: Automazioni Hue
-    entities:
-      - automation.annulla_pulsante_nanna
-      - automation.arrivo_a_casa
-      - automation.buongiorno_lavorativo
-      - automation.buongiorno_weekends
-      - automation.pulsante_fadeout
-      - automation.pulsante_hold
-      - automation.pulsante_nanna
-      - automation.pulsante_netflix
-      - automation.pulsante_plafoniera_camera_max
-      - automation.pulsante_plafoniera_camera_off
-      - automation.pulsante_plafoniera_camera_on

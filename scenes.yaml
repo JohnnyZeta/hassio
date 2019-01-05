@@ -4,14 +4,12 @@
         state: on
         brightness: 178
         xy_color: [0.553, 0.423]
-      light.disimpegno:
+      light.disimpegno_2:
         state: on
         brightness: 253
-      light.tv:
+      light.tv_2:
         state: off
-      light.divano:
-        state: off
-      light.gateway_light_7811dcb0727e:
+      light.divano_2:
         state: off
       light.camera:
         state: off
@@ -22,13 +20,11 @@
     entities:
       light.cucina_2:
         state: off
-      light.disimpegno:
+      light.disimpegno_2:
         state: off
-      light.tv:
+      light.tv_2:
         state: off
-      light.divano:
-        state: off
-      light.gateway_light_7811dcb0727e:
+      light.divano_2:
         state: off
       light.camera:
         state: on
@@ -43,18 +39,16 @@
         state: on
         brightness: 178
         xy_color: [0.553, 0.423]
-      light.disimpegno:
+      light.disimpegno_2:
         state: off
-      light.tv:
+      light.tv_2:
         state: on
         brightness: 51
         xy_color: [0.432, 0.402]
-      light.divano:
+      light.divano_2:
         state: on
         brightness: 51
         xy_color: [0.432, 0.402]
-      light.gateway_light_7811dcb0727e:
-        state: off
       light.camera:
         state: off
       light.plafoniera:
@@ -66,19 +60,17 @@
         state: on
         brightness: 178
         xy_color: [0.553, 0.423]
-      light.disimpegno:
+      light.disimpegno_2:
         state: on
         brightness: 253
-      light.tv:
+      light.tv_2:
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
-      light.divano:
+      light.divano_2:
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
-      light.gateway_light_7811dcb0727e:
-        state: off
       light.camera:
         state: off
       light.plafoniera:
@@ -90,18 +82,16 @@
         state: on
         brightness: 178
         xy_color: [0.553, 0.423]
-      light.disimpegno:
+      light.disimpegno_2:
         state: off
-      light.tv:
+      light.tv_2:
         state: on
         brightness: 205
         xy_color: [0.534, 0.425]
-      light.divano:
+      light.divano_2:
         state: on
         brightness: 205
         xy_color: [0.574, 0.362]
-      light.gateway_light_7811dcb0727e:
-        state: off
       light.camera:
         state: off
       light.plafoniera:
@@ -109,14 +99,12 @@
 ###############################################################################
   - name: AccendiSalotto
     entities:
-      light.tv:
+      light.tv_2:
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
-      light.divano:
+      light.divano_2:
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
-      light.gateway_light_7811dcb0727e:
-        state: off
 ###############################################################################

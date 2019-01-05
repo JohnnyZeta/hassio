@@ -5,15 +5,15 @@
   - alias: Pulsante Nanna
     trigger:
       - platform: event
-        event_type: xiaomi_aqara.click
+        event_type: deconz_event
         event_data:
-          entity_id: binary_sensor.switch_158d00016c48b3
-          click_type: single
+          id: xiaomi_switch_alby
+          event: 1000
       - platform: event
-        event_type: xiaomi_aqara.click
+        event_type: deconz_event
         event_data:
-          entity_id: binary_sensor.switch_158d000120ea9c
-          click_type: single
+          id: xiaomi_switch_ale
+          event: 1000
     condition:
       condition: and
       conditions:
@@ -23,7 +23,7 @@
         - condition: or
           conditions:
             - condition: state
-              entity_id: light.tv
+              entity_id: light.tv_2
               state: 'on'
             - condition: state
               entity_id: light.camera
@@ -46,15 +46,15 @@
   - alias: Annulla Pulsante Nanna
     trigger:
       - platform: event
-        event_type: xiaomi_aqara.click
+        event_type: deconz_event
         event_data:
-          entity_id: binary_sensor.switch_158d00016c48b3
-          click_type: single
+          id: xiaomi_switch_alby
+          event: 1000
       - platform: event
-        event_type: xiaomi_aqara.click
+        event_type: deconz_event
         event_data:
-          entity_id: binary_sensor.switch_158d000120ea9c
-          click_type: single
+          id: xiaomi_switch_ale
+          event: 1000
     condition:
       condition: or
       conditions:
@@ -80,15 +80,15 @@
   - alias: Pulsante FadeOut
     trigger:
       - platform: event
-        event_type: xiaomi_aqara.click
+        event_type: deconz_event
         event_data:
-          entity_id: binary_sensor.switch_158d00016c48b3
-          click_type: double
+          id: xiaomi_switch_alby
+          event: 1004
       - platform: event
-        event_type: xiaomi_aqara.click
+        event_type: deconz_event
         event_data:
-          entity_id: binary_sensor.switch_158d000120ea9c
-          click_type: double
+          id: xiaomi_switch_ale
+          event: 1004
     condition:
       - condition: state
         entity_id: sun.sun
@@ -97,7 +97,11 @@
       - service: light.turn_off
         data:
           entity_id: light.plafoniera
-      - service: shell_command.spegni_nanna
+      # - service: shell_command.spegni_nanna
+      - service: light.turn_off
+        data:
+          entity_id: light.camera
+          transition: 180
       - service: shell_command.log
         data:
           text: 'Fade-out scena Nanna'
@@ -108,19 +112,19 @@
       - service: switch.turn_off
         entity_id: switch.nuvola
 
-# HOLD CLICK
+# 3 CLICK
   - alias: Pulsante Hold
     trigger:
       - platform: event
-        event_type: xiaomi_aqara.click
+        event_type: deconz_event
         event_data:
-          entity_id: binary_sensor.switch_158d00016c48b3
-          click_type: hold
+          id: xiaomi_switch_alby
+          event: 1005
       - platform: event
-        event_type: xiaomi_aqara.click
+        event_type: deconz_event
         event_data:
-          entity_id: binary_sensor.switch_158d000120ea9c
-          click_type: hold
+          id: xiaomi_switch_ale
+          event: 1005
     action:
       - service: light.turn_on
         data:

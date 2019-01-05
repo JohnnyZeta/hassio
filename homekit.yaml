@@ -3,36 +3,30 @@
   filter:
     include_entities:
       # PORTE E FINESTRE
-      - binary_sensor.door_window_sensor_158d0001bf80d3
-      - binary_sensor.door_window_sensor_158d0001bf80f4
-      - binary_sensor.door_window_sensor_158d0001ab6dbe
-      - binary_sensor.door_window_sensor_158d0001daeef7
-      - binary_sensor.door_window_sensor_158d0001ab2e3e
-      - binary_sensor.door_window_sensor_158d0001de8c1e
-      - binary_sensor.door_window_sensor_158d0001b97e2e
-      - binary_sensor.door_window_sensor_158d0001de6ed0
-      - binary_sensor.door_window_sensor_158d0001e48bd5
+      - binary_sensor.openclose_13
+      - binary_sensor.finestra_bagno
+      - binary_sensor.portafinestra_salotto_dx
+      - binary_sensor.openclose_8
+      - binary_sensor.openclose_9
+      - binary_sensor.openclose_15
+      - binary_sensor.openclose_14
+      - binary_sensor.portafinestra_camera
       # MOVIMENTO
-      - binary_sensor.motion_sensor_158d0001a8e47c
-      - binary_sensor.motion_sensor_158d0001a8fb6a
-      - binary_sensor.motion_sensor_158d0001a8fa9d
-      - binary_sensor.motion_sensor_158d0001dc2ed5
-      # LUMINOSITA'
-      - sensor.illumination_7811dcb0727e
+      - binary_sensor.presence_6
+      - binary_sensor.presence_3
+      - binary_sensor.presence_5
+      - binary_sensor.presence_4
       # TEMPERATURA E UMIDITA'
-      - sensor.humidity_158d0001b92644
-      - sensor.humidity_158d0001f561b7
+      - sensor.humidity_11
       #- sensor.pressure_158d0001b92644
-      #- sensor.pressure_158d0001f561b7
-      - sensor.temperature_158d0001b92644
-      - sensor.temperature_158d0001f561b7
+      #- sensor.pressure_12
+      - sensor.temperature_10
       # LUCI
       - light.camera
       - light.cucina_2
-      - light.disimpegno
-      - light.divano
-      - light.tv
-      - light.gateway_light_7811dcb0727e
+      - light.disimpegno_2
+      - light.divano_2
+      - light.tv_2
       - light.plafoniera
       #- light.hue_white_light_1
       # SWITCHES

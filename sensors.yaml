@@ -32,39 +32,12 @@
         value_template: "{{ states.switch.nuvola.attributes.voltage }}"
         unit_of_measurement: 'V'
         friendly_name: "Voltaggio"
-      saldo_eth:
-        entity_id: switch.nuvola
-        friendly_name: "Valore ETH"
-        icon_template: mdi:coin
-        value_template: '{{ states.sensor.coinbase_eth_wallet.attributes["Balance in native currency"] | replace(" EUR", "") }}'
-        unit_of_measurement: 'EUR'
-      tap_remote:
-        entity_id: sensor.tap_button
-        value_template: >
-          {% if is_state('sensor.tap_button', '34') %}
-            1
-          {% elif is_state('sensor.tap_button', '16') %}
-            2
-          {% elif is_state('sensor.tap_button', '17') %}
-            3
-          {% elif is_state('sensor.tap_button', '18') %}
-            4
-          {% else %}
-            failed
-          {% endif %}
-        icon_template: >
-          {% if is_state('sensor.tap_button', '34') %}
-            mdi:numeric-1-box
-          {% elif is_state('sensor.tap_button', '16') %}
-            mdi:numeric-2-box
-          {% elif is_state('sensor.tap_button', '17') %}
-            mdi:numeric-3-box
-          {% elif is_state('sensor.tap_button', '18') %}
-            mdi:numeric-4-box
-          {% else %}
-            mdi:message-alert
-          {% endif %}
-        friendly_name: "Telecomando Hue Tap"
+      # saldo_eth:
+      #   entity_id: sensor.coinbase_eth_wallet
+      #   friendly_name: "Valore ETH"
+      #   icon_template: mdi:coin
+      #   value_template: '{{ states.sensor.coinbase_eth_wallet.attributes["Balance in native currency"] | replace(" EUR", "") }}'
+      #   unit_of_measurement: 'EUR'
       fasilunari:
         entity_id: sensor.moon
         friendly_name: "Luna"

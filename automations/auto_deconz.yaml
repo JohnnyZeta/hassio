@@ -1,0 +1,98 @@
+
+# PULSANTE HUE TAP
+
+  - alias: Tap 1
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: tap
+        event: 34
+    action:
+      - service: light.turn_off
+      - service: switch.turn_off
+        data:
+          entity_id: switch.natalino
+
+  - alias: Tap 2
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: tap
+        event: 16
+    action:
+      - service: scene.turn_on
+        data:
+          entity_id: scene.accendisalotto
+
+  - alias: Tap 3
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: tap
+        event: 17
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.disimpegno_2
+          brightness: 254
+
+  - alias: Tap 4
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: tap
+        event: 18
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.cucina_2
+          brightness: 178
+          xy_color: [0.553, 0.423]
+
+# PULSANTE XIAOMI A
+
+  # - alias: Prova deCONZ
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: xiaomi_switch_a
+  #       event: 1000
+  #   action:
+  #     - service: media_player.media_play_pause
+  #       data:
+  # #         entity_id: media_player.cucina
+
+  # - alias: Prova deCONZ Templating Data
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: xiaomi_switch_a
+  #   action:
+  #     service: persistent_notification.create
+  #     data_template:
+  #       notification_id: prova{{ now().strftime('D%dH%H%S') }}
+  #       title: Prova
+  #       message: >
+  #         # Click Singolo
+  #         {% if trigger.event.data.event == 1000 %} Click Singolo!
+  #         # Release Singolo
+  #         {% elif trigger.event.data.event == 1002 %} Release Singolo!
+  #         # Doppio Click
+  #         {% elif trigger.event.data.event == 1004 %} Doppio Click!
+  #         # Triplo Click
+  #         {% elif trigger.event.data.event == 1005 %} Triplo Click!
+  #         # Quadruplo Click
+  #         {% elif trigger.event.data.event == 1006 %} Quadruplo Click!
+  #         {% endif %}

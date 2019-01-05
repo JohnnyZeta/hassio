@@ -4,16 +4,11 @@
 # 1 CLICK - HOLD CLICK
   - alias: Pulsante_Plafoniera_Camera_ON
     trigger:
-      - platform: event
-        event_type: xiaomi_aqara.click
-        event_data:
-          entity_id: binary_sensor.switch_158d00021016af
-          click_type: single
-      - platform: event
-        event_type: xiaomi_aqara.click
-        event_data:
-          entity_id: binary_sensor.switch_158d00021016af
-          click_type: hold
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: xiaomi_switch_d
+        event: 1000
     condition:
       condition: and
       conditions:
@@ -39,16 +34,11 @@
 
   - alias: Pulsante_Plafoniera_Camera_OFF
     trigger:
-      - platform: event
-        event_type: xiaomi_aqara.click
-        event_data:
-          entity_id: binary_sensor.switch_158d00021016af
-          click_type: single
-      - platform: event
-        event_type: xiaomi_aqara.click
-        event_data:
-          entity_id: binary_sensor.switch_158d00021016af
-          click_type: hold
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: xiaomi_switch_d
+        event: 1000
     condition:
         - condition: state
           entity_id: light.plafoniera
@@ -60,16 +50,11 @@
 
   - alias: Pulsante_Strip_Camera_OFF
     trigger:
-      - platform: event
-        event_type: xiaomi_aqara.click
-        event_data:
-          entity_id: binary_sensor.switch_158d00021016af
-          click_type: single
-      - platform: event
-        event_type: xiaomi_aqara.click
-        event_data:
-          entity_id: binary_sensor.switch_158d00021016af
-          click_type: hold
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: xiaomi_switch_d
+        event: 1000
     condition:
       condition: and
       conditions:
@@ -88,10 +73,10 @@
   - alias: Pulsante_Plafoniera_Camera_max
     trigger:
       platform: event
-      event_type: xiaomi_aqara.click
+      event_type: deconz_event
       event_data:
-        entity_id: binary_sensor.switch_158d00021016af
-        click_type: double
+        id: xiaomi_switch_d
+        event: 1004
     action:
       - service: light.turn_on
         # data_template:

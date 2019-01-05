@@ -1,23 +1,43 @@
 
-########## PULSANTE SALONE #####################################################
+########## PULSANTE LIBRERIA ###################################################
 
 # 1 CLICK
   - alias: Pulsante_Netflix
     trigger:
       platform: event
-      event_type: xiaomi_aqara.click
+      event_type: deconz_event
       event_data:
-        entity_id: binary_sensor.switch_158d000120d46e
-        click_type: single
+        id: xiaomi_switch_b
+        event: 1000
     action:
       - service: scene.turn_on
         data_template:
           entity_id: >
-            {% if (states.light.tv.state == "off") or (state_attr("light.tv", "brightness") > 250) or (states.light.tv.state == "unavailable") %} scene.netflix
+            {% if (states.light.tv_2.state == "off") or (state_attr("light.tv_2", "brightness") > 250) or (states.light.tv_2.state == "unavailable") %} scene.netflix
             {% else %} scene.tvoff
             {% endif %}
       - service_template: >
-          {% if (states.light.tv.state == "off") or (state_attr("light.tv", "brightness") > 250) or (states.light.tv.state == "unavailable") %}
+          {% if (states.light.tv_2.state == "off") or (state_attr("light.tv_2", "brightness") > 250) or (states.light.tv_2.state == "unavailable") %}
+            switch.turn_on
+          {% else %}
+            switch.turn_off
+          {% endif %}
+        data:
+          entity_id: switch.natalino
+
+########## PULSANTE JBL ########################################################
+
+# 1 CLICK
+  - alias: Pulsante Natalino
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: xiaomi_switch_c
+        event: 1000
+    action:
+      - service_template: >
+          {% if is_state("switch.natalino", "off") %}
             switch.turn_on
           {% else %}
             switch.turn_off
@@ -26,48 +46,14 @@
           entity_id: switch.natalino
 
 # 2 CLICK
-  - alias: Pulsante_Prova
+  - alias: Pulsante Luci Salotto OFF
     trigger:
       platform: event
-      event_type: xiaomi_aqara.click
+      event_type: deconz_event
       event_data:
-        entity_id: binary_sensor.switch_158d000120d46e
-        click_type: double
+        id: xiaomi_switch_c
+        event: 1004
     action:
-      - service: xiaomi_aqara.play_ringtone
+      - service: light.turn_off
         data:
-          gw_mac: 78:11:DC:B0:72:7E
-          ringtone_id: 12
-          ringtone_vol: 30
-
-  # - alias: Pulsante_Netflix_ON
-  #   trigger:
-  #     platform: event
-  #     event_type: xiaomi_aqara.click
-  #     event_data:
-  #       entity_id: binary_sensor.switch_158d000120d46e
-  #       click_type: single
-  #   condition:
-  #     condition: template
-  #     value_template: '{{ states.light.tv.attributes.brightness > 250 }}'
-  #   action:
-  #     - service: hue.hue_activate_scene
-  #       data:
-  #         group_name: "Casa"
-  #         scene_name: "Netflixo"
-  #
-  # - alias: Pulsante_Netflix_OFF
-  #   trigger:
-  #     platform: event
-  #     event_type: xiaomi_aqara.click
-  #     event_data:
-  #       entity_id: binary_sensor.switch_158d000120d46e
-  #       click_type: single
-  #   condition:
-  #     condition: template
-  #     value_template: '{{ states.light.tv.attributes.brightness < 100 }}'
-  #   action:
-  #     - service: hue.hue_activate_scene
-  #       data:
-  #         group_name: "Casa"
-  #         scene_name: "TVOff"
+          entity_id: light.divano, light.tv, light.gateway_light_7811dcb0727e

@@ -63,19 +63,11 @@ http:
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-#updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
-
 # Discover some devices automatically
 discovery:
   ignore:
     - google_cast
+    - yamaha
   enable:
     - homekit
 
@@ -129,20 +121,32 @@ tts:
 #iPhones
 ios:
 
+# logger:
+#   default: info
+#   logs:
+#     pydeconz: debug
+#     homeassistant.components.deconz: debug
+
+# Proximity
+proximity:
+  home:
+    ignored_zones:
+      - lavoro
+      - ufficio
+    devices:
+      - device_tracker.alby_iphone
+      - device_tracker.alessandra_iphone
+
 ###############################################################################
 
-coinbase:
-  api_key: !secret coinbase_key
-  api_secret: !secret coinbase_key_secret
-  exchange_rate_currencies:
-    - BTC
-    - BCH
-    - ETH
-    - LTC
-
-hue:
-  bridges:
-    - host: !secret hue_bridge_ip
+# coinbase:
+#   api_key: !secret coinbase_key
+#   api_secret: !secret coinbase_key_secret
+#   exchange_rate_currencies:
+#     - BTC
+#     - BCH
+#     - ETH
+#     - LTC
 
 light:
   - platform: yeelight
@@ -177,13 +181,6 @@ panel_iframe:
     icon: mdi:code-braces
     url: !secret cloud9_url
 
-xiaomi_aqara:
-  discovery_retry: 5
-  gateways:
-    - key: !secret xiaomi_key
-      host: !secret aqara_hub_ip
-      mac: !secret aqara_hub_mac
-
 media_player:
   - platform: yamaha
     source_names:
@@ -202,31 +199,16 @@ ifttt:
   key: !secret ifttt_key
 
 device_tracker:
-  # - platform: owntracks
-  #   max_gps_accuracy: 100
   - platform: unifi_direct
     host: !secret unifi_ap_ip
     username: !secret unifi_ap_username
     password: !secret unifi_ap_password
-  # - platform: ping
-  #   hosts:
-  #     hue: !secret hue_bridge_ip
-  #     ap: !secret unifi_ap_ip
-  #     synology: !secret synology_ip
-  # - platform: nmap_tracker
-  #   home_interval: 10
-  #   hosts:
-  #     - !secret hue_bridge_ip
-  #     - !secret unifi_ap_ip
-  #     - !secret synology_ip
 
 owntracks:
   max_gps_accuracy: 100
 
 mqtt:
   broker: !secret hassio_interno_ip
-  # broker: m23.cloudmqtt.com
-  # port: 12279 #22279
   username: !secret mqtt_username
   password: !secret mqtt_password
 

@@ -28,7 +28,7 @@
   #     - ios_iphone_di_alby
   acqua_lavatrice:
     name: 'Rilevata acqua sotto la lavatrice!!!'
-    entity_id: binary_sensor.water_leak_sensor_158d000211a487
+    entity_id: binary_sensor.water_sensor
     state: on
     repeat: 10
     can_acknowledge: True
@@ -37,7 +37,7 @@
       - telefoni
   fumo_cucina:
     name: 'Rilevata presenza di fumo in cucina!!!'
-    entity_id: binary_sensor.smoke_sensor_158d00024dfff0
+    entity_id: binary_sensor.fire_28
     state: on
     repeat: 10
     can_acknowledge: True

@@ -31,21 +31,6 @@
 
 ###############################################################################
 
-  - alias: Tap Button Camera
-    trigger:
-      platform: state
-      entity_id: sensor.tap_remote
-      to: '1'
-    action:
-      - service: light.turn_off
-        data:
-          entity_id: light.yeelight_ceiling_7811dcda769e
-      - service: switch.turn_off
-        data:
-          entity_id: switch.natalino
-
-###############################################################################
-
   # - alias: Flash Corsa
   #   trigger:
   #     platform: state
@@ -70,17 +55,17 @@
   - alias: Luci Movimento Salotto
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001dc2ed5
+      entity_id: binary_sensor.presence_4
       to: 'on'
     condition:
       - condition: state
         entity_id: group.famiglia
         state: home
       - condition: state
-        entity_id: light.disimpegno
+        entity_id: light.disimpegno_2
         state: 'on'
       - condition: state
-        entity_id: light.tv
+        entity_id: light.tv_2
         state: 'off'
     action:
       - service: scene.turn_on
@@ -90,14 +75,14 @@
   - alias: Luci Movimento Camera
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001a8fa9d
+      entity_id: binary_sensor.presence_5
       to: 'on'
     condition:
       - condition: state
         entity_id: group.famiglia
         state: home
       - condition: state
-        entity_id: light.disimpegno
+        entity_id: light.disimpegno_2
         state: 'on'
       - condition: state
         entity_id: light.plafoniera
@@ -106,7 +91,7 @@
         entity_id: light.camera
         state: 'off'
       - condition: template
-        value_template: '{{ states.light.disimpegno.attributes.brightness > 250 }}'
+        value_template: '{{ states.light.disimpegno_2.attributes.brightness > 250 }}'
     action:
       - service: light.turn_on
         data:

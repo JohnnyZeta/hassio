@@ -1,255 +1,212 @@
 title: Casa
-# resources:
-#   - url: /local/custom-lovelace/tracker-card/tracker-card.js
-#     type: js
 views:
-###############################################################################
-  - title: Principale
-    id: principale
-    #theme: dark-mode
-    #icon: mdi:account-heart
-    badges:
+  - badges:
       - device_tracker.alby_iphone
       - device_tracker.alessandra_iphone
       - binary_sensor.clio
       - binary_sensor.swift
       - binary_sensor.papera
     cards:
-      - id: d82b58f97bc14fa4a0b7a0322b55aeeb  # Automatically created id
-        type: vertical-stack
-        cards:
-          - type: entities
-            title: Sensori
-            entities:
+      - cards:
+          - entities:
               - sensor.fasilunari
               - sensor.lavorocasa_ale
               - sensor.lavorocasa_alby
               - sensor.giornialnatale
-          - type: entities
-            entities:
-              - binary_sensor.motion_sensor_158d0001a8e47c
-              - binary_sensor.motion_sensor_158d0001a8fb6a
-              - binary_sensor.motion_sensor_158d0001a8fa9d
-              - binary_sensor.motion_sensor_158d0001dc2ed5
-              - binary_sensor.vibration_158d0002a522da
-              #- variable.ultimo_movimento
-          - type: entities
-            entities:
-              - binary_sensor.door_window_sensor_158d0001bf80f4
-              - binary_sensor.door_window_sensor_158d0001ab6dbe
-              - binary_sensor.door_window_sensor_158d0001e48bd5
-              - binary_sensor.door_window_sensor_158d0001ab2e3e
-              - binary_sensor.door_window_sensor_158d0001b97e2e
-              - binary_sensor.door_window_sensor_158d0001bf80d3
-              - binary_sensor.door_window_sensor_158d0001de8c1e
-              - binary_sensor.door_window_sensor_158d0001de6ed0
-              - binary_sensor.door_window_sensor_158d0001daeef7
-      - id: 8805229942194e25a959b1617d22694e  # Automatically created id
-        type: map
-        title: Famiglia
-        aspect_ratio: 100%
+            show_header_toggle: false
+            title: Sensori
+            type: entities
+          - entities:
+              - binary_sensor.presence_3
+              - binary_sensor.presence_5
+              - binary_sensor.presence_6
+              - binary_sensor.presence_4
+            type: entities
+          - entities:
+              - binary_sensor.openclose_13
+              - binary_sensor.finestra_bagno
+              - binary_sensor.portafinestra_salotto_dx
+              - binary_sensor.openclose_8
+              - binary_sensor.openclose_9
+              - binary_sensor.openclose_15
+              - binary_sensor.openclose_14
+              - binary_sensor.portafinestra_camera
+            type: entities
+        type: vertical-stack
+      - aspect_ratio: 100%
         entities:
           - entity: device_tracker.alby_iphone
           - entity: device_tracker.alessandra_iphone
           - zone.home
-      - id: e68b032ec8964181859f5699c28c48f7  # Automatically created id
-        type: entities
-        title: Alba in 5 minuti
-        show_header_toggle: false
-        entities:
+        id: 8805229942194e25a959b1617d22694e
+        title: Famiglia
+        type: map
+      - entities:
           - input_boolean.alarmweekon
           - input_datetime.alba
           - input_boolean.alarmweekday
-      - id: 30226c06b6174672a4ee4d3b05db5508  # Automatically created id
-        type: picture-glance
-        title: Semola
+        id: e68b032ec8964181859f5699c28c48f7
+        show_header_toggle: false
+        title: Alba in 5 minuti
+        type: entities
+      - camera_image: camera.semola_cleaning_map
         entities:
           - vacuum.semola
-        camera_image: camera.semola_cleaning_map
-      - id: 6d021c6500d1438382317138298b8292  # Automatically created id
-        type: entities
-        title: Notifica Macchina
-        show_header_toggle: false
-        entities:
+        id: 30226c06b6174672a4ee4d3b05db5508
+        title: Semola
+        type: picture-glance
+      - entities:
           - input_select.scelta_vettura
           - input_select.scelta_persona
           - input_boolean.controllo
-      - id: bb2b379b713b41c2b035921a9b364190  # Automatically created id
-        type: entities
-        title: Timer Nuvola
+        id: 6d021c6500d1438382317138298b8292
         show_header_toggle: false
-        entities:
+        title: Notifica Macchina
+        type: entities
+      - entities:
           - switch.nuvola
           - input_datetime.durata_timer
           - input_boolean.timer
-      - id: 7be153e6c21e4d4ebbf4f16e918dee03  # Automatically created id
-        type: entities
-        title: Utilità
+        id: bb2b379b713b41c2b035921a9b364190
         show_header_toggle: false
-        entities:
-          - input_boolean.corsa
-          - input_boolean.vacanza
-          - switch.natalino
-      - id: c0620cb1b34e44ad9f45f2789db63c9e  # Automatically created id
+        title: Timer Nuvola
+        type: entities
+      - entity: media_player.cucina
         type: media-control
-        entity: media_player.yamaha_receiver
-###############################################################################
-  - title: Stanze
-    id: stanze
-    cards:
-      - id: de28813e3cc247bf9dcfedea4d86f877  # Automatically created id
-        type: vertical-stack
-        cards:
-          - type: picture-glance
-            title: Cucina
-            entities:
-              - sensor.temperature_158d0001f561b7
-              - sensor.humidity_158d0001f561b7
-              - sensor.pressure_158d0001f561b7
-            camera_image: camera.cucina
-          - type: entities
-            show_header_toggle: false
-            entities:
-              # - switch.camera_recording
-              - light.cucina
-              - binary_sensor.smoke_sensor_158d00024dfff0
-      - id: ae3d1f701e224f08a533f918b6b7b39d  # Automatically created id
-        type: entities
-        title: Salotto
+      - entities:
+          - input_boolean.corsa
+          - switch.natalino
         show_header_toggle: false
-        entities:
+        title: Utilità
+        type: entities
+      - entity: media_player.yamaha_receiver
+        id: c0620cb1b34e44ad9f45f2789db63c9e
+        type: media-control
+    id: principale
+    title: Principale
+  - cards:
+      - cards:
+          - camera_image: camera.cucina
+            entities:
+              - sensor.temperature_10
+              - sensor.humidity_11
+              - sensor.pressure_12
+            title: Cucina
+            type: picture-glance
+          - entities:
+              - light.cucina_2
+              - binary_sensor.fire_28
+            show_header_toggle: false
+            type: entities
+        type: vertical-stack
+      - entities:
           - scene.caldo
           - scene.netflix
-          - entity: light.divano
+          - entity: light.divano_2
             secondary_info: last-changed
-          - entity: light.tv
+          - entity: light.tv_2
             secondary_info: last-changed
-          - entity: light.gateway_light_7811dcb0727e
-            secondary_info: last-changed
-          - sensor.illumination_7811dcb0727e
-      - id: cf931e0a35014fcf80d636f0ce9accbd  # Automatically created id
-        type: entities
-        title: Disimpegno
         show_header_toggle: false
-        entities:
+        title: Salotto
+        type: entities
+      - entities:
           - scene.entrata
-          - entity: light.disimpegno
+          - entity: light.disimpegno_2
             secondary_info: last-changed
-      - id: 97d74e0865044b80894e5fc2402bf424  # Automatically created id
-        type: picture-glance
-        title: Balcone
-        entities:
-          - sensor.temperature_158d0001b92644
-          - sensor.humidity_158d0001b92644
-          - sensor.pressure_158d0001b92644
-        state_image:
-          on: /local/balcone.jpg
-          off: /local/balcone.jpg
-        entity: light.cucina
-      - id: e2b6bf1c16214d85af00ca526f3dd149  # Automatically created id
-        type: entities
-        title: Bagno
-        entities:
-          - binary_sensor.water_leak_sensor_158d000211a487
-      - id: eae5d8f98aa846d7923b9cbc74aea32f  # Automatically created id
-        type: entities
-        title: Camera
         show_header_toggle: false
-        entities:
+        title: Disimpegno
+        type: entities
+      - entities:
+          - binary_sensor.water_sensor
+        title: Bagno
+        type: entities
+        show_header_toggle: false
+      - entities:
           - scene.nanna
           - entity: light.camera
             secondary_info: last-changed
           - entity: light.plafoniera
             secondary_info: last-changed
-###############################################################################
-  - title: Meteo
-    id: meteo
-    cards:
-      - id: 9e6f09afa6af4b34b4e55de576b877ca  # Automatically created id
-        type: vertical-stack
-        cards:
-          - type: iframe
-            url: https://embed.windy.com/embed2.html?lat=44.606&lon=7.383&zoom=6&level=surface&overlay=rain&menu=&message=true&marker=&calendar=true&type=map&location=coordinates&detail=&detailLat=45.050&detailLon=7.667&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1
-            aspect_ratio: 100%
-          - type: entities
-            entities:
+        id: eae5d8f98aa846d7923b9cbc74aea32f
+        show_header_toggle: false
+        title: Camera
+        type: entities
+    id: stanze
+    title: Stanze
+  - cards:
+      - cards:
+          - aspect_ratio: 100%
+            type: iframe
+            url: >-
+              https://embed.windy.com/embed2.html?lat=44.606&lon=7.383&zoom=6&level=surface&overlay=rain&menu=&message=true&marker=&calendar=true&type=map&location=coordinates&detail=&detailLat=45.050&detailLon=7.667&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1
+          - entities:
               - variable.meteo
               - sensor.dark_sky_apparent_temperature
               - sensor.dark_sky_cloud_coverage
               - sensor.dark_sky_wind_speed
               - sensor.dark_sky_cloud_coverage_1
               - sensor.dark_sky_wind_speed_1
-###############################################################################
-  - title: Cofano
-    id: cofano
-    cards:
-      - id: 6b6081566134429c9207eaf55423a9ec  # Automatically created id
-        type: entities
-        title: Automazioni
-        show_header_toggle: false
-        entities:
+            type: entities
+        id: 9e6f09afa6af4b34b4e55de576b877ca
+        type: vertical-stack
+    id: meteo
+    title: Meteo
+  - cards:
+      - entities:
           - group.all_automations
-      - id: 3ffc0a8962084e808302a5efa1a30825  # Automatically created id
+        show_header_toggle: false
+        title: Automazioni
         type: entities
-        title: Cena del 15
-        entities:
+      - entities:
           - sensor.mese
           - sensor.turno
-      - id: cfefc738ea82474990bc2961186f0d2a  # Automatically created id
+        show_header_toggle: false
+        title: Cena del 15
         type: entities
-        title: Speedtest
-        entities:
+      - entities:
           - sensor.speedtest_download
           - sensor.speedtest_ping
           - sensor.speedtest_upload
-      - id: b78b7d8364c9416d853ec0197aba194f  # Automatically created id
+        show_header_toggle: false
+        title: Speedtest
         type: entities
-        title: Criptovalute
-        entities:
+      - entities:
           - sensor.saldo_eth
           - sensor.coinbase_eth_wallet
           - sensor.coinbase_eur_wallet
           - sensor.saldo_mining
-      - id: fb5bb2ef23594b2c80c0ac49144b8204  # Automatically created id
+        show_header_toggle: false
+        title: Criptovalute
         type: entities
-        title: Smart Plug
-        entities:
+      - entities:
           - sensor.tp_link_amps
           - sensor.tp_link_watts
           - sensor.tp_link_kw
           - sensor.tp_link_kw_today
           - sensor.tp_link_volts
-      - id: c350401da924478097c127daac105646  # Automatically created id
+        show_header_toggle: false
+        title: Smart Plug
         type: entities
-        title: UPS
-        entities:
+      - entities:
           - sensor.nut_ups_status_data
           - sensor.nut_ups_input_voltage
           - sensor.nut_ups_load
           - sensor.nut_ups_battery_runtime
           - sensor.nut_ups_battery_charge
-###############################################################################
-  - title: NUC
-    id: nuc
-    cards:
-      - id: ec5463168d584e7498c4256fee07633f  # Automatically created id
+        show_header_toggle: false
+        title: UPS
         type: entities
-        title: Sistema
-        entities:
+    id: cofano
+    title: Cofano
+  - cards:
+      - entities:
           - sensor.tempo_online
           - sensor.disk_use_percent_home
           - sensor.memory_free
-      # - type: entities
-      #   title: Elementi Critici
-      #   entities:
-      #     - sensor.hue_online
-      #     - sensor.synology_online
-      #     - sensor.ap_online
-      - id: 7283a456af6641e5af39d3aa4e637b77  # Automatically created id
-        type: entities
-        title: Containers
         show_header_toggle: false
-        entities:
+        title: Sistema
+        type: entities
+      - entities:
           - switch.hadockermon_transmissionopenvpnproxy
           - switch.hadockermon_addon_a0d7b954_grafana
           - switch.hadockermon_addon_a0d7b954_influxdb
@@ -258,4 +215,8 @@ views:
           - switch.hadockermon_addon_core_samba
           - switch.hadockermon_syncthing
           - switch.hadockermon_watchtower
-###############################################################################
+        show_header_toggle: false
+        title: Containers
+        type: entities
+    id: nuc
+    title: NUC

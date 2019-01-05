@@ -29,28 +29,28 @@
 
 ###############################################################################
 
-  - alias: Arrivo Ale
-    trigger:
-      platform: zone
-      entity_id: device_tracker.alessandra_iphone
-      zone: zone.home
-      event: enter
-    condition:
-      condition: time
-      after: '17:00:00'
-      before: '00:00:00'
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    action:
-      service: xiaomi_aqara.play_ringtone
-      data:
-        gw_mac: 78:11:DC:B0:72:7E
-        ringtone_id: 12
-        ringtone_vol: 30
+  # - alias: Arrivo Ale
+  #   trigger:
+  #     platform: zone
+  #     entity_id: device_tracker.alessandra_iphone
+  #     zone: zone.home
+  #     event: enter
+  #   condition:
+  #     condition: time
+  #     after: '17:00:00'
+  #     before: '00:00:00'
+  #     weekday:
+  #       - mon
+  #       - tue
+  #       - wed
+  #       - thu
+  #       - fri
+  #   action:
+  #     service: xiaomi_aqara.play_ringtone
+  #     data:
+  #       gw_mac: 78:11:DC:B0:72:7E
+  #       ringtone_id: 12
+  #       ringtone_vol: 30
 
 ###############################################################################
 

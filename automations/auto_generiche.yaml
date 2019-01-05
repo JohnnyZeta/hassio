@@ -136,7 +136,7 @@
   - alias: "Aggiorna Ultimo Movimento"
     trigger:
       - platform: state
-        entity_id: binary_sensor.motion_sensor_158d0001a8e47c, binary_sensor.motion_sensor_158d0001a8fb6a, binary_sensor.motion_sensor_158d0001a8fa9d, binary_sensor.motion_sensor_158d0001dc2ed5
+        entity_id: binary_sensor.presence_6, binary_sensor.presence_3, binary_sensor.presence_5, binary_sensor.presence_4
         to: 'on'
     action:
       - service: variable.set_variable
@@ -160,11 +160,6 @@
       - platform: template
         value_template: "{{ is_state('sensor.nut_ups_status_data', 'OL DISCHRG') }}"
     action:
-      - service: light.turn_on
-        data:
-          entity_id: light.gateway_light_7811dcb0727e
-          color_name: red
-          brightness_pct: 100
       #- wait_template: '{{ (states.sensor.nut_ups_status_data.state | truncate(2,false,'',0)) == 'OL' }}'
       - wait_template: "{{ is_state('sensor.nut_ups_status_data', 'OL CHRG') or ((states.sensor.nut_ups_status_data.state | truncate(3,false,'',0)) == 'FSD' ) }}"
       - service: persistent_notification.create
@@ -185,34 +180,34 @@
 
 ###############################################################################
 
-  - alias: Vacanza
-    trigger:
-      platform: state
-      entity_id: input_boolean.vacanza
-    action:
-      - service_template: >
-          {% if is_state("input_boolean.vacanza", "on") %}
-            automation.turn_off
-          {% else %}
-            automation.turn_on
-          {% endif %}
-        data:
-          entity_id: automation.arrivo_a_casa, automation.avviso_tempo_ritorno_alby, automation.avviso_tempo_ritorno_ale, automation.buongiorno_lavorativo, automation.buongiorno_weekends, automation.programmazione_semola
-      - service_template: >
-          {% if is_state("input_boolean.vacanza", "on") %}
-            input_boolean.turn_off
-          {% else %}
-            input_boolean.turn_on
-          {% endif %}
-        data:
-          entity_id: input_boolean.alarmweekon
-      - service: notify.ios_iphone_di_alby
-        data_template:
-          title: "Vacanza"
-          message: >
-            {% if is_state("input_boolean.vacanza", "on") %} Buon inizio Vacanza!
-            {% else %} Buon ritorno al Lavoro!
-            {% endif %}
+  # - alias: Vacanza
+  #   trigger:
+  #     platform: state
+  #     entity_id: input_boolean.vacanza
+  #   action:
+  #     - service_template: >
+  #         {% if is_state("input_boolean.vacanza", "on") %}
+  #           automation.turn_off
+  #         {% else %}
+  #           automation.turn_on
+  #         {% endif %}
+  #       data:
+  #         entity_id: automation.arrivo_a_casa, automation.avviso_tempo_ritorno_alby, automation.avviso_tempo_ritorno_ale, automation.buongiorno_lavorativo, automation.buongiorno_weekends, automation.programmazione_semola
+  #     - service_template: >
+  #         {% if is_state("input_boolean.vacanza", "on") %}
+  #           input_boolean.turn_off
+  #         {% else %}
+  #           input_boolean.turn_on
+  #         {% endif %}
+  #       data:
+  #         entity_id: input_boolean.alarmweekon
+  #     - service: notify.ios_iphone_di_alby
+  #       data_template:
+  #         title: "Vacanza"
+  #         message: >
+  #           {% if is_state("input_boolean.vacanza", "on") %} Buon inizio Vacanza!
+  #           {% else %} Buon ritorno al Lavoro!
+  #           {% endif %}
 
 ###############################################################################
 
@@ -237,7 +232,7 @@
   # - alias: Cambio Aria
   #   trigger:
   #     platform: template
-  #     value_template: "{{ (states.sensor.temperature_158d0001f561b7.state | round(0)) == (states.sensor.temperature_158d0001b92644.state | round(0)) }}"
+  #     value_template: "{{ (states.sensor.temperature_10.state | round(0)) == (states.sensor.temperature_158d0001b92644.state | round(0)) }}"
   #   condition:
   #     - condition: state
   #       entity_id: group.famiglia
