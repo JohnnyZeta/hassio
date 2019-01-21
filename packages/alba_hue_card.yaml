@@ -5,7 +5,7 @@ input_datetime:
     name: Orario
     has_date: false
     has_time: true
-    initial: 06:45
+    initial: 07:27
 ############ BOOLEANI ##########################################################
 input_boolean:
   alarmweekday:
@@ -41,11 +41,12 @@ automation:
       - condition: template
         value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
     action:
-      - service: hue.hue_activate_scene
+      - service: light.turn_on
         data:
-          group_name: "Camera"
-          scene_name: "Buongiorno"
-          # la transizione-on è già nella scena (5 min)
+          entity_id: light.camera
+          transition: 180
+          brightness: 104
+          xy_color: [0.385, 0.384]
 
   - alias: Buongiorno Weekends
     initial_state: True
@@ -67,11 +68,12 @@ automation:
       - condition: template
         value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
     action:
-      - service: hue.hue_activate_scene
+      - service: light.turn_on
         data:
-          group_name: "Camera"
-          scene_name: "Buongiorno"
-          # la transizione-on è già nella scena (5 min)
+          entity_id: light.camera
+          transition: 180
+          brightness: 104
+          xy_color: [0.385, 0.384]
 ############ GRUPPO ############################################################
 # group:
 #   alarmclock:

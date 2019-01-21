@@ -100,6 +100,7 @@ history:
 # Tracked history is kept for 2 days
 recorder:
   purge_keep_days: 2
+  db_url: !secret db_url
 
 # View all events in a logbook
 logbook:

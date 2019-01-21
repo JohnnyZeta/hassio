@@ -25,7 +25,7 @@
       # data_template:
       data:
         entity_id: light.plafoniera
-        brightness_pct: 50
+        brightness_pct: 100
         kelvin: 4000
         # kelvin: >
         #   {% if ( ( now().strftime("%H") | int ) >= 6 ) and ( ( now().strftime("%H") | int ) <= 12 ) %} 4000
@@ -78,21 +78,22 @@
         id: xiaomi_switch_d
         event: 1004
     action:
-      - service: light.turn_on
-        # data_template:
-        data:
-          entity_id: light.plafoniera
-          brightness_pct: 100
-          kelvin: 4000
-          # kelvin: >
-          #   {% if ( ( now().strftime("%H") | int ) >= 6 ) and ( ( now().strftime("%H") | int ) <= 12 ) %} 4000
-          #   {% elif ( ( now().strftime("%H") | int ) < 6 ) or ( ( now().strftime("%H") | int ) > 12 ) %} 2700
-          #   {% endif %}
+      # - service: light.turn_on
+      #   # data_template:
+      #   data:
+      #     entity_id: light.plafoniera
+      #     brightness_pct: 100
+      #     kelvin: 4000
+      #     # kelvin: >
+      #     #   {% if ( ( now().strftime("%H") | int ) >= 6 ) and ( ( now().strftime("%H") | int ) <= 12 ) %} 4000
+      #     #   {% elif ( ( now().strftime("%H") | int ) < 6 ) or ( ( now().strftime("%H") | int ) > 12 ) %} 2700
+      #     #   {% endif %}
       - service: light.turn_on
         data:
           entity_id: light.camera
           brightness: 254
-          xy_color: [0.438, 0.404]
+          kelvin: 4000
+          #xy_color: [0.438, 0.404]
 
   # - alias: Pulsante_Plafoniera_Camera_Soft
   #   trigger:

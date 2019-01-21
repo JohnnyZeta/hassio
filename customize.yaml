@@ -87,6 +87,8 @@
     friendly_name: Transmission-OpenVPN
   switch.hadockermon_cadvisor:
     friendly_name: cAdvisor
+  switch.lucetavolo:
+    friendly_name: Tavolo
 
 ############ DEVICES ##########################################################
 

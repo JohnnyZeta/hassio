@@ -28,32 +28,50 @@
 ########## PULSANTE JBL ########################################################
 
 # 1 CLICK
-  - alias: Pulsante Natalino
+  - alias: Pulsante Luci Salone ON
     trigger:
       platform: event
       event_type: deconz_event
       event_data:
         id: xiaomi_switch_c
         event: 1000
+    condition:
+      condition: state
+      entity_id: light.tv_2
+      state: 'off'
     action:
-      - service_template: >
-          {% if is_state("switch.natalino", "off") %}
-            switch.turn_on
-          {% else %}
-            switch.turn_off
-          {% endif %}
+      - service: light.turn_on
         data:
-          entity_id: switch.natalino
-
-# 2 CLICK
-  - alias: Pulsante Luci Salotto OFF
+          entity_id: light.divano_2, light.tv_2
+          brightness: 254
+          xy_color: [0.432, 0.402]
+  
+  - alias: Pulsante Luci Salone OFF
     trigger:
       platform: event
       event_type: deconz_event
       event_data:
         id: xiaomi_switch_c
-        event: 1004
+        event: 1000
+    condition:
+      condition: state
+      entity_id: light.tv_2
+      state: 'on'
     action:
       - service: light.turn_off
         data:
-          entity_id: light.divano, light.tv, light.gateway_light_7811dcb0727e
+          entity_id: light.divano_2, light.tv_2
+
+
+# 2 CLICK
+  # - alias: Pulsante Luci Salotto OFF
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: xiaomi_switch_c
+  #       event: 1004
+  #   action:
+  #     - service: light.turn_off
+  #       data:
+  #         entity_id: light.divano_2, light.tv_2

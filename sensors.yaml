@@ -173,9 +173,6 @@
       - battery.runtime
       - battery.charge
 ###############################################################################
- # - platform: cert_expiry
- #   host: !secret certificate_url
-###############################################################################
   # - platform: command_line
   #   name: "DownloadTemperatureGrafana"
   #   command: "curl -s -H 'Authorization: Bearer eyJrIjoiUHJjTkNNeFE3djJOVDFycE82TjU3TXVueDJTckUwTEgiLCJuIjoiSEEiLCJpZCI6MX0=' 'http://192.168.2.30:3000/render/dashboard-solo/db/home-assistant?orgId=1&panelId=1&theme=light&width=1500&height=500&tz=UTC%2B02%3A00' > /config/www/temperature.png"
@@ -183,4 +180,7 @@
 ###############################################################################
   - platform: pi_hole
     host: !secret pi_hole_host
+###############################################################################
+  - platform: cert_expiry
+    host: !secret base_url
 ###############################################################################

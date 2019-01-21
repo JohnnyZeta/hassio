@@ -102,12 +102,29 @@
         data:
           entity_id: light.camera
           transition: 180
+      - service: media_player.sonos_snapshot
+        data:
+          with_group: 'true'
+      - delay: '00:00:01'
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.disimpegno
+          volume_level: '0.3'
+      - service: tts.google_say
+        entity_id: media_player.disimpegno
+        data:
+          message: "Buonanotte!"
+      - delay: '00:00:03'
+      - service: media_player.sonos_restore
+        data:
+        #   #entity_id: media_player.disimpegno
+          with_group: 'true'
       - service: shell_command.log
         data:
           text: 'Fade-out scena Nanna'
-      - service: switch.turn_off
-        data:
-          entity_id: switch.natalino
+      # - service: switch.turn_off
+      #   data:
+      #     entity_id: switch.natalino
       - delay: 00:03:00
       - service: switch.turn_off
         entity_id: switch.nuvola

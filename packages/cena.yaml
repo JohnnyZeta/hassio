@@ -11,29 +11,29 @@ sensor:
         icon_template: mdi:food
         value_template: >
           {% if now().strftime('%m') == '01' %}
-            Enrica
+            Moro
           {% elif now().strftime('%m') == '02' %}
-            Rosex
-          {% elif now().strftime('%m') == '03' %}
-            Zambo
-          {% elif now().strftime('%m') == '04' %}
-            Virginia
-          {% elif now().strftime('%m') == '05' %}
-            Moro
-          {% elif now().strftime('%m') == '06' %}
             Enrica
-          {% elif now().strftime('%m') == '07' %}
+          {% elif now().strftime('%m') == '03' %}
             Rosex
-          {% elif now().strftime('%m') == '08' %}
+          {% elif now().strftime('%m') == '04' %}
             Zambo
-          {% elif now().strftime('%m') == '09' %}
+          {% elif now().strftime('%m') == '05' %}
             Virginia
-          {% elif now().strftime('%m') == '10' %}
-            Zambo
-          {% elif now().strftime('%m') == '11' %}
-            Virginia
-          {% elif now().strftime('%m') == '12' %}
+          {% elif now().strftime('%m') == '06' %}
             Moro
+          {% elif now().strftime('%m') == '07' %}
+            Enrica
+          {% elif now().strftime('%m') == '08' %}
+            Rosex
+          {% elif now().strftime('%m') == '09' %}
+            Zambo
+          {% elif now().strftime('%m') == '10' %}
+            Virginia
+          {% elif now().strftime('%m') == '11' %}
+            Moro
+          {% elif now().strftime('%m') == '12' %}
+            Zambo
           {% endif %}
 ############## AUTOMAZIONE ######################################################
 automation:

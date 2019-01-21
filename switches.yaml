@@ -34,13 +34,23 @@
       - 'hassio_supervisor'
       - 'portainer'
   - platform: mqtt
-    name: Natalino
-    icon: mdi:candycane
-    state_topic: ESPURNA-6717C3/relay/0
-    command_topic: ESPURNA-6717C3/relay/0/set
-    payload_on: 1
-    payload_off: 0
-    availability_topic: ESPURNA-6717C3/status
-    payload_available: 1
-    payload_not_available: 0
+    name: LuceTavolo
+    icon: mdi:lightbulb
+    state_topic: "shellies/shelly1-5007EE/relay/0"
+    command_topic: "shellies/shelly1-5007EE/relay/0/command"
+    qos: 0
+    payload_on: "on"
+    payload_off: "off"
+    optimistic: false
+    retain: false 
+  # - platform: mqtt
+  #   name: Natalino
+  #   icon: mdi:candycane
+  #   state_topic: ESPURNA-6717C3/relay/0
+  #   command_topic: ESPURNA-6717C3/relay/0/set
+  #   payload_on: 1
+  #   payload_off: 0
+  #   availability_topic: ESPURNA-6717C3/status
+  #   payload_available: 1
+  #   payload_not_available: 0
   

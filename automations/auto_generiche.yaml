@@ -1,25 +1,25 @@
 
-  - alias: Backup Automatico
-    trigger:
-      platform: time
-      at: '3:00:00'
-    condition:
-      - condition: time
-        weekday:
-          - mon
-          #- thu
-    action:
-      - service: hassio.snapshot_full
-        data_template:
-          name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
-      - service: hassio.addon_stdin
-        data:
-          addon: 7be23ff5_dropbox_sync
-          input:
-            command: upload
-      - service: shell_command.log
-        data:
-          text: 'Eseguito backup programmato'
+  # - alias: Backup Automatico
+  #   trigger:
+  #     platform: time
+  #     at: '03:00:00'
+  #   condition:
+  #     - condition: time
+  #       weekday:
+  #         - mon
+  #         #- thu
+  #   action:
+  #     - service: hassio.snapshot_full
+  #       data_template:
+  #         name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
+  #     - service: hassio.addon_stdin
+  #       data:
+  #         addon: 7be23ff5_dropbox_sync
+  #         input:
+  #           command: upload
+  #     - service: shell_command.log
+  #       data:
+  #         text: 'Eseguito backup programmato'
 
 ###############################################################################
 
@@ -108,7 +108,7 @@
           - thu
           - sun
       - condition: state
-        entity_id: light.tv
+        entity_id: light.tv_2
         state: 'on'
     action:
       - service: switch.turn_on
@@ -254,5 +254,97 @@
   #       data_template:
   #         title: "Finestre"
   #         message: "Temperatura interna uguale a quella esterna"
+
+###############################################################################
+
+  - alias: Bentornato Sonos Alby
+    trigger:
+      - platform: state
+        entity_id: device_tracker.alby_iphone
+        to: 'home'
+    condition:
+      - condition: time
+        after: '10:00:00'
+        before: '22:00:00'
+        # condizione seguente una volta ogni 5 minuti, per evitare casini quando rientriamo insieme
+      - condition: template
+        value_template: >
+          {% if states.automation.bentornato_sonos_ale.last_triggered is not none %}
+            {% if as_timestamp(now()) | int - as_timestamp(states.automation.bentornato_sonos_ale.attributes.last_triggered) | int > 300 %} true {% else %} false
+            {% endif %}
+          {% else %}
+          false
+          {% endif %}
+    action:
+      - wait_template: "{{ is_state('binary_sensor.openclose_13', 'on') }}"
+        timeout: '00:05:00'
+        continue_on_timeout: 'false'
+      - wait_template: "{{ is_state('binary_sensor.openclose_13', 'off') }}"
+        timeout: '00:01:00'
+        continue_on_timeout: 'false'
+      #- delay: '00:00:01'
+      - service: media_player.sonos_snapshot
+        data:
+        #   #entity_id: media_player.disimpegno
+          with_group: 'true'
+      - delay: '00:00:01'
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.disimpegno
+          volume_level: '0.4'
+      - service: tts.google_say
+        entity_id: media_player.disimpegno
+        data:
+          message: "Bentornato a casa, Alberto!"
+      - delay: '00:00:03'
+      - service: media_player.sonos_restore
+        data:
+        #   #entity_id: media_player.disimpegno
+          with_group: 'true'
+
+  - alias: Bentornato Sonos Ale
+    trigger:
+      - platform: state
+        entity_id: device_tracker.alessandra_iphone
+        to: 'home'
+    condition:
+      - condition: time
+        after: '10:00:00'
+        before: '22:00:00'
+        # condizione seguente una volta ogni 5 minuti, per evitare casini quando rientriamo insieme
+      - condition: template
+        value_template: >
+          {% if states.automation.bentornato_sonos_alby.last_triggered is not none %}
+            {% if as_timestamp(now()) | int - as_timestamp(states.automation.bentornato_sonos_alby.attributes.last_triggered) | int > 300 %} true {% else %} false
+            {% endif %}
+          {% else %}
+          false
+          {% endif %}
+    action:
+      - wait_template: "{{ is_state('binary_sensor.openclose_13', 'on') }}"
+        timeout: '00:05:00'
+        continue_on_timeout: 'false'
+      - wait_template: "{{ is_state('binary_sensor.openclose_13', 'off') }}"
+        timeout: '00:01:00'
+        continue_on_timeout: 'false'
+      #- delay: '00:00:01'
+      - service: media_player.sonos_snapshot
+        data:
+        #   #entity_id: media_player.dismpegno
+          with_group: 'true'
+      - delay: '00:00:01'
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.disimpegno
+          volume_level: '0.4'
+      - service: tts.google_say
+        entity_id: media_player.disimpegno
+        data:
+          message: "Bentornata a casa, Alessandra!"
+      - delay: '00:00:03'
+      - service: media_player.sonos_restore
+        data:
+        #   #entity_id: media_player.disimpegno
+          with_group: 'true'
 
 ###############################################################################

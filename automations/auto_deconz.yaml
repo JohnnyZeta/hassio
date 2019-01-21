@@ -1,4 +1,13 @@
 
+# ZigBee
+
+# Switches:
+
+# Xiaomi Switch A: Sonos, in cucina
+# Xiaomi Switch B: Netflix
+# Xiaomi Switch C: Natalino
+# Xiaomi Switch D: Plafoniera
+
 # PULSANTE HUE TAP
 
   - alias: Tap 1
@@ -11,9 +20,12 @@
         event: 34
     action:
       - service: light.turn_off
-      - service: switch.turn_off
+      # - service: switch.turn_off
+      #   data:
+      #     entity_id: switch.natalino
+      - service: media_player.media_pause
         data:
-          entity_id: switch.natalino
+          entity_id: media_player.cucina, media_player.disimpegno
 
   - alias: Tap 2
     initial_state: 'on'

@@ -99,6 +99,25 @@
           brightness: 254
           xy_color: [0.385, 0.384]
 
+  - alias: Luci Movimento Cucina
+    trigger:
+      platform: state
+      entity_id: binary_sensor.presence_6
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: group.famiglia
+        state: home
+      - condition: state
+        entity_id: light.disimpegno_2
+        state: 'on'
+      - condition: template
+        value_template: '{{ states.light.disimpegno_2.attributes.brightness > 250 }}'
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.lucetavolo
+
 ###############################################################################
 
         
