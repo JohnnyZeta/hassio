@@ -20,9 +20,14 @@
         event: 34
     action:
       - service: light.turn_off
+        data:
+          entity_id: all
       # - service: switch.turn_off
       #   data:
       #     entity_id: switch.natalino
+      - service: switch.turn_off
+        data:
+          entity_id: switch.lucetavolo
       - service: media_player.media_pause
         data:
           entity_id: media_player.cucina, media_player.disimpegno
@@ -37,8 +42,13 @@
         event: 16
     action:
       - service: scene.turn_on
-        data:
-          entity_id: scene.accendisalotto
+        data_template:
+          entity_id: >
+            {% if is_state('light.tv_2', 'on') %}
+              scene.spegnisalotto
+            {% else %}
+              scene.accendisalotto
+            {% endif %}
 
   - alias: Tap 3
     initial_state: 'on'
@@ -49,12 +59,15 @@
         id: tap
         event: 17
     action:
-      - service: light.turn_on
-        data:
-          entity_id: light.disimpegno_2
-          brightness: 254
+      - service_template: >
+          {% if is_state('light.disimpegno_2', 'on') %}
+            light.turn_off
+          {% else %}
+            light.turn_on
+          {% endif %}
+        entity_id: light.disimpegno_2
 
-  - alias: Tap 4
+  - alias: Tap 4 ON
     initial_state: 'on'
     trigger:
       platform: event
@@ -62,12 +75,37 @@
       event_data:
         id: tap
         event: 18
+    condition:
+      condition: state
+      entity_id: light.camera
+      state: "off"
     action:
+      # - service: light.turn_on
+      #   data:
+      #     entity_id: light.cucina_2
+      #     brightness: 178
+      #     xy_color: [0.553, 0.423]
       - service: light.turn_on
         data:
-          entity_id: light.cucina_2
-          brightness: 178
-          xy_color: [0.553, 0.423]
+          entity_id: light.camera
+          brightness: 254
+          xy_color: [0.385, 0.384]
+
+  - alias: Tap 4 OFF
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: tap
+        event: 18
+    condition:
+      condition: state
+      entity_id: light.camera
+      state: "on"
+    action:
+      - service: light.turn_off
+        entity_id: light.camera
 
 # PULSANTE XIAOMI A
 

@@ -1,21 +1,20 @@
 
 ########## PULSANTE CUCINA #####################################################
 
-  - alias: Pulsante Sonos
-    initial_state: 'on'
-    trigger:
-      platform: event
-      event_type: deconz_event
-      event_data:
-        id: xiaomi_switch_a
-    action:
-      service_template: >
-        {% if trigger.event.data.event == 1000 %} media_player.media_play_pause
-        {% elif trigger.event.data.event == 1004 %} media_player.media_next_track
-        {% elif trigger.event.data.event == 1005 %} media_player.media_previous_track
-        {% endif %}
-      data:
-        entity_id: media_player.cucina, media_player.disimpegno
+  # - alias: Pulsante Sonos
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: xiaomi_switch_a
+  #   action:
+  #     service_template: >
+  #       {% if trigger.event.data.event == 1000 %} media_player.media_play_pause
+  #       {% elif trigger.event.data.event == 1004 %} media_player.media_next_track
+  #       {% elif trigger.event.data.event == 1005 %} media_player.media_previous_track
+  #       {% endif %}
+  #     data:
+  #       entity_id: media_player.cucina, media_player.disimpegno
 
   # - alias: Pulsante Timer Nuvola
   #   trigger:

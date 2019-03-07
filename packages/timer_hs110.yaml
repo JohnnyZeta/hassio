@@ -1,36 +1,36 @@
-homeassistant:
-############ ORARI ############################################################
-input_datetime:
-  durata_timer:
-    name: 'Timer Spegnimento (minuti)'
-    has_date: false
-    has_time: true
-    initial: 00:30
-############ BOOLEANI ##########################################################
-input_boolean:
-  timer:
-    name: Timer
-    initial: off
-    icon: mdi:check-circle
-############ AUTOMAZIONI #######################################################
-automation:
-  - alias: Timer Nuvola # Ventilatore
-    trigger:
-      platform: state
-      entity_id: input_boolean.timer
-      to: 'on'
-    condition:
-      - condition: state
-        entity_id: switch.nuvola
-        state: 'on'
-    action:
-      - delay: '{{ states.input_datetime.durata_timer.state }}'
-      - service: switch.turn_off
-        data:
-          entity_id: switch.nuvola
-      - service: input_boolean.turn_off
-        data:
-          entity_id: input_boolean.timer
+# homeassistant:
+# ############ ORARI ############################################################
+# input_datetime:
+#   durata_timer:
+#     name: 'Timer Spegnimento (minuti)'
+#     has_date: false
+#     has_time: true
+#     initial: 00:30
+# ############ BOOLEANI ##########################################################
+# input_boolean:
+#   timer:
+#     name: Timer
+#     initial: off
+#     icon: mdi:check-circle
+# ############ AUTOMAZIONI #######################################################
+# automation:
+#   - alias: Timer Nuvola # Ventilatore
+#     trigger:
+#       platform: state
+#       entity_id: input_boolean.timer
+#       to: 'on'
+#     condition:
+#       - condition: state
+#         entity_id: switch.nuvola
+#         state: 'on'
+#     action:
+#       - delay: '{{ states.input_datetime.durata_timer.state }}'
+#       - service: switch.turn_off
+#         data:
+#           entity_id: switch.nuvola
+#       - service: input_boolean.turn_off
+#         data:
+#           entity_id: input_boolean.timer
 ############ GRUPPO ############################################################
 # group:
 #   scheda_timer_ventilatore:

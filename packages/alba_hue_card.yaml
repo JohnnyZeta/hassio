@@ -21,7 +21,7 @@ automation:
   - alias: Buongiorno Lavorativo
     initial_state: True
     trigger:
-      platform: time
+      platform: time_pattern
       minutes: '/1'
       seconds: 0
     condition:
@@ -51,7 +51,7 @@ automation:
   - alias: Buongiorno Weekends
     initial_state: True
     trigger:
-      platform: time
+      platform: time_pattern
       minutes: '/1'
       seconds: 0
     condition:

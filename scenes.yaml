@@ -107,4 +107,10 @@
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
+  - name: SpegniSalotto
+    entities:
+      light.tv_2:
+        state: off
+      light.divano_2:
+        state: off
 ###############################################################################

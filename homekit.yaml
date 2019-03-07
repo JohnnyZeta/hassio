@@ -31,8 +31,8 @@
       #- light.hue_white_light_1
       # SWITCHES
       #- switch.semola_schedule
-      - switch.nuvola
-      - switch.natalino
+      #- switch.nuvola
+      #- switch.natalino
       - scene.entrata
       - scene.nanna
       - scene.netflix

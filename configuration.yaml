@@ -46,7 +46,7 @@ config:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  api_password: !secret http_password
+  #api_password: !secret http_password
   #ssl_certificate: !secret ssl_certificate
   #ssl_key: !secret ssl_key
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
@@ -137,6 +137,12 @@ proximity:
     devices:
       - device_tracker.alby_iphone
       - device_tracker.alessandra_iphone
+
+# Default Config
+default_config:
+
+# System Health
+system_health:
 
 ###############################################################################
 
@@ -267,3 +273,26 @@ camera:
     username: !secret foscam_username
     password: !secret foscam_password
     name: Cucina
+
+person:
+  - name: Alberto
+    id: alberto0205
+    user_id: c84a36a2ce794d10a9f96d444c08158f
+    device_trackers:
+      - device_tracker.alby_iphone
+      - device_tracker.mbpdialessandra
+  - name: Alessandra
+    id: alessandra2704
+    user_id: 0a59d7d535004e0bb2fa18dd0ec14435
+    device_trackers:
+      - device_tracker.alessandra_iphone
+      - device_tracker.alessandrahp
+
+speedtestdotnet:
+  server_id: !secret speedtest_server_id
+
+transmission:
+  host: 192.168.2.4
+  port: 9091
+  username: !secret transmission_username
+  password: !secret transmission_password

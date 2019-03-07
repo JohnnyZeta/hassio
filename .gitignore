@@ -11,8 +11,8 @@
 !packages
 !themes
 !custom_components
-!custom_components/sensor
-!custom_components/switch
+!custom_components/google_geocode
+!custom_components/hadockermon
 secrets.yaml
 zones.yaml
 entity_registry.yaml

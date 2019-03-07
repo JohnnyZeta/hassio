@@ -1,4 +1,4 @@
-# Packages
+<!-- # Packages
 
 > Ricordarsi di aggiungere il gruppo corrispondente (l'ultimo blocco di codice in ogni Package) al vostro `group.yaml` dove volete che appaia la card, e di riavviare HA.
 
@@ -59,4 +59,4 @@ Si tratta di un package estremamente personalizzato sulle mie esigenze, da adatt
 
 Card che permette di impostare un timer di spegnimento di una Smart Plug a cui è collegato un ventilatore.
 
-La durata del timer è regolabile tramite un  `input_datetime` opportuno, e la sua attivazione da un `input_boolean`.
+La durata del timer è regolabile tramite un  `input_datetime` opportuno, e la sua attivazione da un `input_boolean`. -->
