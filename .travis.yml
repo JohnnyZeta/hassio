@@ -8,6 +8,7 @@ python:
 before_install:
   - touch fullchain.pem
   - touch privkey.pem
+  - touch alarm_control_panel.yaml
   - mv travis_secrets.yaml secrets.yaml
   - mv travis_zones.yaml zones.yaml
 
