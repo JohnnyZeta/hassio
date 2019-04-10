@@ -6,3 +6,14 @@
     entities:
         - device_tracker.alby_iphone
         - device_tracker.alessandra_iphone
+  allarmi:
+    name: Allarmi
+    view: no
+    control: hidden
+    entities:
+      - automation.disattiva_allarme
+      - automation.innesca_allarme
+      - automation.routine_allarme
+      - automation.triggera_allarme
+      - automation.triggera_allarme2
+      - automation.disattiva_allarme2

@@ -19,3 +19,4 @@ entity_registry.yaml
 known_devices.yaml
 automations/auto-allarme.yaml
 known_devices.yaml
+alarm_control_panel.yaml

@@ -14,6 +14,16 @@ homeassistant:
   customize: !include customize.yaml
   # Packages!
   packages: !include_dir_named packages
+  # Auth Providers
+  auth_providers:
+    - type: homeassistant
+    - type: trusted_networks
+      trusted_networks:
+        - 127.0.0.1
+        - 192.168.2.0/24
+        - 192.168.3.0/24
+        - 172.17.0.0/16 # Example Docker bridge
+        - 172.30.32.0/23 # Example Docker hassio
 
 zone: !include zones.yaml
 group: !include groups.yaml
@@ -27,6 +37,7 @@ binary_sensor: !include binary_sensors.yaml
 input_boolean: !include input_booleans.yaml
 homekit: !include homekit.yaml
 alert: !include alerts.yaml
+alarm_control_panel: !include alarm_control_panel.yaml
 
 # Custom Component https://github.com/rogro82/hass-variables
 variable: !include variables.yaml
@@ -54,12 +65,6 @@ http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 192.168.2.1
-  trusted_networks:
-    - 127.0.0.1
-    - 192.168.2.0/24
-    - 192.168.3.0/24
-    - 172.17.0.0/16 # Example Docker bridge
-    - 172.30.32.0/23 # Example Docker hassio
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
@@ -85,9 +90,9 @@ history:
       - input_boolean.timer
       - device_tracker.beacon_clio
       - device_tracker.beacon_papera
-      - device_tracker.beacon_swift
+      - device_tracker.beacon_leon
       - variable.papera
-      - variable.swift
+      - variable.leon
       - variable.clio
       - input_boolean.alarmweekday
       - input_boolean.controllo
@@ -266,6 +271,12 @@ notify:
   - name: telegram_pa
     platform: telegram
     chat_id: !secret telegram_pa_chat_id
+  - name: firetv
+    platform: nfandroidtv
+    host: !secret firetv_ip
+    fontsize: max
+    duration: 10
+    position: top-right
 
 camera:
   - platform: foscam
@@ -296,3 +307,5 @@ transmission:
   port: 9091
   username: !secret transmission_username
   password: !secret transmission_password
+
+stream:

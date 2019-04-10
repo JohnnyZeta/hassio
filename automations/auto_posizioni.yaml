@@ -126,12 +126,12 @@
           text: >
             Tempo di ritorno dal lavoro di Alby previsto in {{ states.sensor.lavorocasa_ale.state }} minuti.
 
-############ SWIFT ############################################################
+############ LEON ############################################################
 
   - alias: Avviso Coop
     trigger:
       platform: state
-      entity_id: binary_sensor.swift
+      entity_id: binary_sensor.leon
       from: 'on'
       to: 'off'
     condition:

@@ -22,7 +22,7 @@
   - alias: Luci Movimento Camera
     trigger:
       platform: state
-      entity_id: binary_sensor.presence_5
+      entity_id: binary_sensor.presence_30
       to: 'on'
     condition:
       - condition: state
@@ -32,7 +32,7 @@
         entity_id: light.disimpegno_2
         state: 'on'
       - condition: state
-        entity_id: light.plafoniera
+        entity_id: light.yeelight_ceiling1_7811dcda769e
         state: 'off'
       - condition: state
         entity_id: light.camera
@@ -52,6 +52,9 @@
       entity_id: binary_sensor.presence_6
       to: 'on'
     condition:
+      - condition: state
+        entity_id: sun.sun
+        state: below_horizon
       - condition: state
         entity_id: group.famiglia
         state: home

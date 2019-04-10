@@ -5,7 +5,7 @@ input_select:
     name: 'Vettura:'
     options:
       - Renault Clio
-      - Suzuki Swift
+      - Seat Leon
       - Papera
     initial: Renault Clio
     icon: mdi:car
@@ -27,7 +27,7 @@ automation:
   - alias: Notifica_car
     trigger:
       platform: state
-      entity_id: binary_sensor.clio, binary_sensor.swift, binary_sensor.papera
+      entity_id: binary_sensor.clio, binary_sensor.leon, binary_sensor.papera
     condition:
       condition: state
       entity_id: input_boolean.controllo

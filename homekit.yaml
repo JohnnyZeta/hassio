@@ -14,20 +14,22 @@
       # MOVIMENTO
       - binary_sensor.presence_6
       - binary_sensor.presence_3
-      - binary_sensor.presence_5
+      - binary_sensor.presence_30
       - binary_sensor.presence_4
       # TEMPERATURA E UMIDITA'
       - sensor.humidity_11
+      - sensor.humidity_33
       #- sensor.pressure_158d0001b92644
       #- sensor.pressure_12
       - sensor.temperature_10
+      - sensor.temperature_32
       # LUCI
       - light.camera
       - light.cucina_2
       - light.disimpegno_2
       - light.divano_2
       - light.tv_2
-      - light.plafoniera
+      - light.yeelight_ceiling1_7811dcda769e
       #- light.hue_white_light_1
       # SWITCHES
       #- switch.semola_schedule

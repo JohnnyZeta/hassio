@@ -125,7 +125,7 @@ views:
           - scene.nanna
           - entity: light.camera
             secondary_info: last-changed
-          - entity: light.plafoniera
+          - entity: light.yeelight_ceiling1_7811dcda769e
             secondary_info: last-changed
         id: eae5d8f98aa846d7923b9cbc74aea32f
         show_header_toggle: false

@@ -38,7 +38,7 @@
           text: 'Attivata scena Nanna'
       - service: light.turn_off
         data:
-          entity_id: light.plafoniera
+          entity_id: light.yeelight_ceiling1_7811dcda769e
       # - service: switch.turn_off
       #   data:
       #     entity_id: switch.natalino
@@ -77,7 +77,7 @@
           text: 'Attivata luce tenue in camera'
       - service: light.turn_off
         data:
-          entity_id: light.plafoniera
+          entity_id: light.yeelight_ceiling1_7811dcda769e
 
 # 2 CLICK
   - alias: Pulsante FadeOut
@@ -102,7 +102,7 @@
     action:
       - service: light.turn_off
         data:
-          entity_id: light.plafoniera
+          entity_id: light.yeelight_ceiling1_7811dcda769e
       # - service: shell_command.spegni_nanna
       - service: light.turn_off
         data:

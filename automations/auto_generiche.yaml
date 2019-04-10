@@ -138,7 +138,7 @@
   - alias: "Aggiorna Ultimo Movimento"
     trigger:
       - platform: state
-        entity_id: binary_sensor.presence_6, binary_sensor.presence_3, binary_sensor.presence_5, binary_sensor.presence_4
+        entity_id: binary_sensor.presence_6, binary_sensor.presence_3, binary_sensor.presence_30, binary_sensor.presence_4
         to: 'on'
     action:
       - service: variable.set_variable
@@ -372,5 +372,24 @@
       data_template:
         title: "Torrent completato!"
         message: "{{ trigger.event.data.name }}"
+
+###############################################################################
+
+  # - alias: Verifica Nanna
+  #   trigger:
+  #     platform: time
+  #     at: '23:30:00'
+  #   condition:
+  #     - condition: state
+  #       entity_id: light.disimpegno_3
+  #       state: "off"
+  #     - condition: state
+  #       entity_id: binary_sensor.workday_sensor
+  #       state: "on"
+  #   action:
+  #     - service: notify.firetv
+  #       data:
+  #         title: 'Nanna'
+  #         message: 'E\' ora di andare a dormire!'
 
 ###############################################################################

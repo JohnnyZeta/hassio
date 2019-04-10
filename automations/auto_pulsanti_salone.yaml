@@ -24,6 +24,13 @@
           {% endif %}
         data:
           entity_id: switch.natalino
+      - service: switch.turn_off
+        entity_id: switch.lucetavolo
+      - service: notify.firetv
+        data:
+          title: 'Cambio Scena'
+          message: 'Luci modificate'
+
 
 ########## PULSANTE JBL ########################################################
 

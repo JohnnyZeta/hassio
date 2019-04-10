@@ -14,11 +14,11 @@
     friendly_name: Copertura Nuvolosa
   sensor.dark_sky_wind_speed:
     friendly_name: Velocità del Vento
-  sensor.dark_sky_cloud_coverage_1:
+  sensor.dark_sky_cloud_coverage_1d:
     friendly_name: Copertura Nuvolosa (Domani)
-  sensor.dark_sky_wind_speed_1:
+  sensor.dark_sky_wind_speed_1d:
     friendly_name: Velocità del Vento (Domani)
-  sensor.dark_sky_summary:
+  sensor.dark_sky_summary_1d:
     friendly_name: Meteo
 
 # TEMPO
@@ -113,15 +113,16 @@
 
   variable.ultimo_movimento:
     friendly_name: Ultimo Movimento
-  variable.meteo:
-    friendly_name: Domani
   variable.clio:
     friendly_name: Renault Clio
-  variable.swift:
-    friendly_name: Suzuki Swift
+  variable.leon:
+    friendly_name: Seat Leon
 
   switch.camera_recording:
     icon: mdi:record-rec
 
   group.all_automations:
     friendly_name: Automazioni
+
+  light.yeelight_ceiling1_7811dcda769e:
+    friendly_name: Plafoniera

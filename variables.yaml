@@ -5,24 +5,18 @@
     attributes:
       icon: mdi:map-marker
       name: "Ultimo Movimento"
-  meteo:
-    value: 'Unknown'
-    restore: true
-    attributes:
-      icon: mdi:information-outline
-      name: "Meteo"
   clio:
     value: 'Spenta'
     restore: true
     attributes:
       icon: mdi:car-convertible
       name: "Renault Clio"
-  swift:
+  leon:
     value: 'Spenta'
     restore: true
     attributes:
       icon: mdi:car-sports
-      name: "Suzuki Swift"
+      name: "Seat Leon"
   papera:
     value: 'Spenta'
     restore: true

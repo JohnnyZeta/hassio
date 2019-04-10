@@ -18,10 +18,18 @@ Su [questa pagina](https://github.com/JohnnyZeta/hassio/tree/master/devices.md) 
 
 ![SchedaMeteo](images/image3.png)
 
+## SONOS
+
+![SchedaSONOS](images/image4.png)
+
+## Allarme
+
+![SchedaAllarme](images/image5.png)
+
 ## Cofano
 
-![SchedaCofano](images/image4.png)
+![SchedaCofano](images/image6.png)
 
 ## NUC
 
-![SchedaNUC](images/image5.png)
+![SchedaNUC](images/image7.png)

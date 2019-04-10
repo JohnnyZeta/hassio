@@ -13,18 +13,18 @@
       condition: and
       conditions:
         - condition: state
-          entity_id: light.plafoniera
+          entity_id: light.yeelight_ceiling1_7811dcda769e
           state: 'off'
         - condition: state
           entity_id: light.camera
           state: 'off'
         # - condition: template
-        #   value_template: '{{ states.light.plafoniera.attributes.brightness < 3 }}'
+        #   value_template: '{{ states.light.yeelight_ceiling1_7811dcda769e.attributes.brightness < 3 }}'
     action:
       service: light.turn_on
       # data_template:
       data:
-        entity_id: light.plafoniera
+        entity_id: light.yeelight_ceiling1_7811dcda769e
         brightness_pct: 100
         kelvin: 4000
         # kelvin: >
@@ -41,12 +41,12 @@
         event: 1000
     condition:
         - condition: state
-          entity_id: light.plafoniera
+          entity_id: light.yeelight_ceiling1_7811dcda769e
           state: 'on'
     action:
       service: light.turn_off
       data:
-        entity_id: light.plafoniera
+        entity_id: light.yeelight_ceiling1_7811dcda769e
 
   - alias: Pulsante_Strip_Camera_OFF
     trigger:
@@ -59,7 +59,7 @@
       condition: and
       conditions:
         - condition: state
-          entity_id: light.plafoniera
+          entity_id: light.yeelight_ceiling1_7811dcda769e
           state: 'off'
         - condition: state
           entity_id: light.camera
@@ -81,7 +81,7 @@
       # - service: light.turn_on
       #   # data_template:
       #   data:
-      #     entity_id: light.plafoniera
+      #     entity_id: light.yeelight_ceiling1_7811dcda769e
       #     brightness_pct: 100
       #     kelvin: 4000
       #     # kelvin: >
@@ -105,5 +105,5 @@
   #   action:
   #     service: light.yeelight_set_mode
   #     data:
-  #       entity_id: light.plafoniera
+  #       entity_id: light.yeelight_ceiling1_7811dcda769e
   #       mode: moonlight
