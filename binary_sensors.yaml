@@ -34,5 +34,3 @@
             mdi:message-alert
           {% endif %}
         friendly_name: "Papera"
-  - platform: workday
-    country: IT

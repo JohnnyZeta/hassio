@@ -126,3 +126,6 @@
 
   light.yeelight_ceiling1_7811dcda769e:
     friendly_name: Plafoniera
+
+  alarm_control_panel.allarme2:
+    friendly_name: Allarme Ale

@@ -6,6 +6,10 @@ input_datetime:
     has_date: false
     has_time: true
     initial: 07:27
+############ LAVORATIVO ########################################################
+binary_sensor:
+  - platform: workday
+    country: IT
 ############ BOOLEANI ##########################################################
 input_boolean:
   alarmweekday:
@@ -31,13 +35,9 @@ automation:
       - condition: state
         entity_id: input_boolean.alarmweekday
         state: 'on'
-      - condition: time
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
+      - condition: state
+        entity_id: binary_sensor.workday_sensor
+        state: 'on'
       - condition: template
         value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
     action:
@@ -48,7 +48,7 @@ automation:
           brightness: 104
           xy_color: [0.385, 0.384]
 
-  - alias: Buongiorno Weekends
+  - alias: Buongiorno Festivo
     initial_state: True
     trigger:
       platform: time_pattern
@@ -61,10 +61,9 @@ automation:
       - condition: state
         entity_id: input_boolean.alarmweekday
         state: 'off'
-      - condition: time
-        weekday:
-          - sat
-          - sun
+      - condition: state
+        entity_id: binary_sensor.workday_sensor
+        state: 'off'
       - condition: template
         value_template: '{{ now().strftime("%H:%M:00") == states.input_datetime.alba.state }}'
     action:
