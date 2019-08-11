@@ -13,6 +13,7 @@
 !custom_components
 !custom_components/google_geocode
 !custom_components/hadockermon
+!custom_components/hacs
 secrets.yaml
 zones.yaml
 entity_registry.yaml
