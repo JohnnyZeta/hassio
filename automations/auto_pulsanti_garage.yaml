@@ -1,5 +1,5 @@
 
-  - alias: Corsa Dash
+  - alias: Avviso Corsa
     trigger:
       platform: state
       entity_id: input_boolean.corsa
@@ -30,6 +30,37 @@
       #       {% if is_state("input_boolean.corsa", "on") %} not_home
       #       {% else %} home
       #       {% endif %}
+
+
+  - alias: Attiva Corsa
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_garage
+        event: 1004
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.corsa
+      - service: notify.ios_iphone_di_alby
+        data:
+          message: "Corsa ON!"
+
+  - alias: Disattiva Corsa
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_garage
+        event: 1005
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.corsa
+      - service: notify.ios_iphone_di_alby
+        data:
+          message: "Corsa OFF!"
 
 # # 1 CLICK
 #   - alias: Luce_Garage

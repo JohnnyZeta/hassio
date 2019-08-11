@@ -39,25 +39,19 @@ homekit: !include homekit.yaml
 alert: !include alerts.yaml
 alarm_control_panel: !include alarm_control_panel.yaml
 
-# Custom Component https://github.com/rogro82/hass-variables
-variable: !include variables.yaml
-
-# Show links to resources in log and frontend
-#introduction:
+# # Custom Component https://github.com/rogro82/hass-variables
+# variable: !include variables.yaml
 
 # Enables the frontend
 frontend:
 # Aggiungi i Temi
   themes: !include_dir_merge_named themes
-# Enable ES6 features
-  javascript_version: latest
 
 # Enables configuration UI
 config:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  #api_password: !secret http_password
   #ssl_certificate: !secret ssl_certificate
   #ssl_key: !secret ssl_key
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
@@ -73,8 +67,6 @@ discovery:
   ignore:
     - google_cast
     - yamaha
-  enable:
-    - homekit
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -118,7 +110,8 @@ sun:
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
     language: 'it'
 
 # Cloud
@@ -140,11 +133,11 @@ proximity:
       - lavoro
       - ufficio
     devices:
-      - device_tracker.alby_iphone
-      - device_tracker.alessandra_iphone
+      - person.alberto
+      - person.ale
 
 # Default Config
-default_config:
+#default_config:
 
 # System Health
 system_health:
@@ -168,10 +161,10 @@ light:
 
 
 panel_iframe:
-  dashboard:
-    title: Dashboard
-    icon: mdi:view-dashboard
-    url: !secret dashboard_url
+  # dashboard:
+  #   title: Dashboard
+  #   icon: mdi:view-dashboard
+  #   url: !secret dashboard_url
   configurator:
     title: Configuratore
     icon: mdi:wrench
@@ -180,10 +173,10 @@ panel_iframe:
     title: Transmission
     icon: mdi:download
     url: !secret transmission_url
-  nodered:
-    title: Node-RED
-    icon: mdi:nodejs
-    url: !secret nodered_url
+  # nodered:
+  #   title: Node-RED
+  #   icon: mdi:nodejs
+  #   url: !secret nodered_url
   grafana:
     title: Grafana
     icon: mdi:chart-line
@@ -279,28 +272,35 @@ notify:
     position: top-right
 
 camera:
-  - platform: foscam
-    ip: !secret foscam_cucina_ip
-    username: !secret foscam_username
-    password: !secret foscam_password
-    name: Cucina
+  - platform: zoneminder
+#   - platform: foscam
+#     ip: !secret foscam_cucina_ip
+#     username: !secret foscam_username
+#     password: !secret foscam_password
+#     name: Cucina
+
+zoneminder:
+  - host: !secret zm_host_ip
+    username: !secret zm_host_user
+    password: !secret zm_host_password
 
 person:
   - name: Alberto
-    id: alberto0205
+    id: alberto
     user_id: c84a36a2ce794d10a9f96d444c08158f
     device_trackers:
       - device_tracker.alby_iphone
-      - device_tracker.mbpdialessandra
-  - name: Alessandra
-    id: alessandra2704
+      - device_tracker.alby_iphone_2
+  - name: Ale
+    id: alessandra
     user_id: 0a59d7d535004e0bb2fa18dd0ec14435
     device_trackers:
       - device_tracker.alessandra_iphone
-      - device_tracker.alessandrahp
+      - device_tracker.alessandra_iphone_2
+      - device_tracker.iphonedadaghero
 
-speedtestdotnet:
-  server_id: !secret speedtest_server_id
+# speedtestdotnet:
+#   server_id: !secret speedtest_server_id
 
 transmission:
   host: 192.168.2.4
@@ -309,3 +309,10 @@ transmission:
   password: !secret transmission_password
 
 stream:
+
+tplink:
+  switch:
+    - host: !secret tplink_switch_ip
+
+hacs:
+  token: !secret hacs_token

@@ -135,23 +135,23 @@
 
 ###############################################################################
 
-  - alias: "Aggiorna Ultimo Movimento"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.presence_6, binary_sensor.presence_3, binary_sensor.presence_30, binary_sensor.presence_4
-        to: 'on'
-    action:
-      - service: variable.set_variable
-        data:
-          variable: ultimo_movimento
-          attributes_template: >
-             {
-                "history_1": "{{ variable.state }}",
-                "history_2": "{{ variable.attributes.history_1 }}",
-                "history_3": "{{ variable.attributes.history_2 }}"
-              }
-        data_template:
-          value: "{{ trigger.to_state.attributes.friendly_name }}"
+  # - alias: "Aggiorna Ultimo Movimento"
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.presence_6, binary_sensor.presence_3, binary_sensor.presence_30, binary_sensor.presence_4
+  #       to: 'on'
+  #   action:
+  #     - service: variable.set_variable
+  #       data:
+  #         variable: ultimo_movimento
+  #         attributes_template: >
+  #            {
+  #               "history_1": "{{ variable.state }}",
+  #               "history_2": "{{ variable.attributes.history_1 }}",
+  #               "history_3": "{{ variable.attributes.history_2 }}"
+  #             }
+  #       data_template:
+  #         value: "{{ trigger.to_state.attributes.friendly_name }}"
 
 ###############################################################################
 
@@ -231,38 +231,38 @@
 
 ###############################################################################
 
-  # - alias: Cambio Aria
-  #   trigger:
-  #     platform: template
-  #     value_template: "{{ (states.sensor.temperature_10.state | round(0)) == (states.sensor.temperature_158d0001b92644.state | round(0)) }}"
-  #   condition:
-  #     - condition: state
-  #       entity_id: group.famiglia
-  #       state: home
-  #     - condition: time
-  #       after: '08:30:00'
-  #       before: '23:30:00'
-  #     # Solo una volta ogni 3 ore
-  #     - condition: template
-  #       value_template: >
-  #         {% if states.automation.cambio_aria.last_triggered is not none %}
-  #           {% if as_timestamp(now()) | int - as_timestamp(states.automation.cambio_aria.attributes.last_triggered) | int > 10800 %} true {% else %} false
-  #           {% endif %}
-  #         {% else %}
-  #         false
-  #         {% endif %}
-  #   action:
-  #     - service: notify.ios_iphone_di_alby
-  #       data_template:
-  #         title: "Finestre"
-  #         message: "Temperatura interna uguale a quella esterna"
+  - alias: Cambio Aria
+    trigger:
+      platform: template
+      value_template: "{{ (states.sensor.temperature_10.state | round(0)) == (states.sensor.temperature_32.state | round(0)) }}"
+    condition:
+      - condition: state
+        entity_id: group.famiglia
+        state: home
+      - condition: time
+        after: '08:30:00'
+        before: '23:30:00'
+      # Solo una volta ogni 3 ore
+      - condition: template
+        value_template: >
+          {% if states.automation.cambio_aria.last_triggered is not none %}
+            {% if as_timestamp(now()) | int - as_timestamp(states.automation.cambio_aria.attributes.last_triggered) | int > 10800 %} true {% else %} false
+            {% endif %}
+          {% else %}
+          false
+          {% endif %}
+    action:
+      - service: notify.ios_iphone_di_alby
+        data_template:
+          title: "Finestre"
+          message: "Temperatura interna uguale a quella esterna"
 
 ###############################################################################
 
   - alias: Bentornato Sonos Alby
     trigger:
       - platform: state
-        entity_id: device_tracker.alby_iphone
+        entity_id: person.alberto
         to: 'home'
     condition:
       - condition: time
@@ -285,7 +285,7 @@
         timeout: '00:01:00'
         continue_on_timeout: 'false'
       #- delay: '00:00:01'
-      - service: media_player.sonos_snapshot
+      - service: sonos.snapshot
         data:
         #   #entity_id: media_player.disimpegno
           with_group: 'true'
@@ -299,7 +299,7 @@
         data:
           message: "Bentornato a casa, Alberto!"
       - delay: '00:00:03'
-      - service: media_player.sonos_restore
+      - service: sonos.restore
         data:
         #   #entity_id: media_player.disimpegno
           with_group: 'true'
@@ -307,7 +307,7 @@
   - alias: Bentornato Sonos Ale
     trigger:
       - platform: state
-        entity_id: device_tracker.alessandra_iphone
+        entity_id: person.ale
         to: 'home'
     condition:
       - condition: time
@@ -330,7 +330,7 @@
         timeout: '00:01:00'
         continue_on_timeout: 'false'
       #- delay: '00:00:01'
-      - service: media_player.sonos_snapshot
+      - service: sonos.snapshot
         data:
         #   #entity_id: media_player.dismpegno
           with_group: 'true'
@@ -344,7 +344,7 @@
         data:
           message: "Bentornata a casa, Alessandra!"
       - delay: '00:00:03'
-      - service: media_player.sonos_restore
+      - service: sonos.restore
         data:
         #   #entity_id: media_player.disimpegno
           with_group: 'true'
@@ -393,3 +393,13 @@
   #         message: 'E\' ora di andare a dormire!'
 
 ###############################################################################
+
+  # - alias: Prova RFID
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.tag1
+  #       from: 'off'
+  #       to: 'on'
+  #   action:
+  #     - service: media_player.media_play_pause
+  #       entity_id: media_player.cucina

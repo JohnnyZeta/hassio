@@ -1,36 +1,69 @@
-# homeassistant:
-# ############ ORARI ############################################################
-# input_datetime:
-#   durata_timer:
-#     name: 'Timer Spegnimento (minuti)'
-#     has_date: false
-#     has_time: true
-#     initial: 00:30
-# ############ BOOLEANI ##########################################################
-# input_boolean:
-#   timer:
-#     name: Timer
-#     initial: off
-#     icon: mdi:check-circle
-# ############ AUTOMAZIONI #######################################################
-# automation:
-#   - alias: Timer Nuvola # Ventilatore
-#     trigger:
-#       platform: state
-#       entity_id: input_boolean.timer
-#       to: 'on'
-#     condition:
-#       - condition: state
-#         entity_id: switch.nuvola
-#         state: 'on'
-#     action:
-#       - delay: '{{ states.input_datetime.durata_timer.state }}'
-#       - service: switch.turn_off
-#         data:
-#           entity_id: switch.nuvola
-#       - service: input_boolean.turn_off
-#         data:
-#           entity_id: input_boolean.timer
+homeassistant:
+############ ORARI ############################################################
+input_number:
+  durata_timer:
+    name: 'Off (minuti)'
+    initial: 30
+    min: 5
+    max: 90
+    step: 5
+timer:
+  durata:
+    name: 'Tempo rimanente'
+    duration: '00:30:00'
+    icon: mdi:timer-sand
+############ BOOLEANI ##########################################################
+input_boolean:
+  timer:
+    name: Avvio
+    initial: off
+    icon: mdi:check-circle
+############ AUTOMAZIONI #######################################################
+automation:
+  - alias: Innesco Timer Ventilatore # Nuvola
+    trigger:
+      platform: state
+      entity_id: input_boolean.timer
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: switch.nuvola
+        state: 'on'
+    action:
+      - service: timer.start
+        data_template:
+          entity_id: timer.durata
+          duration: >
+            {% set duration = states('input_number.durata_timer')  | int %}
+              00:{{ '%02i' | format(duration) }}:00
+#
+  - alias: Stop Timer Ventilatore # Nuvola
+    trigger:
+      platform: state
+      entity_id: input_boolean.timer
+      to: 'off'
+    condition:
+      - condition: state
+        entity_id: timer.durata
+        state: 'active'
+    action:
+      - service: timer.cancel
+        data:
+          entity_id: timer.durata
+#
+  - alias: Esecuzione Timer Ventilatore # Nuvola
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.durata
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.nuvola
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.timer
 ############ GRUPPO ############################################################
 # group:
 #   scheda_timer_ventilatore:

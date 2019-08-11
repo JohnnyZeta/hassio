@@ -19,7 +19,7 @@
             - fri
             - sat
         - condition: zone
-          entity_id: device_tracker.alessandra_iphone
+          entity_id: person.ale
           zone: zone.lavoro
     action:
       - service: shell_command.riga_ritorno
@@ -32,7 +32,7 @@
   # - alias: Arrivo Ale
   #   trigger:
   #     platform: zone
-  #     entity_id: device_tracker.alessandra_iphone
+  #     entity_id: person.ale
   #     zone: zone.home
   #     event: enter
   #   condition:
@@ -65,7 +65,7 @@
   - alias: Avviso Tempo Ritorno Ale
     trigger:
       platform: numeric_state
-      entity_id: sensor.lavorocasa_ale
+      entity_id: sensor.lc_ale
       above: 50
       for:
         hours: 1
@@ -80,25 +80,25 @@
           - thu
           - fri
       - condition: zone
-        entity_id: device_tracker.alessandra_iphone
+        entity_id: person.ale
         zone: zone.lavoro
     action:
       - service: notify.ios_iphone_di_alessandra
         data_template:
           title: "Probabile Coda!"
           message: >
-            Tempo di ritorno previsto in {{ states.sensor.lavorocasa_ale.state }} minuti.
+            Tempo di ritorno previsto in {{ states.sensor.lc_ale.state }} minuti.
       - service: shell_command.log
         data_template:
           text: >
-            Tempo di ritorno dal lavoro di Ale previsto in {{ states.sensor.lavorocasa_ale.state }} minuti.
+            Tempo di ritorno dal lavoro di Ale previsto in {{ states.sensor.lc_ale.state }} minuti.
 
 ###############################################################################
 
   - alias: Avviso Tempo Ritorno Alby
     trigger:
       platform: numeric_state
-      entity_id: sensor.lavorocasa_alby
+      entity_id: sensor.lc_alby
       above: 33
       for:
         hours: 1
@@ -113,18 +113,18 @@
           - thu
           - fri
       - condition: zone
-        entity_id: device_tracker.alby_iphone
+        entity_id: person.alberto
         zone: zone.ufficio
     action:
       - service: notify.ios_iphone_di_alby
         data_template:
           title: "Probabile Coda!"
           message: >
-            Tempo di ritorno previsto in {{ states.sensor.lavorocasa_alby.state }} minuti.
+            Tempo di ritorno previsto in {{ states.sensor.lc_alby.state }} minuti.
       - service: shell_command.log
         data_template:
           text: >
-            Tempo di ritorno dal lavoro di Alby previsto in {{ states.sensor.lavorocasa_ale.state }} minuti.
+            Tempo di ritorno dal lavoro di Alby previsto in {{ states.sensor.lc_alby.state }} minuti.
 
 ############ LEON ############################################################
 

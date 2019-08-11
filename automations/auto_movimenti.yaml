@@ -32,13 +32,18 @@
         entity_id: light.disimpegno_2
         state: 'on'
       - condition: state
-        entity_id: light.yeelight_ceiling1_7811dcda769e
-        state: 'off'
-      - condition: state
         entity_id: light.camera
         state: 'off'
-      - condition: template
-        value_template: '{{ states.light.disimpegno_2.attributes.brightness > 250 }}'
+      # - condition: template
+      #   value_template: '{{ states.light.disimpegno_2.attributes.brightness > 250 }}'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: light.yeelight_ceiling1_7811dcda769e
+            state: 'off'
+          - condition: state
+            entity_id: light.yeelight_ceiling1_7811dcda769e
+            state: 'unavailable'
     action:
       - service: light.turn_on
         data:

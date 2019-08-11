@@ -4,8 +4,8 @@
     view: no
     control: hidden
     entities:
-        - device_tracker.alby_iphone
-        - device_tracker.alessandra_iphone
+        - person.alberto
+        - person.ale
   allarmi:
     name: Allarmi
     view: no

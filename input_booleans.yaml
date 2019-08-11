@@ -3,6 +3,21 @@
     icon: mdi:run
     initial: off
 #
+  clio:
+    name: Renault Clio
+    icon: mdi:car
+    initial: off
+#
+  leon:
+    name: Seat Leon
+    icon: mdi:car
+    initial: off
+#
+  papera:
+    name: KTM 690 SM
+    icon: mdi:motorbike
+    initial: off
+#
   # vacanza:
   #   name: Vacanza
   #   icon: mdi:beach

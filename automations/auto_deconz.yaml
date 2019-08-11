@@ -7,6 +7,7 @@
 # Xiaomi Switch B: Netflix
 # Xiaomi Switch C: Natalino
 # Xiaomi Switch D: Plafoniera
+# Xiaomi Switch Garage: Garage
 
 # PULSANTE HUE TAP
 
@@ -128,7 +129,7 @@
   #     platform: event
   #     event_type: deconz_event
   #     event_data:
-  #       id: xiaomi_switch_a
+  #       id: smart_switch_garage
   #   action:
   #     service: persistent_notification.create
   #     data_template:

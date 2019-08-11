@@ -6,17 +6,18 @@ sensor:
       giornialnatale:
         friendly_name: 'Giorni al Natale'
         value_template: '{{ (( as_timestamp(strptime("25.12."+ now().strftime("%Y"), "%d.%m.%Y")) - as_timestamp(strptime(now().strftime("%d")+"."+now().strftime("%m")+"."+now().strftime("%Y"), "%d.%m.%Y"))) / 86400 ) | round(0) }}'
+        entity_id: binary_sensor.workday_sensor
         unit_of_measurement: "Giorni"
         icon_template: mdi:calendar
 ############ AUTOMAZIONI ######################################################
-automation:
-  - alias: Aggiorna Giorni Natale
-    trigger:
-      - platform: time
-        at: '00:00:10'
-    action:
-      - service: homeassistant.update_entity
-        entity_id: sensor.giornialnatale
+# automation:
+#   - alias: Aggiorna Giorni Natale
+#     trigger:
+#       - platform: time
+#         at: '00:00:10'
+#     action:
+#       - service: homeassistant.update_entity
+#         entity_id: sensor.giornialnatale
 ###
   # - alias: Messaggio Giorno HAvvento
   #   trigger:

@@ -1,6 +1,3 @@
-  # - platform: tplink
-  #   host: !secret tplink_switch_ip
-###############################################################################
   # - platform: command_line
   #   switches:
   #     camera_recording:
@@ -26,13 +23,14 @@
   - platform: hadockermon
     host: 192.168.2.4
     port: 8126
-    stats: true
-    prefix: hadockermon
-    exclude:
-      - 'ha-dockermon'
-      - 'homeassistant'
-      - 'hassio_supervisor'
-      - 'portainer'
+    # stats: true
+    # prefix: hadockermon
+    # exclude:
+    #   - 'ha-dockermon'
+    #   - 'homeassistant'
+    #   - 'hassio_supervisor'
+    #   - 'portainer'
+###############################################################################
   - platform: mqtt
     name: LuceTavolo
     icon: mdi:lightbulb
@@ -53,4 +51,8 @@
   #   availability_topic: ESPURNA-6717C3/status
   #   payload_available: 1
   #   payload_not_available: 0
-  
+###############################################################################
+  - platform: zoneminder
+    command_on: Modect
+    command_off: Monitor
+###############################################################################

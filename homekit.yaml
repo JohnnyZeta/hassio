@@ -40,8 +40,8 @@
       - scene.netflix
       - scene.tvoff
       # DEVICES
-      - device_tracker.alby_iphone
-      - device_tracker.alessandra_iphone
+      - person.alberto
+      - person.ale
       # ALTRO
       #- vacuum.semola
       # MEDIA PLAYERS

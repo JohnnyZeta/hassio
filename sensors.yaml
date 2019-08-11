@@ -7,31 +7,31 @@
 ###############################################################################
   - platform: template
     sensors:
-      # tp_link_amps:
-      #   entity_id: switch.nuvola
-      #   value_template: "{{ states.switch.nuvola.attributes.current_a }}"
-      #   friendly_name: "Consumo attuale"
-      #   unit_of_measurement: 'A'
-      # tp_link_watts:
-      #   entity_id: switch.nuvola
-      #   value_template: "{{ states.switch.nuvola.attributes.current_power_w }}"
-      #   unit_of_measurement: 'W'
-      #   friendly_name: "Potenza attuale"
-      # tp_link_kw:
-      #   entity_id: switch.nuvola
-      #   value_template: "{{ states.switch.nuvola.attributes.total_energy_kwh }}"
-      #   unit_of_measurement: 'kW'
-      #   friendly_name: "Consumo totale"
-      # tp_link_kw_today:
-      #   entity_id: switch.nuvola
-      #   value_template: "{{ states.switch.nuvola.attributes.today_energy_kwh }}"
-      #   unit_of_measurement: 'kW'
-      #   friendly_name: "Consumo giornaliero"
-      # tp_link_volts:
-      #   entity_id: switch.nuvola
-      #   value_template: "{{ states.switch.nuvola.attributes.voltage }}"
-      #   unit_of_measurement: 'V'
-      #   friendly_name: "Voltaggio"
+      tp_link_amps:
+        entity_id: switch.nuvola
+        value_template: "{{ states.switch.nuvola.attributes.current_a }}"
+        friendly_name: "Consumo attuale"
+        unit_of_measurement: 'A'
+      tp_link_watts:
+        entity_id: switch.nuvola
+        value_template: "{{ states.switch.nuvola.attributes.current_power_w }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Potenza attuale"
+      tp_link_kw:
+        entity_id: switch.nuvola
+        value_template: "{{ states.switch.nuvola.attributes.total_energy_kwh }}"
+        unit_of_measurement: 'kW'
+        friendly_name: "Consumo totale"
+      tp_link_kw_today:
+        entity_id: switch.nuvola
+        value_template: "{{ states.switch.nuvola.attributes.today_energy_kwh }}"
+        unit_of_measurement: 'kW'
+        friendly_name: "Consumo giornaliero"
+      tp_link_volts:
+        entity_id: switch.nuvola
+        value_template: "{{ states.switch.nuvola.attributes.voltage }}"
+        unit_of_measurement: 'V'
+        friendly_name: "Voltaggio"
       # saldo_eth:
       #   entity_id: sensor.coinbase_eth_wallet
       #   friendly_name: "Valore ETH"
@@ -119,25 +119,25 @@
       - wind_speed
       - cloud_cover
 ###############################################################################
-  - platform: google_travel_time
-    name: Lavoro-Casa Ale
-    api_key: !secret google_key
+  - platform: waze_travel_time
+    name: LC Ale
     origin: zone.lavoro
     destination: zone.home
-  - platform: google_travel_time
-    name: Lavoro-Casa Alby
-    api_key: !secret google_key
+    region: 'EU'
+  - platform: waze_travel_time
+    name: LC Alby
     origin: zone.ufficio
     destination: zone.home
+    region: 'EU'
 ###############################################################################
   # - platform: google_geocode
-  #   origin: device_tracker.alby_iphone
+  #   origin: person.alberto
   #   name: Alberto
   #   display_zone: hide
   #   api_key: !secret google_key
   #   gravatar: !secret alberto_email
   # - platform: google_geocode
-  #   origin: device_tracker.alessandra_iphone
+  #   origin: person.ale
   #   name: Alessandra
   #   display_zone: hide
   #   api_key: !secret google_key
@@ -177,4 +177,20 @@
 ###############################################################################
   - platform: cert_expiry
     host: !secret base_url
+###############################################################################
+  - platform: zoneminder
+    include_archived: false
+###############################################################################
+  - platform: history_stats
+    name: Corsa in settimana
+    entity_id: input_boolean.corsa
+    state: 'on'
+    type: time
+    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+    end: '{{ now() }}'
+###############################################################################
+  # - platform: haveibeenpwned
+  #   email:
+  #     - !secret alberto_email
+  #     - !secret ale_email
 ###############################################################################

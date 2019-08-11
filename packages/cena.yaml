@@ -6,9 +6,11 @@ sensor:
       mese:
         friendly_name: Mese corrente
         value_template: '{{ now().strftime("%B") }}'
+        entity_id: binary_sensor.workday_sensor
       turno:
         friendly_name: Questo mese tocca a
         icon_template: mdi:food
+        entity_id: binary_sensor.workday_sensor
         value_template: >
           {% if now().strftime('%m') == '01' %}
             Moro

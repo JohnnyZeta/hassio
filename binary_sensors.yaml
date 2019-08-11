@@ -2,33 +2,33 @@
   - platform: template
     sensors:
       clio:
-        value_template: "{{ is_state('variable.clio', 'Accesa') }}"
+        value_template: "{{ is_state('input_boolean.clio', 'on') }}"
         icon_template: >
-          {% if is_state('variable.clio', 'Spenta') %}
+          {% if is_state('input_boolean.clio', 'off') %}
             mdi:stop
-          {% elif is_state('variable.clio', 'Accesa') %}
+          {% elif is_state('input_boolean.clio', 'on') %}
             mdi:play
           {% else %}
             mdi:message-alert
           {% endif %}
         friendly_name: "Renault Clio"
       leon:
-        value_template: "{{ is_state('variable.leon', 'Accesa') }}"
+        value_template: "{{ is_state('input_boolean.leon', 'on') }}"
         icon_template: >
-          {% if is_state('variable.leon', 'Spenta') %}
+          {% if is_state('input_boolean.leon', 'off') %}
             mdi:stop
-          {% elif is_state('variable.leon', 'Accesa') %}
+          {% elif is_state('input_boolean.leon', 'on') %}
             mdi:play
           {% else %}
             mdi:message-alert
           {% endif %}
         friendly_name: "Seat Leon"
       papera:
-        value_template: "{{ is_state('variable.papera', 'Accesa') }}"
+        value_template: "{{ is_state('input_boolean.papera', 'on') }}"
         icon_template: >
-          {% if is_state('variable.papera', 'Spenta') %}
+          {% if is_state('input_boolean.papera', 'off') %}
             mdi:stop
-          {% elif is_state('variable.papera', 'Accesa') %}
+          {% elif is_state('input_boolean.papera', 'on') %}
             mdi:play
           {% else %}
             mdi:message-alert

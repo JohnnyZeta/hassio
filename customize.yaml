@@ -22,14 +22,12 @@
     friendly_name: Meteo
 
 # TEMPO
-  # sensor.lavorocasa_ale:
-  #   friendly_name: Tempo Ritorno dal Lavoro
-  #   icon: mdi:home
-  #   show_last_changed: false
-  # sensor.lavorocasa_alby:
-  #   friendly_name: Tempo Ritorno dal Lavoro
-  #   icon: mdi:home
-  #   show_last_changed: false
+  sensor.lc_ale:
+    friendly_name: Lavoro-Casa Ale
+    icon: mdi:home
+  sensor.lc_alby:
+    friendly_name: Lavoro-Casa Alby
+    icon: mdi:home
 
   sensor.saldo_mining:
     icon: mdi:image-filter-hdr
@@ -53,8 +51,8 @@
     friendly_name: Programmazione Semola
     icon: mdi:roomba
   switch.nuvola:
-    icon: mdi:radiator
-    # icon: mdi:fan
+    # icon: mdi:radiator
+    icon: mdi:fan
   # switch.syncthing:
   #   icon: mdi:sync
   switch.hadockermon_addon_a0d7b954_grafana:
@@ -99,6 +97,12 @@
   device_tracker.beacon_papera:
     friendly_name: Papera
 
+  person.alberto:
+    entity_picture: https://www.gravatar.com/avatar/4e5819920495b641819d7fff0393b1b3.jpg?s=80&d=wavatar
+  
+  person.ale:
+    entity_picture: https://www.gravatar.com/avatar/abcbe2b0918bd6c05167700cd2bd4bc7.jpg?s=80&d=wavatar
+
 ############ ALTRO ############################################################
 
   sun.sun:
@@ -111,15 +115,15 @@
   media_player.yamaha_receiver:
     friendly_name: Yamaha
 
-  variable.ultimo_movimento:
-    friendly_name: Ultimo Movimento
-  variable.clio:
-    friendly_name: Renault Clio
-  variable.leon:
-    friendly_name: Seat Leon
+  # variable.ultimo_movimento:
+  #   friendly_name: Ultimo Movimento
+  # variable.clio:
+  #   friendly_name: Renault Clio
+  # variable.leon:
+  #   friendly_name: Seat Leon
 
-  switch.camera_recording:
-    icon: mdi:record-rec
+  # switch.camera_recording:
+  #   icon: mdi:record-rec
 
   group.all_automations:
     friendly_name: Automazioni
@@ -129,3 +133,6 @@
 
   alarm_control_panel.allarme2:
     friendly_name: Allarme Ale
+
+  binary_sensor.192_168_2_9:
+    friendly_name: ZoneMinder
