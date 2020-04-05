@@ -117,7 +117,7 @@ Bagno:
   luce: light.plafoniera
   serata:
     lum_serata: 60
-    kelvin_serata: 5500
+    kelvin_serata: 4000
     inizio_serata: "sunset - 01:30:00"
   notte:
     lum_notte: 10
@@ -130,7 +130,7 @@ Pulsanti:
   camera:
     id_principale: xiaomi_switch_camera
     lum_normale: 100
-    kelvin_normale: 5500
+    kelvin_normale: 4000
     luce_camera: light.camera
     scena_nanna: scene.nanna
     durata_fadeout: 180
@@ -155,5 +155,5 @@ Pulsanti:
     luci_studio: # Ordine conta
       - light.piantana
       - light.studio
-    kelvin_normale: 5500
+    kelvin_normale: 4000
     id_scrivania: xiaomi_switch_d

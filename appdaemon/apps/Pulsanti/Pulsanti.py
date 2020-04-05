@@ -24,7 +24,7 @@ class MieiPulsanti(hass.Hass):
         elif str(data["event"])[2:4] == "01":
             self.tipo_tasto.append("hold")
         elif str(data["event"])[2:4] == "02":
-            self.tipo_tasto.append("release")
+            self.tipo_tasto.append("release") # IKEA
         elif str(data["event"])[2:4] == "04":
             self.tipo_tasto.append("double")
         elif str(data["event"])[2:4] == "05":
@@ -68,7 +68,7 @@ class MieiPulsanti(hass.Hass):
         if dispositivo == "principale":
 
             if (click == "single") or (click == "hold"):
-                self.toggle(entity_id, brightness_pct=self.args["camera"]["lum_normale"], kelvin=self.args["camera"]["kelvin_normale"])
+                self.toggle(self.args["camera"]["luce_camera"], brightness_pct=self.args["camera"]["lum_normale"], kelvin=self.args["camera"]["kelvin_normale"])
         
         elif (dispositivo == "alberto") or (dispositivo == "alessandra"):
 
@@ -101,10 +101,10 @@ class MieiPulsanti(hass.Hass):
 
     def pulsante_cameretta(self, pulsante, click):
 
-        if click == "single":
-            self.turn_on(self.args["camera"]["luce_cameretta"], brightness=254)
-        else:
-            self.turn_off(self.args["camera"]["luce_cameretta"])
+        if pulsante == "1" and click == "release":
+            self.turn_on(self.args["cameretta"]["luce_cameretta"], brightness=254)
+        elif pulsante == "2" and click == "release":
+            self.turn_off(self.args["cameretta"]["luce_cameretta"])
 
     def pulsante_salotto(self, dispositivo, pulsante, click):
 
@@ -137,8 +137,8 @@ class MieiPulsanti(hass.Hass):
             if pulsante == "1" and click == "single":
 
                 self.condizione_luce_salotto_spenta = self.get_state(self.args["salotto"]["luci_salotto"]["dx"]) == ("off" or "unavailable")
-                self.condizione_luce_salotto_max = self.get_state(self.args["salotto"]["luci_salotto"]["dx"], attribute=brightness) > 250
-                self.condizione_tavolino = self.condizione_luce_salotto_spenta and self.condizione_luce_salotto_max
+                self.condizione_luce_salotto_max = self.get_state(self.args["salotto"]["luci_salotto"]["dx"], attribute="brightness") > 250
+                self.condizione_tavolino = self.condizione_luce_salotto_spenta or self.condizione_luce_salotto_max
                 #self.condizione_tavolino = self.get_state(self.args["salotto"]["luci_salotto"]["dx"]) == ("off" or "unavailable") and self.get_state(self.args["salotto"]["luci_salotto"]["dx"], attribute=brightness) > 250 
 
                 if self.condizione_tavolino:
