@@ -1,138 +1,117 @@
-
-############ SENSORI ##########################################################
-
-# SISTEMA
-  sensor.disk_use_percent_home:
-    friendly_name: Utilizzo Disco
-  sensor.memory_free:
-    friendly_name: Memoria Libera
-
-# METEO
-  sensor.dark_sky_apparent_temperature:
-    friendly_name: Temperatura Apparente
-  sensor.dark_sky_cloud_coverage:
-    friendly_name: Copertura Nuvolosa
-  sensor.dark_sky_wind_speed:
-    friendly_name: Velocità del Vento
-  sensor.dark_sky_cloud_coverage_1d:
-    friendly_name: Copertura Nuvolosa (Domani)
-  sensor.dark_sky_wind_speed_1d:
-    friendly_name: Velocità del Vento (Domani)
-  sensor.dark_sky_summary_1d:
-    friendly_name: Meteo
-
-# TEMPO
-  sensor.lc_ale:
-    friendly_name: Lavoro-Casa Ale
-    icon: mdi:home
-  sensor.lc_alby:
-    friendly_name: Lavoro-Casa Alby
-    icon: mdi:home
-
-  sensor.saldo_mining:
-    icon: mdi:image-filter-hdr
-
-  sensor.johnnyzetahassio_last_build_duration:
-    friendly_name: hassio Last Build Duration
-  sensor.johnnyzetahassio_last_build_state:
-    friendly_name: hassio State
-
-# COMPONENTI CRITICI
-  sensor.hue_online:
-    icon: mdi:remote
-  sensor.synology_online:
-    icon: mdi:nas
-  sensor.ap_online:
-    icon: mdi:access-point
-
-############ SWITCHES #########################################################
-
-  switch.semola_schedule:
-    friendly_name: Programmazione Semola
-    icon: mdi:roomba
-  switch.nuvola:
-    # icon: mdi:radiator
-    icon: mdi:fan
-  # switch.syncthing:
-  #   icon: mdi:sync
-  switch.hadockermon_addon_a0d7b954_grafana:
-    friendly_name: Grafana
-  switch.hadockermon_addon_a0d7b954_influxdb:
-    friendly_name: InfluxDB
-  switch.hadockermon_addon_a0d7b954_ssh:
-    friendly_name: SSH Addon
-  switch.hadockermon_addon_03d23610_dasshio:
-    friendly_name: Dasshio
-  switch.hadockermon_addon_core_configurator:
-    friendly_name: Configurator
-  switch.hadockermon_addon_core_letsencrypt:
-    friendly_name: Lets Encrypt
-  switch.hadockermon_addon_core_samba:
-    friendly_name: Samba
-  switch.hadockermon_addon_f16403dc_nodered:
-    friendly_name: Node-RED
-  switch.hadockermon_addon_7be23ff5_dropbox_sync:
-    friendly_name: Dropbox Sync
-  switch.hadockermon_addon_core_mosquitto:
-    friendly_name: Mosquitto
-  switch.hadockermon_calibreweb:
-    friendly_name: Calibre-Web
-  switch.hadockermon_syncthing:
-    friendly_name: Syncthing
-  switch.hadockermon_watchtower:
-    friendly_name: Watchtower
-  switch.hadockermon_transmissionopenvpnproxy:
-    friendly_name: Transmission-OpenVPN
-  switch.hadockermon_cadvisor:
-    friendly_name: cAdvisor
-  switch.lucetavolo:
-    friendly_name: Tavolo
-
-############ DEVICES ##########################################################
-
-  device_tracker.beacon_clio:
-    friendly_name: Renault Clio
-  device_tracker.beacon_swift:
-    friendly_name: Suzuki Swift
-  device_tracker.beacon_papera:
-    friendly_name: Papera
-
-  person.alberto:
-    entity_picture: https://www.gravatar.com/avatar/4e5819920495b641819d7fff0393b1b3.jpg?s=80&d=wavatar
-  
-  person.ale:
-    entity_picture: https://www.gravatar.com/avatar/abcbe2b0918bd6c05167700cd2bd4bc7.jpg?s=80&d=wavatar
-
-############ ALTRO ############################################################
-
-  sun.sun:
-    friendly_name: Sole
-    hidden: true
-
-  camera.semola_cleaning_map:
-    friendly_name: Mappa Pulizie Semola
-
-  media_player.yamaha_receiver:
-    friendly_name: Yamaha
-
-  # variable.ultimo_movimento:
-  #   friendly_name: Ultimo Movimento
-  # variable.clio:
-  #   friendly_name: Renault Clio
-  # variable.leon:
-  #   friendly_name: Seat Leon
-
-  # switch.camera_recording:
-  #   icon: mdi:record-rec
-
-  group.all_automations:
-    friendly_name: Automazioni
-
-  light.yeelight_ceiling1_7811dcda769e:
-    friendly_name: Plafoniera
-
-  alarm_control_panel.allarme2:
-    friendly_name: Allarme Ale
-
-  binary_sensor.192_168_2_9:
-    friendly_name: ZoneMinder
+sensor.disk_use_percent_home:
+  friendly_name: Utilizzo Disco
+sensor.memory_free:
+  friendly_name: Memoria Libera
+sensor.dark_sky_apparent_temperature:
+  friendly_name: Temperatura Apparente
+sensor.dark_sky_cloud_coverage:
+  friendly_name: Copertura Nuvolosa
+sensor.dark_sky_wind_speed:
+  friendly_name: Velocità del Vento
+sensor.dark_sky_cloud_coverage_1d:
+  friendly_name: Copertura Nuvolosa (Domani)
+sensor.dark_sky_wind_speed_1d:
+  friendly_name: Velocità del Vento (Domani)
+sensor.dark_sky_summary_1d:
+  friendly_name: Meteo
+sensor.lc_ale:
+  friendly_name: Lavoro-Casa Ale
+  icon: mdi:home
+sensor.cl_ale:
+  friendly_name: Casa-Lavoro Ale
+  icon: mdi:home
+sensor.lc_alby:
+  friendly_name: Lavoro-Casa Alby
+  icon: mdi:home
+sensor.saldo_mining:
+  icon: mdi:image-filter-hdr
+sensor.johnnyzetahassio_last_build_duration:
+  friendly_name: hassio Last Build Duration
+sensor.johnnyzetahassio_last_build_state:
+  friendly_name: hassio State
+sensor.hue_online:
+  icon: mdi:remote
+sensor.synology_online:
+  icon: mdi:nas
+sensor.ap_online:
+  icon: mdi:access-point
+switch.semola_schedule:
+  friendly_name: Programmazione Semola
+  icon: mdi:roomba
+switch.nuvola:
+  icon: mdi:fan
+switch.hadockermon_addon_a0d7b954_grafana:
+  friendly_name: Grafana
+switch.hadockermon_addon_a0d7b954_influxdb:
+  friendly_name: InfluxDB
+switch.hadockermon_addon_a0d7b954_ssh:
+  friendly_name: SSH Addon
+switch.hadockermon_addon_03d23610_dasshio:
+  friendly_name: Dasshio
+switch.hadockermon_addon_core_configurator:
+  friendly_name: Configurator
+switch.hadockermon_addon_core_letsencrypt:
+  friendly_name: Lets Encrypt
+switch.hadockermon_addon_core_samba:
+  friendly_name: Samba
+switch.hadockermon_addon_f16403dc_nodered:
+  friendly_name: Node-RED
+switch.hadockermon_addon_7be23ff5_dropbox_sync:
+  friendly_name: Dropbox Sync
+switch.hadockermon_addon_core_mosquitto:
+  friendly_name: Mosquitto
+switch.hadockermon_calibreweb:
+  friendly_name: Calibre-Web
+switch.hadockermon_syncthing:
+  friendly_name: Syncthing
+switch.hadockermon_watchtower:
+  friendly_name: Watchtower
+switch.hadockermon_transmissionopenvpnproxy:
+  friendly_name: Transmission-OpenVPN
+switch.hadockermon_cadvisor:
+  friendly_name: cAdvisor
+switch.lucetavolo:
+  friendly_name: Tavolo
+device_tracker.beacon_clio:
+  friendly_name: Renault Clio
+device_tracker.beacon_papera:
+  friendly_name: Papera
+person.alberto:
+  entity_picture: https://www.gravatar.com/avatar/4e5819920495b641819d7fff0393b1b3.jpg?s=80&d=wavatar
+person.ale:
+  entity_picture: https://www.gravatar.com/avatar/abcbe2b0918bd6c05167700cd2bd4bc7.jpg?s=80&d=wavatar
+sun.sun:
+  friendly_name: Sole
+  hidden: true
+camera.semola_cleaning_map:
+  friendly_name: Mappa Pulizie Semola
+media_player.yamaha_receiver:
+  friendly_name: Yamaha
+group.all_automations:
+  friendly_name: Automazioni
+light.yeelight_ceiling1_7811dcda769e:
+  friendly_name: Plafoniera
+alarm_control_panel.allarme2:
+  friendly_name: Allarme Ale
+climate.netatmo_salotto:
+  friendly_name: Salotto
+switch.stufa:
+  icon: mdi:fan
+switch.piantana:
+  icon: mdi:floor-lamp
+light.piantana:
+  icon: mdi:floor-lamp
+binary_sensor.zm_zambero_org:
+  friendly_name: ZoneMinder
+sensor.raccolta_indifferenziato_mattino:
+  friendly_name: Indifferenziato - Mattino
+sensor.raccolta_carta_pomeriggio:
+  friendly_name: Carta - Pomeriggio
+sensor.raccolta_organico_mattino:
+  friendly_name: Organico - Mattino
+sensor.raccolta_plastica_pomeriggio:
+  friendly_name: Plastica - Pomeriggio
+sensor.raccolta_vetro_pomeriggio:
+  friendly_name: Vetro - Pomeriggio
+media_player.volumio_volumio_local:
+  friendly_name: Volumio

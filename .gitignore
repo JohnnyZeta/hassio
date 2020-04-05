@@ -14,6 +14,12 @@
 !custom_components/google_geocode
 !custom_components/hadockermon
 !custom_components/hacs
+!appdaemon
+!appdaemon/apps
+!appdaemon/apps/Allarme
+!appdaemon/apps/Luci
+!appdaemon/apps/Pulsanti
+!appdaemon/apps/Utilities
 secrets.yaml
 zones.yaml
 entity_registry.yaml
@@ -21,3 +27,5 @@ known_devices.yaml
 automations/auto-allarme.yaml
 known_devices.yaml
 alarm_control_panel.yaml
+Trello.py
+Utilities.py

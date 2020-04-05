@@ -1,133 +1,102 @@
   - name: Entrata
     entities:
-      light.cucina_2:
-        state: on
-        brightness: 178
-        xy_color: [0.553, 0.423]
-      light.disimpegno_2:
+      light.cucina:
         state: on
         brightness: 253
-      light.tv_2:
-        state: off
-      light.divano_2:
-        state: off
-      light.camera:
-        state: off
-      light.yeelight_ceiling1_7811dcda769e:
-        state: off
+      light.televisore:
+        state: on
+        brightness: 254
+        xy_color: [0.432, 0.402]
+      light.nicchia:
+        state: on
 ###############################################################################
   - name: Nanna
     entities:
-      light.cucina_2:
+      light.nicchia:
         state: off
-      light.disimpegno_2:
+      light.cucina:
         state: off
-      light.tv_2:
-        state: off
-      light.divano_2:
+      light.televisore:
         state: off
       light.camera:
         state: on
         brightness: 179
         xy_color: [0.628, 0.313]
-      light.yeelight_ceiling1_7811dcda769e:
-        state: off
 ###############################################################################
   - name: Netflix
     entities:
-      light.cucina_2:
-        state: on
-        brightness: 178
-        xy_color: [0.553, 0.423]
-      light.disimpegno_2:
+      # light.nicchia:
+      #   state: on
+      #   brightness: 178
+      #   xy_color: [0.553, 0.423]
+      light.televisore:
         state: off
-      light.tv_2:
-        state: on
-        brightness: 51
-        xy_color: [0.432, 0.402]
-      light.divano_2:
+      light.cucina:
         state: on
         brightness: 51
         xy_color: [0.432, 0.402]
-      light.camera:
-        state: off
-      light.yeelight_ceiling1_7811dcda769e:
-        state: off
 ###############################################################################
   - name: TVOff
     entities:
-      light.cucina_2:
-        state: on
-        brightness: 178
-        xy_color: [0.553, 0.423]
-      light.disimpegno_2:
-        state: on
-        brightness: 253
-      light.tv_2:
+      light.televisore:
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
-      light.divano_2:
+      light.cucina:
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
-      light.camera:
-        state: off
-      light.yeelight_ceiling1_7811dcda769e:
-        state: off
 ###############################################################################
   - name: Caldo
     entities:
-      light.cucina_2:
+      light.nicchia:
         state: on
         brightness: 178
         xy_color: [0.553, 0.423]
-      light.disimpegno_2:
-        state: off
-      light.tv_2:
+      light.cucina:
         state: on
         brightness: 205
         xy_color: [0.534, 0.425]
-      light.divano_2:
+      light.televisore:
         state: on
         brightness: 205
         xy_color: [0.574, 0.362]
-      light.camera:
-        state: off
-      light.yeelight_ceiling1_7811dcda769e:
-        state: off
 ###############################################################################
   - name: AccendiSalotto
     entities:
-      light.tv_2:
+      light.cucina:
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
-      light.divano_2:
+      light.televisore:
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
+      light.nicchia:
+        state: on
   - name: SpegniSalotto
     entities:
-      light.tv_2:
+      light.cucina:
         state: off
-      light.divano_2:
+      light.televisore:
+        state: off
+      light.nicchia:
         state: off
 ###############################################################################
   - name: TuttoAcceso
     entities:
-      light.cucina_2:
+      light.nicchia:
         state: on
         brightness: 253
         xy_color: [0.553, 0.423]
-      light.disimpegno_2:
+      light.cameretta:
         state: on
         brightness: 253
-      light.tv_2:
+      light.televisore:
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
-      light.divano_2:
+      light.cucina:
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
@@ -135,10 +104,4 @@
         state: on
         brightness: 254
         xy_color: [0.432, 0.402]
-      light.yeelight_ceiling1_7811dcda769e:
-        state: on
-        brightness: 254
-        xy_color: [0.432, 0.402]
-      switch.lucetavolo:
-        state: on
 ###############################################################################

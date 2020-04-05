@@ -1,76 +1,177 @@
 
-  - alias: Luci Movimento Salotto
-    trigger:
-      platform: state
-      entity_id: binary_sensor.presence_4
-      to: 'on'
-    condition:
-      - condition: state
-        entity_id: group.famiglia
-        state: home
-      - condition: state
-        entity_id: light.disimpegno_2
-        state: 'on'
-      - condition: state
-        entity_id: light.tv_2
-        state: 'off'
-    action:
-      - service: scene.turn_on
-        data:
-          entity_id: scene.accendisalotto
-
+  # - alias: Luci Movimento Salotto
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.presence_salotto
+  #     to: 'on'
+  #   condition:
+  #     - condition: state
+  #       entity_id: group.famiglia
+  #       state: home
+  #     - condition: time
+  #       after: '06:00:00'
+  #     - condition: state
+  #       entity_id: light.cucina
+  #       state: 'off'
+  #   action:
+  #     - service: scene.turn_on
+  #       data:
+  #         entity_id: scene.accendisalotto
+################################################################################
   - alias: Luci Movimento Camera
     trigger:
       platform: state
-      entity_id: binary_sensor.presence_30
+      entity_id: binary_sensor.presence_camera
       to: 'on'
     condition:
       - condition: state
         entity_id: group.famiglia
         state: home
       - condition: state
-        entity_id: light.disimpegno_2
+        entity_id: light.televisore
         state: 'on'
       - condition: state
         entity_id: light.camera
         state: 'off'
+      # Solo se sono passati almeno 5 minuti dall'ultima accensione automatica
+      - condition: template
+        value_template: >
+          {% if states.automation.luci_movimento_camera.last_triggered is not none %}
+            {% if as_timestamp(now()) | int - as_timestamp(states.automation.luci_movimento_camera.attributes.last_triggered) | int > 300 %} true {% else %} false
+            {% endif %}
+          {% else %}
+          false
+          {% endif %}
       # - condition: template
       #   value_template: '{{ states.light.disimpegno_2.attributes.brightness > 250 }}'
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: light.yeelight_ceiling1_7811dcda769e
-            state: 'off'
-          - condition: state
-            entity_id: light.yeelight_ceiling1_7811dcda769e
-            state: 'unavailable'
+      # - condition: or
+      #   conditions:
+      #     - condition: state
+      #       entity_id: light.yeelight_ceiling1_7811dcda769e
+      #       state: 'off'
+      #     - condition: state
+      #       entity_id: light.yeelight_ceiling1_7811dcda769e
+      #       state: 'unavailable'
     action:
       - service: light.turn_on
         data:
           entity_id: light.camera
-          brightness: 254
-          xy_color: [0.385, 0.384]
-
-  - alias: Luci Movimento Cucina
+          brightness_pct: 100
+          kelvin: 4000
+################################################################################
+  # - alias: Luci Movimento Cameretta
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.presence_cameretta
+  #     to: 'on'
+  #   condition:
+  #     - condition: state
+  #       entity_id: sun.sun
+  #       state: below_horizon
+  #     - condition: state
+  #       entity_id: group.famiglia
+  #       state: home
+  #     # - condition: state
+  #     #   entity_id: light.disimpegno_2
+  #     #   state: 'on'
+  #     # - condition: template
+  #     #   value_template: '{{ states.light.disimpegno_2.attributes.brightness > 250 }}'
+  #   action:
+  #     - service: light.turn_on
+  #       data:
+  #         entity_id: light.cameretta
+  #         brightness: 254
+  #         xy_color: [0.432, 0.402]
+################################################################################
+  - alias: Luci Movimento Studio
     trigger:
       platform: state
-      entity_id: binary_sensor.presence_6
+      entity_id: binary_sensor.presence_studio
       to: 'on'
     condition:
-      - condition: state
-        entity_id: sun.sun
-        state: below_horizon
+      # - condition: state
+      #   entity_id: sun.sun
+      #   state: below_horizon
       - condition: state
         entity_id: group.famiglia
         state: home
-      - condition: state
-        entity_id: light.disimpegno_2
-        state: 'on'
+      # Solo se sono passati almeno 3 minuti dall'ultimo spegnimento
       - condition: template
-        value_template: '{{ states.light.disimpegno_2.attributes.brightness > 250 }}'
+        value_template: >
+          {% if states.automation.pulsante_studio_toggle.last_triggered is not none %}
+            {% if as_timestamp(now()) | int - as_timestamp(states.automation.pulsante_studio_toggle.attributes.last_triggered) | int > 180 %} true {% else %} false
+            {% endif %}
+          {% else %}
+          false
+          {% endif %}
+      # - condition: state
+      #   entity_id: light.disimpegno_2
+      #   state: 'on'
+      # - condition: template
+      #   value_template: '{{ states.light.disimpegno_2.attributes.brightness > 250 }}'
     action:
-      - service: switch.turn_on
+      - service: light.turn_on
         data:
-          entity_id: switch.lucetavolo
+          entity_id: light.studio
+          brightness: 254
+          xy_color: [0.432, 0.402]
+      - service: light.turn_on
+        data:
+          entity_id: light.piantana
+################################################################################
+  - alias: Luci Movimento Scale Superiori
+    trigger:
+      platform: state
+      entity_id: group.movimento_scale_superiori
+    condition:
+      - condition: state
+        entity_id: group.famiglia
+        state: home
+    action:
+      - service_template: >
+          {% if is_state("group.movimento_scale_superiori", "on") %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        data:
+          entity_id: light.scale_superiori
 
-###############################################################################
+  - alias: Luci Movimento Scale Inferiori
+    trigger:
+      platform: state
+      entity_id: group.movimento_scale_inferiori
+    condition:
+      - condition: state
+        entity_id: group.famiglia
+        state: home
+    action:
+      - service_template: >
+          {% if is_state("group.movimento_scale_inferiori", "on") %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        data:
+          entity_id: light.scale_inferiori
+################################################################################
+  - alias: Luci Movimento Tavernetta
+    trigger:
+      platform: state
+      entity_id: binary_sensor.presence_tavernetta
+    condition:
+      - condition: state
+        entity_id: group.famiglia
+        state: home
+      - condition: template
+        value_template: '{{ not is_state("media_player.tavernetta", "on") }}'
+    action:
+      - service_template: >
+          {% if is_state("group.movimento_scale_inferiori", "on") %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        data:
+          entity_id: light.tavernetta
+################################################################################

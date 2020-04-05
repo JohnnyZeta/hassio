@@ -1,0 +1,23 @@
+secrets: /config/secrets.yaml
+appdaemon:
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  time_zone: Europe/Rome
+  plugins:
+    HASS:
+      type: hass
+http:
+  url: http://127.0.0.1:5050
+hadashboard:
+admin:
+api:
+logs:
+  log_allarme:
+    name: Log Allarme
+    date_format: "%A %d-%m-%Y %X"
+    filename: /config/logs/log_allarme.log
+  log_trello:
+    name: Log Trello
+    date_format: "%A %d-%m-%Y %X"
+    filename: /config/logs/log_trello.log

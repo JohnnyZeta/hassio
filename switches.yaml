@@ -21,7 +21,7 @@
   #   is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
 ###############################################################################
   - platform: hadockermon
-    host: 192.168.2.4
+    host: 192.168.1.11
     port: 8126
     # stats: true
     # prefix: hadockermon
@@ -31,28 +31,106 @@
     #   - 'hassio_supervisor'
     #   - 'portainer'
 ###############################################################################
+#  - platform: mqtt
+#    name: Natalino
+#    icon: mdi:candycane
+#    state_topic: ESPURNA-6717C3/relay/0
+#    command_topic: ESPURNA-6717C3/relay/0/set
+#    payload_on: 1
+#    payload_off: 0
+#    availability_topic: ESPURNA-6717C3/status
+#    payload_available: 1
+#    payload_not_available: 0
+### Shelly 1
   - platform: mqtt
-    name: LuceTavolo
+    name: LuceCameraMatrimoniale
     icon: mdi:lightbulb
-    state_topic: "shellies/shelly1-5007EE/relay/0"
-    command_topic: "shellies/shelly1-5007EE/relay/0/command"
+    state_topic: "shellies/shelly1-50042C/relay/0"
+    command_topic: "shellies/shelly1-50042C/relay/0/command"
     qos: 0
     payload_on: "on"
     payload_off: "off"
     optimistic: false
-    retain: false 
-  # - platform: mqtt
-  #   name: Natalino
-  #   icon: mdi:candycane
-  #   state_topic: ESPURNA-6717C3/relay/0
-  #   command_topic: ESPURNA-6717C3/relay/0/set
-  #   payload_on: 1
-  #   payload_off: 0
-  #   availability_topic: ESPURNA-6717C3/status
-  #   payload_available: 1
-  #   payload_not_available: 0
+    retain: false
+  - platform: mqtt
+    name: LuceScaleSuperiori
+    icon: mdi:lightbulb
+    state_topic: "shellies/shelly1-76F458/relay/0"
+    command_topic: "shellies/shelly1-76F458/relay/0/command"
+    qos: 0
+    payload_on: "on"
+    payload_off: "off"
+    optimistic: false
+    retain: false
+  - platform: mqtt
+    name: LuceScaleInferiori
+    icon: mdi:lightbulb
+    state_topic: "shellies/shelly1-1D9990/relay/0"
+    command_topic: "shellies/shelly1-1D9990/relay/0/command"
+    qos: 0
+    payload_on: "on"
+    payload_off: "off"
+    optimistic: false
+    retain: false
+  - platform: mqtt
+    name: LuceTavolo
+    icon: mdi:lightbulb
+    state_topic: "shellies/shelly1-76F455/relay/0"
+    command_topic: "shellies/shelly1-76F455/relay/0/command"
+    qos: 0
+    payload_on: "on"
+    payload_off: "off"
+    optimistic: false
+    retain: false
+  - platform: mqtt
+    name: LuceTavernetta
+    icon: mdi:lightbulb
+    state_topic: "shellies/shelly1-76A437/relay/0"
+    command_topic: "shellies/shelly1-76A437/relay/0/command"
+    qos: 0
+    payload_on: "on"
+    payload_off: "off"
+    optimistic: false
+    retain: false
+### Shelly 2.5
+  - platform: mqtt
+    name: LuceBagnetto
+    state_topic: "shellies/shellyswitch25-B8A0AE/relay/0"
+    command_topic: "shellies/shellyswitch25-B8A0AE/relay/0/command"
+    qos: 0
+    payload_on: "on"
+    payload_off: "off"
+    optimistic: false
+    retain: false
+  - platform: mqtt
+    name: LuceLampadarioCucina
+    state_topic: "shellies/shellyswitch25-B8A0AE/relay/1"
+    command_topic: "shellies/shellyswitch25-B8A0AE/relay/1/command"
+    qos: 0
+    payload_on: "on"
+    payload_off: "off"
+    optimistic: false
+    retain: false
+  - platform: mqtt
+    name: LuceIntercapedine
+    state_topic: "shellies/shellyswitch25-B94A2F/relay/0"
+    command_topic: "shellies/shellyswitch25-B94A2F/relay/0/command"
+    qos: 0
+    payload_on: "on"
+    payload_off: "off"
+    optimistic: false
+    retain: false
+  - platform: mqtt
+    name: LuceGarage
+    state_topic: "shellies/shellyswitch25-B94A2F/relay/1"
+    command_topic: "shellies/shellyswitch25-B94A2F/relay/1/command"
+    qos: 0
+    payload_on: "on"
+    payload_off: "off"
+    optimistic: false
+    retain: false
 ###############################################################################
-  - platform: zoneminder
-    command_on: Modect
-    command_off: Monitor
+  # - platform: zoneminder
+  #   command_on: Modect
+  #   command_off: Monitor
 ###############################################################################

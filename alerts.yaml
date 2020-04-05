@@ -7,7 +7,7 @@
   #   can_acknowledge: True
   #   skip_first: True
   #   notifiers:
-  #     - ios_iphone_di_alby
+  #     - mobile_app_iphone_di_alby
   # hue_offline:
   #   name: 'Il Bridge Philips Hue non è raggiungibile!'
   #   entity_id: sensor.hue_online
@@ -16,7 +16,7 @@
   #   can_acknowledge: True
   #   skip_first: True
   #   notifiers:
-  #     - ios_iphone_di_alby
+  #     - mobile_app_iphone_di_alby
   # ap_offline:
   #   name: 'AP Unifi non raggiungibile!'
   #   entity_id: sensor.ap_online
@@ -25,14 +25,14 @@
   #   can_acknowledge: True
   #   skip_first: True
   #   notifiers:
-  #     - ios_iphone_di_alby
+  #     - mobile_app_iphone_di_alby
   acqua_lavatrice:
     name: 'Rilevata acqua sotto la lavatrice!!!'
     entity_id: binary_sensor.water_sensor
     state: on
     repeat: 10
     can_acknowledge: True
-    skip_first: false
+    skip_first: true
     notifiers:
       - telefoni
   fumo_cucina:
@@ -41,6 +41,6 @@
     state: on
     repeat: 10
     can_acknowledge: True
-    skip_first: false
+    skip_first: true
     notifiers:
       - telefoni

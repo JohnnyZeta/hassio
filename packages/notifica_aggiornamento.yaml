@@ -19,7 +19,7 @@ automation:
       - condition: template
         value_template: "{{ states.sensor.versione_hassio_locale.state != states.sensor.ultima_versione_hassio.state }}"
     action:
-      - service: notify.ios_iphone_di_alby
+      - service: notify.mobile_app_iphone_di_alby
         data_template:
           message: 'È disponibile Home Assistant {{ states.sensor.ultima_versione_hassio.state }}.'
       - service: persistent_notification.create

@@ -1,15 +1,11 @@
 
   famiglia:
     name: Famiglia
-    view: no
-    control: hidden
     entities:
         - person.alberto
         - person.ale
   allarmi:
     name: Allarmi
-    view: no
-    control: hidden
     entities:
       - automation.disattiva_allarme
       - automation.innesca_allarme
@@ -17,3 +13,30 @@
       - automation.triggera_allarme
       - automation.triggera_allarme2
       - automation.disattiva_allarme2
+  # switches_utili:
+  #   name: Switches Utili
+  #   view: no
+  #   control: hidden
+  #   entities:
+  #     - switch.natalino
+  movimento_scale_superiori:
+    name: Movimento Scale Superiori
+    entities:
+      - binary_sensor.presence_scale_0_1p
+      - binary_sensor.presence_scale_1_0p
+      - binary_sensor.presence_scale_1_2p
+      - binary_sensor.presence_scale_2p
+  movimento_scale_inferiori:
+    name: Movimento Scale Inferiori
+    entities:
+      - binary_sensor.presence_scale_0_sp
+      - binary_sensor.presence_scale_s_0p
+  automazioni_movimenti:
+    name: Automazioni Movimento Luci
+    entities:
+      - automation.luci_movimento_camera
+      #- automation.luci_movimento_salotto
+      - automation.luci_movimento_scale_superiori
+      #- automation.luci_movimento_scale_inferiori
+      - automation.luci_movimento_studio
+      #- automation.luci_movimento_tavernetta

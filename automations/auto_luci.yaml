@@ -25,9 +25,9 @@
       - service: shell_command.log
         data:
           text: 'Arrivo a Casa'
-      - service: switch.turn_on
-        data:
-          entity_id: switch.natalino
+      # - service: switch.turn_on
+      #   data:
+      #     entity_id: switch.natalino
 
 ###############################################################################
 
@@ -51,6 +51,45 @@
   #         entity_id: light.hue_white_light_1
 
 ###############################################################################
-        
+
+#   - alias: Accensione Luci Esterne
+#     trigger:
+#       platform: sun
+#       event: sunset
+#     action:
+#       - service: light.turn_on
+#         data:
+#           entity_id: light.vialetto, light.esterna_ingresso, light.esterna_retro, light.orto
+
+# ###############################################################################
+
+#   - alias: Spegnimento Luci Esterne
+#     trigger:
+#       platform: sun
+#       event: sunrise
+#     action:
+#       - service: light.turn_off
+#         data:
+#           entity_id: light.vialetto, light.esterna_ingresso, light.esterna_retro, light.orto
+
+###############################################################################
+
+  # - alias: Accensione Luci Garage
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.openclose_portone_garage
+  #     from: "off"
+  #     to: "on"
+  #   condition:
+  #     - condition: state
+  #       entity_id: group.famiglia
+  #       state: 'home'
+  #   action:
+  #     - service: light.turn_on
+  #       data:
+  #         entity_id: light.garage_2
+
+###############################################################################
+
 
 

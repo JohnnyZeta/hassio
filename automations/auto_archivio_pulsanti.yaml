@@ -1,0 +1,1011 @@
+
+# Archivio Automazioni legate ai pulsanti Xiaomi
+
+# """
+# DECONZ
+# """
+# PULSANTE HUE TAP
+
+  # - alias: Tap 1
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: tap
+  #       event: 34
+  #   action:
+  #     - service: light.turn_off
+  #       data:
+  #         entity_id: all
+  #     # - service: switch.turn_off
+  #     #   data:
+  #     #     entity_id: switch.natalino
+  #     - service: switch.turn_off
+  #       data:
+  #         entity_id: switch.lucetavolo
+  #     - service: media_player.media_pause
+  #       data:
+  #         entity_id: media_player.cucina, media_player.disimpegno
+
+  # - alias: Tap 2
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: tap
+  #       event: 16
+  #   action:
+  #     - service: scene.turn_on
+  #       data_template:
+  #         entity_id: >
+  #           {% if is_state('light.tv_2', 'on') %}
+  #             scene.spegnisalotto
+  #           {% else %}
+  #             scene.accendisalotto
+  #           {% endif %}
+
+  # - alias: Tap 3
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: tap
+  #       event: 17
+  #   action:
+  #     - service_template: >
+  #         {% if is_state('light.disimpegno_2', 'on') %}
+  #           light.turn_off
+  #         {% else %}
+  #           light.turn_on
+  #         {% endif %}
+  #       entity_id: light.disimpegno_2
+
+  # - alias: Tap 4 ON
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: tap
+  #       event: 18
+  #   condition:
+  #     condition: state
+  #     entity_id: light.camera
+  #     state: "off"
+  #   action:
+  #     # - service: light.turn_on
+  #     #   data:
+  #     #     entity_id: light.cucina_2
+  #     #     brightness: 178
+  #     #     xy_color: [0.553, 0.423]
+  #     - service: light.turn_on
+  #       data:
+  #         entity_id: light.camera
+  #         brightness: 254
+  #         xy_color: [0.385, 0.384]
+
+  # - alias: Tap 4 OFF
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: tap
+  #       event: 18
+  #   condition:
+  #     condition: state
+  #     entity_id: light.camera
+  #     state: "on"
+  #   action:
+  #     - service: light.turn_off
+  #       entity_id: light.camera
+
+# PULSANTE XIAOMI A
+
+  # - alias: Prova deCONZ
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: xiaomi_switch_a
+  #       event: 1000
+  #   action:
+  #     - service: media_player.media_play_pause
+  #       data:
+  # #         entity_id: media_player.cucina
+
+  # - alias: Prova deCONZ Templating Data
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: smart_switch_garage
+  #   action:
+  #     service: persistent_notification.create
+  #     data_template:
+  #       notification_id: prova{{ now().strftime('D%dH%H%S') }}
+  #       title: Prova
+  #       message: >
+  #         # Click Singolo
+  #         {% if trigger.event.data.event == 1000 %} Click Singolo!
+  #         # Release Singolo
+  #         {% elif trigger.event.data.event == 1002 %} Release Singolo!
+  #         # Doppio Click
+  #         {% elif trigger.event.data.event == 1004 %} Doppio Click!
+  #         # Triplo Click
+  #         {% elif trigger.event.data.event == 1005 %} Triplo Click!
+  #         # Quadruplo Click
+  #         {% elif trigger.event.data.event == 1006 %} Quadruplo Click!
+  #         {% endif %}
+
+# """
+# CAMERA
+# """
+
+# # 1 CLICK - HOLD CLICK
+#   - alias: Pulsante_Camera_ON
+#     trigger:
+#       platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: xiaomi_switch_camera
+#         event: 1000
+#     condition:
+#       - condition: state
+#         entity_id: light.camera
+#         state: 'off'
+#     action:
+#       service: light.turn_on
+#       data:
+#         entity_id: light.camera
+#         brightness_pct: 100
+#         kelvin: 4000
+
+#   - alias: Pulsante_Camera_OFF
+#     trigger:
+#       platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: xiaomi_switch_camera
+#         event: 1000
+#     condition:
+#       - condition: state
+#         entity_id: light.camera
+#         state: 'on'
+#     action:
+#       service: light.turn_off
+#       data:
+#         entity_id: light.camera
+
+# # # 2 CLICK
+# #   - alias: Pulsante_Plafoniera_Camera_max
+# #     trigger:
+# #       platform: event
+# #       event_type: deconz_event
+# #       event_data:
+# #         id: xiaomi_switch_d
+# #         event: 1004
+# #     action:
+# #       # - service: light.turn_on
+# #       #   # data_template:
+# #       #   data:
+# #       #     entity_id: light.yeelight_ceiling1_7811dcda769e
+# #       #     brightness_pct: 100
+# #       #     kelvin: 4000
+# #       #     # kelvin: >
+# #       #     #   {% if ( ( now().strftime("%H") | int ) >= 6 ) and ( ( now().strftime("%H") | int ) <= 12 ) %} 4000
+# #       #     #   {% elif ( ( now().strftime("%H") | int ) < 6 ) or ( ( now().strftime("%H") | int ) > 12 ) %} 2700
+# #       #     #   {% endif %}
+# #       - service: light.turn_on
+# #         data:
+# #           entity_id: light.camera
+# #           brightness: 254
+# #           kelvin: 4000
+# #           #xy_color: [0.438, 0.404]
+
+# #   # - alias: Pulsante_Plafoniera_Camera_Soft
+# #   #   trigger:
+# #   #     platform: event
+# #   #     event_type: xiaomi_aqara.click
+# #   #     event_data:
+# #   #       entity_id: binary_sensor.switch_158d00021016af
+# #   #       click_type: hold
+# #   #   action:
+# #   #     service: light.yeelight_set_mode
+# #   #     data:
+# #   #       entity_id: light.yeelight_ceiling1_7811dcda769e
+# #   #       mode: moonlight
+
+# """
+# CAMERETTA
+# """
+
+  # - alias: Pulsante Cameretta ON
+  #   trigger:
+  #     - platform: event
+  #       event_type: deconz_event
+  #       event_data:
+  #         id: tradfri_on_off_switch
+  #         event: 1002
+  #   # condition:
+  #   #   condition: and
+  #   #   conditions:
+  #   #     - condition: state
+  #   #       entity_id: sun.sun
+  #   #       state: 'below_horizon'
+  #   action:
+  #     - service: light.turn_on
+  #       data:
+  #         entity_id: light.cameretta
+  #         brightness: 254
+
+  # - alias: Pulsante Cameretta OFF
+  #   trigger:
+  #     - platform: event
+  #       event_type: deconz_event
+  #       event_data:
+  #         id: tradfri_on_off_switch
+  #         event: 2002
+  #   # condition:
+  #   #   condition: and
+  #   #   conditions:
+  #   #     - condition: state
+  #   #       entity_id: sun.sun
+  #   #       state: 'below_horizon'
+  #   action:
+  #     - service: light.turn_off
+  #       data:
+  #         entity_id: light.cameretta
+
+# """
+# CUCINA (VECCHIA)
+# """
+
+  # - alias: Pulsante Sonos
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: xiaomi_switch_a
+  #   action:
+  #     service_template: >
+  #       {% if trigger.event.data.event == 1000 %} media_player.media_play_pause
+  #       {% elif trigger.event.data.event == 1004 %} media_player.media_next_track
+  #       {% elif trigger.event.data.event == 1005 %} media_player.media_previous_track
+  #       {% endif %}
+  #     data:
+  #       entity_id: media_player.cucina, media_player.disimpegno
+
+  # - alias: Pulsante Timer Nuvola
+  #   trigger:
+  #     - platform: event
+  #       event_type: xiaomi_aqara.click
+  #       event_data:
+  #         entity_id: binary_sensor.switch_158d000120d3ef
+  #         click_type: double
+  #   action:
+  #     - service: xiaomi_aqara.play_ringtone
+  #       data:
+  #         gw_mac: 78:11:DC:B0:72:7E
+  #         ringtone_id: 13
+  #         ringtone_vol: 3
+  #     - delay: '00:30:00'
+  #     - service: switch.turn_off
+  #       data:
+  #         entity_id: switch.nuvola
+
+  # - alias: Pulsante Nuvola
+  #   trigger:
+  #     - platform: event
+  #       event_type: xiaomi_aqara.click
+  #       event_data:
+  #         entity_id: binary_sensor.switch_158d000120d3ef
+  #         click_type: single
+  #     - platform: event
+  #       event_type: xiaomi_aqara.click
+  #       event_data:
+  #         entity_id: binary_sensor.switch_158d000120d3ef
+  #         click_type: hold
+  #   action:
+  #     - service_template: >
+  #         {% if is_state("switch.nuvola", "off") %}
+  #           switch.turn_on
+  #         {% else %}
+  #           switch.turn_off
+  #         {% endif %}
+  #       data:
+  #         entity_id: switch.nuvola
+
+  # - alias: Pulsante Timer Nuvola
+  #   trigger:
+  #     - platform: event
+  #       event_type: xiaomi_aqara.click
+  #       event_data:
+  #         entity_id: binary_sensor.switch_158d000120d3ef
+  #         click_type: double
+  #   action:
+  #     - service: xiaomi_aqara.play_ringtone
+  #       data:
+  #         gw_mac: 78:11:DC:B0:72:7E
+  #         ringtone_id: 13
+  #         ringtone_vol: 3
+  #     - delay: '00:30:00'
+  #     - service: switch.turn_off
+  #       data:
+  #         entity_id: switch.nuvola
+
+# # 1 CLICK
+#   - alias: Pulsante_Play_Pausa
+#     trigger:
+#       platform: event
+#       event_type: xiaomi_aqara.click
+#       event_data:
+#         entity_id: binary_sensor.switch_158d000120d3ef
+#         click_type: single
+#     condition:
+#       - condition: template
+#         value_template: '{{ not is_state("media_player.yamaha_receiver", "off") }}'
+#     action:
+#       service: media_player.media_play_pause
+#       data:
+#         entity_id: media_player.yamaha_receiver
+#
+# # 2 CLICK
+#   - alias: Pulsante_Spotify_ON_Ale
+#     trigger:
+#       platform: event
+#       event_type: xiaomi_aqara.click
+#       event_data:
+#         entity_id: binary_sensor.switch_158d000120d3ef
+#         click_type: double
+#     condition:
+#       - condition: state
+#         entity_id: person.ale
+#         state: 'home'
+#       - condition: template
+#         value_template: '{{ is_state("media_player.yamaha_receiver", "off") or (not is_state_attr("media_player.yamaha_receiver", "source", "Spotify")) }}'
+#     action:
+#       # Accendi lo Yamaha
+#       - service: media_player.turn_on
+#         data:
+#           entity_id: media_player.yamaha_receiver
+#       # Aspetta che sia disponibile
+#       - delay: '00:00:05'
+#       # Setta il volume di Yamaha
+#       - service: media_player.volume_set
+#         data:
+#           entity_id: media_player.yamaha_receiver
+#           volume_level: '0.50'
+#       # Setta il volume di Spotify
+#       - service: media_player.volume_set
+#         data:
+#           entity_id: media_player.spotify
+#           volume_level: '0.4'
+#       # Seleziona la sorgente
+#       - service: media_player.select_source
+#         data:
+#           entity_id: media_player.spotify
+#           source: RX-V475 A484BB
+#       # Attiva lo Shuffle
+#       # - service: switch.turn_on
+#       #   data:
+#       #     entity_id: switch.shuffle_spotify
+#       - service: media_player.shuffle_set
+#         data:
+#           entity_id: media_player.spotify
+#           shuffle: true
+#       # Riproduce la playlist Balbertandra
+#       - service: media_player.play_media
+#         data:
+#           entity_id: media_player.spotify
+#           media_content_type: playlist
+#           media_content_id: spotify:user:johnnyzeta:playlist:4nP3qwV8iB9nuEt0YTGk4R
+#
+#   - alias: Pulsante_Spotify_ON_Alby
+#     trigger:
+#       platform: event
+#       event_type: xiaomi_aqara.click
+#       event_data:
+#         entity_id: binary_sensor.switch_158d000120d3ef
+#         click_type: double
+#     condition:
+#       - condition: template
+#         value_template: '{{ not is_state("person.ale", "home") }}'
+#       - condition: template
+#         value_template: '{{ is_state("media_player.yamaha_receiver", "off") or (not is_state_attr("media_player.yamaha_receiver", "source", "Spotify")) }}'
+#     action:
+#       # Accendi lo Yamaha
+#       - service: media_player.turn_on
+#         data:
+#           entity_id: media_player.yamaha_receiver
+#       # Aspetta che sia disponibile
+#       - delay: '00:00:05'
+#       # Setta il volume di Yamaha
+#       - service: media_player.volume_set
+#         data:
+#           entity_id: media_player.yamaha_receiver
+#           volume_level: '0.50'
+#       # Setta il volume di Spotify
+#       - service: media_player.volume_set
+#         data:
+#           entity_id: media_player.spotify
+#           volume_level: '0.4'
+#       # Seleziona la sorgente
+#       - service: media_player.select_source
+#         data:
+#           entity_id: media_player.spotify
+#           source: RX-V475 A484BB
+#       # Continua la riproduzione da dove interrotta
+#       - service: media_player.media_play_pause
+#         data:
+#           entity_id: media_player.yamaha_receiver
+#       # Attiva lo Shuffle
+#       # - service: switch.turn_on
+#       #   data:
+#       #     entity_id: switch.shuffle_spotify
+#       - service: media_player.shuffle_set
+#         data:
+#           entity_id: media_player.spotify
+#           shuffle: true
+#
+#   - alias: Pulsante_Spotify_OFF
+#     trigger:
+#       platform: event
+#       event_type: xiaomi_aqara.click
+#       event_data:
+#         entity_id: binary_sensor.switch_158d000120d3ef
+#         click_type: double
+#     condition:
+#       - condition: template
+#         value_template: '{{ not is_state("media_player.yamaha_receiver", "off") }}'
+#     action:
+#       - service: media_player.media_stop
+#         data:
+#           entity_id: media_player.spotify
+#       - service: media_player.turn_off
+#         data:
+#           entity_id: media_player.yamaha_receiver
+#
+# # HOLD CLICK
+#   - alias: Pulsante_Spotify_Skippa
+#     trigger:
+#       platform: event
+#       event_type: xiaomi_aqara.click
+#       event_data:
+#         entity_id: binary_sensor.switch_158d000120d3ef
+#         click_type: hold
+#     condition:
+#       - condition: template
+#         value_template: '{{ not is_state("media_player.yamaha_receiver", "off") }}'
+#     action:
+#       - service: media_player.media_next_track
+#         data:
+#           entity_id: media_player.spotify
+
+# """
+# GARAGE (VECCHIO)
+# """
+
+  # - alias: Avviso Corsa
+  #   trigger:
+  #     platform: state
+  #     entity_id: input_boolean.corsa
+  #   action:
+  #     - service: notify.mobile_app_iphone_di_alessandra
+  #       data_template:
+  #         title: "Corsa"
+  #         message: >
+  #           {% if is_state("input_boolean.corsa", "on") %} Alby è uscito a correre.
+  #           {% else %} Alby è rientrato dalla corsa.
+  #           {% endif %}
+  #     - service: notify.telegram_ma
+  #       data_template:
+  #         message: >
+  #           {% if is_state("input_boolean.corsa", "on") %} Alby è uscito a correre.
+  #           {% else %} Alby è rientrato dalla corsa.
+  #           {% endif %}
+  #     - service: shell_command.log
+  #       data_template:
+  #         text: >
+  #           {% if is_state("input_boolean.corsa", "on") %} Alby è uscito a correre.
+  #           {% else %} Alby è rientrato dalla corsa.
+  #           {% endif %}
+  #     # - service: device_tracker.see
+  #     #   data_template:
+  #     #     dev_id: alby_iphone
+  #     #     location_name: >
+  #     #       {% if is_state("input_boolean.corsa", "on") %} not_home
+  #     #       {% else %} home
+  #     #       {% endif %}
+
+
+  # - alias: Attiva Corsa
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: smart_switch_garage
+  #       event: 1004
+  #   action:
+  #     - service: input_boolean.turn_on
+  #       entity_id: input_boolean.corsa
+  #     - service: notify.mobile_app_iphone_di_alby
+  #       data:
+  #         message: "Corsa ON!"
+
+  # - alias: Disattiva Corsa
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: smart_switch_garage
+  #       event: 1005
+  #   action:
+  #     - service: input_boolean.turn_off
+  #       entity_id: input_boolean.corsa
+  #     - service: notify.mobile_app_iphone_di_alby
+  #       data:
+  #         message: "Corsa OFF!"
+
+# # 1 CLICK
+#   - alias: Luce_Garage
+#     trigger:
+#       platform: event
+#       event_type: xiaomi_aqara.click
+#       event_data:
+#         entity_id: binary_sensor.switch_158d0001f3ad33
+#         click_type: single
+#     action:
+#       - service_template: >
+#           {% if is_state("light.hue_white_light_1", "off") or is_state("light.hue_white_light_1", "unavailable") %}
+#             light.turn_on
+#           {% else %}
+#             light.turn_off
+#           {% endif %}
+#         data:
+#           entity_id: light.hue_white_light_1
+#           brightness_pct: 100
+
+###############################################################################
+
+  # - alias: Corsa_ON
+  #   trigger:
+  #     platform: event
+  #     event_type: xiaomi_aqara.click
+  #     event_data:
+  #       entity_id: binary_sensor.switch_158d0001f3ad33
+  #       click_type: double
+  #   condition:
+  #     condition: state
+  #     entity_id: input_boolean.corsa
+  #     state: 'off'
+  #   action:
+  #     - service: input_boolean.turn_on
+  #       data:
+  #         entity_id: input_boolean.corsa
+  #     - service: notify.mobile_app_iphone_di_alessandra
+  #       data:
+  #         title: "Corsa"
+  #         message: "Alby è uscito a correre."
+  #     - service: notify.telegram_ma
+  #       data:
+  #         message: "Alby è uscito a correre."
+  #
+  # - alias: Corsa_OFF
+  #   trigger:
+  #     platform: event
+  #     event_type: xiaomi_aqara.click
+  #     event_data:
+  #       entity_id: binary_sensor.switch_158d0001f3ad33
+  #       click_type: double
+  #   condition:
+  #     condition: state
+  #     entity_id: input_boolean.corsa
+  #     state: 'on'
+  #   action:
+  #     - service: input_boolean.turn_off
+  #       data:
+  #         entity_id: input_boolean.corsa
+  #     - service: notify.mobile_app_iphone_di_alessandra
+  #       data:
+  #         title: "Corsa"
+  #         message: "Alby è rientrato dalla corsa."
+  #     - service: notify.telegram_ma
+  #       data:
+  #         message: "Alby è rientrato dalla corsa."
+
+
+# """
+# PERSONALI
+# """
+
+# ########## PULSANTI ALBY & ALE #################################################
+
+# # 1 CLICK
+#   - alias: Pulsante Nanna
+#     trigger:
+#       - platform: event
+#         event_type: deconz_event
+#         event_data:
+#           id: xiaomi_switch_alby
+#           event: 1000
+#       - platform: event
+#         event_type: deconz_event
+#         event_data:
+#           id: xiaomi_switch_ale
+#           event: 1000
+#     condition:
+#       condition: and
+#       conditions:
+#         - condition: state
+#           entity_id: sun.sun
+#           state: 'below_horizon'
+#         - condition: or
+#           conditions:
+#             # - condition: state
+#             #   entity_id: light.tv_2
+#             #   state: 'on'
+#             - condition: state
+#               entity_id: light.camera
+#               state: 'off'
+#             - condition: template
+#               value_template: '{{ (states.light.camera.attributes.brightness == 103) or (states.light.camera.attributes.brightness == 254) }}'
+#     action:
+#       - service: scene.turn_on
+#         entity_id: scene.nanna
+#       - service: shell_command.log
+#         data:
+#           text: 'Attivata scena Nanna'
+#       # - service: switch.turn_off
+#       #   data:
+#       #     entity_id: switch.natalino
+
+#   - alias: Annulla Pulsante Nanna
+#     trigger:
+#       - platform: event
+#         event_type: deconz_event
+#         event_data:
+#           id: xiaomi_switch_alby
+#           event: 1000
+#       - platform: event
+#         event_type: deconz_event
+#         event_data:
+#           id: xiaomi_switch_ale
+#           event: 1000
+#     condition:
+#       condition: or
+#       conditions:
+#         - condition: state
+#           entity_id: sun.sun
+#           state: 'above_horizon'
+#         - condition: template
+#           value_template: '{{ states.light.camera.attributes.brightness == 179 }}'
+#     action:
+#       - service: light.turn_on
+#         data:
+#           entity_id: light.camera
+#           brightness: 103
+#           rgb_color: [255, 240, 197]
+#       - service: shell_command.log
+#         data:
+#           text: 'Attivata luce tenue in camera'
+
+# # 2 CLICK
+#   - alias: Pulsante FadeOut
+#     trigger:
+#       - platform: event
+#         event_type: deconz_event
+#         event_data:
+#           id: xiaomi_switch_alby
+#           event: 1004
+#       - platform: event
+#         event_type: deconz_event
+#         event_data:
+#           id: xiaomi_switch_ale
+#           event: 1004
+#     condition:
+#       - condition: state
+#         entity_id: sun.sun
+#         state: 'below_horizon'
+#       - condition: state
+#         entity_id: light.camera
+#         state: 'on'
+#     action:
+#       # - service: light.turn_off
+#       #   data:
+#       #     entity_id: light.yeelight_ceiling1_7811dcda769e
+#       # - service: shell_command.spegni_nanna
+#       - service: light.turn_off
+#         data:
+#           entity_id: light.camera
+#           transition: 180
+#       # - service: media_player.sonos_snapshot
+#       #   data:
+#       #     with_group: 'true'
+#       # - delay: '00:00:01'
+#       # - service: media_player.volume_set
+#       #   data:
+#       #     entity_id: media_player.disimpegno
+#       #     volume_level: '0.3'
+#       # - service: tts.google_say
+#       #   entity_id: media_player.disimpegno
+#       #   data:
+#       #     message: "Buonanotte!"
+#       # - delay: '00:00:03'
+#       # - service: media_player.sonos_restore
+#       #   data:
+#         #   #entity_id: media_player.disimpegno
+#           # with_group: 'true'
+#       - service: shell_command.log
+#         data:
+#           text: 'Fade-out scena Nanna'
+#       # - service: switch.turn_off
+#       #   data:
+#       #     entity_id: switch.natalino
+#       # - delay: 00:03:00
+#       # - service: switch.turn_off
+#       #   entity_id: switch.nuvola
+
+# # 3 CLICK
+#   - alias: Pulsante Hold
+#     trigger:
+#       - platform: event
+#         event_type: deconz_event
+#         event_data:
+#           id: xiaomi_switch_alby
+#           event: 1005
+#       - platform: event
+#         event_type: deconz_event
+#         event_data:
+#           id: xiaomi_switch_ale
+#           event: 1005
+#     action:
+#       - service: light.turn_on
+#         data:
+#           entity_id: light.camera
+#           brightness: 254
+#           xy_color: [0.438, 0.404]
+#       # - service: hue.hue_activate_scene
+#       #   data:
+#       #     group_name: "Casa"
+#       #     scene_name: "SOS"
+#       # - service: automation.trigger
+#       #   data:
+#       #     entity_id: automation.pulsante_plafoniera_camera_max
+#       # - service: notify.telefoni
+#       #   data_template:
+#       #     title: "SOS!"
+#       #     message: "SOS dal comodino di Alberto!"
+
+# """
+# SALOTTO
+# """
+
+# ########## PULSANTE TRADFRI ####################################################
+
+#   - alias: Pulsante_Tradfri_Toggle
+#     trigger:
+#       platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: tradfri_remote_control
+#         event: 1002
+#     action:
+#       - service: light.toggle
+#         data:
+#           entity_id: light.cucina, light.televisore, light.nicchia
+#       # - service: switch.toggle
+#       #   data:
+#       #     entity_id: switch.natalino
+
+#   - alias: Pulsante_Tradfri_SX
+#     trigger:
+#       platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: tradfri_remote_control
+#         event: 4002
+#     action:
+#       - service: light.toggle
+#         data:
+#           entity_id: light.televisore
+
+#   - alias: Pulsante_Tradfri_DX
+#     trigger:
+#       platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: tradfri_remote_control
+#         event: 5002
+#     action:
+#       - service: light.toggle
+#         data:
+#           entity_id: light.cucina
+          
+#   - alias: Pulsante_Tradfri_UP
+#     trigger:
+#       platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: tradfri_remote_control
+#         event: 2002
+#     action:
+#       - service: light.toggle
+#         data:
+#           entity_id: light.lampadario_cucina
+
+#   - alias: Pulsante_Tradfri_DOWN
+#     trigger:
+#       platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: tradfri_remote_control
+#         event: 3002
+#     action:
+#       - service: light.toggle
+#         data:
+#           entity_id: light.nicchia
+
+
+# ########## PULSANTE TAVOLINO ###################################################
+
+# # 1 CLICK
+#   - alias: Pulsante_Netflix
+#     trigger:
+#       platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: smart_switch_tavolino
+#         event: 1000
+#     action:
+#       - service: scene.turn_on
+#         data_template:
+#           entity_id: >
+#             {% if (states.light.cucina.state == "off") or (state_attr("light.cucina", "brightness") > 250) or (states.light.cucina.state == "unavailable") %} scene.netflix
+#             {% else %} scene.tvoff
+#             {% endif %}
+
+# # 2 CLICK
+#   # - alias: Pulsante_Natalino
+#   #   trigger:
+#   #     platform: event
+#   #     event_type: deconz_event
+#   #     event_data:
+#   #       id: smart_switch_tavolino
+#   #       event: 1004
+#   #   action:
+#   #     - service: switch.toggle
+#   #       entity_id: switch.natalino
+#       # - service_template: >
+#       #     {% if (states.light.tv_2.state == "off") or (state_attr("light.tv_2", "brightness") > 250) or (states.light.tv_2.state == "unavailable") %}
+#       #       switch.turn_on
+#       #     {% else %}
+#       #       switch.turn_off
+#       #     {% endif %}
+#       #   data:
+#       #     entity_id: switch.natalino
+#       # - service: switch.turn_off
+#       #   entity_id: switch.lucetavolo
+#       # - service: notify.firetv
+#       #   data:
+#       #     title: 'Cambio Scena'
+#       #     message: 'Luci modificate'
+
+# # 3 CLICK
+#   - alias: Pulsante_Natalino
+#     trigger:
+#       platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: smart_switch_tavolino
+#         event: 1005
+#     action:
+#       - service: light.toggle
+#         data:
+#           entity_id: light.cucina, light.televisore
+
+# ########## PULSANTE JBL ########################################################
+
+# # 1 CLICK
+#   # - alias: Pulsante Luci Salone ON
+#   #   trigger:
+#   #     platform: event
+#   #     event_type: deconz_event
+#   #     event_data:
+#   #       id: xiaomi_switch_c
+#   #       event: 1000
+#   #   condition:
+#   #     condition: state
+#   #     entity_id: light.tv_2
+#   #     state: 'off'
+#   #   action:
+#   #     - service: light.turn_on
+#   #       data:
+#   #         entity_id: light.divano_2, light.tv_2
+#   #         brightness: 254
+#   #         xy_color: [0.432, 0.402]
+  
+#   # - alias: Pulsante Luci Salone OFF
+#   #   trigger:
+#   #     platform: event
+#   #     event_type: deconz_event
+#   #     event_data:
+#   #       id: xiaomi_switch_c
+#   #       event: 1000
+#   #   condition:
+#   #     condition: state
+#   #     entity_id: light.tv_2
+#   #     state: 'on'
+#   #   action:
+#   #     - service: light.turn_off
+#   #       data:
+#   #         entity_id: light.divano_2, light.tv_2
+
+#   # - alias: Pulsante Ventilatore
+#   #   trigger:
+#   #     platform: event
+#   #     event_type: deconz_event
+#   #     event_data:
+#   #       id: xiaomi_switch_c
+#   #       event: 1000
+#   #   action:
+#   #     - service: switch.toggle
+#   #       data:
+#   #         entity_id: switch.nuvola
+
+
+# # 2 CLICK
+#   # - alias: Pulsante Luci Salotto OFF
+#   #   trigger:
+#   #     platform: event
+#   #     event_type: deconz_event
+#   #     event_data:
+#   #       id: xiaomi_switch_c
+#   #       event: 1004
+#   #   action:
+#   #     - service: light.turn_off
+#   #       data:
+#   #         entity_id: light.divano_2, light.tv_2
+
+# """
+# STUDIO
+# """
+
+# ########## PULSANTE STUDIO MURO ################################################
+
+# # 1 CLICK - HOLD CLICK
+#   - alias: Pulsante_Studio_Toggle
+#     trigger:
+#       platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: xiaomi_switch_a
+#         event: 1000
+#     action:
+#       service: light.toggle
+#       data:
+#         entity_id: light.studio, light.piantana
+#         brightness_pct: 100
+#         kelvin: 4000
+
+# ########## PULSANTE STUDIO PIANTANA ############################################
+
+# # 1 CLICK
+#   - alias: Pulsante_Studio_Piantana_Toggle
+#     trigger:
+#       platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: xiaomi_switch_d
+#         event: 1000
+#     action:
+#       service: light.toggle
+#       data:
+#         entity_id: light.piantana

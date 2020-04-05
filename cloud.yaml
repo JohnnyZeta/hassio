@@ -1,0 +1,103 @@
+
+  alexa:
+    filter:
+      include_domains:
+        - light
+        - climate
+        - scene
+      include_entities:
+        - automation.luci_movimento_camera
+        - automation.luci_movimento_salotto
+        #- automation.luci_movimento_cameretta
+        - automation.luci_movimento_scale_inferiori
+        - automation.luci_movimento_scale_superiori
+        - automation.luci_movimento_studio
+        - group.automazioni_movimenti
+        - sensor.fasilunari
+        - sensor.humidity_camera
+        - sensor.humidity_cameretta
+        - sensor.humidity_studio
+        - sensor.humidity_garage
+        - sensor.humidity_esterno
+        - sensor.humidity_tavernetta
+        - sensor.pressure_camera
+        - sensor.pressure_cameretta
+        - sensor.pressure_studio
+        - sensor.pressure_garage
+        - sensor.pressure_esterno
+        - sensor.pressure_tavernetta
+        - sensor.temperature_camera
+        - sensor.temperature_cameretta
+        - sensor.temperature_studio
+        - sensor.temperature_garage
+        - sensor.temperature_esterno
+        - sensor.temperature_tavernetta
+        - switch.stufa
+        #- switch.natalino
+      ###
+        - media_player.camera_da_letto
+        - media_player.cucina
+        - media_player.salotto
+        - media_player.cameretta
+        - media_player.tavernetta
+      exclude_entities:
+        - light.range_extender_a
+        - light.range_extender_b
+    entity_config:
+      light.camera:
+        name: Luce Testiera Letto
+        description: Luce LED dietro alla testiera della camera da letto
+      light.cameretta:
+        name: Luce Tavolo Cameretta
+        description: Luce sul tavolino in cameretta
+      light.cucina:
+        name: Luce Cucina
+        description: Luce a piantana Hue in cucina
+      light.luce_camera_matrimoniale:
+        name: Luce Camera
+        description: Luce principale camera
+      light.luce_piantana_studio:
+        name: Luce Piantana Studio
+      light.nicchia:
+        name: Luce nicchia
+      light.studio:
+        name: Luce Studio
+      light.televisore:
+        name: Luce Televisore
+      #######
+      sensor.humidity_camera:
+        name: Umidità Camera
+      sensor.humidity_cameretta:
+        name: Umidità Cameretta
+      sensor.humidity_studio:
+        name: Umidità Studio
+      sensor.humidity_garage:
+        name: Umidità Garage
+      sensor.humidity_esterno:
+        name: Umidità Esterno
+      sensor.humidity_tavernetta:
+        name: Umidità Tavernetta
+      sensor.pressure_camera:
+        name: Pressione Camera
+      sensor.pressure_cameretta:
+        name: Pressione Cameretta
+      sensor.pressure_studio:
+        name: Pressione Studio
+      sensor.pressure_garage:
+        name: Pressione Garage
+      sensor.pressure_esterno:
+        name: Pressione Esterno
+      sensor.pressure_tavernetta:
+        name: Pressione Tavernetta
+      sensor.temperature_camera:
+        name: Temperatura Camera
+      sensor.temperature_cameretta:
+        name: Temperatura Cameretta
+      sensor.temperature_studio:
+        name: Temperatura Studio
+      sensor.temperature_garage:
+        name: Temperatura Garage
+      sensor.temperature_esterno:
+        name: Temperatura Esterno
+      sensor.temperature_tavernetta:
+        name: Temperatura Tavernetta

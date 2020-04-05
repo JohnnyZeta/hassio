@@ -1,0 +1,159 @@
+---
+# movimento_studio:
+#   module: Movimento
+#   class: LuciMovimento
+#   motion_sensor: binary_sensor.presence_studio
+#   light: light.piantana
+#   timeout: 120
+
+Differenziata:
+  module: Utilities
+  class: Differenziata
+  orario_notifica: "18:00:00"
+  giorni_mancanti: 1
+  sensori_rifiuti:
+    - sensor.raccolta_indifferenziato_mattino
+    - sensor.raccolta_carta_pomeriggio
+    - sensor.raccolta_organico_mattino
+    - sensor.raccolta_plastica_pomeriggio
+    - sensor.raccolta_vetro_pomeriggio
+  servizi_notifica:
+    - mobile_app_iphone_di_alby
+    - mobile_app_iphone_di_alessandra
+  messaggi:
+    2: "Esporre {} dopodomani."
+    1: "Esporre {} domani."
+    0: "Esporre {} oggi."
+  # arrivo_a_casa: true
+  # persone:
+  #   - alberto
+
+LuciEsterne:
+  module: Utilities
+  class: LuciEsterne
+  elenco_luci:
+    - light.vialetto
+    - light.esterna_ingresso
+    - light.esterna_retro
+    - light.orto
+
+RFID:
+  module: RFID
+  class: RFID
+  tags:
+    "Automazioni": pass
+
+Allarme:
+  module: Allarme
+  class: PyAllarme
+  log: log_allarme
+  indirizzo_ip: !secret hassio_interno_ip
+  porta: 8123
+  id_allarme: Allarme
+  token: !secret token_appdaemon
+  notifiche_ios: True
+  sensore_sirena: binary_sensor.allarme_antifurto
+  switch_antifurto: switch.antifurto_template
+  rfid:
+    lettore_rfid: input_text.rfid
+    tag_abilitati:
+      "Alberto": !secret rfid_alberto
+      "Alessandra": !secret rfid_alessandra
+  gruppo_abitanti_casa: group.famiglia
+  servizio_notify_push:
+    - mobile_app_iphone_di_alby
+    - mobile_app_iphone_di_alessandra
+  accendi_luci:
+    elenco_luci:
+      - light.bagnetto
+      - light.camera
+      - light.cameretta
+      - light.cucina
+      - light.divano
+      - light.garage_2
+      - light.lampadario_camera
+      - light.lampadario_cucina
+      - light.letto
+      - light.luci_esterne
+      - light.piantana
+      - light.scale_inferiori
+      - light.scale_superiori
+      - light.studio
+      - light.tavernetta
+      - light.tavolo
+      - light.televisore
+  avviso_finestre:
+    elenco_finestre:
+      - binary_sensor.finestra_salotto
+      - binary_sensor.openclose_finestra_scale
+      - binary_sensor.openclose_porta_rei
+      - binary_sensor.openclose_portafinestra_camera
+      - binary_sensor.openclose_portafinestra_salotto
+      - binary_sensor.porta_blindata
+      - binary_sensor.portafinestra_cucina
+  allarme_dimenticato:
+    minuti_attesa: 15
+    avviso_notturno:
+      ora_inizio: "22:30:00"
+  
+Trello:
+  module: Trello
+  class: TrelloAZ
+  log: log_trello
+  orario_esecuzione: "08:00:00"
+  api_key: !secret api_key_trello
+  api_secret: !secret api_secret_trello
+  board: "Monitoraggio"
+  lista_origine: "Elenco Clienti"
+  lista_scadenze: "In scadenza/scaduti"
+  lista_sospesi: "Sospesi"
+  lista_destinazione: "Da contattare"
+
+Bagno:
+  module: Luci
+  class: LuciBagno
+  nome_switch: smart_switch_bagno
+  nome_sensore_presenza: binary_sensor.presence_bagno
+  luce: light.plafoniera
+  serata:
+    lum_serata: 60
+    kelvin_serata: 5500
+    inizio_serata: "sunset - 01:30:00"
+  notte:
+    lum_notte: 10
+    kelvin_notte: 3000
+    inizio_notte: "23:30:00"
+
+Pulsanti:
+  module: Pulsanti
+  class: MieiPulsanti
+  camera:
+    id_principale: xiaomi_switch_camera
+    lum_normale: 100
+    kelvin_normale: 5500
+    luce_camera: light.camera
+    scena_nanna: scene.nanna
+    durata_fadeout: 180
+    id_alberto: xiaomi_switch_alby
+    id_alessandra: xiaomi_switch_ale
+  cameretta:
+    id_principale: tradfri_on_off_switch
+    luce_cameretta: light.cameretta
+  salotto:
+    id_principale: tradfri_remote_control
+    luci_salotto:
+      sx: light.televisore
+      dx: light.cucina
+      up: light.lampadario_cucina
+      down: light.nicchia
+    luce_lampadario: light.lampadario_cucina
+    id_tavolino: smart_switch_tavolino
+    scena_netflix: scene.netflix
+    scena_no_netflix: scene.tvoff
+  studio:
+    id_principale: xiaomi_switch_a
+    luci_studio: # Ordine conta
+      - light.piantana
+      - light.studio
+    kelvin_normale: 5500
+    id_scrivania: xiaomi_switch_d

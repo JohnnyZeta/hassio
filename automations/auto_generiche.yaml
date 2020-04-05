@@ -60,22 +60,22 @@
 
 ###############################################################################
 
-  - alias: Programmazione Semola
-    trigger:
-      platform: time
-      at: '11:00:00'
-    condition:
-      condition: time
-      weekday:
-        - mon
-        - thu
-    action:
-      - service: vacuum.start
-        data:
-          entity_id: vacuum.semola
-      - service: shell_command.log
-        data:
-          text: 'Semola è partito!'
+  # - alias: Programmazione Semola
+  #   trigger:
+  #     platform: time
+  #     at: '11:00:00'
+  #   condition:
+  #     condition: time
+  #     weekday:
+  #       - mon
+  #       - thu
+  #   action:
+  #     - service: vacuum.start
+  #       data:
+  #         entity_id: vacuum.semola
+  #     - service: shell_command.log
+  #       data:
+  #         text: 'Semola è partito!'
 
 ###############################################################################
 
@@ -176,7 +176,7 @@
             Blackout dalle ore {{ as_timestamp(states.automation.blackout.attributes.last_triggered) | timestamp_custom('%H:%M', false ) }} alle ore {{ now().strftime('%H:%M') }} di {{ now().strftime('%A %d %B %Y') }}. Il Blackout è durato {{ (as_timestamp(now()) | int - as_timestamp(states.automation.blackout.attributes.last_triggered))/60 | round(0) }} minuti.
       - delay: "00:01:00"
       - service: light.turn_off
-      - service: notify.ios_iphone_di_alby
+      - service: notify.mobile_app_iphone_di_alby
         data:
           message: 'Luci spente dopo il blackout!'
 
@@ -203,7 +203,7 @@
   #         {% endif %}
   #       data:
   #         entity_id: input_boolean.alarmweekon
-  #     - service: notify.ios_iphone_di_alby
+  #     - service: notify.mobile_app_iphone_di_alby
   #       data_template:
   #         title: "Vacanza"
   #         message: >
@@ -222,7 +222,7 @@
       - condition: template
         value_template: "{{ trigger.to_state.state != off }}"
     action:
-      - service: notify.ios_iphone_di_alby
+      - service: notify.mobile_app_iphone_di_alby
         data_template:
           title: "Tentativo di Login fallito su Home Assistant!"
           message: "{{ states.persistent_notification.httplogin.attributes.message }}"
@@ -231,31 +231,31 @@
 
 ###############################################################################
 
-  - alias: Cambio Aria
-    trigger:
-      platform: template
-      value_template: "{{ (states.sensor.temperature_10.state | round(0)) == (states.sensor.temperature_32.state | round(0)) }}"
-    condition:
-      - condition: state
-        entity_id: group.famiglia
-        state: home
-      - condition: time
-        after: '08:30:00'
-        before: '23:30:00'
-      # Solo una volta ogni 3 ore
-      - condition: template
-        value_template: >
-          {% if states.automation.cambio_aria.last_triggered is not none %}
-            {% if as_timestamp(now()) | int - as_timestamp(states.automation.cambio_aria.attributes.last_triggered) | int > 10800 %} true {% else %} false
-            {% endif %}
-          {% else %}
-          false
-          {% endif %}
-    action:
-      - service: notify.ios_iphone_di_alby
-        data_template:
-          title: "Finestre"
-          message: "Temperatura interna uguale a quella esterna"
+  # - alias: Cambio Aria
+  #   trigger:
+  #     platform: template
+  #     value_template: "{{ (states.sensor.temperature_10.state | round(0)) == (states.sensor.temperature_32.state | round(0)) }}"
+  #   condition:
+  #     - condition: state
+  #       entity_id: group.famiglia
+  #       state: home
+  #     - condition: time
+  #       after: '08:30:00'
+  #       before: '23:30:00'
+  #     # Solo una volta ogni 3 ore
+  #     - condition: template
+  #       value_template: >
+  #         {% if states.automation.cambio_aria.last_triggered is not none %}
+  #           {% if as_timestamp(now()) | int - as_timestamp(states.automation.cambio_aria.attributes.last_triggered) | int > 10800 %} true {% else %} false
+  #           {% endif %}
+  #         {% else %}
+  #         false
+  #         {% endif %}
+  #   action:
+  #     - service: notify.mobile_app_iphone_di_alby
+  #       data_template:
+  #         title: "Finestre"
+  #         message: "Temperatura interna uguale a quella esterna"
 
 ###############################################################################
 
@@ -278,30 +278,30 @@
           false
           {% endif %}
     action:
-      - wait_template: "{{ is_state('binary_sensor.openclose_13', 'on') }}"
+      - wait_template: "{{ is_state('binary_sensor.porta_blindata', 'on') }}"
         timeout: '00:05:00'
         continue_on_timeout: 'false'
-      - wait_template: "{{ is_state('binary_sensor.openclose_13', 'off') }}"
+      - wait_template: "{{ is_state('binary_sensor.porta_blindata', 'off') }}"
         timeout: '00:01:00'
         continue_on_timeout: 'false'
       #- delay: '00:00:01'
       - service: sonos.snapshot
         data:
-        #   #entity_id: media_player.disimpegno
+          entity_id: media_player.salotto
           with_group: 'true'
       - delay: '00:00:01'
       - service: media_player.volume_set
         data:
-          entity_id: media_player.disimpegno
+          entity_id: media_player.salotto
           volume_level: '0.4'
       - service: tts.google_say
-        entity_id: media_player.disimpegno
+        entity_id: media_player.salotto
         data:
           message: "Bentornato a casa, Alberto!"
       - delay: '00:00:03'
       - service: sonos.restore
         data:
-        #   #entity_id: media_player.disimpegno
+          entity_id: media_player.salotto
           with_group: 'true'
 
   - alias: Bentornato Sonos Ale
@@ -323,30 +323,30 @@
           false
           {% endif %}
     action:
-      - wait_template: "{{ is_state('binary_sensor.openclose_13', 'on') }}"
+      - wait_template: "{{ is_state('binary_sensor.porta_blindata', 'on') }}"
         timeout: '00:05:00'
         continue_on_timeout: 'false'
-      - wait_template: "{{ is_state('binary_sensor.openclose_13', 'off') }}"
+      - wait_template: "{{ is_state('binary_sensor.porta_blindata', 'off') }}"
         timeout: '00:01:00'
         continue_on_timeout: 'false'
       #- delay: '00:00:01'
       - service: sonos.snapshot
         data:
-        #   #entity_id: media_player.dismpegno
+          entity_id: media_player.salotto
           with_group: 'true'
       - delay: '00:00:01'
       - service: media_player.volume_set
         data:
-          entity_id: media_player.disimpegno
+          entity_id: media_player.salotto
           volume_level: '0.4'
       - service: tts.google_say
-        entity_id: media_player.disimpegno
+        entity_id: media_player.salotto
         data:
-          message: "Bentornata a casa, Alessandra!"
+          message: "Bentornata a casa, puzzetta!"
       - delay: '00:00:03'
       - service: sonos.restore
         data:
-        #   #entity_id: media_player.disimpegno
+          entity_id: media_player.salotto
           with_group: 'true'
 
 ###############################################################################
@@ -357,7 +357,7 @@
       entity_id: sensor.ssl_certificate_expiry
       below: 8
     action:
-      - service: notify.ios_iphone_di_alby
+      - service: notify.mobile_app_iphone_di_alby
         data:
           message: '7 giorni alla scadenza certificato SSL!'
 
@@ -368,7 +368,7 @@
       platform: event
       event_type: transmission_downloaded_torrent
     action:
-      service: notify.ios_iphone_di_alby
+      service: notify.mobile_app_iphone_di_alby
       data_template:
         title: "Torrent completato!"
         message: "{{ trigger.event.data.name }}"
@@ -392,14 +392,64 @@
   #         title: 'Nanna'
   #         message: 'E\' ora di andare a dormire!'
 
-###############################################################################
+# ##############################################################################
 
-  # - alias: Prova RFID
+#   - alias: Prova RFID
+#     trigger:
+#       - platform: state
+#         entity_id: binary_sensor.tag1
+#         from: 'off'
+#         to: 'on'
+#     action:
+#       - service: media_player.media_play_pause
+#         entity_id: media_player.cucina
+
+  ##############################################################################
+
+  - alias: "Apri Cancello Via Al Tubo"
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: ios.action_fired
+        event_data:
+          data:
+            actionName: 'Apri Cancello'
+          context:
+            user_id: "c84a36a2ce794d10a9f96d444c08158f"
+    action:
+      service: persistent_notification.create
+      data:
+        notification_id: prova{{ now().strftime('D%dH%H%S') }}
+        title: 'Prova'
+        message: 'Apro Cancello!'
+
+#################################################################################
+
+  # - alias: Buon Natale RFID
   #   trigger:
-  #     - platform: state
-  #       entity_id: binary_sensor.tag1
-  #       from: 'off'
-  #       to: 'on'
+  #     - platform: event
+  #       event_type: ios.action_fired
+  #       event_data:
+  #         data:
+  #           actionName: 'Buon Natale'
   #   action:
-  #     - service: media_player.media_play_pause
-  #       entity_id: media_player.cucina
+  #     - service: sonos.snapshot
+  #       data:
+  #         entity_id: media_player.salotto
+  #         with_group: 'true'
+  #     - delay: '00:00:01'
+  #     - service: media_player.volume_set
+  #       data:
+  #         entity_id: media_player.salotto
+  #         volume_level: '0.4'
+  #     - service: tts.google_say
+  #       entity_id: media_player.salotto
+  #       data:
+  #         message: "Buon Natale!"
+  #     - delay: '00:00:03'
+  #     - service: sonos.restore
+  #       data:
+  #         entity_id: media_player.salotto
+  #         with_group: 'true'
+
+#################################################################################

@@ -1,0 +1,33 @@
+
+  exclude:
+    domains:
+      - camera
+      - automation
+      - device_tracker
+    entities:
+      - input_boolean.alarmweekday
+      - input_boolean.timer
+      - variable.papera
+      - variable.leon
+      - variable.clio
+      - input_boolean.alarmweekday
+      - input_boolean.controllo
+      - input_boolean.timer
+      - input_datetime.alba
+      - input_datetime.durata_timer
+      - input_select.scelta_persona
+      - input_select.scelta_vettura
+      - binary_sensor.presence_3
+      - binary_sensor.presence_4
+      - binary_sensor.presence_6
+      - binary_sensor.workday_sensor
+      - light.range_extender_a
+      - light.range_extender_b
+      - sensor.sim_1_2
+      - sensor.sim_1_3
+  include:
+    entities:
+      - device_tracker.alby_iphone
+      - device_tracker.alby_iphone_2
+      - device_tracker.alessandra_iphone
+      - device_tracker.alessandra_iphone_2

@@ -23,7 +23,7 @@
           zone: zone.lavoro
     action:
       - service: shell_command.riga_ritorno
-      - service: notify.ios_iphone_di_alby
+      - service: notify.mobile_app_iphone_di_alby
         data:
           message: "Alessandra è partita!"
 
@@ -56,7 +56,7 @@
 
 #    action:
 #      - delay: '00:{{ states.sensor.alby_casalavoro.state | int + 5 }}:00'
-#      - service: notify.ios_iphone_di_alby
+#      - service: notify.mobile_app_iphone_di_alby
 #        data:
 #          message: "request_location_update"
 
@@ -83,7 +83,7 @@
         entity_id: person.ale
         zone: zone.lavoro
     action:
-      - service: notify.ios_iphone_di_alessandra
+      - service: notify.mobile_app_iphone_di_alessandra
         data_template:
           title: "Probabile Coda!"
           message: >
@@ -116,7 +116,7 @@
         entity_id: person.alberto
         zone: zone.ufficio
     action:
-      - service: notify.ios_iphone_di_alby
+      - service: notify.mobile_app_iphone_di_alby
         data_template:
           title: "Probabile Coda!"
           message: >
@@ -148,7 +148,7 @@
         entity_id: device_tracker.alby_iphone
         zone: zone.coop
     action:
-      - service: notify.ios_iphone_di_alessandra
+      - service: notify.mobile_app_iphone_di_alessandra
         data:
           title: "COOP"
           message: "Se ci serve qualcosa di specifico scrivigli."

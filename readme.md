@@ -4,32 +4,32 @@ Questo è semplicemente il backup della mia cartella config di [hass.io](https:/
 
 * Le immagini qui sotto sono aggiornate meno frequentemente del resto, potrebbero esserci discrepanze.
 
-Su [questa pagina](https://github.com/JohnnyZeta/hassio/tree/master/devices.md) trovate un ripilogo dei dispositivi smart che utilizzo con Home Assistant.
+Su [questa pagina](https://github.com/JohnnyZeta/hassio/tree/master/devices.md) trovate un ripilogo dei dispositivi smart che utilizzo con Home Assistant, e su [questa](https://github.com/JohnnyZeta/hassio/tree/master/appdaemon/readme.md) un riepilogo delle App di AppDaemon che ho scritto e utilizzo.
 
 ## Principale
 
 ![SchedaPrincipale](images/image1.png)
 
-## Stanze
+## Attivo
 
-![SchedaStanze](images/image2.png)
+![SchedaAttivo](images/image2.png)
 
-## Meteo
+## Piano interrato
 
-![SchedaMeteo](images/image3.png)
+![SchedaInterrato](images/image3.png)
 
-## SONOS
+## Piano terra
 
-![SchedaSONOS](images/image4.png)
+![SchedaTerra](images/image4.png)
 
-## Allarme
+## Primo piano
 
-![SchedaAllarme](images/image5.png)
+![SchedaPrimo](images/image5.png)
 
-## Cofano
+## Secondo piano
 
-![SchedaCofano](images/image6.png)
+![SchedaSecondo](images/image6.png)
 
-## NUC
+## Hardware
 
-![SchedaNUC](images/image7.png)
+![SchedaHardware](images/image7.png)

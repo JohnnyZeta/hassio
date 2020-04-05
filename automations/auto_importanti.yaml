@@ -1,0 +1,36 @@
+
+### PRIMI ALERT ######
+
+  - alias: Acqua sotto Lavatrice
+    trigger:
+      platform: state
+      entity_id: binary_sensor.water_sensor
+      to: 'on'
+    action:
+      - service: notify.mobile_app_iphone_di_alby
+        data:
+          title: 'Lavatrice'
+          message: 'Rilevata acqua sotto la Lavatrice!'
+          data:
+            push:
+              sound:
+                name: default
+                critical: 1
+                volume: 1.0
+
+  - alias: Fumo in cucina
+    trigger:
+      platform: state
+      entity_id: binary_sensor.fire_28
+      to: 'on'
+    action:
+      - service: notify.mobile_app_iphone_di_alby
+        data:
+          title: 'Fumo'
+          message: 'Rilevato fumo in cucina!'
+          data:
+            push:
+              sound:
+                name: default
+                critical: 1
+                volume: 1.0

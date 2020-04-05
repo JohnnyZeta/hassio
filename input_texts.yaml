@@ -1,0 +1,15 @@
+  
+  allarme1:
+    name: Zona Allarme
+  sirena:
+    name: Attivazione Sirena
+  sirena_timestamp:
+    name: Attivazione Sirena timestamp
+  antifurto:
+    name: Ultimo inserimento
+  antifurto_timestamp:
+    name: Ultimo inserimento timestamp
+  rfid:
+    name: Ultimo Tag
+  rfid125:
+    name: Ultimo Tag 125kHz

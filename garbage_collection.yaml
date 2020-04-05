@@ -1,0 +1,26 @@
+
+  sensors:
+  - name: raccolta_indifferenziato_mattino
+    frequency: "weekly"
+    collection_days:
+    - tue
+  - name: raccolta_organico_mattino
+    frequency: "weekly"
+    collection_days:
+    - wed
+    - sat
+  - name: raccolta_carta_pomeriggio
+    frequency: "even-weeks"
+    collection_days:
+    - tue
+    move_country_holidays: IT
+  - name: raccolta_plastica_pomeriggio
+    frequency: "even-weeks"
+    collection_days:
+    - thu
+    move_country_holidays: IT
+  - name: raccolta_vetro_pomeriggio
+    frequency: "odd-weeks"
+    collection_days:
+    - thu
+    move_country_holidays: IT

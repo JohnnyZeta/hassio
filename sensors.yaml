@@ -1,37 +1,41 @@
 
-  - platform: etherscan
-    address: !secret eth_address
-    name: "Saldo Mining"
-###############################################################################
   - platform: moon
 ###############################################################################
   - platform: template
     sensors:
-      tp_link_amps:
-        entity_id: switch.nuvola
-        value_template: "{{ states.switch.nuvola.attributes.current_a }}"
-        friendly_name: "Consumo attuale"
-        unit_of_measurement: 'A'
-      tp_link_watts:
-        entity_id: switch.nuvola
-        value_template: "{{ states.switch.nuvola.attributes.current_power_w }}"
-        unit_of_measurement: 'W'
-        friendly_name: "Potenza attuale"
-      tp_link_kw:
-        entity_id: switch.nuvola
-        value_template: "{{ states.switch.nuvola.attributes.total_energy_kwh }}"
-        unit_of_measurement: 'kW'
-        friendly_name: "Consumo totale"
-      tp_link_kw_today:
-        entity_id: switch.nuvola
-        value_template: "{{ states.switch.nuvola.attributes.today_energy_kwh }}"
-        unit_of_measurement: 'kW'
-        friendly_name: "Consumo giornaliero"
-      tp_link_volts:
-        entity_id: switch.nuvola
-        value_template: "{{ states.switch.nuvola.attributes.voltage }}"
-        unit_of_measurement: 'V'
-        friendly_name: "Voltaggio"
+      # tempo_antifurto:
+      #   entity_id: sensor.time
+      #   friendly_name: "Tempo da toggle antifurto"
+      #   value_template: "{{ ((as_timestamp(now()) - float(states.input_text.antifurto_timestamp.state)) / 60) | round(2) }} minuti, {{ ((as_timestamp(now()) - float(states.input_text.antifurto_timestamp.state)) / 3600) | round(2) }} ore e {{ ((as_timestamp(now()) - float(states.input_text.antifurto_timestamp.state)) / 86400) | round(2) }} giorni fa"
+      # tempo_sirena:
+      #   entity_id: sensor.time
+      #   friendly_name: "Tempo da suono sirena"
+      #   value_template: "{{ ((as_timestamp(now()) - float(states.input_text.sirena_timestamp.state)) / 60) | round(2) }} minuti, {{ ((as_timestamp(now()) - float(states.input_text.sirena_timestamp.state)) / 3600) | round(2) }} ore e {{ ((as_timestamp(now()) - float(states.input_text.sirena_timestamp.state)) / 86400) | round(2) }} giorni fa"
+      # tp_link_amps:
+      #   entity_id: switch.nuvola
+      #   value_template: "{{ states.switch.nuvola.attributes.current_a }}"
+      #   friendly_name: "Consumo attuale"
+      #   unit_of_measurement: 'A'
+      # tp_link_watts:
+      #   entity_id: switch.nuvola
+      #   value_template: "{{ states.switch.nuvola.attributes.current_power_w }}"
+      #   unit_of_measurement: 'W'
+      #   friendly_name: "Potenza attuale"
+      # tp_link_kw:
+      #   entity_id: switch.nuvola
+      #   value_template: "{{ states.switch.nuvola.attributes.total_energy_kwh }}"
+      #   unit_of_measurement: 'kW'
+      #   friendly_name: "Consumo totale"
+      # tp_link_kw_today:
+      #   entity_id: switch.nuvola
+      #   value_template: "{{ states.switch.nuvola.attributes.today_energy_kwh }}"
+      #   unit_of_measurement: 'kW'
+      #   friendly_name: "Consumo giornaliero"
+      # tp_link_volts:
+      #   entity_id: switch.nuvola
+      #   value_template: "{{ states.switch.nuvola.attributes.voltage }}"
+      #   unit_of_measurement: 'V'
+      #   friendly_name: "Voltaggio"
       # saldo_eth:
       #   entity_id: sensor.coinbase_eth_wallet
       #   friendly_name: "Valore ETH"
@@ -99,6 +103,70 @@
 #             Offline
 #           {% endif %}"
 #         friendly_name: 'Unifi AP'
+      ap_salotto_online:
+        value_template: "{% if is_state('device_tracker.ap_salotto', 'home') %}
+            Online
+          {% else %}
+            Offline
+          {% endif %}"
+        friendly_name: 'AP Salotto'
+      ap_studio_online:
+        value_template: "{% if is_state('device_tracker.ap_studio', 'home') %}
+            Online
+          {% else %}
+            Offline
+          {% endif %}"
+        friendly_name: 'AP Studio'
+      switch_camera_online:
+        value_template: "{% if is_state('device_tracker.camera', 'home') %}
+            Online
+          {% else %}
+            Offline
+          {% endif %}"
+        friendly_name: 'Switch Camera'
+      switch_garage_bis_online:
+        value_template: "{% if is_state('device_tracker.garage_bis', 'home') %}
+            Online
+          {% else %}
+            Offline
+          {% endif %}"
+        friendly_name: 'Switch Garage'
+      switch_garage_online:
+        value_template: "{% if is_state('device_tracker.garage', 'home') %}
+            Online
+          {% else %}
+            Offline
+          {% endif %}"
+        friendly_name: 'Switch Garage'
+      usg_online:
+        value_template: "{% if is_state('device_tracker.usg', 'home') %}
+            Online
+          {% else %}
+            Offline
+          {% endif %}"
+        friendly_name: 'USG Gateway'
+      lucille_online:
+        value_template: "{% if is_state('device_tracker.nas_lucille', 'home') %}
+            Online
+          {% else %}
+            Offline
+          {% endif %}"
+        friendly_name: 'NAS Lucille'
+      pi_hole_online:
+        value_template: "{% if is_state('device_tracker.pi_hole', 'home') %}
+            Online
+          {% else %}
+            Offline
+          {% endif %}"
+        friendly_name: 'Pi-Hole DNS'
+      stufa_fan_rate:
+        friendly_name: 'Potenza Ventola'
+        unit_of_measurement: '%'
+        value_template: '{{((((states.sensor.stufa_energy_power.state | int ) - 23) * 100) / 21 ) | round | replace("-110", "0") }}'
+        icon_template: >
+          {% if is_state('zone.home', 'zoning') %}
+            mdi:speedometer
+          {% endif %}
 ###############################################################################
   - platform: systemmonitor
     resources:
@@ -109,15 +177,15 @@
   - platform: uptime
     name: Tempo Online
 ###############################################################################
-  - platform: darksky
-    api_key: !secret darksky_key
-    forecast: 1
-    language: it
-    monitored_conditions:
-      - summary
-      - apparent_temperature
-      - wind_speed
-      - cloud_cover
+  # - platform: darksky
+  #   api_key: !secret darksky_key
+  #   forecast: 1
+  #   language: it
+  #   monitored_conditions:
+  #     - summary
+  #     - apparent_temperature
+  #     - wind_speed
+  #     - cloud_cover
 ###############################################################################
   - platform: waze_travel_time
     name: LC Ale
@@ -125,9 +193,19 @@
     destination: zone.home
     region: 'EU'
   - platform: waze_travel_time
+    name: CL Ale
+    origin: zone.home
+    destination: zone.lavoro
+    region: 'EU'
+  - platform: waze_travel_time
     name: LC Alby
     origin: zone.ufficio
     destination: zone.home
+    region: 'EU'
+  - platform: waze_travel_time
+    name: CL Alby
+    origin: zone.home
+    destination: zone.ufficio
     region: 'EU'
 ###############################################################################
   # - platform: google_geocode
@@ -164,7 +242,6 @@
       - ups.status.display
       - ups.load
       - input.voltage
-      - battery.runtime
       - battery.charge
 ###############################################################################
   # - platform: command_line
@@ -172,25 +249,117 @@
   #   command: "curl -s -H 'Authorization: Bearer eyJrIjoiUHJjTkNNeFE3djJOVDFycE82TjU3TXVueDJTckUwTEgiLCJuIjoiSEEiLCJpZCI6MX0=' 'http://192.168.2.30:3000/render/dashboard-solo/db/home-assistant?orgId=1&panelId=1&theme=light&width=1500&height=500&tz=UTC%2B02%3A00' > /config/www/temperature.png"
   #   scan_interval: 300
 ###############################################################################
-  - platform: pi_hole
-    host: !secret pi_hole_host
+  # - platform: pi_hole
+  #   host: !secret pi_hole_host
 ###############################################################################
-  - platform: cert_expiry
-    host: !secret base_url
+  # - platform: zoneminder
+  #   include_archived: false
 ###############################################################################
-  - platform: zoneminder
-    include_archived: false
+# ### Alberto
+#   - platform: history_stats
+#     name: Corsa
+#     entity_id: input_boolean.corsa
+#     state: 'on'
+#     type: time
+#     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+#     end: '{{ now() }}'
+#   - platform: history_stats
+#     name: Alby in ufficio
+#     entity_id: person.alberto
+#     state: 'Ufficio'
+#     type: time
+#     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+#     end: '{{ now() }}'
+#   - platform: history_stats
+#     name: Alby in macchina
+#     entity_id: binary_sensor.leon
+#     state: 'on'
+#     type: time
+#     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+#     end: '{{ now() }}'
+# ### Alessandra
+#   - platform: history_stats
+#     name: Ale in ufficio
+#     entity_id: person.ale
+#     state: 'Lavoro'
+#     type: time
+#     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+#     end: '{{ now() }}'
+#   - platform: history_stats
+#     name: Ale in macchina
+#     entity_id: binary_sensor.clio
+#     state: 'on'
+#     type: time
+#     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+#     end: '{{ now() }}'
 ###############################################################################
-  - platform: history_stats
-    name: Corsa in settimana
-    entity_id: input_boolean.corsa
-    state: 'on'
-    type: time
-    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
-    end: '{{ now() }}'
+  - platform: unifigateway
+    host: !secret hassio_interno_ip
+    username: !secret unifi_controller_username
+    password: !secret unifi_controller_password
+    monitored_conditions:
+      - www
+      - lan
+      - wlan
+      - alerts
+      - firmware
 ###############################################################################
-  # - platform: haveibeenpwned
-  #   email:
-  #     - !secret alberto_email
-  #     - !secret ale_email
-###############################################################################
+  - platform: mqtt
+    name: "Potenza Istantanea LampadarioCucina"
+    state_topic: "shellies/shellyswitch25-B8A0AE/relay/1/power"
+    qos: 0
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Potenza Totale LampadarioCucina"
+    state_topic: "shellies/shellyswitch25-B8A0AE/relay/1/energy"
+    qos: 0
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Potenza Istantanea LuceBagnetto"
+    state_topic: "shellies/shellyswitch25-B8A0AE/relay/0/power"
+    qos: 0
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Potenza Totale LuceBagnetto"
+    state_topic: "shellies/shellyswitch25-B8A0AE/relay/0/energy"
+    qos: 0
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Temperatura ShellyCucinaBagnetto"
+    state_topic: "shellies/shellyswitch25-B8A0AE/temperature"
+    qos: 0
+    unit_of_measurement: "°C"
+  - platform: mqtt
+    name: "Sovratemperatura ShellyCucinaBagnetto"
+    state_topic: "shellies/shellyswitch25-B8A0AE/overtemperature"
+    qos: 0
+###
+  - platform: mqtt
+    name: "Potenza Istantanea LuceIntercapedine"
+    state_topic: "shellies/shellyswitch25-B94A2F/relay/0/power"
+    qos: 0
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Potenza Totale LuceIntercapedine"
+    state_topic: "shellies/shellyswitch25-B94A2F/relay/0/energy"
+    qos: 0
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Potenza Istantanea LuceGarage"
+    state_topic: "shellies/shellyswitch25-B94A2F/relay/1/power"
+    qos: 0
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Potenza Totale LuceGarage"
+    state_topic: "shellies/shellyswitch25-B94A2F/relay/1/energy"
+    qos: 0
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Temperatura ShellyGarageIntercapedine"
+    state_topic: "shellies/shellyswitch25-B94A2F/temperature"
+    qos: 0
+    unit_of_measurement: "°C"
+  - platform: mqtt
+    name: "Sovratemperatura ShellyGarageIntercapedine"
+    state_topic: "shellies/shellyswitch25-B94A2F/overtemperature"
+    qos: 0

@@ -1,0 +1,10 @@
+
+  test_notification:
+    sequence:
+      - service: notify.mobile_app_iphone_di_alby
+        data:
+          message: 'Allarme'
+          title: 'test'
+          data:
+            push:
+              category: "allarme"
