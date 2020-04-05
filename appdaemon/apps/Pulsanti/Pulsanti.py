@@ -75,7 +75,7 @@ class MieiPulsanti(hass.Hass):
             if click == "single":
 
                 self.luce_spenta = self.get_state(self.args["camera"]["luce_camera"]) == "off"
-                self.lum_luce = self.get_state(self.args["camera"]["luce_camera"], attribute=brightness)
+                self.lum_luce = self.get_state(self.args["camera"]["luce_camera"], attribute="brightness")
 
                 self.luce_tenue = self.lum_luce == 103
                 self.luce_rossa = self.lum_luce == 179
