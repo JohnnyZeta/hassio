@@ -151,7 +151,7 @@ class PyAllarme(hass.Hass):
             self.nome = self.get_state(entity, attribute="friendly_name")
             self.messaggio = "Aperta " + str(self.nome) + " con Antifurto inserito!"
             for servizio_notify in self.args["servizio_notify_push"]:
-                self.notifica_mobile(servizio_notify, "mix", "Antifurto", messaggio)
+                self.notifica_mobile(servizio_notify, "mix", "Antifurto", self.messaggio)
 
             #self.notify(messaggio, title = "Avviso", name = self.args["servizio_notify_push"])
             

@@ -87,7 +87,7 @@
   #   action:
   #     - service: light.turn_on
   #       data:
-  #         entity_id: light.garage_2
+  #         entity_id: light.garage
 
 ###############################################################################
 

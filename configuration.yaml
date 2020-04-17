@@ -177,12 +177,6 @@ neato:
 ifttt:
   key: !secret ifttt_key
 
-# device_tracker:
-#   - platform: unifi_direct
-#     host: !secret unifi_ap_ip
-#     username: !secret unifi_ap_username
-#     password: !secret unifi_ap_password
-
 owntracks:
   max_gps_accuracy: 100
 
@@ -279,17 +273,16 @@ person:
     id: alberto
     user_id: c84a36a2ce794d10a9f96d444c08158f
     device_trackers:
-      - device_tracker.alby_iphone
-      - device_tracker.alby_iphone_2
       - device_tracker.iphone_di_alby
+      - device_tracker.iphone_di_alby_3
   - name: Ale
     id: alessandra
     user_id: 0a59d7d535004e0bb2fa18dd0ec14435
     device_trackers:
-      - device_tracker.alessandra_iphone
-      - device_tracker.alessandra_iphone_2
-      - device_tracker.iphonedadaghero
+      - device_tracker.iphone_2
       - device_tracker.iphone_di_alessandra
+      - device_tracker.iphonedadaghero_2
+
 
 # speedtestdotnet:
 #   server_id: !secret speedtest_server_id

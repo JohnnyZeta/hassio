@@ -37,14 +37,10 @@
       - sensor.temperature_camera
       - sensor.temperature_cameretta
       - sensor.temperature_esterno
-      - sensor.temperature_garage
-      - sensor.temperature_studio
       - sensor.temperature_tavernetta
       - sensor.humidity_camera
       - sensor.humidity_cameretta
       - sensor.humidity_esterno
-      - sensor.humidity_garage
-      - sensor.humidity_studio
       - sensor.humidity_tavernetta
       # LUCI
       - light.camera
@@ -53,6 +49,15 @@
       - light.nicchia
       - light.studio
       - light.cameretta
+      - light.bagnetto
+      - light.piantana
+      - light.esterna_cucina
+      - light.esterna_ingresso
+      - light.esterna_retro
+      - light.garage
+      - light.intercapedine
+      - light.orto
+      - light.vialetto
       # SWITCHES
       #- switch.semola_schedule
       #- switch.nuvola

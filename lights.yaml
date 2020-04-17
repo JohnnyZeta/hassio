@@ -28,7 +28,7 @@
     entity_id: switch.luceintercapedine
   - platform: switch
     name: Garage
-    entity_id:  switch.lucegarage
+    entity_id: switch.lucegarage
   # - platform: yeelight
   #   devices:
   #     192.168.2.14:

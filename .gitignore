@@ -16,10 +16,7 @@
 !custom_components/hacs
 !appdaemon
 !appdaemon/apps
-!appdaemon/apps/Allarme
-!appdaemon/apps/Luci
-!appdaemon/apps/Pulsanti
-!appdaemon/apps/Utilities
+!appdaemon/apps/code
 secrets.yaml
 zones.yaml
 entity_registry.yaml
