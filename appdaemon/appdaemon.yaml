@@ -11,8 +11,8 @@ appdaemon:
       type: mqtt
       namespace: mqtt
       client_host: !secret mqtt_ip
-      client_user: !secret mqtt_user
-      client_password: !secret mqtt_password
+      client_user: !secret mqtt_ad_user
+      client_password: !secret mqtt_ad_password
       client_topics: NONE
 http:
   url: http://127.0.0.1:5050

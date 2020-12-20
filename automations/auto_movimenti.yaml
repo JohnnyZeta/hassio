@@ -70,7 +70,7 @@
         state: below_horizon
       - condition: state
         entity_id: group.famiglia
-      #   state: home
+        state: home
       # - condition: state
       #   entity_id: light.disimpegno_2
       #   state: 'on'
