@@ -17,14 +17,8 @@ homeassistant:
   # Auth Providers
   auth_providers:
     - type: homeassistant
-    - type: trusted_networks
-      trusted_networks:
-        - 127.0.0.1
-        - 192.168.1.0/24
-        - 172.17.0.0/16 # Example Docker bridge
-        - 172.30.32.0/23 # Example Docker hassio
 
-zone: !include zones.yaml
+zone:
 group: !include groups.yaml
 automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
@@ -37,7 +31,7 @@ input_boolean: !include input_booleans.yaml
 input_text: !include input_texts.yaml
 homekit: !include homekit.yaml
 alert: !include alerts.yaml
-alarm_control_panel: !include alarm_control_panel.yaml
+#alarm_control_panel: !include alarm_control_panel.yaml
 light: !include lights.yaml
 history: !include history_filters.yaml
 
@@ -59,7 +53,7 @@ http:
   #ssl_certificate: !secret ssl_certificate
   #ssl_key: !secret ssl_key
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  base_url: !secret base_url
+  #base_url: !secret base_url
   #use_x_forwarded_for: true
   #trusted_proxies:
   #  - 192.168.1.1
@@ -76,7 +70,7 @@ conversation:
 
 # Tracked history is kept for 2 days
 recorder:
-  purge_keep_days: 2
+  #purge_keep_days: 2
   db_url: !secret db_url
 
 # View all events in a logbook
@@ -87,12 +81,6 @@ logbook:
 
 # Track the sun
 sun:
-
-# Text to speech
-tts:
-  - platform: google_translate
-    service_name: google_say
-    language: 'it'
 
 # Cloud
 cloud: !include cloud.yaml
@@ -125,18 +113,8 @@ mobile_app:
 #     pydeconz: debug
 #     homeassistant.components.deconz: debug
 
-# Proximity
-proximity:
-  home:
-    ignored_zones:
-      - lavoro
-      - ufficio
-    devices:
-      - person.alberto
-      - person.ale
-
 # Default Config
-#default_config:
+default_config:
 
 # System Health
 system_health:
@@ -157,28 +135,25 @@ yeelight:
     192.168.1.38:
       name: Plafoniera
 
-#  - platform: yamaha
-#    source_names:
-#      HDMI1: "Blu-Ray"
-#      HDMI2: "MacBook"
-#      HDMI3: "Xbox360"
-#      HDMI4: "Fire TV"
-#      AV5: "Cassette"
-#      AV6: "TV"
+media_player:
+ - platform: yamaha
+   source_names:
+     HDMI1: "Blu-Ray"
+     HDMI2: "MacBook"
+     HDMI3: "Xbox360"
+     HDMI4: "Fire TV"
+     AV5: "Cassette"
+     AV6: "TV"
 
 webostv:
   host: !secret lg_ip
   name: TV Salotto
 
-neato:
-  username: !secret neato_username
-  password: !secret neato_password
-
 ifttt:
   key: !secret ifttt_key
 
-owntracks:
-  max_gps_accuracy: 100
+# owntracks:
+#   max_gps_accuracy: 100
 
 mqtt:
   discovery: true
@@ -209,11 +184,11 @@ telegram_bot:
       - !secret telegram_pa_chat_id
 
 notify:
-  - name: telefoni
-    platform: group
-    services:
-      - service: mobile_app_iphone_di_alby
-      - service: mobile_app_iphone_di_alessandra
+  # - name: telefoni
+  #   platform: group
+  #   services:
+  #     - service: mobile_app_iphone_di_alby
+  #     - service: mobile_app_iphone_di_alessandra
   - name: telegram
     platform: group
     services:
@@ -233,15 +208,30 @@ notify:
   - name: telegram_pa
     platform: telegram
     chat_id: !secret telegram_pa_chat_id
+  - platform: tts
+    name: in_salotto
+    tts_service: tts.cloud_say
+    media_player: media_player.salotto
+    language: it-IT
+  - platform: tts
+    name: in_camera
+    tts_service: tts.cloud_say
+    media_player: media_player.camera_da_letto
+    language: it-IT
+  - platform: tts
+    name: in_cucina
+    tts_service: tts.cloud_say
+    media_player: media_player.cucina
+    language: it-IT
   # - name: firetv
   #   platform: nfandroidtv
   #   host: !secret firetv_ip
   #   fontsize: max
   #   duration: 10
   #   position: top-right
-  - platform: webostv
-    host: !secret lg_ip
-    name: tv_salotto
+  # - platform: webostv
+  #   host: !secret lg_ip
+  #   name: tv_salotto
 
 stream:
 
@@ -268,30 +258,15 @@ camera:
     still_image_url: !secret CameraGarage_URL
     stream_source: !secret CameraGarage_Source
 
-person:
-  - name: Alberto
-    id: alberto
-    user_id: c84a36a2ce794d10a9f96d444c08158f
-    device_trackers:
+#Proximity
+proximity:
+  home:
+    ignored_zones:
+      - lavoro
+      - ufficio
+    devices:
       - device_tracker.iphone_di_alby
-      - device_tracker.iphone_di_alby_3
-  - name: Ale
-    id: alessandra
-    user_id: 0a59d7d535004e0bb2fa18dd0ec14435
-    device_trackers:
-      - device_tracker.iphone_2
       - device_tracker.iphone_di_alessandra
-      - device_tracker.iphonedadaghero_2
-
-
-# speedtestdotnet:
-#   server_id: !secret speedtest_server_id
-
-# transmission:
-#   host: 192.168.1.11
-#   port: 9091
-#   username: !secret transmission_username
-#   password: !secret transmission_password
 
 #tplink:
 #  switch:
@@ -303,7 +278,15 @@ person:
 pi_hole:
   host: !secret pi_hole_host
 
-# media_player:
-#   - platform: volumio
-#     host: volumio.local
-#     port: 3000
+cover:
+  - platform: template
+    covers:
+      tenda_cucina:
+        device_class: shutter
+        friendly_name: "Tenda Cucina"
+        open_cover:
+          service: script.apri_tenda_cucina
+        close_cover:
+          service: script.chiudi_tenda_cucina
+        stop_cover:
+          service: script.stop_tenda_cucina

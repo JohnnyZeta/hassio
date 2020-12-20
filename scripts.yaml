@@ -1,10 +1,36 @@
-
-  test_notification:
-    sequence:
-      - service: notify.mobile_app_iphone_di_alby
-        data:
-          message: 'Allarme'
-          title: 'test'
-          data:
-            push:
-              category: "allarme"
+apri_cancello:
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.triangolo_remote
+      command: b64:sgUcAAoNFhgKGAoNFRgKDRYYCg0VGAoNFRkKDRYAAYwAAAAAAAAAAAAAAAA='
+    entity_id: remote.triangolo_remote
+  mode: single
+#
+apri_tenda_cucina:
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.triangolo_remote
+      command: b64:sgCgAZwzFwwXDAsYCxkWDRYNFwwLGAsYDBgLGAsYFwwYCwwYFwwLGBcNFg0LGBcMFwwLGRcMCxgLGAwYFwwLGAsYCxgXDQsYCxgXDRYNCxgLGBcMFw2dMhcMFw0KGQsYFwwXDBcMCxkLGAsYCxgLGRcMFwwLGBcMDBgXDBcMCxgYCxgMCxgXDAsYDBgLGBcMCxgMGAsYFwwLGAsYGAsYDAsYCxgXDBcOnTIXDBcNChkKGRYNFwwXDAsZChkLGAsYCxkWDRcMCxgXDAsYGAwXDAsYFw0WDQoZFwwLGQsYCxgXDAsYDBcMFxgMCxgLGBgLGAwXDBcMCxgLAAEJnTIXDBcNCxgLGBcMFw0WDQsYCxgLGQoZChkXDBcMCxgXDQsYFwwYCwwYFwwXDAsZFgwMGAsYCxgXDQoZCxgLGBcMCxgMGBcMFw0WDRcMCxgLAAEJnDMXDBcMCxgLGBgMFwwXDAsYDBgLGAsYCxgXDRYNChkXDAsYGAsYDAsYFwwXDAwYFg0LGAsYDBgXDAsYCxgLGRYNCxgLGBcMGAsYDBcMCxgLAAXcAAAAAAAAAAA=
+    entity_id: remote.triangolo_remote
+  mode: single
+#
+chiudi_tenda_cucina:
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.triangolo_remote
+      command: b64:sgBEApwyFwwXDQsYCxgXDBcMFw0KGQsYCxgMFwwYFwwXDAsZFg0LGBcMFwwLGBgMFwwLGBcNCxgLGQoYFwwMGAsYCxgXDAsZCxgLGBcMCxgLGQoZFg6cMhgLGAwLGAsYFw0WDRYNCxgLGAsZChkLGBcMFw0KGRcMCxgXDBcMDBgXDBcMCxgXDQsYCxkKGRcMCxgLGAsYFw0LGAsYCxgXDAsZCxgLGBf+nTIXDRYNChkLGBcMFw0WDQsYCxgLGQoZCxgXDBcMCxgYDAoZFw0WDAwYFwwXDAsYFw0LGAsYCxgXDQoYDBgLGBcMCxkLGAsYFwwLGAwYChkXDZwyFwwYDAsYCxgYCxgMFwwLGAsZChkLGAsYFwwXDAwXGAwLGBcNFg0LGBcMFwwLGRYNCxgLGAsYGAwLGAsYCxgXDQsYCxgLGRYNChkKGQsYFw2dMhcMGAwLGAsYFw0WDRcMCxgLGAsZCxgLGBcMFwwMGBYNCxgXDBgMCxgXDBcMCxgXDQsYCxgLGBcNChkKGQsYFw0KGQsYCxgXDBcNFwwXDAsAAQmdMhcMFwwLGAsYGAwXDBcMCxgMFwwYCxgLGBcNFwwLGBcMCxkXDBYNCxgXDBcMDBgXDAsYCxkLGBcMCxgLGAsZFwwLGAsYCxgYDBcMFwwXDAsAAQmdMhcMFwwMGAoZFwwXDRYNChkLGAsYCxkKGBgMFwwLGBcNCxgXDBcMCxgXDRYNCxgXDAwYCxgLGBcMCxgLGAwYFwwLGAsZChkXDBcMFw0WDQsABdwAAAAA
+    entity_id: remote.triangolo_remote
+  mode: single
+#
+stop_tenda_cucina:
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.triangolo_remote
+      command: b64:sgC8AAQbCBsIGhUOChkWDQobFDIVDgkZFg6cPQwMFwwLGQoZFwwXDBcNChkLGggZCxgLGRYNFwwKGRcMCxkWDhUNCxgXDRYNChkXDAsYCxkKGRcMCxgLGAsZFg0LGBcMCxgXDAsZFg0LGBcNnDMXDBcMCxgLGRcMFwwXDAsYCxkKGQoZCxgXDBcMCxkWDQsYFwwXDQsYFwwXDAsYFw0LGAsYCxkWDQoZCxgLGBcNChkWDQsYFwwLGBcNChkWAAXcAAAAAAAAAAAAAAAA
+    entity_id: remote.triangolo_remote
+  mode: single
+#

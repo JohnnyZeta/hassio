@@ -39,7 +39,7 @@ class LuciBagno(hass.Hass):
                 self.turn_on(self.args["luce"], brightness_pct=self.args["serata"]["lum_serata"], kelvin=self.args["serata"]["kelvin_serata"])
 
     def movimento(self, entity, attribute, old, new, kwargs):
-        if new == "on":
+        if new == "on" and self.get_state(self.args["luce"]) == "off":
             self.comportamento_orario(self.args["luce"])
 
 

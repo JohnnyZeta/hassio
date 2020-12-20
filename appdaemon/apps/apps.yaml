@@ -28,14 +28,14 @@ Differenziata:
   # persone:
   #   - alberto
 
-LuciEsterne:
-  module: Utilities
-  class: LuciEsterne
-  elenco_luci:
-    - light.vialetto
-    - light.esterna_ingresso
-    - light.esterna_retro
-    - light.orto
+# LuciEsterne:
+#   module: Utilities
+#   class: LuciEsterne
+#   elenco_luci:
+#     - light.vialetto
+#     - light.esterna_ingresso
+#     - light.esterna_retro
+#     - light.esterna_cucina
 
 RFID:
   module: RFID
@@ -69,45 +69,38 @@ Allarme:
       - light.camera
       - light.cameretta
       - light.cucina
-      - light.divano
-      - light.garage_2
+      - light.televisore
+      - light.garage
       - light.lampadario_camera
       - light.lampadario_cucina
-      - light.letto
+      - light.camera
       - light.luci_esterne
       - light.piantana
       - light.scale_inferiori
       - light.scale_superiori
-      - light.studio
+      - light.luci_play
+      - light.led_scrivania
       - light.tavernetta
       - light.tavolo
       - light.televisore
+    elenco_luci_esterne:
+      - light.vialetto
+      - light.esterna_ingresso
+      - light.esterna_retro
+      - light.esterna_cucina
+      - light.orto
   avviso_finestre:
     elenco_finestre:
       - binary_sensor.finestra_salotto
       - binary_sensor.openclose_finestra_scale
       - binary_sensor.openclose_porta_rei
-      - binary_sensor.openclose_portafinestra_camera
       - binary_sensor.openclose_portafinestra_salotto
       - binary_sensor.porta_blindata
       - binary_sensor.portafinestra_cucina
   allarme_dimenticato:
     minuti_attesa: 15
     avviso_notturno:
-      ora_inizio: "22:30:00"
-  
-Trello:
-  module: Trello
-  class: TrelloAZ
-  log: log_trello
-  orario_esecuzione: "08:00:00"
-  api_key: !secret api_key_trello
-  api_secret: !secret api_secret_trello
-  board: "Monitoraggio"
-  lista_origine: "Elenco Clienti"
-  lista_scadenze: "In scadenza/scaduti"
-  lista_sospesi: "Sospesi"
-  lista_destinazione: "Da contattare"
+      ora_inizio: "23:45:00"
 
 Bagno:
   module: Luci
@@ -120,7 +113,7 @@ Bagno:
     kelvin_serata: 4000
     inizio_serata: "sunset - 01:30:00"
   notte:
-    lum_notte: 10
+    lum_notte: 5
     kelvin_notte: 3000
     inizio_notte: "23:30:00"
 
@@ -129,16 +122,17 @@ Pulsanti:
   class: MieiPulsanti
   camera:
     id_principale: xiaomi_switch_camera
-    lum_normale: 100
-    kelvin_normale: 4000
+    lum_normale: 254
     luce_camera: light.camera
     scena_nanna: scene.nanna
-    durata_fadeout: 180
+    durata_fadeout: 60
     id_alberto: xiaomi_switch_alby
     id_alessandra: xiaomi_switch_ale
   cameretta:
     id_principale: tradfri_on_off_switch
+    id_secondario: smart_switch
     luce_cameretta: light.cameretta
+    luce_secondaria_cameretta: light.piantana
   salotto:
     id_principale: tradfri_remote_control
     luci_salotto:
@@ -152,8 +146,124 @@ Pulsanti:
     scena_no_netflix: scene.tvoff
   studio:
     id_principale: xiaomi_switch_a
-    luci_studio: # Ordine conta
-      - light.piantana
-      - light.studio
-    kelvin_normale: 4000
+    luci_studio_scrivania: light.led_scrivania
+    luci_studio_fondo: #Ordine conta
+      - light.extended_color_light_17
+      - light.extended_color_light_16
+    #kelvin_normale: 4000
+    scena_default: scene.plays_default
+    scena1: scene.plays_1
+    scena2: scene.plays_2
     id_scrivania: xiaomi_switch_d
+
+Inizializza_MQTT:
+  module: Pulsanti_MQTT
+  class: Inizializza_MQTT
+
+Pulsanti_MQTT:
+  module: Pulsanti_MQTT
+  class: Pulsanti_MQTT
+  salotto:
+    id_principale: "IKEA Rotondo"
+    luci_salotto:
+      sx: light.televisore
+      dx: light.cucina
+      up: light.lampadario_cucina
+      down: light.nicchia
+    id_tavolino: "Switch Tavolino"
+    scena_netflix: scene.netflix
+    scena_no_netflix: scene.tvoff
+  camera:
+    id_principale: "Switch Camera"
+    lum_normale: 254
+    luce_camera: light.camera
+    scena_nanna: scene.nanna
+    durata_fadeout: 60
+    id_alberto: "Switch Personale Alby"
+    id_alessandra: "Switch Personale Ale"
+  cameretta:
+    id_principale: "IKEA ON/OFF"
+    id_secondario: xiaomi_switch_b
+    luce_cameretta: light.cameretta
+    luce_secondaria_cameretta: light.piantana
+  studio:
+    id_principale: "Switch Studio"
+    luci_studio_scrivania: light.led_scrivania
+    luci_studio_fondo:
+      - light.extended_color_light_17
+      - light.extended_color_light_16
+    #kelvin_normale: 4000
+    scena_default:
+      xy_play: [0.528, 0.346]
+    scena2:
+      xy_play_sx: []
+      xy_play_dx: []
+    scena3:
+      xy_play_sx: []
+      xy_play_dx: []
+    id_scrivania: "Switch Scrivania" 
+
+Timelapse:
+  module: Timelapse
+  class: Timelapse
+  camera:
+    #"Cucina": !secret CameraCucina_Source
+    #"Fianco": !secret CameraFianco_Source
+    "Retro": !secret CameraRetro_Source
+    #"Garage": !secret CameraGarage_Source
+    #"Salotto": !secret CameraSalotto_Source
+  scatto:
+    directory: "/snapshots/"
+    freq_scatto: 120
+    numero_scatti: 5040
+    risoluzione: [1280, 960]
+    indicazione_data: True
+    crop_timestamp: True
+  montaggio:
+    directory: "/montaggi/"
+    fps: 25
+    preset: slower
+    crf: 30
+    cancella_originali: True
+
+### Web-API
+
+Trello:
+  module: WebAPI
+  class: TrelloAZ
+  log: log_trello
+  orario_esecuzione: "08:00:00"
+  api_key: !secret api_key_trello
+  api_secret: !secret api_secret_trello
+  board: "Monitoraggio"
+  lista_origine: "Elenco Clienti"
+  lista_scadenze: "In scadenza/scaduti"
+  lista_sospesi: "Sospesi"
+  lista_destinazione: "Da contattare"
+
+Buxfer:
+  module: WebAPI
+  class: BuxferData
+  log: log_buxfer
+  username: !secret BuxferUsername
+  password: !secret BuxferPassword
+  orario_esecuzione: "08:00:00"
+  conti_correnti:
+    - Lavoro
+    - Personale
+    - Comune
+
+# https://github.com/ericmatte/ad-media-lights-sync
+media_lights_sync:
+  module: media_lights_sync
+  class: MediaLightsSync
+  media_player: media_player.salotto
+  photo_attribute: entity_picture
+  ha_url: !secret base_url
+  use_current_brightness: False
+  condition:
+    entity: input_boolean.sincronizza_copertine
+    state: "on"
+  transition: 10
+  lights:
+    - light.televisore

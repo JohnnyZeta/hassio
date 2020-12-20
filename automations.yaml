@@ -1,0 +1,11 @@
+- id: '1604779391691'
+  alias: Cancello Massimo
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: cancello-massimo
+  condition: []
+  action:
+  - service: script.apri_cancello
+    data: {}
+  mode: single

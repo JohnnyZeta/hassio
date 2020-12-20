@@ -1,0 +1,106 @@
+# #============================================================================
+# #=== Not that I don't trust my programming but...
+# #===   1. Turn off valves and schedules when master control switch is off
+# #===   2. Turn off all valves when HA starts
+# #===   3. Don't allow more than one valve on at one time
+# #===   4. Turn off valve 1 to 4 if it is on for longer than 30 minutes
+# #===      Turn off valve 5 if it is on for longer than 59 minutes
+# #=== Better safe than sorry!
+# #============================================================================
+
+# #================
+# #=== Automations
+# #================
+# automation:
+
+#   #====================================================================
+#   #=== Master Control Switch
+#   #=== Turn off valves and schedules when master control switch is off
+#   #====================================================================
+#   - alias: Irrigazione Controllo - Master Control Switch
+#     trigger:
+#     - platform: state
+#       entity_id: input_boolean.irrigation_master_control
+#       to: 'off'
+
+#     - platform: homeassistant
+#       event: start
+
+#     action:
+#     - service: homeassistant.turn_off
+#       entity_id:
+#         - input_boolean.cycle1_manual_run
+#         - input_boolean.cycle2_manual_run    
+#         - switch.irrigazione_zona1
+#         - switch.irrigazione_zona2
+#         - switch.irrigazione_zona3
+
+
+#   #==================================================================
+#   #=== Don't allow more than one valve on at one time.
+#   #=== And
+#   #=== Turn off valve 1 to 4 if it is on for longer than 30 minutes.
+#   #=== Turn off valve 5 if it is on for longer than 59 minutes.
+#   #==================================================================
+#   #=== Valve 1 ON
+#   - alias: Irrigazione Controllo - Valvola 1 aperta
+#     trigger:
+#     - platform: state
+#       entity_id:
+#       - switch.irrigazione_zona1
+#       to: 'on'
+
+#     action:
+#     - service: homeassistant.turn_off
+#       entity_id:
+#         - switch.irrigazione_zona2
+#         - switch.irrigazione_zona3
+
+#     - wait_template: "{{ is_state('switch.irrigazione_zona1', 'off') }}"
+#       timeout: '00:30:15'
+
+#     - service: homeassistant.turn_off
+#       entity_id: switch.irrigazione_zona1
+
+
+#   #=== Valve 2 ON
+#   - alias: Irrigazione Controllo - Valvola 2 aperta
+#     trigger:
+#     - platform: state
+#       entity_id:
+#       - switch.irrigazione_zona2
+#       to: 'on'
+
+#     action:
+#     - service: homeassistant.turn_off
+#       entity_id:
+#         - switch.irrigazione_zona1
+#         - switch.irrigazione_zona3
+
+#     - wait_template: "{{ is_state('switch.irrigazione_zona2', 'off') }}"
+#       timeout: '00:30:15'
+
+#     - service: homeassistant.turn_off
+#       entity_id: switch.irrigazione_zona2
+
+
+#   #=== Valve 3 ON
+#   - alias: Irrigazione Controllo - Valvola 3 aperta
+#     trigger:
+#     - platform: state
+#       entity_id:
+#       - switch.irrigazione_zona3
+#       to: 'on'
+
+#     action:
+#     - service: homeassistant.turn_off
+#       entity_id:
+#         - switch.irrigazione_zona1
+#         - switch.irrigazione_zona2
+
+#     - wait_template: "{{ is_state('switch.irrigazione_zona3', 'off') }}"
+#       timeout: '00:30:15'
+
+#     - service: homeassistant.turn_off
+#       entity_id: switch.irrigazione_zona3
+

@@ -76,3 +76,9 @@
       # BOOLEANI
       # - input_boolean.corsa
       # - input_boolean.vacanza
+      # CAMERAS
+      - camera.c2
+      - camera.cucina
+      - camera.fianco
+      - camera.garage
+      - camera.retro

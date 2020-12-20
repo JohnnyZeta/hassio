@@ -1,25 +1,25 @@
 
   sensors:
-  - name: raccolta_indifferenziato_mattino
+  - name: 'Raccolta Indifferenziato (Mattino)'
     frequency: "weekly"
     collection_days:
     - tue
-  - name: raccolta_organico_mattino
+  - name: 'Raccolta Organico (Mattino)'
     frequency: "weekly"
     collection_days:
     - wed
     - sat
-  - name: raccolta_carta_pomeriggio
+  - name: 'Raccolta Carta (Pomeriggio)'
     frequency: "even-weeks"
     collection_days:
     - tue
     move_country_holidays: IT
-  - name: raccolta_plastica_pomeriggio
+  - name: 'Raccolta Plastica (Pomeriggio)'
     frequency: "even-weeks"
     collection_days:
     - thu
     move_country_holidays: IT
-  - name: raccolta_vetro_pomeriggio
+  - name: 'Raccolta Vetro (Pomeriggio)'
     frequency: "odd-weeks"
     collection_days:
     - thu

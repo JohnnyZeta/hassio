@@ -1,46 +1,14 @@
-  # - platform: command_line
-  #   switches:
-  #     camera_recording:
-  #       # Basato sul lavoro di fanaticDavid https://community.home-assistant.io/t/synology-surveillance-station-ip-camera/3552/62
-  #       command_on: 'python3 /config/www/synologycamera.py 1 start'
-  #       command_off: 'python3 /config/www/synologycamera.py 1 stop'
-  #       command_state: 'python3 /config/www/synologycamera.py 1 status'
-  #       value_template: >
-  #         {% if value_json is defined %}
-  #           {{ value_json.data.cameras[0].recStatus == 6 }}
-  #         {% else %}
-  #           {{ states.switch.camera_recording.state == 'on' }}
-  #         {% endif %}
-  #       friendly_name: Camera Cucina
-###############################################################################
-  # - platform: rest
-  #   resource: http://192.168.2.51:8126/container/syncthing
-  #   name: Syncthing
-  #   body_on: '{"state": "start"}'
-  #   body_off: '{"state": "stop"}'
-  #   is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
-###############################################################################
-  - platform: hadockermon
-    host: 192.168.1.11
-    port: 8126
-    # stats: true
-    # prefix: hadockermon
-    # exclude:
-    #   - 'ha-dockermon'
-    #   - 'homeassistant'
-    #   - 'hassio_supervisor'
-    #   - 'portainer'
-###############################################################################
-#  - platform: mqtt
-#    name: Natalino
-#    icon: mdi:candycane
-#    state_topic: ESPURNA-6717C3/relay/0
-#    command_topic: ESPURNA-6717C3/relay/0/set
-#    payload_on: 1
-#    payload_off: 0
-#    availability_topic: ESPURNA-6717C3/status
-#    payload_available: 1
-#    payload_not_available: 0
+  # - platform: mqtt
+  #   name: Natalino
+  #   icon: mdi:candycane
+  #   state_topic: ESPURNA-6717C3/relay/0
+  #   command_topic: ESPURNA-6717C3/relay/0/set
+  #   payload_on: 1
+  #   payload_off: 0
+  #   availability_topic: ESPURNA-6717C3/status
+  #   payload_available: 1
+  #   payload_not_available: 0
+
 ### Shelly 1
   - platform: mqtt
     name: LuceCameraMatrimoniale
@@ -65,8 +33,8 @@
   - platform: mqtt
     name: LuceScaleInferiori
     icon: mdi:lightbulb
-    state_topic: "shellies/shelly1-1D9990/relay/0"
-    command_topic: "shellies/shelly1-1D9990/relay/0/command"
+    state_topic: "shellies/shelly1-115B23/relay/0"
+    command_topic: "shellies/shelly1-115B23/relay/0/command"
     qos: 0
     payload_on: "on"
     payload_off: "off"
@@ -129,8 +97,3 @@
     payload_off: "off"
     optimistic: false
     retain: false
-###############################################################################
-  # - platform: zoneminder
-  #   command_on: Modect
-  #   command_off: Monitor
-###############################################################################

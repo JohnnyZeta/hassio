@@ -74,20 +74,20 @@
 
 ###############################################################################
 
-  # - alias: Accensione Luci Garage
-  #   trigger:
-  #     platform: state
-  #     entity_id: binary_sensor.openclose_portone_garage
-  #     from: "off"
-  #     to: "on"
-  #   condition:
-  #     - condition: state
-  #       entity_id: group.famiglia
-  #       state: 'home'
-  #   action:
-  #     - service: light.turn_on
-  #       data:
-  #         entity_id: light.garage
+  - alias: Accensione Luci Garage
+    trigger:
+      platform: state
+      entity_id: binary_sensor.portone_garage_contact
+      from: "off"
+      to: "on"
+    condition:
+      - condition: state
+        entity_id: group.famiglia
+        state: 'home'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.garage
 
 ###############################################################################
 

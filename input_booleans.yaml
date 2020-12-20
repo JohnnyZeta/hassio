@@ -23,5 +23,13 @@
   #   icon: mdi:beach
   #   initial: off
 #
-  bagno:
-    name: Bagno
+  montaggio:
+    name: Montaggio
+#
+  sincronizza_copertine:
+    name: Sincronizza Copertine
+    icon: mdi:music-box-outline
+#
+  dummyboy:
+    name: Dummy
+    icon: mdi:adjust

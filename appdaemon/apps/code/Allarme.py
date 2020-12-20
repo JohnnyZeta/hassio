@@ -136,6 +136,9 @@ class PyAllarme(hass.Hass):
                 if self.args["accendi_luci"]:
                     for luce in self.args["accendi_luci"]["elenco_luci"]:
                         self.turn_on(luce, brightness_pct=100)
+                    # lampeggia le luci esterne
+                    for luce in self.args["accendi_luci"]["elenco_luci_esterne"]:
+                        self.turn_on(luce, brightness_pct=100, flash="short")
                     self.log("Allarme Sirena! Accese tutte le luci")
                     # accendi tutte le luci di casa se suona l'allarme di notte
         for servizio_notify in self.args["servizio_notify_push"]:

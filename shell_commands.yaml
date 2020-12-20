@@ -8,3 +8,4 @@
   # backup_reload: /bin/bash -c "hassio snapshots reload"
   # backup_script_file: './backup/backup_script.sh'
   backup_script_file_b: /bin/bash -c "/backup/backup_script.sh"
+  pulisci_cache: /bin/bash -c "rm -rf /home/alberto/Dropbox/.dropbox.cache"

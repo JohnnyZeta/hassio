@@ -1,3 +1,8 @@
+##############
+## PULSANTI ##
+##############
+
+
 
 # Archivio Automazioni legate ai pulsanti Xiaomi
 
@@ -1009,3 +1014,55 @@
 #       service: light.toggle
 #       data:
 #         entity_id: light.piantana
+
+
+
+
+############
+## DOCKER ##
+############
+
+
+  # - alias: Offline Container
+  #   # Basato sul fantastico lavoro di Phil Hawthorne:
+  #   # https://philhawthorne.com/ha-dockermon-use-home-assistant-to-monitor-start-or-stop-docker-containers/
+  #   initial_state: 'on'
+  #   trigger:
+  #     - platform: state
+  #       entity_id: switch.ha_dockermon_syncthing
+  #       to: 'off'
+  #       for:
+  #         minutes: 5
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #       # Solo una volta all'ora
+  #       - condition: template
+  #         value_template: >
+  #           {% if states.automation.offline_container.last_triggered is not none %}
+  #             {% if as_timestamp(now()) | int - as_timestamp(states.automation.offline_container.attributes.last_triggered) | int > 3600 %} true {% else %} false
+  #             {% endif %}
+  #           {% else %}
+  #           false
+  #           {% endif %}
+  #   action:
+  #     - service: notify.mobile_app_iphone_di_alby
+  #       data_template:
+  #         message: 'Il container Docker {{ trigger.to_state.name }} non è in esecuzione.'
+  #         title: Avviso Container
+  #     - service: persistent_notification.create
+  #       data_template:
+  #         notification_id: offline_container
+  #         title: Avviso Container
+  #         message: >
+  #           Il container Docker {{ trigger.to_state.name }} non è in esecuzione.
+  #     - service: shell_command.log
+  #       data_template:
+  #         text: >
+  #           Il container Docker {{ trigger.to_state.name }} non è in esecuzione.
+
+###############################################################################
+
+
+
+

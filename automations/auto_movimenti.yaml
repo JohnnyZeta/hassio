@@ -59,51 +59,18 @@
           brightness_pct: 100
           kelvin: 4000
 ################################################################################
-  # - alias: Luci Movimento Cameretta
-  #   trigger:
-  #     platform: state
-  #     entity_id: binary_sensor.presence_cameretta
-  #     to: 'on'
-  #   condition:
-  #     - condition: state
-  #       entity_id: sun.sun
-  #       state: below_horizon
-  #     - condition: state
-  #       entity_id: group.famiglia
-  #       state: home
-  #     # - condition: state
-  #     #   entity_id: light.disimpegno_2
-  #     #   state: 'on'
-  #     # - condition: template
-  #     #   value_template: '{{ states.light.disimpegno_2.attributes.brightness > 250 }}'
-  #   action:
-  #     - service: light.turn_on
-  #       data:
-  #         entity_id: light.cameretta
-  #         brightness: 254
-  #         xy_color: [0.432, 0.402]
-################################################################################
-  - alias: Luci Movimento Studio
+  - alias: Luci Movimento Cameretta
     trigger:
       platform: state
-      entity_id: binary_sensor.presence_studio
+      entity_id: binary_sensor.presence_cameretta
       to: 'on'
     condition:
-      # - condition: state
-      #   entity_id: sun.sun
-      #   state: below_horizon
+      - condition: state
+        entity_id: sun.sun
+        state: below_horizon
       - condition: state
         entity_id: group.famiglia
-        state: home
-      # Solo se sono passati almeno 3 minuti dall'ultimo spegnimento
-      - condition: template
-        value_template: >
-          {% if states.automation.pulsante_studio_toggle.last_triggered is not none %}
-            {% if as_timestamp(now()) | int - as_timestamp(states.automation.pulsante_studio_toggle.attributes.last_triggered) | int > 180 %} true {% else %} false
-            {% endif %}
-          {% else %}
-          false
-          {% endif %}
+      #   state: home
       # - condition: state
       #   entity_id: light.disimpegno_2
       #   state: 'on'
@@ -112,12 +79,47 @@
     action:
       - service: light.turn_on
         data:
-          entity_id: light.studio
-          brightness: 254
-          xy_color: [0.432, 0.402]
-      - service: light.turn_on
-        data:
           entity_id: light.piantana
+################################################################################
+  - alias: Luci Movimento Studio
+    trigger:
+      platform: state
+      entity_id: binary_sensor.presence_studio
+      to: "on"
+    condition:
+      - condition: state
+        entity_id: light.luci_play
+        state: "off"
+      - condition: state
+        entity_id: group.famiglia
+        state: home
+      # Solo se sono passati almeno 3 minuti dall'ultimo spegnimento
+      #- condition: template
+      #  value_template: >
+      #    {% if states.automation.pulsante_studio_toggle.last_triggered is not none %}
+      #      {% if as_timestamp(now()) | int - as_timestamp(states.automation.pulsante_studio_toggle.attributes.last_triggered) | int > 180 %} true {% else %} false
+      #      {% endif %}
+      #    {% else %}
+      #    false
+      #    {% endif %}
+      # - condition: state
+      #   entity_id: light.disimpegno_2
+      #   state: 'on'
+      # - condition: template
+      #   value_template: '{{ states.light.disimpegno_2.attributes.brightness > 250 }}'
+    action:
+      - service: scene.apply
+        data:
+          entities:
+            light.extended_color_light_17:
+              state: on
+              xy_color: [0.528, 0.346]
+            light.extended_color_light_16:
+              state: on
+              xy_color: [0.528, 0.346]
+            light.led_scrivania:
+              state: on
+              
 ################################################################################
   - alias: Luci Movimento Scale Superiori
     trigger:
@@ -174,4 +176,30 @@
           {% endif %}
         data:
           entity_id: light.tavernetta
+################################################################################
+
+  - alias: Disattivazione Luci Movimento
+    trigger:
+      platform: sun
+      event: sunrise
+      offset: "02:30:00"
+    action:
+      service: automation.turn_off
+      entity_id:
+        - automation.luci_movimento_scale_superiori
+        - automation.luci_movimento_camera
+        - automation.luci_movimento_studio
+        
+  - alias: Attivazione Luci Movimento
+    trigger:
+      platform: sun
+      event: sunset
+      offset: "-01:30:00"
+    action:
+      service: automation.turn_on
+      entity_id:
+        - automation.luci_movimento_scale_superiori
+        - automation.luci_movimento_camera
+        - automation.luci_movimento_studio
+
 ################################################################################

@@ -8,7 +8,7 @@
       include_entities:
         - automation.luci_movimento_camera
         - automation.luci_movimento_salotto
-        #- automation.luci_movimento_cameretta
+        - automation.luci_movimento_cameretta
         - automation.luci_movimento_scale_inferiori
         - automation.luci_movimento_scale_superiori
         - automation.luci_movimento_studio
@@ -33,7 +33,7 @@
         - sensor.temperature_esterno
         - sensor.temperature_tavernetta
         - switch.stufa
-        #- switch.natalino
+        - switch.natalino
       ###
         - media_player.camera_da_letto
         - media_player.cucina

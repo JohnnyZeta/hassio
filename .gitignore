@@ -17,6 +17,7 @@
 !appdaemon
 !appdaemon/apps
 !appdaemon/apps/code
+hammerspoon.yaml
 secrets.yaml
 zones.yaml
 entity_registry.yaml
@@ -24,5 +25,5 @@ known_devices.yaml
 automations/auto-allarme.yaml
 known_devices.yaml
 alarm_control_panel.yaml
-Trello.py
+WebAPI.py
 Utilities.py

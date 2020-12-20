@@ -1,31 +1,77 @@
 
-  - alias: Partenza Ale
+  # - alias: Partenza Ale
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.clio
+  #     from: 'off'
+  #     to: 'on'
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #       - condition: time
+  #         after: '18:00:00'
+  #         before: '00:00:00'
+  #         weekday:
+  #           - mon
+  #           - tue
+  #           - wed
+  #           - thu
+  #           - fri
+  #           - sat
+  #       - condition: zone
+  #         entity_id: person.ale
+  #         zone: zone.lavoro
+  #   action:
+  #     - service: shell_command.riga_ritorno
+  #     - service: notify.mobile_app_iphone_di_alby
+  #       data:
+  #         message: "Alessandra è partita!"
+
+  - alias: Arrivo Lavoro Ale
     trigger:
-      platform: state
-      entity_id: binary_sensor.clio
-      from: 'off'
-      to: 'on'
+      platform: zone
+      entity_id: person.ale
+      zone: zone.lavoro
+      # Event is either enter or leave
+      event: enter # or "leave"
     condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '18:00:00'
-          before: '00:00:00'
-          weekday:
-            - mon
-            - tue
-            - wed
-            - thu
-            - fri
-            - sat
-        - condition: zone
-          entity_id: person.ale
-          zone: zone.lavoro
+      condition: time
+      after: '07:00:00'
+      before: '11:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        - sat
     action:
-      - service: shell_command.riga_ritorno
       - service: notify.mobile_app_iphone_di_alby
         data:
-          message: "Alessandra è partita!"
+          message: "Alessandra è arrivata al lavoro!"
+
+  - alias: Partenza Lavoro Ale
+    trigger:
+      platform: zone
+      entity_id: person.ale
+      zone: zone.lavoro
+      # Event is either enter or leave
+      event: leave # or "leave"
+    condition:
+      condition: time
+      after: '17:00:00'
+      before: '00:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        - sat
+    action:
+      - service: notify.mobile_app_iphone_di_alby
+        data:
+          message: "Alessandra è partita dal lavoro!"
 
 ###############################################################################
 
@@ -128,31 +174,56 @@
 
 ############ LEON ############################################################
 
+  # - alias: Avviso Coop
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.leon
+  #     from: 'on'
+  #     to: 'off'
+  #   condition:
+  #     - condition: time
+  #       after: '17:00:00'
+  #       before: '00:00:00'
+  #       weekday:
+  #         - mon
+  #         - tue
+  #         - wed
+  #         - thu
+  #         - fri
+  #     - condition: zone
+  #       entity_id: device_tracker.alby_iphone
+  #       zone: zone.coop
+  #   action:
+  #     - service: notify.mobile_app_iphone_di_alessandra
+  #       data:
+  #         title: "COOP"
+  #         message: "Se ci serve qualcosa di specifico scrivigli."
+  #         data:
+  #           subtitle: "Alby è appena arrivato alla COOP"
+
   - alias: Avviso Coop
     trigger:
-      platform: state
-      entity_id: binary_sensor.leon
-      from: 'on'
-      to: 'off'
+      platform: zone
+      entity_id: person.alberto
+      zone: zone.coop
+      # Event is either enter or leave
+      event: enter # or "leave"
     condition:
-      - condition: time
-        after: '17:00:00'
-        before: '00:00:00'
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
-      - condition: zone
-        entity_id: device_tracker.alby_iphone
-        zone: zone.coop
+      condition: time
+      after: '17:00:00'
+      before: '00:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
     action:
       - service: notify.mobile_app_iphone_di_alessandra
         data:
           title: "COOP"
           message: "Se ci serve qualcosa di specifico scrivigli."
           data:
-            subtitle: "Alby è appena arrivato alla COOP"
+            subtitle: "Alby è appena arrivato in zona COOP"
 
 ###############################################################################

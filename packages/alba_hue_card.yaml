@@ -5,7 +5,6 @@ input_datetime:
     name: Orario
     has_date: false
     has_time: true
-    initial: 07:27
 ############ LAVORATIVO ########################################################
 binary_sensor:
   - platform: workday

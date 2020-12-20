@@ -7,6 +7,13 @@ appdaemon:
   plugins:
     HASS:
       type: hass
+    MQTT:
+      type: mqtt
+      namespace: mqtt
+      client_host: !secret mqtt_ip
+      client_user: !secret mqtt_user
+      client_password: !secret mqtt_password
+      client_topics: NONE
 http:
   url: http://127.0.0.1:5050
 hadashboard:
@@ -21,3 +28,7 @@ logs:
     name: Log Trello
     date_format: "%A %d-%m-%Y %X"
     filename: /config/logs/log_trello.log
+  log_buxfer:
+    name: Log Buxfer
+    date_format: "%A %d-%m-%Y %X"
+    filename: /config/logs/log_buxfer.log

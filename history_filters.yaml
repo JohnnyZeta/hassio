@@ -25,9 +25,9 @@
       - light.range_extender_b
       - sensor.sim_1_2
       - sensor.sim_1_3
-  include:
-    entities:
-      - device_tracker.alby_iphone
-      - device_tracker.alby_iphone_2
-      - device_tracker.alessandra_iphone
-      - device_tracker.alessandra_iphone_2
+  # include:
+  #   entities:
+  #     - device_tracker.alby_iphone
+  #     - device_tracker.alby_iphone_2
+  #     - device_tracker.alessandra_iphone
+  #     - device_tracker.alessandra_iphone_2

@@ -51,12 +51,14 @@ class MieiPulsanti(hass.Hass):
             self.pulsante_camera("alessandra", tipo_tasto[1], tipo_tasto[2])
 
         elif tipo_tasto[0] == self.args["cameretta"]["id_principale"]:
-            self.pulsante_cameretta(tipo_tasto[1], tipo_tasto[2])
+            self.pulsante_cameretta("principale", tipo_tasto[1], tipo_tasto[2])
+        elif tipo_tasto[0] == self.args["cameretta"]["id_secondario"]:
+            self.pulsante_cameretta("secondario", tipo_tasto[1], tipo_tasto[2])
 
-        elif tipo_tasto[0] == self.args["salotto"]["id_principale"]:
-            self.pulsante_salotto("principale", tipo_tasto[1], tipo_tasto[2])
-        elif tipo_tasto[0] == self.args["salotto"]["id_tavolino"]:
-            self.pulsante_salotto("tavolino", tipo_tasto[1], tipo_tasto[2])
+        # elif tipo_tasto[0] == self.args["salotto"]["id_principale"]:
+        #     self.pulsante_salotto("principale", tipo_tasto[1], tipo_tasto[2])
+        # elif tipo_tasto[0] == self.args["salotto"]["id_tavolino"]:
+        #     self.pulsante_salotto("tavolino", tipo_tasto[1], tipo_tasto[2])
 
         elif tipo_tasto[0] == self.args["studio"]["id_principale"]:
             self.pulsante_studio("principale", tipo_tasto[1], tipo_tasto[2])
@@ -104,51 +106,66 @@ class MieiPulsanti(hass.Hass):
                 self.turn_on(self.args["camera"]["luce_camera"], brightness=254, xy_color=[0.438, 0.404])
 
 
-    def pulsante_cameretta(self, pulsante, click):
+    def pulsante_cameretta(self, dispositivo, pulsante, click):
 
-        if pulsante == "1": # and click == "release":
-            self.turn_on(self.args["cameretta"]["luce_cameretta"], brightness=254)
-        elif pulsante == "2": # and click == "release":
-            self.turn_off(self.args["cameretta"]["luce_cameretta"])
+        if dispositivo == "principale":
 
-    def pulsante_salotto(self, dispositivo, pulsante, click):
+            if pulsante == "1": # and click == "release":
+                self.turn_on(self.args["cameretta"]["luce_cameretta"], brightness=254)
+            elif pulsante == "2": # and click == "release":
+                self.turn_off(self.args["cameretta"]["luce_cameretta"])
 
-        if dispositivo == "principale": # and click == "release":
+        elif dispositivo == "secondario":
 
-            # Tasto centrale
-            if pulsante == "1":
-                self.toggle(self.args["salotto"]["luci_salotto"]["sx"])
-                self.toggle(self.args["salotto"]["luci_salotto"]["dx"])
-                self.toggle(self.args["salotto"]["luci_salotto"]["down"])
+            if click in ["single"]:
+                self.toggle(self.args["cameretta"]["luce_secondaria_cameretta"])
 
-            # Tasto SX
-            if pulsante == "4":
-                self.toggle(self.args["salotto"]["luci_salotto"]["sx"])
+            elif click == "double":
+                self.toggle(self.args["cameretta"]["luce_cameretta"])
 
-            # Tasto DX
-            if pulsante == "5":
-                self.toggle(self.args["salotto"]["luci_salotto"]["dx"])
+            elif click == "triple":
+                self.toggle(self.args["cameretta"]["luce_cameretta"])
+                self.toggle(self.args["cameretta"]["luce_secondaria_cameretta"])
 
-            # Tasto UP
-            if pulsante == "2":
-                self.toggle(self.args["salotto"]["luci_salotto"]["up"])
+
+    # def pulsante_salotto(self, dispositivo, pulsante, click):
+
+    #     if dispositivo == "principale": # and click == "release":
+
+    #         # Tasto centrale
+    #         if pulsante == "1":
+    #             self.toggle(self.args["salotto"]["luci_salotto"]["sx"])
+    #             self.toggle(self.args["salotto"]["luci_salotto"]["dx"])
+    #             self.toggle(self.args["salotto"]["luci_salotto"]["down"])
+
+    #         # Tasto SX
+    #         if pulsante == "4":
+    #             self.toggle(self.args["salotto"]["luci_salotto"]["sx"])
+
+    #         # Tasto DX
+    #         if pulsante == "5":
+    #             self.toggle(self.args["salotto"]["luci_salotto"]["dx"])
+
+    #         # Tasto UP
+    #         if pulsante == "2":
+    #             self.toggle(self.args["salotto"]["luci_salotto"]["up"])
             
-            # Tasto DOWN
-            if pulsante == "3":
-                self.toggle(self.args["salotto"]["luci_salotto"]["down"])
+    #         # Tasto DOWN
+    #         if pulsante == "3":
+    #             self.toggle(self.args["salotto"]["luci_salotto"]["down"])
 
-        elif dispositivo == "tavolino":
+    #     elif dispositivo == "tavolino":
 
-            if pulsante == "1" and click == "single":
+    #         if pulsante == "1" and click == "single":
 
-                luce_salotto_spenta = self.get_state(self.args["salotto"]["luci_salotto"]["dx"]) == ("off" or "unavailable")
-                luce_salotto_max = self.get_state(self.args["salotto"]["luci_salotto"]["dx"], attribute="brightness") > 250
-                condizione_tavolino = luce_salotto_spenta or luce_salotto_max
+    #             luce_salotto_spenta = self.get_state(self.args["salotto"]["luci_salotto"]["dx"]) == ("off" or "unavailable")
+    #             luce_salotto_max = self.get_state(self.args["salotto"]["luci_salotto"]["dx"], attribute="brightness", default=0) > 250
+    #             condizione_tavolino = luce_salotto_spenta or luce_salotto_max
 
-                if condizione_tavolino:
-                    self.turn_on(self.args["salotto"]["scena_netflix"])
-                else:
-                    self.turn_on(self.args["salotto"]["scena_no_netflix"])
+    #             if condizione_tavolino:
+    #                 self.turn_on(self.args["salotto"]["scena_netflix"])
+    #             else:
+    #                 self.turn_on(self.args["salotto"]["scena_no_netflix"])
 
 
     def pulsante_studio(self, dispositivo, pulsante, click):
@@ -156,16 +173,28 @@ class MieiPulsanti(hass.Hass):
         if dispositivo == "principale":
 
             if click in ["single", "hold"]:
-                for luce in self.args["studio"]["luci_studio"]:
-                    self.toggle(luce, kelvin=self.args["studio"]["kelvin_normale"])
+                self.toggle(self.args["studio"]["luci_studio_scrivania"])
+                for luce in self.args["studio"]["luci_studio_fondo"]:
+                    self.toggle(luce)
 
             elif click == "double":
-                self.toggle(next(iter(self.args["studio"]["luci_studio"])))
+                self.toggle(self.args["studio"]["luci_studio_scrivania"])
+
+            elif click == "triple":
+                self.turn_on(self.args["studio"]["scena1"])
+
+            elif click == "quadruple":
+                self.turn_on(self.args["studio"]["scena2"])
+
+            elif click == "multiple":
+                self.turn_on(self.args["studio"]["scena_default"])
 
         elif dispositivo == "scrivania":
 
             if click == "single":
-                self.toggle(next(iter(self.args["studio"]["luci_studio"])))
+                self.toggle(self.args["studio"]["luci_studio_scrivania"])
             
             elif click == "double":
-                self.call_service("media_player/media_pause", entity_id="media_player.echo_dot_di_alberto")
+                for luce in self.args["studio"]["luci_studio_fondo"]:
+                    self.toggle(luce)
+                #self.call_service("media_player/media_pause", entity_id="media_player.echo_dot_di_alberto")

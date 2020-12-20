@@ -3,6 +3,14 @@
 ###############################################################################
   - platform: template
     sensors:
+      prossima_alba:
+        #entity_id: sun.sun
+        friendly_name: Alba
+        value_template: "{{ as_timestamp(state_attr('sun.sun', 'next_rising')) | timestamp_custom('%H:%M') }}"
+      prossimo_tramonto:
+        #entity_id: sun.sun
+        friendly_name: Tramonto
+        value_template: "{{ as_timestamp(state_attr('sun.sun', 'next_setting')) | timestamp_custom('%H:%M') }}"
       # tempo_antifurto:
       #   entity_id: sensor.time
       #   friendly_name: "Tempo da toggle antifurto"
@@ -36,14 +44,7 @@
       #   value_template: "{{ states.switch.nuvola.attributes.voltage }}"
       #   unit_of_measurement: 'V'
       #   friendly_name: "Voltaggio"
-      # saldo_eth:
-      #   entity_id: sensor.coinbase_eth_wallet
-      #   friendly_name: "Valore ETH"
-      #   icon_template: mdi:coin
-      #   value_template: '{{ states.sensor.coinbase_eth_wallet.attributes["Balance in native currency"] | replace(" EUR", "") }}'
-      #   unit_of_measurement: 'EUR'
       fasilunari:
-        entity_id: sensor.moon
         friendly_name: "Luna"
         icon_template: >
           {% if is_state('sensor.moon', 'new_moon') %}
@@ -81,84 +82,63 @@
           {% elif is_state('sensor.moon', 'waning_crescent') %}
             Luna Calante
           {% endif %}
-# #      Basato su https://philhawthorne.com/using-home-assistant-device-trackers-to-watch-the-critical-components-of-your-smart-home/
-#       hue_online:
-#         value_template: "{% if is_state('device_tracker.001788106774', 'home') %}
-#             Online
-#           {% else %}
-#             Offline
-#           {% endif %}"
-#         friendly_name: 'Hue Bridge'
-#       synology_online:
-#         value_template: "{% if is_state('device_tracker.001132428224', 'home') %}
-#             Online
-#           {% else %}
-#             Offline
-#           {% endif %}"
-#         friendly_name: 'Synology NAS'
-#       ap_online:
-#         value_template: "{% if is_state('device_tracker.fcecda1c6ac7', 'home') %}
-#             Online
-#           {% else %}
-#             Offline
-#           {% endif %}"
-#         friendly_name: 'Unifi AP'
-      ap_salotto_online:
-        value_template: "{% if is_state('device_tracker.ap_salotto', 'home') %}
-            Online
-          {% else %}
-            Offline
-          {% endif %}"
-        friendly_name: 'AP Salotto'
-      ap_studio_online:
-        value_template: "{% if is_state('device_tracker.ap_studio', 'home') %}
-            Online
-          {% else %}
-            Offline
-          {% endif %}"
-        friendly_name: 'AP Studio'
-      switch_camera_online:
-        value_template: "{% if is_state('device_tracker.camera', 'home') %}
-            Online
-          {% else %}
-            Offline
-          {% endif %}"
-        friendly_name: 'Switch Camera'
-      switch_garage_bis_online:
-        value_template: "{% if is_state('device_tracker.garage_bis', 'home') %}
-            Online
-          {% else %}
-            Offline
-          {% endif %}"
-        friendly_name: 'Switch Garage'
-      switch_garage_online:
-        value_template: "{% if is_state('device_tracker.garage', 'home') %}
-            Online
-          {% else %}
-            Offline
-          {% endif %}"
-        friendly_name: 'Switch Garage'
-      usg_online:
-        value_template: "{% if is_state('device_tracker.usg', 'home') %}
-            Online
-          {% else %}
-            Offline
-          {% endif %}"
-        friendly_name: 'USG Gateway'
-      lucille_online:
-        value_template: "{% if is_state('device_tracker.nas_lucille', 'home') %}
-            Online
-          {% else %}
-            Offline
-          {% endif %}"
-        friendly_name: 'NAS Lucille'
-      pi_hole_online:
-        value_template: "{% if is_state('device_tracker.pi_hole', 'home') %}
-            Online
-          {% else %}
-            Offline
-          {% endif %}"
-        friendly_name: 'Pi-Hole DNS'
+### Basato su https://philhawthorne.com/using-home-assistant-device-trackers-to-watch-the-critical-components-of-your-smart-home/
+      # ap_salotto_online:
+      #   value_template: "{% if is_state('device_tracker.ap_salotto', 'home') %}
+      #       Online
+      #     {% else %}
+      #       Offline
+      #     {% endif %}"
+      #   friendly_name: 'AP Salotto'
+      # ap_studio_online:
+      #   value_template: "{% if is_state('device_tracker.ap_studio', 'home') %}
+      #       Online
+      #     {% else %}
+      #       Offline
+      #     {% endif %}"
+      #   friendly_name: 'AP Studio'
+      # switch_camera_online:
+      #   value_template: "{% if is_state('device_tracker.camera', 'home') %}
+      #       Online
+      #     {% else %}
+      #       Offline
+      #     {% endif %}"
+      #   friendly_name: 'Switch Camera'
+      # switch_garage_bis_online:
+      #   value_template: "{% if is_state('device_tracker.garage_bis', 'home') %}
+      #       Online
+      #     {% else %}
+      #       Offline
+      #     {% endif %}"
+      #   friendly_name: 'Switch Garage'
+      # switch_garage_online:
+      #   value_template: "{% if is_state('device_tracker.garage', 'home') %}
+      #       Online
+      #     {% else %}
+      #       Offline
+      #     {% endif %}"
+      #   friendly_name: 'Switch Garage'
+      # usg_online:
+      #   value_template: "{% if is_state('device_tracker.usg', 'home') %}
+      #       Online
+      #     {% else %}
+      #       Offline
+      #     {% endif %}"
+      #   friendly_name: 'USG Gateway'
+      # lucille_online:
+      #   value_template: "{% if is_state('device_tracker.nas_lucille', 'home') %}
+      #       Online
+      #     {% else %}
+      #       Offline
+      #     {% endif %}"
+      #   friendly_name: 'NAS Lucille'
+      # pi_hole_online:
+      #   value_template: "{% if is_state('device_tracker.pi_hole', 'home') %}
+      #       Online
+      #     {% else %}
+      #       Offline
+      #     {% endif %}"
+      #   friendly_name: 'Pi-Hole DNS'
       stufa_fan_rate:
         friendly_name: 'Potenza Ventola'
         unit_of_measurement: '%'
@@ -252,9 +232,6 @@
   # - platform: pi_hole
   #   host: !secret pi_hole_host
 ###############################################################################
-  # - platform: zoneminder
-  #   include_archived: false
-###############################################################################
 # ### Alberto
 #   - platform: history_stats
 #     name: Corsa
@@ -293,16 +270,21 @@
 #     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
 #     end: '{{ now() }}'
 ###############################################################################
-  - platform: unifigateway
-    host: !secret hassio_interno_ip
-    username: !secret unifi_controller_username
-    password: !secret unifi_controller_password
-    monitored_conditions:
-      - www
-      - lan
-      - wlan
-      - alerts
-      - firmware
+  # - platform: unifigateway
+  #   host: !secret hassio_interno_ip
+  #   username: !secret unifi_controller_username
+  #   password: !secret unifi_controller_password
+  #   monitored_conditions:
+  #     - www
+  #     - lan
+  #     - wlan
+  #     - alerts
+  #     - firmware
+###############################################################################
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
 ###############################################################################
   - platform: mqtt
     name: "Potenza Istantanea LampadarioCucina"
@@ -363,3 +345,28 @@
     name: "Sovratemperatura ShellyGarageIntercapedine"
     state_topic: "shellies/shellyswitch25-B94A2F/overtemperature"
     qos: 0
+  - platform: mqtt
+    name: "Counter LoRa"
+    state_topic: "home/OpenMQTTGateway_ESP32_LORA/LORAtoMQTT"
+    value_template: "{{ value_json.message }}"
+    qos: 0
+  - platform: mqtt
+    name: "LED Scrivania Assorbimento"
+    state_topic: "shellies/shellyrgbw2-B03881/color/0/status"
+    value_template: "{{ value_json.power }}"
+    unit_of_measurement : "Watt"
+    icon: mdi:speedometer
+    #
+  - platform: mqtt
+    name: "Temperatura esterna Dottore"
+    state_topic: "sensors/rtl_433/Hideki-TS04/12/temperature_C"
+    device_class: temperature
+  - platform: mqtt
+    name: "Umidità esterna Dottore"
+    state_topic: "sensors/rtl_433/Hideki-TS04/12/humidity"
+    device_class: humidity
+  - platform: mqtt
+    name: "Temperatura esterna Oregon"
+    state_topic: "sensors/rtl_433/Oregon-THN132N/215/temperature_C"
+    device_class: temperature
+  
