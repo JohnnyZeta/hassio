@@ -15,7 +15,7 @@ Questa è una lista non esaustiva dei dispositivi smart che utilizzo quotidianam
 
 ## Gateways
 
-* [**Gateway Xiaomi**](https://saggiolink.it/2RdWBAk)
+* **TI CC2531 con Zigbee2MQTT**
 * [**ConBee di Dresden Elektronik**](https://saggiolink.it/2RjrOC4)
 
 ### _Ecosistema_ Xiaomi
@@ -58,7 +58,9 @@ Questa è una lista non esaustiva dei dispositivi smart che utilizzo quotidianam
 * [**KIT Sensori per Arduino ed ESP**](https://saggiolink.it/2RggfvB)
 * [**Aspirapolvere Neato D3 Connected**](https://saggiolink.it/2RejWSl)
 
-Come server domestico utilizzo un [Intel NUC6i3SYH](https://nucblog.net/2016/01/skylake-nuc-review-nuc6i3syh-core-i3/) con 16 GB di RAM, 120 GB di SSD M2. [Proxmox](https://www.proxmox.com/en/) come sistema operativo mi permette di gestire alcune VM e Containers, tra cui:
+Come server domestico utilizzo un [Intel NUC6i3SYH](https://nucblog.net/2016/01/skylake-nuc-review-nuc6i3syh-core-i3/) con 16 GB di RAM, 500 GB di SSD M2. [Proxmox](https://www.proxmox.com/en/) come sistema operativo mi permette di gestire alcune VM e Containers, tra cui:
 
-* un sistema Linux [Debian](https://www.debian.org) con [Docker](https://www.docker.com), su cui tra gli altri gira il container ufficiale di [Home Assistant per amd64](https://diyfuturism.com/index.php/2018/03/20/pi-to-nuc-part-1-migrating-hass-io-to-a-virtual-machine-proxmox-docker/)
+* un sistema Linux [Debian](https://www.debian.org) con [Docker](https://www.docker.com), su cui tra le altre altri gira la VM ufficiale di Home Assistant OS
+* un container LXC con [NextCloud](https://www.networkshinobi.com/turnkey-linux-nextcloud-container-on-proxmox/)
+* un container LXC sperimentale con una sessione di [rtl_433](https://github.com/merbanan/rtl_433), che inoltra via MQTT dati sui sensori nelle vicinanze
 * una minuscola VM sempre a base Debian, creata con lo scopo di far girare degnamente [Pi-hole](https://pi-hole.net).
