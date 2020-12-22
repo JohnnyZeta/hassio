@@ -1,0 +1,17 @@
+- id: '1546541872918'
+  alias: Modalita Assente
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: 'device_tracker.iphonedrancescostation'
+    from: 'home'
+    to: 'not home'
+  condition:
+  - condition: state
+    entity_id: 'device_tracker.honor_920ef52530158ee3cstation'
+    state: 'not home'
+  action:
+  - service: climate.set_away_mode
+    data:
+        entity_id: climate.termostato
+        away_mode: true
